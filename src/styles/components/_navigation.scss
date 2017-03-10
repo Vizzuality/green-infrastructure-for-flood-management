@@ -1,0 +1,16 @@
+.c-nav {
+
+  .nav-list {
+    display: flex;
+  }
+
+  .nav-link {
+    display: block;
+    padding: ($space-1 * 2) $space-1;
+
+    &.-active {
+      pointer-events: none;
+      background-color: lightgray;
+    }
+  }
+}

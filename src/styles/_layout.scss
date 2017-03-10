@@ -1,0 +1,23 @@
+/* app */
+.l-app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content */
+.l-main {
+  flex: 1;
+}
+
+/* Wrappers */
+.l-app-wrapper {
+  max-width: $app-width;
+  margin: 0 auto;
+}
+
+/* Pages */
+.l-map-page {
+  position: relative;
+  height: 100%;
+}

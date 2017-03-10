@@ -1,19 +1,22 @@
 import React from 'react';
+import Header from 'components/header/Header';
 
 export default class App extends React.Component {
 
   render() {
     return (
       <div className="l-app">
-        <main role="main" className="l-main l-content">
-          {this.props.children}
+        <Header />
+        <main role="main" className="l-main">
+          {this.props.main}
         </main>
+        {this.props.footer}
       </div>
     );
   }
 }
 
 App.propTypes = {
-  children: React.PropTypes.object,
-  getDatasets: React.PropTypes.func
+  main: React.PropTypes.element,
+  footer: React.PropTypes.element
 };

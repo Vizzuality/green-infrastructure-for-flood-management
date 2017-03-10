@@ -10,4 +10,15 @@
 /* Lib */
 @import "lib/foundation";
 
+/* Vizz-components */
+@import "~vizz-components/dist/Spinner/style";
+
+/* Leaflet */
+@import "~leaflet/dist/leaflet.css";
+
 /* Components */
+@import "components/header";
+@import "components/navigation";
+@import "components/footer";
+@import "components/map";
+@import "components/sidebar";
