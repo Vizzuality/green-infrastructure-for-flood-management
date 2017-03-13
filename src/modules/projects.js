@@ -8,7 +8,7 @@ const SET_PROJECT_FILTERS = 'SET_PROJECT_FILTERS';
 /* Initial state */
 const initialState = {
   list: [],
-  search: null,
+  search: 'aaaa',
   filters: {
     type: 'all',
     status: 'all',

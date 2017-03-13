@@ -1,14 +1,19 @@
 import { connect } from 'react-redux';
 import MapPage from './MapPage';
-import { getProjects } from 'modules/projects';
+import { getProjects, setProjectSearch } from 'modules/projects';
+import getActiveProjects from 'selectors/projects_active';
 
-const mapStateToProps = ({ projects }) => ({
-  projects: projects.list
+const mapStateToProps = (state) => ({
+  projects: getActiveProjects(state),
+  searchQuery: state.projects.search
 });
 
 const mapDispatchToProps = dispatch => ({
-  getProjects: () => {
+  getProjects() {
     dispatch(getProjects());
+  },
+  setProjectSearch(query) {
+    dispatch(setProjectSearch(query));
   }
 });
 

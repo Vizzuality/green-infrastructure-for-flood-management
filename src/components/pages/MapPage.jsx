@@ -23,6 +23,7 @@ export default class MapPage extends React.Component {
       <div className="c-map-page l-map-page">
         <Sidebar>
           <Filters />
+          <input type="search" value={this.props.searchQuery} onChange={evt => this.props.setProjectSearch(evt.target.value)} />
           <ProjectList projects={this.props.projects} />
         </Sidebar>
         <Map mapMethods={mapMethods} />
@@ -34,6 +35,8 @@ export default class MapPage extends React.Component {
 MapPage.propTypes = {
   // State
   projects: React.PropTypes.array,
+  searchQuery: React.PropTypes.string,
   // Actions
-  getProjects: React.PropTypes.func
+  getProjects: React.PropTypes.func,
+  setProjectSearch: React.PropTypes.func
 };
