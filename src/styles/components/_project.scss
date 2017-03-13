@@ -1,0 +1,41 @@
+/* Project list */
+
+.c-project-list {
+  > li {
+    margin-bottom: $space-1 * 4;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Project item */
+
+.c-project-item {
+  .project-title {
+    display: block;
+    font-size: $font-size-extrabig;
+    margin-bottom: $space-1 * 1;
+  }
+  .project-company {
+    display: block;
+    margin-bottom: $space-1 * 1;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    > li {
+      margin-right: $space-1/2;
+      &:after {
+        content: ', ';
+      }
+      &:last-child {
+        margin-right: 0;
+        &:after {
+          content: '';
+        }
+      }
+    }
+  }
+}

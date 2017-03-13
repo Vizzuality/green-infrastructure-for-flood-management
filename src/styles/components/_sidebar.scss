@@ -4,7 +4,7 @@
   transition: all $animation-time-2 $ease-in-out-sine;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.25) inset;
   height: 100%;
-  width: 30%;
+  width: 500px;
   position: absolute;
   left: 0;
   top: 0;
@@ -16,6 +16,7 @@
   }
 
   .sidebar-content {
+    padding: $space-1 * 3;
   }
 
   // Toggle button
