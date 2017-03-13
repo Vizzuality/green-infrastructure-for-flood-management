@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { IndexRoute, Router, Route } from 'react-router';
 import Footer from 'components/footer/Footer';
+import { onEnterMapPage } from 'modules/url';
 
 // App
 import App from 'components/app/App';
@@ -14,7 +15,7 @@ const Routes = ({ history }) => (
     <Route path="/" component={App}>
       <IndexRoute components={{ main: HomePage, footer: Footer }} />
       <Route path="map">
-        <IndexRoute components={{ main: MapPageContainer }} />
+        <IndexRoute components={{ main: MapPageContainer }} onEnter={onEnterMapPage} />
       </Route>
     </Route>
   </Router>
