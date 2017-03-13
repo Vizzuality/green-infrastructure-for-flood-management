@@ -1,0 +1,34 @@
+$zoom-size: 40px;
+
+.c-zoom-control {
+  position: absolute;
+  top: $space-1 * 2;
+  right: $space-1 * 2;
+  z-index: 9999;
+
+  .zoom-control-item {
+    &:first-child {
+      margin-bottom: $space-1;
+    }
+  }
+
+  .zoom-control-btn {
+    padding: 0;
+    display: block;
+    text-align: center;
+    width: $zoom-size;
+    height: $zoom-size;
+    line-height: $zoom-size;
+    border: none;
+    background-color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: 1px solid lightgray;
+    transition: background-color linear $animation-time;
+
+    &.-disabled {
+      pointer-events: none;
+      background-color: gray;
+    }
+  }
+}

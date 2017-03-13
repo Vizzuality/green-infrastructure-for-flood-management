@@ -65,4 +65,4 @@ Filters.propTypes = {
   setProjectFilters: React.PropTypes.func,
   filters: React.PropTypes.object
 };
-Filters.propValues = {};
+Filters.defaultProps = {};

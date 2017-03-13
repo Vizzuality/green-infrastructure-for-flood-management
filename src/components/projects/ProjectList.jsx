@@ -12,6 +12,6 @@ export default function ProjectList(props) {
 ProjectList.propTypes = {
   projects: React.PropTypes.array.isRequired
 };
-ProjectList.propValues = {
+ProjectList.defaultProps = {
   projects: []
 };

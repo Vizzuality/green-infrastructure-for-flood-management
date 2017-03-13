@@ -29,6 +29,6 @@ Nav.propTypes = {
   links: React.PropTypes.array,
   className: React.PropTypes.string
 };
-Nav.propValues = {
+Nav.defaultProps = {
   links: []
 };

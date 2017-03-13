@@ -3,6 +3,7 @@ import Map from 'components/map/Map';
 import Sidebar from 'components/ui/Sidebar';
 import Filters from 'components/filters/FiltersContainer';
 import ProjectList from 'components/projects/ProjectList';
+import ZoomControl from 'components/zoom/ZoomControl';
 
 export default class MapPage extends React.Component {
   componentWillMount() {
@@ -14,19 +15,16 @@ export default class MapPage extends React.Component {
     /* Map config */
     const updateMap = (map) => {
       this.props.setMapLocation({
-        zoom: map.getZoom(),
         latLng: map.getCenter()
       });
     };
 
     const listeners = {
-      zoomend: updateMap,
       moveend: updateMap
     };
 
     const mapMethods = {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-      zoomControlPosition: 'topright',
       tileLayers: [
         { url: config.BASEMAP_LABEL_URL, zIndex: 0 },
         { url: config.BASEMAP_TILE_URL, zIndex: 1000 }
@@ -35,6 +33,7 @@ export default class MapPage extends React.Component {
 
     const mapOptions = {
       zoom: this.props.mapState.zoom,
+      zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
 
@@ -50,6 +49,10 @@ export default class MapPage extends React.Component {
           />
           <ProjectList projects={this.props.projects} />
         </Sidebar>
+        <ZoomControl
+          zoom={this.props.mapState.zoom}
+          onZoomChange={zoom => this.props.setMapLocation({ zoom })}
+        />
         <Map
           mapOptions={mapOptions}
           mapMethods={mapMethods}

@@ -59,6 +59,10 @@ export default class Map extends React.Component {
     if (!isEqual(this.props.markers, nextProps.markers)) {
       addOrRemove(this.props.markers, nextProps.markers, marker => this.addMarker(marker), marker => this.removeMarker(marker.id));
     }
+    // Zoom
+    if (this.props.mapOptions.zoom !== nextProps.mapOptions.zoom) {
+      this.map.setZoom(nextProps.mapOptions.zoom);
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {

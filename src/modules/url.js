@@ -4,12 +4,12 @@ import { setProjectFilters, setProjectSearch } from 'modules/projects';
 import { setMapLocation } from 'modules/map';
 
 /* Aux functions */
-function encode(params) {
-  return btoa(JSON.stringify(params));
+function encode(obj) {
+  return btoa(JSON.stringify(obj));
 }
 
-function decode(params) {
-  return JSON.parse(atob(params));
+function decode(obj) {
+  return JSON.parse(atob(obj));
 }
 
 /* Actions */
