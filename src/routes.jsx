@@ -7,14 +7,14 @@ import Footer from 'components/footer/Footer';
 import App from 'components/app/App';
 // Pages
 import HomePage from 'components/pages/HomePage';
-import MapPage from 'components/pages/MapPage';
+import MapPageContainer from 'components/pages/MapPageContainer';
 
 const Routes = ({ history }) => (
   <Router history={history}>
     <Route path="/" component={App}>
       <IndexRoute components={{ main: HomePage, footer: Footer }} />
       <Route path="map">
-        <IndexRoute components={{ main: MapPage }} />
+        <IndexRoute components={{ main: MapPageContainer }} />
       </Route>
     </Route>
   </Router>

@@ -39,5 +39,8 @@ export default class Sidebar extends React.Component {
 
 Sidebar.propTypes = {
   opened: React.PropTypes.bool,
-  children: React.PropTypes.array
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.arrayOf(React.PropTypes.node),
+    React.PropTypes.node
+  ])
 };

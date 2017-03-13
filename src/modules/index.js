@@ -1,1 +1,1 @@
-export default {};
+export { projectsReducer as projects } from './projects';

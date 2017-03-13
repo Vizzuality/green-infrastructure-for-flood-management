@@ -13,8 +13,9 @@
 /* Vizz-components */
 @import "~vizz-components/dist/Spinner/style";
 
-/* Leaflet */
+/* External */
 @import "~leaflet/dist/leaflet.css";
+@import "~react-selectize/themes/base.css";
 
 /* Components */
 @import "components/header";
@@ -22,3 +23,4 @@
 @import "components/footer";
 @import "components/map";
 @import "components/sidebar";
+@import "components/select";
