@@ -19,3 +19,14 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+input {
+  outline: none;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  &::-webkit-search-decoration {
+      -webkit-appearance: none;
+  }
+}
