@@ -5,7 +5,7 @@ import getActiveProjects from 'selectors/projects_active';
 import { updateUrl } from 'modules/url';
 import { setMapLocation } from 'modules/map';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   mapState: state.map,
   projects: getActiveProjects(state),
   searchQuery: state.projects.search

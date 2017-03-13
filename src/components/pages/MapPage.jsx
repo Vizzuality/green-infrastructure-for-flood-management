@@ -15,10 +15,12 @@ export default class MapPage extends React.Component {
     /* Map config */
     const updateMap = (map) => {
       this.props.setMapLocation({
-        latLng: map.getCenter()
+        latLng: map.getCenter(),
+        zoom: map.getZoom()
       });
     };
 
+    /* NOTE: due to a Leaflet bug, 'moveend' event is fired twice on zoom */
     const listeners = {
       moveend: updateMap
     };
@@ -33,6 +35,8 @@ export default class MapPage extends React.Component {
 
     const mapOptions = {
       zoom: this.props.mapState.zoom,
+      minZoom: 2,
+      maxZoom: 7,
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };

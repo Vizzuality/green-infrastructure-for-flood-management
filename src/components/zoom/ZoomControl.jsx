@@ -5,35 +5,38 @@ export default class ZoomControl extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { zoom: props.zoom };
 
     // Bindings
     this.increaseZoom = this.increaseZoom.bind(this);
     this.decreaseZoom = this.decreaseZoom.bind(this);
   }
 
+  /* Component lyfecycle */
+  shouldComponentUpdate(newProps) {
+    return this.props.zoom !== newProps.zoom;
+  }
+
   setZoom(zoom) {
-    this.setState({ zoom });
     this.props.onZoomChange && this.props.onZoomChange(zoom);
   }
 
   increaseZoom() {
-    if (this.state.zoom === this.props.maxZoom) return;
-    this.setZoom(this.state.zoom + 1);
+    if (this.props.zoom === this.props.maxZoom) return;
+    this.setZoom(this.props.zoom + 1);
   }
 
   decreaseZoom() {
-    if (this.state.zoom === this.props.minZoom) return;
-    this.setZoom(this.state.zoom - 1);
+    if (this.props.zoom === this.props.minZoom) return;
+    this.setZoom(this.props.zoom - 1);
   }
 
   render() {
     const zoomInClass = classnames('zoom-control-btn', {
-      '-disabled': this.state.zoom === this.props.maxZoom
+      '-disabled': this.props.zoom === this.props.maxZoom
     });
 
     const zoomOutClass = classnames('zoom-control-btn', {
-      '-disabled': this.state.zoom === this.props.minZoom
+      '-disabled': this.props.zoom === this.props.minZoom
     });
 
     return (
@@ -58,6 +61,6 @@ ZoomControl.propTypes = {
 
 ZoomControl.defaultProps = {
   zoom: 3,
-  maxZoom: 9,
+  maxZoom: 7,
   minZoom: 2
 };
