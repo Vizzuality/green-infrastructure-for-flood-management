@@ -1,0 +1,30 @@
+$_btn-height: 50px;
+
+.c-sliding-menu {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: palette(white);
+  transform: translateY(0);
+  transition: transform $ease-out-cubic $animation-time-2;
+
+  &.-closed {
+    transform: translateY(calc(-100% + #{$_btn-height}));
+  }
+
+  .sliding-menu-btn {
+    display: block;
+    width: 100%;
+    height: $_btn-height;
+    line-height: $_btn-height;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $font-size-big;
+    color: palette(blue);
+    border: none;
+    background-color: palette(white);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+  }
+}

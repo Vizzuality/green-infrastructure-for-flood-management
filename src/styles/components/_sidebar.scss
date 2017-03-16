@@ -1,0 +1,54 @@
+.c-sidebar {
+  background-color: palette(blue);
+  transform: translate(calc(-100% + 10px),0);
+  transition: all $animation-time-2 $ease-in-out-sine;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.25) inset;
+  height: 100%;
+  width: 525px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+
+  &.-opened {
+    transform: translate(0,0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .sidebar-content {
+    position: relative;
+    padding: (($space-1 * 5) + 50) ($space-1 * 5) ($space-1 * 5);
+    height: 100%;
+    overflow: auto;
+  }
+
+  // Toggle button
+  .sidebar-btn {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    cursor: pointer;
+    transition: background $animation-time-2 $ease-in-out-sine;
+    width: 53px;
+    height: 53px;
+    background-color: blue;
+
+    svg {
+      fill: white;
+      transition: all $animation-time $ease-in-out-sine,
+                  transform $animation-time-2 $ease-in-out-sine $animation-time;
+    }
+
+    &:hover {
+      background-color: gray;
+    }
+
+    &.-opened {
+      box-shadow: none;
+
+    }
+  }
+}

@@ -1,0 +1,29 @@
+
+.c-select {
+  .select-label {
+    display: block;
+    margin-bottom: $space-1;
+  }
+}
+
+.react-selectize {
+
+  margin-bottom: $space-1 * 2;
+
+  &.root-node {
+    width: 100%;
+    background-color: lightgray;
+  }
+
+  .dropdown-menu {
+    background-color: white;
+    border: lightgray 1px solid;
+
+    .option-wrapper {
+      padding: $space-1 ($space-1 * 2);
+      &.highlight {
+        background: lightblue;
+      }
+    }
+  }
+}

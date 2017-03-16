@@ -1,0 +1,7 @@
+@function palette($palette, $tone: 'primary') {
+  @return map-get(map-get($palettes, $palette), $tone);
+}
+
+@function font($name: 'primary') {
+  @return map-get($fonts, $name);
+}
