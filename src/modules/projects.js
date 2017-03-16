@@ -4,11 +4,13 @@ import { mockProjects } from 'mocks/projects';
 const SET_PROJECTS = 'SET_PROJECTS';
 const SET_PROJECT_SEARCH = 'SET_PROJECT_SEARCH';
 const SET_PROJECT_FILTERS = 'SET_PROJECT_FILTERS';
+const SET_PROJECT_DETAIL = 'SET_PROJECT_DETAIL';
 
 /* Initial state */
 const initialState = {
   list: [],
   search: 'aaaa',
+  detail: null,
   filters: {
     type: 'all',
     status: 'all',
@@ -39,12 +41,24 @@ function projectsReducer(state = initialState, action) {
           ...action.payload
         }
       };
+    case SET_PROJECT_DETAIL:
+      return {
+        ...state,
+        detail: action.payload
+      };
     default:
       return state;
   }
 }
 
 /* Action creators */
+function setProjectDetail(projectId) {
+  return {
+    type: SET_PROJECT_DETAIL,
+    payload: projectId
+  };
+}
+
 function setProjectFilters(filters) {
   return {
     type: SET_PROJECT_FILTERS,
@@ -75,4 +89,4 @@ function getProjects() {
   };
 }
 
-export { projectsReducer, setProjectFilters, setProjectSearch, setProjects, getProjects };
+export { projectsReducer, setProjectFilters, setProjectSearch, setProjects, getProjects, setProjectDetail };

@@ -1,5 +1,4 @@
 .c-sidebar {
-  background-color: palette(blue);
   transform: translate(calc(-100% + 10px),0);
   transition: all $animation-time-2 $ease-in-out-sine;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.25) inset;
@@ -17,7 +16,6 @@
 
   .sidebar-content {
     position: relative;
-    padding: (($space-1 * 5) + 50) ($space-1 * 5) ($space-1 * 5);
     height: 100%;
     overflow: auto;
   }
@@ -34,7 +32,8 @@
     transition: background $animation-time-2 $ease-in-out-sine;
     width: 53px;
     height: 53px;
-    background-color: blue;
+    background-color: palette(blue);
+    border: none;
 
     svg {
       fill: white;
@@ -43,7 +42,7 @@
     }
 
     &:hover {
-      background-color: gray;
+      background-color: palette(blue, secondary);
     }
 
     &.-opened {

@@ -1,6 +1,6 @@
 import { dispatch } from 'main';
 import { replace } from 'react-router-redux';
-import { setProjectFilters, setProjectSearch } from 'modules/projects';
+import { setProjectFilters, setProjectSearch, setProjectDetail } from 'modules/projects';
 import { setMapLocation } from 'modules/map';
 
 /* Aux functions */
@@ -16,7 +16,7 @@ function decode(obj) {
 function updateUrl() {
   return (storeDispatch, getState) => {
     const state = getState();
-    const { search, filters } = state.projects;
+    const { search, filters, detail } = state.projects;
     const { map } = state;
 
     const locationDescriptor = {
@@ -24,7 +24,8 @@ function updateUrl() {
       query: {
         map: encode(map),
         search,
-        filters: encode(filters)
+        filters: encode(filters),
+        detail
       }
     };
     storeDispatch(replace(locationDescriptor));
@@ -32,7 +33,7 @@ function updateUrl() {
 }
 
 function onEnterMapPage({ location }, replaceUrl, done) {
-  const { filters, search, map } = location.query;
+  const { filters, search, map, detail } = location.query;
   if (filters) {
     const parsedFilters = decode(filters);
     dispatch(setProjectFilters(parsedFilters));
@@ -43,6 +44,9 @@ function onEnterMapPage({ location }, replaceUrl, done) {
   if (map) {
     const parsedMap = decode(map);
     dispatch(setMapLocation(parsedMap));
+  }
+  if (detail) {
+    dispatch(setProjectDetail(detail));
   }
 
   done();

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ProjectItem(props) {
   return (
-    <div className="c-project-item">
+    <div className="c-project-item" onClick={() => props.onProjectSelect(props.data.id)}>
       <span className="project-title">{props.data.title}</span>
       <span className="project-company">{props.data.company}</span>
       <ul className="project-tags">
@@ -13,5 +13,6 @@ export default function ProjectItem(props) {
 }
 
 ProjectItem.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired,
+  onProjectSelect: React.PropTypes.func
 };

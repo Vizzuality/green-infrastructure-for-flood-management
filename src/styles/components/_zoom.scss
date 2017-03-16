@@ -1,18 +1,28 @@
-$zoom-size: 40px;
+$zoom-size: 48px;
 
 .c-zoom-control {
   position: absolute;
   top: $space-1 * 2;
   right: $space-1 * 2;
-  z-index: 9999;
+  z-index: 999;
 
   .zoom-control-item {
+    border: 1px solid palette(gray);
+    border-bottom-width: 0;
+    overflow-x: hidden;
+
     &:first-child {
-      margin-bottom: $space-1;
+      border-radius: 3px 3px 0 0;
+    }
+
+    &:last-child {
+      border-bottom-width: 1px;
+      border-radius: 0 0 3px 3px;
     }
   }
 
-  .zoom-control-btn {
+  .zoom-control-btn, .btn-help {
+    user-select: none;
     padding: 0;
     display: block;
     text-align: center;
@@ -20,15 +30,14 @@ $zoom-size: 40px;
     height: $zoom-size;
     line-height: $zoom-size;
     border: none;
+    color: palette(black);
     background-color: white;
-    font-size: 22px;
-    font-weight: bold;
-    border: 1px solid lightgray;
+    font-size: 18px;
     transition: background-color linear $animation-time;
 
     &.-disabled {
       pointer-events: none;
-      background-color: gray;
+      background-color: palette(gray, light);
     }
   }
 }

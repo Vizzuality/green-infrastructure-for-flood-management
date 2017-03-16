@@ -1,7 +1,20 @@
 /* Project list */
 
-.c-project-list {
+/* wrappers */
+.project-list-wrapper, .project-detail-wrapper {
+  min-height: 100%;
+  padding: (($space-1 * 5) + 50) ($space-1 * 5) ($space-1 * 5);
+}
 
+.project-detail-wrapper {
+  background-color: palette(white, dark)
+}
+
+.project-list-wrapper {
+  background-color: palette(blue);
+}
+
+.c-project-list {
   margin: 0 ($space-1 * -5) ($space-1 * -5);
 
   > li {
@@ -18,6 +31,12 @@
   padding-right: 77px;
   border-bottom: 1px solid rgba(#000000, .1);
   padding: ($space-1 * 4) ($space-1 * 5);
+  cursor: pointer;
+  transition: background-color linear $animation-time;
+
+  &:hover {
+    background-color: rgba(palette(white), .1);
+  }
 
   .project-title {
     display: block;
@@ -58,5 +77,85 @@
         }
       }
     }
+  }
+}
+
+/* Project detail */
+
+.c-project-detail {
+
+  .project-bar {
+    display: block;
+    height: 50px;
+    background-color: palette(white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: $space-1 * 5;
+  }
+
+  .project-back {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-size: $font-size-big;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: palette(blue);
+    display: block;
+    height: 100%;
+  }
+
+  .project-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: palette(black);
+    line-height: normal;
+    margin-bottom: $space-1 * 3;
+  }
+
+  .project-company {
+    display: block;
+    font-weight: bold;
+    color: palette(blue);
+    text-transform: uppercase;
+    margin-bottom: $space-1 * 2;
+  }
+
+  .project-date {
+    display: block;
+    margin-bottom: $space-1 * 4;
+    text-transform: uppercase;
+    color: rgba(palette(black), .7);
+  }
+
+  .project-text {
+    color: palette(black);
+    font-size: $font-size-big;
+    line-height: 2.25;
+  }
+
+  .project-link {
+    cursor: pointer;
+    display: inline-block;;
+    padding: $space-1 ($space-1 * 2);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: palette(blue);
+    border-radius: 3px;
+    border: 1px solid palette(blue);
+    float: right;
+    margin-top: $space-1 * 5;
+  }
+
+  .project-detail-section {
+    @include clearfix;
+    padding-bottom: $space-1 * 7;
+    border-bottom: solid 1px rgba(#0f6487, .2);
   }
 }

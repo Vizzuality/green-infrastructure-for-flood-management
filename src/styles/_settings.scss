@@ -8,10 +8,15 @@ $palettes: (
     secondary: #70CFDF
   ),
   white: (
-    primary: #FFFFFF
+    primary: #FFFFFF,
+    dark: #FAFAFA
   ),
   black: (
     primary: #4A4A4A
+  ),
+  gray: (
+    primary: #AAAAAA,
+    light: #CCCCCC
   )
 );
 
@@ -21,7 +26,6 @@ $font-size-default: 'Open Sans', sans-serif;
 $fonts: (
   primary: $font-size-default
 );
-
 
 // Fonts sizes
 $font-size-extra-small:   10px;
