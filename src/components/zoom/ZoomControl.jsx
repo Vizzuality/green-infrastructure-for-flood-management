@@ -42,10 +42,10 @@ export default class ZoomControl extends React.Component {
     return (
       <ul className="c-zoom-control">
         <li className="zoom-control-item">
-          <button className={zoomOutClass} type="button" onClick={this.decreaseZoom}>-</button>
+          <button className={zoomInClass} type="button" onClick={this.increaseZoom}>+</button>
         </li>
         <li className="zoom-control-item">
-          <button className={zoomInClass} type="button" onClick={this.increaseZoom}>+</button>
+          <button className={zoomOutClass} type="button" onClick={this.decreaseZoom}>-</button>
         </li>
       </ul>
     );

@@ -4,6 +4,7 @@ import Sidebar from 'components/ui/Sidebar';
 import Filters from 'components/filters/FiltersContainer';
 import ProjectList from 'components/projects/ProjectList';
 import ZoomControl from 'components/zoom/ZoomControl';
+import SlidingMenu from 'components/ui/SlidingMenu'
 
 export default class MapPage extends React.Component {
   componentWillMount() {
@@ -44,7 +45,9 @@ export default class MapPage extends React.Component {
     return (
       <div className="c-map-page l-map-page">
         <Sidebar>
-          {/* <Filters /> */}
+          <SlidingMenu title="filters">
+            <Filters />
+          </SlidingMenu>
           <input
             className="c-search"
             type="search"

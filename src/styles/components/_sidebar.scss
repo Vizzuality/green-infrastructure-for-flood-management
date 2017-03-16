@@ -16,7 +16,8 @@
   }
 
   .sidebar-content {
-    padding: $space-1 * 5;
+    position: relative;
+    padding: (($space-1 * 5) + 50) ($space-1 * 5) ($space-1 * 5);
     height: 100%;
     overflow: auto;
   }
