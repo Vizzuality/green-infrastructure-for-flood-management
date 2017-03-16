@@ -158,4 +158,31 @@
     padding-bottom: $space-1 * 7;
     border-bottom: solid 1px rgba(#0f6487, .2);
   }
+
+  .project-detail-list {
+
+    padding-top: $space-1 * 4;
+
+    dt {
+      text-transform: uppercase;
+      color: palette(gray);
+      margin-bottom: $space-1;
+    }
+
+    dd {
+      color: palette(black);
+      font-size: $font-size-big;
+      line-height: 2.25;
+      margin-bottom: $space-1 * 4;
+
+      &.-big {
+        font-size: 36px;
+        line-height: 1.2;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

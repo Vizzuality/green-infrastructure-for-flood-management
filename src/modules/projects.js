@@ -9,7 +9,7 @@ const SET_PROJECT_DETAIL = 'SET_PROJECT_DETAIL';
 /* Initial state */
 const initialState = {
   list: [],
-  search: 'aaaa',
+  search: '',
   detail: null,
   filters: {
     type: 'all',
