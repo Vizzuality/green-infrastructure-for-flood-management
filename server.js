@@ -2,7 +2,7 @@
 
 require('dotenv').config({ silent: true });
 
-const port = process.env.PORT || 3000;
+const port = process.env.NODE_PORT || 3000;
 const app = require('./config/application');
 
 /**
