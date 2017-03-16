@@ -1,23 +1,58 @@
 const mockProjects = [
   {
-    title: 'Project 1',
-    company: 'Company A',
-    tags: ['tag1', 'tag2', 'tag3']
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
   },
   {
-    title: 'Project 2',
-    company: 'Company A',
-    tags: ['tag1', 'tag2', 'tag3']
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
   },
   {
-    title: 'Project 3',
-    company: 'Company A',
-    tags: ['tag1', 'tag2', 'tag3']
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
   },
   {
-    title: 'Project 4',
-    company: 'Company A',
-    tags: ['tag1', 'tag2', 'tag3']
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
+  },
+  {
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
+  },
+  {
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
+  },
+  {
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
+  },
+  {
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
+  },
+  {
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
+  },
+  {
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
+  },
+  {
+    title: 'Greater Paramaribo Flood Risk Management Program',
+    company: 'World bank',
+    tags: ['On going', 'green', 'urban']
   }
 ];
 

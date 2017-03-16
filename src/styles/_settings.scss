@@ -3,11 +3,25 @@ $app-width: 1280px;
 
 // Colors
 $palettes: (
-
+  blue: (
+    primary: #0F6487,
+    secondary: #70CFDF
+  ),
+  white: (
+    primary: #FFFFFF
+  ),
+  black: (
+    primary: #4A4A4A
+  )
 );
 
 // Font families
-$font-family-default: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-size-default: 'Open Sans', sans-serif;
+
+$fonts: (
+  primary: $font-size-default
+);
+
 
 // Fonts sizes
 $font-size-extra-small:   10px;
@@ -21,7 +35,7 @@ $font-size-huge:          22px;
 $space-1: 8px;
 
 // Times
-$animation-time: .16s;
+$animation-time:   .16s;
 $animation-time-2: .24s;
 $animation-time-3: .5s;
 $animation-time-4: .75s;

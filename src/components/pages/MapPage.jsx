@@ -44,7 +44,7 @@ export default class MapPage extends React.Component {
     return (
       <div className="c-map-page l-map-page">
         <Sidebar>
-          <Filters />
+          {/* <Filters /> */}
           <input
             className="c-search"
             type="search"
