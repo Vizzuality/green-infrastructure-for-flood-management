@@ -1,10 +1,14 @@
 import React from 'react';
+import { SvgIcon } from 'vizz-components';
 
 export default function ProjectDetail(props) {
   return (
     <article className="c-project-detail">
       <div className="project-bar">
-        <button className="project-back" onClick={props.onBack} type="button">See all projects</button>
+        <button className="project-back" onClick={props.onBack} type="button">
+          <SvgIcon className="project-back-icon" name="icon-arrow-left-2" />
+          See all projects
+        </button>
       </div>
       <div className="project-detail-section">
         <h1 className="project-title">Metro Colombo Urban Development Project</h1>

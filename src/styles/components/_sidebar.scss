@@ -21,14 +21,11 @@
 
   // Toggle button
   .sidebar-btn {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     position: absolute;
     top: 0;
     left: 100%;
     cursor: pointer;
-    transition: background $animation-time-2 $ease-in-out-sine;
+    transition: background $animation-time linear;
     width: 53px;
     height: 53px;
     background-color: palette(blue);
@@ -36,12 +33,15 @@
 
     svg {
       fill: white;
-      transition: all $animation-time $ease-in-out-sine,
-                  transform $animation-time-2 $ease-in-out-sine $animation-time;
+      width: 9px;
+      height: 17px;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      margin: auto;
     }
 
     &:hover {
-      background-color: palette(blue, secondary);
+      background-color: rgba(palette(blue), .7);
     }
 
     &.-opened {

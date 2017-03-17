@@ -14,7 +14,17 @@ $_btn-height: 50px;
     transform: translateY(calc(-100% + #{$_btn-height}));
   }
 
+  .sliding-menu-icon {
+    width: 36px;
+    height: 18px;
+    fill: palette(blue);
+    position: absolute;
+    top: 0; left: $space-1 * 4; bottom: 0;
+    margin: auto;
+  }
+
   .sliding-menu-btn {
+    position: relative;
     display: block;
     width: 100%;
     height: $_btn-height;

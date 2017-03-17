@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { SvgIcon } from 'vizz-components';
 import classnames from 'classnames';
 
 export default class Sidebar extends React.Component {
@@ -36,7 +36,9 @@ export default class Sidebar extends React.Component {
     const cNames = classnames('c-sidebar', { '-opened': this.state.opened });
     return (
       <aside className={cNames}>
-        <button type="button" className="sidebar-btn" onClick={this.toggle} />
+        <button type="button" className="sidebar-btn" onClick={this.toggle}>
+          <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
+        </button>
         <div ref={node => this.elContent = node} className="sidebar-content">
           {this.props.children}
         </div>

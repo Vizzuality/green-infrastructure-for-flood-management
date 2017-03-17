@@ -109,6 +109,15 @@
     color: palette(blue);
     display: block;
     height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .project-back-icon {
+    margin-right: $space-1 * 2;
+    width: 8px;
+    height: 16px;
+    fill: palette(blue);
   }
 
   .project-title {
