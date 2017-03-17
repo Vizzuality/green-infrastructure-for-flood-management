@@ -1,17 +1,16 @@
 .c-sidebar {
   transform: translate(calc(-100% + 10px),0);
   transition: all $animation-time-2 $ease-in-out-sine;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.25) inset;
   height: 100%;
   width: 525px;
   position: absolute;
   left: 0;
   top: 0;
   z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 
   &.-opened {
     transform: translate(0,0);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   }
 
   .sidebar-content {

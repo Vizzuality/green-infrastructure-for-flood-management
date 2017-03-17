@@ -8,9 +8,26 @@ import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
 
 export default class MapPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sidebarScroll: 0
+    };
+
+    // Bindings
+    this.goToProjectDetail = this.goToProjectDetail.bind(this);
+  }
+
   componentWillMount() {
     this.props.updateUrl();
     if (!this.props.projects.length) this.props.getProjects();
+  }
+
+  goToProjectDetail(projectId) {
+    this.setState({
+      sidebarScroll: 0
+    });
+    this.props.setProjectDetail(projectId);
   }
 
   render() {
@@ -45,7 +62,7 @@ export default class MapPage extends React.Component {
 
     return (
       <div className="c-map-page l-map-page">
-        <Sidebar>
+        <Sidebar scroll={this.state.sidebarScroll} >
           {this.props.projectDetail ?
             <div className="project-detail-wrapper">
               <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectDetail(null)} />
@@ -60,7 +77,7 @@ export default class MapPage extends React.Component {
                 value={this.props.searchQuery}
                 onChange={evt => this.props.setProjectSearch(evt.target.value)}
               />
-              <ProjectList projects={this.props.projects} onProjectSelect={this.props.setProjectDetail} />
+            <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
             </div>
           }
         </Sidebar>
