@@ -35,8 +35,8 @@ export default class LayerManager {
     }
   }
 
-  addMarker({ id, lat, lng }, icon) {
-    this._mapMarkers[id] = L.marker([lat, lng], { icon });
+  addMarker({ id, marker }) {
+    this._mapMarkers[id] = marker;
     this._mapMarkers[id].addTo(this._map);
   }
 

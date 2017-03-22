@@ -1,4 +1,5 @@
 import L from 'leaflet/dist/leaflet';
+import { PruneCluster, PruneClusterForLeaflet } from 'lib/PruneCluster';
 import React from 'react';
 import Map from 'components/map/Map';
 import Sidebar from 'components/ui/Sidebar';
@@ -31,52 +32,83 @@ export default class MapPage extends React.Component {
     this.props.setProjectDetail(projectId);
   }
 
-  render() {
-    /* Map config */
-    const updateMap = (map) => {
-      this.props.setMapLocation({
-        latLng: map.getCenter(),
-        zoom: map.getZoom()
-      });
-    };
-
+  getMapListeners() {
     /* NOTE: due to a Leaflet bug, 'moveend' event is fired twice on zoom */
-    const listeners = {
-      moveend: updateMap
+    /* Map listeners */
+    return {
+      moveend: (map) => {
+        this.props.setMapLocation({
+          latLng: map.getCenter(),
+          zoom: map.getZoom()
+        });
+      }
     };
+  }
 
+  getMapMethods() {
     /* Map methods */
-    const mapMethods = {
+    return {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
       tileLayers: [
         { url: config.BASEMAP_TILE_URL, zIndex: 0 }
       ]
     };
+  }
 
+  getMapOptions() {
     /* Map options */
-    const mapOptions = {
+    return {
       zoom: this.props.mapState.zoom,
       minZoom: 2,
       maxZoom: 7,
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
+  }
 
-    /* Markers */
-    const markers = this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
-    .map((p) => {
-      const { id } = p;
-      const lat = p.locations[0].centroid.coordinates[1];
-      const lng = p.locations[0].centroid.coordinates[0];
-
-      return { id, lat, lng };
-    });
+  getMarkers() {
+    const pruneCluster = new PruneClusterForLeaflet();
 
     /* Marker icon */
-    const markerIcon = L.divIcon({
-      className: 'c-marker',
-      html: '<div class="marker-inner"></div>'
+    pruneCluster.PrepareLeafletMarker = (leafletMarker) => {
+      leafletMarker.setIcon(L.divIcon({
+        iconSize: [15, 15],
+        className: 'c-marker',
+        html: '<div class="marker-inner"></div>'
+      }));
+    };
+
+    /* Cluster icon */
+    pruneCluster.BuildLeafletClusterIcon = ({ population }) => {
+      const size = 15 + Math.pow(population * 100, 0.5);
+      return L.divIcon({
+        iconSize: [size, size],
+        className: 'c-marker',
+        html: `<div class="marker-inner">${population}</div>`
+      });
+    };
+
+    this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
+    .forEach((p) => {
+      const lat = p.locations[0].centroid.coordinates[1];
+      const lng = p.locations[0].centroid.coordinates[0];
+      const marker = new PruneCluster.Marker(lat, lng);
+      marker.data = p;
+      pruneCluster.RegisterMarker(marker);
     });
+
+    return this.props.projects.length ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
+  }
+
+  /* Render */
+  render() {
+    /* Map params */
+    const listeners = this.getMapListeners();
+    const mapMethods = this.getMapMethods();
+    const mapOptions = this.getMapOptions();
+    const markers = this.getMarkers();
+
+    const mapParams = { listeners, mapMethods, mapOptions, markers };
 
     return (
       <div className="c-map-page l-map-page">
@@ -95,7 +127,7 @@ export default class MapPage extends React.Component {
                 value={this.props.searchQuery}
                 onChange={evt => this.props.setProjectSearch(evt.target.value)}
               />
-            <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
+              <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
             </div>
           }
         </Sidebar>
@@ -103,13 +135,7 @@ export default class MapPage extends React.Component {
           zoom={this.props.mapState.zoom}
           onZoomChange={zoom => this.props.setMapLocation({ zoom })}
         />
-        <Map
-          mapOptions={mapOptions}
-          mapMethods={mapMethods}
-          listeners={listeners}
-          markers={markers}
-          markerIcon={markerIcon}
-        />
+        <Map {...mapParams} />
       </div>
     );
   }

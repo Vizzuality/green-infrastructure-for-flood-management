@@ -151,10 +151,10 @@ export default class Map extends React.Component {
   /* Marker methods */
   addMarker(marker) {
     if (Array.isArray(marker)) {
-      marker.forEach(m => this.layerManager.addMarker(m, this.props.markerIcon));
+      marker.forEach(m => this.layerManager.addMarker(m));
       return;
     }
-    this.layerManager.addMarker(marker, this.props.markerIcon);
+    this.layerManager.addMarker(marker);
   }
 
   removeMarker(markerId) {
