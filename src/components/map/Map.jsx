@@ -51,6 +51,11 @@ export default class Map extends React.Component {
     if (!isEqual(this.props.mapMethods.fitBounds, nextProps.mapMethods.fitBounds)) {
       this.map.fitBounds(nextProps.mapMethods.fitBounds);
     }
+    // TODO: apply to all mapMethods within a loop
+    // setView
+    if (!isEqual(this.props.mapMethods.view, nextProps.mapMethods.view) &&  nextProps.mapMethods.view) {
+      this.setView(nextProps.mapMethods.view, 5);
+    }
     // Layers
     if (!isEqual(this.props.layers, nextProps.layers)) {
       addOrRemove(this.props.layers, nextProps.layers, layer => this.addLayer(layer), layer => this.removeLayer(layer.id));
@@ -97,6 +102,10 @@ export default class Map extends React.Component {
       const fnName = `set${methodName}`;
       typeof this[fnName] === 'function' && this[fnName].call(this);
     });
+  }
+
+  setView(...args) {
+    this.map.setView(...args);
   }
 
   setAttribution() {
