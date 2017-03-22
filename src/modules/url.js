@@ -46,7 +46,7 @@ function onEnterMapPage({ location }, replaceUrl, done) {
     dispatch(setMapLocation(parsedMap));
   }
   if (detail) {
-    dispatch(setProjectDetail(detail));
+    dispatch(setProjectDetail(+detail));
   }
 
   done();

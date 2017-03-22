@@ -1,3 +1,4 @@
+import L from 'leaflet/dist/leaflet';
 import React from 'react';
 import Map from 'components/map/Map';
 import Sidebar from 'components/ui/Sidebar';
@@ -44,14 +45,15 @@ export default class MapPage extends React.Component {
       moveend: updateMap
     };
 
+    /* Map methods */
     const mapMethods = {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
       tileLayers: [
-        { url: config.BASEMAP_LABEL_URL, zIndex: 0 },
-        { url: config.BASEMAP_TILE_URL, zIndex: 1000 }
+        { url: config.BASEMAP_TILE_URL, zIndex: 0 }
       ]
     };
 
+    /* Map options */
     const mapOptions = {
       zoom: this.props.mapState.zoom,
       minZoom: 2,
@@ -59,6 +61,22 @@ export default class MapPage extends React.Component {
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
+
+    /* Markers */
+    const markers = this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
+    .map((p) => {
+      const { id } = p;
+      const lat = p.locations[0].centroid.coordinates[1];
+      const lng = p.locations[0].centroid.coordinates[0];
+
+      return { id, lat, lng };
+    });
+
+    /* Marker icon */
+    const markerIcon = L.divIcon({
+      className: 'c-marker',
+      html: '<div class="marker-inner"></div>'
+    });
 
     return (
       <div className="c-map-page l-map-page">
@@ -89,6 +107,8 @@ export default class MapPage extends React.Component {
           mapOptions={mapOptions}
           mapMethods={mapMethods}
           listeners={listeners}
+          markers={markers}
+          markerIcon={markerIcon}
         />
       </div>
     );

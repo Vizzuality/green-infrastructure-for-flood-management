@@ -38,7 +38,7 @@
     background-color: rgba(palette(white), .1);
   }
 
-  .project-title {
+  .project-name {
     display: block;
     font-size: $font-size-extrabig;
     margin-bottom: $space-1 * 1.5;
@@ -47,7 +47,6 @@
   }
 
   .project-company {
-    display: block;
     margin-bottom: $space-1 * 1.5;
     font-weight: bold;
     color: palette(blue, secondary);
@@ -120,7 +119,7 @@
     fill: palette(blue);
   }
 
-  .project-title {
+  .project-name {
     font-size: 36px;
     font-weight: bold;
     color: palette(black);

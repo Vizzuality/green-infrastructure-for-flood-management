@@ -1,4 +1,4 @@
-import { mockProjects } from 'mocks/projects';
+import { get } from 'utils/request';
 
 /* Constants */
 const SET_PROJECTS = 'SET_PROJECTS';
@@ -81,11 +81,13 @@ function setProjects(projects) {
 }
 
 function getProjects() {
-  /* TODO: unmock */
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(setProjects(mockProjects));
-    }, 500);
+    get({
+      url: `${config.API_URL}/api/projects`,
+      onSuccess: (data) => {
+        dispatch(setProjects(data));
+      }
+    });
   };
 }
 
