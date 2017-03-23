@@ -2,13 +2,15 @@ import { get } from 'utils/request';
 
 /* Constants */
 const SET_PROJECTS = 'SET_PROJECTS';
-const SET_PROJECT_SEARCH = 'SET_PROJECT_SEARCH';
-const SET_PROJECT_FILTERS = 'SET_PROJECT_FILTERS';
-const SET_PROJECT_DETAIL = 'SET_PROJECT_DETAIL';
+const SET_PROJECTS_LOADING = 'SET_PROJECTS_LOADING';
+const SET_PROJECTS_SEARCH = 'SET_PROJECTS_SEARCH';
+const SET_PROJECTS_FILTERS = 'SET_PROJECTS_FILTERS';
+const SET_PROJECTS_DETAIL = 'SET_PROJECTS_DETAIL';
 
 /* Initial state */
 const initialState = {
   list: [],
+  loading: false,
   search: '',
   detail: null,
   filters: {
@@ -28,12 +30,17 @@ function projectsReducer(state = initialState, action) {
         ...state,
         list: action.payload
       };
-    case SET_PROJECT_SEARCH:
+    case SET_PROJECTS_LOADING:
+      return {
+        ...state,
+        loading: action.payload
+      };
+    case SET_PROJECTS_SEARCH:
       return {
         ...state,
         search: action.payload
       };
-    case SET_PROJECT_FILTERS:
+    case SET_PROJECTS_FILTERS:
       return {
         ...state,
         filters: {
@@ -41,7 +48,7 @@ function projectsReducer(state = initialState, action) {
           ...action.payload
         }
       };
-    case SET_PROJECT_DETAIL:
+    case SET_PROJECTS_DETAIL:
       return {
         ...state,
         detail: action.payload
@@ -52,23 +59,30 @@ function projectsReducer(state = initialState, action) {
 }
 
 /* Action creators */
-function setProjectDetail(projectId) {
+function setProjectsLoading(loading) {
   return {
-    type: SET_PROJECT_DETAIL,
+    type: SET_PROJECTS_LOADING,
+    payload: loading
+  };
+}
+
+function setProjectsDetail(projectId) {
+  return {
+    type: SET_PROJECTS_DETAIL,
     payload: projectId
   };
 }
 
-function setProjectFilters(filters) {
+function setProjectsFilters(filters) {
   return {
-    type: SET_PROJECT_FILTERS,
+    type: SET_PROJECTS_FILTERS,
     payload: filters
   };
 }
 
-function setProjectSearch(query) {
+function setProjectsSearch(query) {
   return {
-    type: SET_PROJECT_SEARCH,
+    type: SET_PROJECTS_SEARCH,
     payload: query
   };
 }
@@ -82,13 +96,15 @@ function setProjects(projects) {
 
 function getProjects() {
   return (dispatch) => {
+    dispatch(setProjectsLoading(true));
     get({
       url: `${config.API_URL}/api/projects`,
       onSuccess: (data) => {
         dispatch(setProjects(data));
+        dispatch(setProjectsLoading(false));
       }
     });
   };
 }
 
-export { projectsReducer, setProjectFilters, setProjectSearch, setProjects, getProjects, setProjectDetail };
+export { projectsReducer, setProjectsFilters, setProjectsSearch, setProjects, getProjects, setProjectsDetail };
