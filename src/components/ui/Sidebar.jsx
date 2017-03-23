@@ -8,12 +8,16 @@ export default class Sidebar extends React.Component {
     super(props);
 
     // Initial state
-    this.state = {
-      opened: isNaN(props.opened) ? true : props.opened
-    };
+    const opened = isNaN(props.opened) ? true : props.opened;
+    this.state = { opened };
 
     // Bindings
     this.toggle = this.toggle.bind(this);
+  }
+
+  componentDidMount() {
+    // Toggle initial sidebar state
+    this.onToggle(this.state.opened);
   }
 
   componentWillReceiveProps(newProps) {
@@ -26,16 +30,21 @@ export default class Sidebar extends React.Component {
     this.elContent.scrollTop = scroll;
   }
 
+  onToggle(opened) {
+    const size = opened ? this.el.clientWidth : 0;
+    this.props.onToggle && this.props.onToggle(size);
+  }
+
   toggle() {
-    this.setState({
-      opened: !this.state.opened
-    });
+    const opened = !this.state.opened;
+    this.setState({ opened });
+    this.onToggle(opened);
   }
 
   render() {
     const cNames = classnames('c-sidebar', { '-opened': this.state.opened });
     return (
-      <aside className={cNames}>
+      <aside ref={node => this.el = node} className={cNames}>
         <button type="button" className="sidebar-btn" onClick={this.toggle}>
           <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
         </button>
@@ -53,5 +62,6 @@ Sidebar.propTypes = {
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node
   ]),
-  scroll: React.PropTypes.number
+  scroll: React.PropTypes.number,
+  onToggle: React.PropTypes.func
 };

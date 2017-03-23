@@ -56,7 +56,14 @@ export default class MapPage extends React.Component {
 
     if (this.props.projectDetail && this.props.projectDetail.locations.length && this.props.projectDetail.locations[0].centroid) {
       const { coordinates } = this.props.projectDetail.locations[0].centroid;
-      methods.view = [coordinates[1], coordinates[0]];
+      const point = [coordinates[1], coordinates[0]];
+      methods.fitBounds = {
+        bounds: [point, point],
+        options: {
+          paddingTopLeft: [this.props.sidebarWidth, 0],
+          paddingBottomRight: [0, 0]
+        }
+      };
     }
 
     return methods;
@@ -67,7 +74,7 @@ export default class MapPage extends React.Component {
     return {
       zoom: this.props.mapState.zoom,
       minZoom: 2,
-      maxZoom: 7,
+      maxZoom: 9,
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
@@ -85,14 +92,38 @@ export default class MapPage extends React.Component {
       }));
     };
 
-    /* Cluster icon */
-    pruneCluster.BuildLeafletClusterIcon = ({ population }) => {
-      const size = 15 + Math.pow(population * 100, 0.5);
-      return L.divIcon({
+    /* Cluster */
+    pruneCluster.BuildLeafletCluster = (cluster, position) => {
+      const size = 15 + Math.pow(cluster.population * 100, 0.5);
+      /* Cluster icon */
+      const icon = L.divIcon({
         iconSize: [size, size],
         className: 'c-marker',
-        html: `<div class="marker-inner">${population}</div>`
+        html: `<div class="marker-inner">${cluster.population}</div>`
       });
+
+      const marker = new L.Marker(position, { icon });
+
+      marker.on('click', () => {
+        /* Fitbounds width sidebar width padding */
+        const markersArea = pruneCluster.Cluster.FindMarkersInArea(cluster.bounds);
+        const b = pruneCluster.Cluster.ComputeBounds(markersArea);
+
+        if (b) {
+          const bounds = new L.LatLngBounds(
+            new L.LatLng(b.minLat, b.maxLng),
+            new L.LatLng(b.maxLat, b.minLng));
+
+          // We should check if the sidebar is opened
+          const sidebarWidth = this.props.sidebarWidth + 25;
+          pruneCluster._map.fitBounds(bounds, {
+            paddingTopLeft: [sidebarWidth, 25],
+            paddingBottomRight: [50, 25]
+          });
+        }
+      });
+
+      return marker;
     };
 
     this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
@@ -119,7 +150,7 @@ export default class MapPage extends React.Component {
 
     return (
       <div className="c-map-page l-map-page">
-        <Sidebar scroll={this.state.sidebarScroll} >
+        <Sidebar onToggle={this.props.setSidebarWidth} scroll={this.state.sidebarScroll}>
           {this.props.projectDetail ?
             <div className="project-detail-wrapper">
               <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectDetail(null)} />
@@ -153,10 +184,12 @@ MapPage.propTypes = {
   projects: React.PropTypes.array,
   searchQuery: React.PropTypes.string,
   mapState: React.PropTypes.object,
+  sidebarWidth: React.PropTypes.number,
   // Selector
   projectDetail: React.PropTypes.any,
   // Actions
   getProjects: React.PropTypes.func,
+  setSidebarWidth: React.PropTypes.func,
   setProjectSearch: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,

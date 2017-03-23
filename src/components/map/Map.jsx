@@ -48,22 +48,20 @@ export default class Map extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     // Fitbounds
-    if (!isEqual(this.props.mapMethods.fitBounds, nextProps.mapMethods.fitBounds)) {
-      this.map.fitBounds(nextProps.mapMethods.fitBounds);
+    if (!isEqual(this.props.mapMethods.fitBounds, nextProps.mapMethods.fitBounds) && nextProps.mapMethods.fitBounds) {
+      this.map.fitBounds(nextProps.mapMethods.fitBounds.bounds, nextProps.mapMethods.fitBounds.options);
     }
-    // TODO: apply to all mapMethods within a loop
-    // setView
-    if (!isEqual(this.props.mapMethods.view, nextProps.mapMethods.view) &&  nextProps.mapMethods.view) {
-      this.setView(nextProps.mapMethods.view, 5);
-    }
+
     // Layers
     if (!isEqual(this.props.layers, nextProps.layers)) {
       addOrRemove(this.props.layers, nextProps.layers, layer => this.addLayer(layer), layer => this.removeLayer(layer.id));
     }
+
     // Markers
     if (!isEqual(this.props.markers, nextProps.markers)) {
       addOrRemove(this.props.markers, nextProps.markers, marker => this.addMarker(marker), marker => this.removeMarker(marker.id));
     }
+
     // Zoom
     if (this.props.mapOptions.zoom !== nextProps.mapOptions.zoom) {
       this.map.setZoom(nextProps.mapOptions.zoom);
@@ -102,10 +100,6 @@ export default class Map extends React.Component {
       const fnName = `set${methodName}`;
       typeof this[fnName] === 'function' && this[fnName].call(this);
     });
-  }
-
-  setView(...args) {
-    this.map.setView(...args);
   }
 
   setAttribution() {
