@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MapPage from './MapPage';
-import { getProjects, setProjectSearch, setProjectDetail } from 'modules/projects';
+import { getProjects, setProjectsSearch, setProjectsDetail } from 'modules/projects';
 import getActiveProjects from 'selectors/projects_active';
 import getProjectDetails from 'selectors/project_detail';
 import { updateUrl } from 'modules/url';
@@ -10,6 +10,7 @@ import { setSidebarWidth } from 'modules/ui'
 const mapStateToProps = state => ({
   mapState: state.map,
   projects: getActiveProjects(state),
+  loading: state.projects.loading,
   projectDetail: getProjectDetails(state),
   searchQuery: state.projects.search,
   sidebarWidth: state.ui.sidebar.width
@@ -19,8 +20,8 @@ const mapDispatchToProps = dispatch => ({
   setSidebarWidth(width) {
     dispatch(setSidebarWidth(width));
   },
-  setProjectDetail(projectId) {
-    dispatch(setProjectDetail(projectId));
+  setProjectsDetail(projectId) {
+    dispatch(setProjectsDetail(projectId));
     dispatch(updateUrl());
   },
   setMapLocation(params) {
@@ -33,8 +34,8 @@ const mapDispatchToProps = dispatch => ({
   getProjects() {
     dispatch(getProjects());
   },
-  setProjectSearch(query) {
-    dispatch(setProjectSearch(query));
+  setProjectsSearch(query) {
+    dispatch(setProjectsSearch(query));
     dispatch(updateUrl());
   }
 });

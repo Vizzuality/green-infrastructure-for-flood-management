@@ -8,6 +8,7 @@ import ProjectList from 'components/projects/ProjectList';
 import ProjectDetail from 'components/projects/ProjectDetail';
 import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
+import { Spinner } from 'vizz-components';
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ export default class MapPage extends React.Component {
     this.setState({
       sidebarScroll: 0
     });
-    this.props.setProjectDetail(projectId);
+    this.props.setProjectsDetail(projectId);
   }
 
   getMapListeners() {
@@ -151,9 +152,10 @@ export default class MapPage extends React.Component {
     return (
       <div className="c-map-page l-map-page">
         <Sidebar onToggle={this.props.setSidebarWidth} scroll={this.state.sidebarScroll}>
+          {this.props.loading && <Spinner />}
           {this.props.projectDetail ?
             <div className="project-detail-wrapper">
-              <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectDetail(null)} />
+              <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} />
             </div> :
             <div className="project-list-wrapper">
               <SlidingMenu title="filters">
@@ -163,7 +165,7 @@ export default class MapPage extends React.Component {
                 className="c-search"
                 type="search"
                 value={this.props.searchQuery}
-                onChange={evt => this.props.setProjectSearch(evt.target.value)}
+                onChange={evt => this.props.setProjectsSearch(evt.target.value)}
               />
               <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
             </div>
@@ -185,13 +187,14 @@ MapPage.propTypes = {
   searchQuery: React.PropTypes.string,
   mapState: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
+  loading: React.PropTypes.bool,
   // Selector
   projectDetail: React.PropTypes.any,
   // Actions
   getProjects: React.PropTypes.func,
   setSidebarWidth: React.PropTypes.func,
-  setProjectSearch: React.PropTypes.func,
+  setProjectsSearch: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
-  setProjectDetail: React.PropTypes.func
+  setProjectsDetail: React.PropTypes.func
 };
