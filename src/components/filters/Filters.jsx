@@ -12,7 +12,7 @@ export default class Filters extends React.Component {
           <SimpleSelect
             hideResetButton
             value={typeOptions.find(opt => opt.value === this.props.filters.type)}
-            onValueChange={opt => this.props.setProjectFilters({ type: opt.value })}
+            onValueChange={opt => this.props.setProjectsFilters({ type: opt.value })}
           >
             {typeOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
           </SimpleSelect>
@@ -23,7 +23,7 @@ export default class Filters extends React.Component {
           <SimpleSelect
             hideResetButton
             value={statusOptions.find(opt => opt.value === this.props.filters.status)}
-            onValueChange={opt => this.props.setProjectFilters({ status: opt.value })}
+            onValueChange={opt => this.props.setProjectsFilters({ status: opt.value })}
           >
             {statusOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
           </SimpleSelect>
@@ -34,7 +34,7 @@ export default class Filters extends React.Component {
           <MultiSelect
             options={interventionOptions}
             values={interventionOptions.filter(opt => this.props.filters.intervention.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectFilters({ intervention: opts.map(opt => opt.value) })}
+            onValuesChange={opts => this.props.setProjectsFilters({ intervention: opts.map(opt => opt.value) })}
           />
         </div>
         {/* Hazard */}
@@ -43,7 +43,7 @@ export default class Filters extends React.Component {
           <MultiSelect
             options={hazardOptions}
             values={hazardOptions.filter(opt => this.props.filters.hazard.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectFilters({ hazard: opts.map(opt => opt.value) })}
+            onValuesChange={opts => this.props.setProjectsFilters({ hazard: opts.map(opt => opt.value) })}
           />
         </div>
         {/* Nature-based solutions */}
@@ -52,7 +52,7 @@ export default class Filters extends React.Component {
           <MultiSelect
             options={solutionOptions}
             values={solutionOptions.filter(opt => this.props.filters.solution.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectFilters({ solution: opts.map(opt => opt.value) })}
+            onValuesChange={opts => this.props.setProjectsFilters({ solution: opts.map(opt => opt.value) })}
           />
         </div>
       </div>
@@ -62,7 +62,7 @@ export default class Filters extends React.Component {
 
 Filters.propTypes = {
   // Actions
-  setProjectFilters: React.PropTypes.func,
+  setProjectsFilters: React.PropTypes.func,
   filters: React.PropTypes.object
 };
 Filters.defaultProps = {};

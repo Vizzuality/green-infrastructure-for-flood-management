@@ -11,9 +11,9 @@ const SET_PROJECTS_DETAIL = 'SET_PROJECTS_DETAIL';
 const initialState = {
   list: [],
   loading: false,
-  search: '',
   detail: null,
   filters: {
+    search: '',
     type: 'all',
     status: 'all',
     intervention: ['green', 'grey'],
@@ -34,11 +34,6 @@ function projectsReducer(state = initialState, action) {
       return {
         ...state,
         loading: action.payload
-      };
-    case SET_PROJECTS_SEARCH:
-      return {
-        ...state,
-        search: action.payload
       };
     case SET_PROJECTS_FILTERS:
       return {
@@ -80,13 +75,6 @@ function setProjectsFilters(filters) {
   };
 }
 
-function setProjectsSearch(query) {
-  return {
-    type: SET_PROJECTS_SEARCH,
-    payload: query
-  };
-}
-
 function setProjects(projects) {
   return {
     type: SET_PROJECTS,
@@ -94,11 +82,13 @@ function setProjects(projects) {
   };
 }
 
-function getProjects() {
+function getProjects(query) {
+  const _query = query ? `?${query}` : '';
+
   return (dispatch) => {
     dispatch(setProjectsLoading(true));
     get({
-      url: `${config.API_URL}/api/projects`,
+      url: `${config.API_URL}/api/projects${_query}`,
       onSuccess: (data) => {
         dispatch(setProjects(data));
         dispatch(setProjectsLoading(false));
@@ -107,4 +97,4 @@ function getProjects() {
   };
 }
 
-export { projectsReducer, setProjectsFilters, setProjectsSearch, setProjects, getProjects, setProjectsDetail };
+export { projectsReducer, setProjectsFilters, setProjects, getProjects, setProjectsDetail };

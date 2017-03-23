@@ -1,17 +1,17 @@
 // ROTATE
-@-webkit-keyframes rotate {
+@-webkit-keyframes rotation {
   from { transform: rotate(0deg);}
   to { transform: rotate(360deg);}
 }
-@-moz-keyframes rotate {
+@-moz-keyframes rotation {
   from { transform: rotate(0deg);}
   to { transform: rotate(360deg);}
 }
-@-ms-keyframes rotate {
+@-ms-keyframes rotation {
   from { transform: rotate(0deg);}
   to { transform: rotate(360deg);}
 }
-@keyframes rotate {
+@keyframes rotation {
   from { transform: rotate(0deg);}
   to { transform: rotate(360deg);}
 }

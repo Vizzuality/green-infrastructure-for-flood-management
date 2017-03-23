@@ -1,6 +1,6 @@
 import { dispatch } from 'main';
 import { replace } from 'react-router-redux';
-import { setProjectsFilters, setProjectsSearch, setProjectsDetail } from 'modules/projects';
+import { setProjectsFilters, setProjectsDetail } from 'modules/projects';
 import { setMapLocation } from 'modules/map';
 
 /* Aux functions */
@@ -37,9 +37,6 @@ function onEnterMapPage({ location }, replaceUrl, done) {
   if (filters) {
     const parsedFilters = decode(filters);
     dispatch(setProjectsFilters(parsedFilters));
-  }
-  if (search) {
-    dispatch(setProjectsSearch(search));
   }
   if (map) {
     const parsedMap = decode(map);

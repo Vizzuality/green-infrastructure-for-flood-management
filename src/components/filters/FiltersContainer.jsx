@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Filters from './Filters';
-import { setProjectFilters } from 'modules/projects';
+import { setProjectsFilters } from 'modules/projects';
 import { updateUrl } from 'modules/url';
 
 const mapStateToProps = ({ projects }) => ({
@@ -9,8 +9,8 @@ const mapStateToProps = ({ projects }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setProjectFilters: (filters) => {
-    dispatch(setProjectFilters(filters));
+  setProjectsFilters: (filters) => {
+    dispatch(setProjectsFilters(filters));
     dispatch(updateUrl());
   }
 });

@@ -8,7 +8,9 @@ import ProjectList from 'components/projects/ProjectList';
 import ProjectDetail from 'components/projects/ProjectDetail';
 import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
-import { Spinner } from 'vizz-components';
+import Spinner from 'components/ui/spinner';
+import isEqual from 'lodash/isEqual';
+import debounce from 'lodash/debounce';
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -19,11 +21,36 @@ export default class MapPage extends React.Component {
 
     // Bindings
     this.goToProjectDetail = this.goToProjectDetail.bind(this);
+    this.onSearchChange = debounce(this.onSearchChange, 300);
   }
 
+  /* Component lifecycle */
   componentWillMount() {
     this.props.updateUrl();
-    if (!this.props.projects.length) this.props.getProjects();
+
+    // Fetch projects from server if they haven't been fetched yet
+    if (!this.props.projects.length) {
+      this.getProjects(this.props.filters);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!isEqual(this.props.filters, newProps.filters)) {
+      this.getProjects(newProps.filters);
+    }
+  }
+
+  /* Methods */
+  getProjects(filters) {
+    // TODO: pagination
+    const query = Object.keys(filters).reduce((total, filter, i) => {
+      return i === 1 ? `${total}=${filters[total]}` : `${total}&${filter}=${filters[filter]}`;
+    });
+    this.props.getProjects(query);
+  }
+
+  onSearchChange(val) {
+    this.props.setProjectsFilters({ search: val });
   }
 
   goToProjectDetail(projectId) {
@@ -152,7 +179,7 @@ export default class MapPage extends React.Component {
     return (
       <div className="c-map-page l-map-page">
         <Sidebar onToggle={this.props.setSidebarWidth} scroll={this.state.sidebarScroll}>
-          {this.props.loading && <Spinner />}
+          <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
             <div className="project-detail-wrapper">
               <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} />
@@ -164,8 +191,8 @@ export default class MapPage extends React.Component {
               <input
                 className="c-search"
                 type="search"
-                value={this.props.searchQuery}
-                onChange={evt => this.props.setProjectsSearch(evt.target.value)}
+                defaultValue={this.props.filters.search}
+                onChange={evt => this.onSearchChange(evt.target.value)}
               />
               <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
             </div>
@@ -184,16 +211,16 @@ export default class MapPage extends React.Component {
 MapPage.propTypes = {
   // State
   projects: React.PropTypes.array,
-  searchQuery: React.PropTypes.string,
   mapState: React.PropTypes.object,
+  filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
   loading: React.PropTypes.bool,
   // Selector
   projectDetail: React.PropTypes.any,
   // Actions
   getProjects: React.PropTypes.func,
+  setProjectsFilters: React.PropTypes.func,
   setSidebarWidth: React.PropTypes.func,
-  setProjectsSearch: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
   setProjectsDetail: React.PropTypes.func
