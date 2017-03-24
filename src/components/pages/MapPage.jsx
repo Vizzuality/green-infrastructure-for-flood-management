@@ -108,16 +108,33 @@ export default class MapPage extends React.Component {
     };
   }
 
+  getPopupMarkup(data) {
+    return `
+      <div class="c-tooltip">${data.name}</div>
+    `;
+  }
+
   getMarkers() {
     const pruneCluster = new PruneClusterForLeaflet();
 
     /* Marker icon */
-    pruneCluster.PrepareLeafletMarker = (leafletMarker) => {
+    pruneCluster.PrepareLeafletMarker = (leafletMarker, data) => {
       leafletMarker.setIcon(L.divIcon({
         iconSize: [15, 15],
         className: 'c-marker',
         html: '<div class="marker-inner"></div>'
       }));
+
+      // Bind Popup
+      leafletMarker.bindPopup(this.getPopupMarkup(data));
+
+      // Set listeners
+      leafletMarker.off('mouseover').on('mouseover', function mouseover() {
+        this.openPopup();
+      });
+      leafletMarker.off('mouseout').on('mouseout', function mouseleave() {
+        this.closePopup();
+      });
     };
 
     /* Cluster */
@@ -179,7 +196,7 @@ export default class MapPage extends React.Component {
     return (
       <div className="c-map-page l-map-page">
         <Sidebar onToggle={this.props.setSidebarWidth} scroll={this.state.sidebarScroll}>
-          <Spinner isLoading={this.props.loading} />
+          <Spinner className="-transparent" isLoading={this.props.loading} />
           {this.props.projectDetail ?
             <div className="project-detail-wrapper">
               <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} />
