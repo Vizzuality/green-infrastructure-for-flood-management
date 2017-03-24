@@ -29,4 +29,7 @@ input[type="search"] {
   &::-webkit-search-decoration {
       -webkit-appearance: none;
   }
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
 }

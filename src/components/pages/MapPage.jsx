@@ -9,8 +9,10 @@ import ProjectDetail from 'components/projects/ProjectDetail';
 import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
 import Spinner from 'components/ui/spinner';
+import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
 import debounce from 'lodash/debounce';
+
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -205,9 +207,7 @@ export default class MapPage extends React.Component {
               <SlidingMenu title="filters">
                 <Filters />
               </SlidingMenu>
-              <input
-                className="c-search"
-                type="search"
+              <Search
                 defaultValue={this.props.filters.search}
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
