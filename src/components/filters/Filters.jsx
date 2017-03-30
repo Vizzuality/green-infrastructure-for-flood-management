@@ -1,33 +1,59 @@
 import React from 'react';
 import { SimpleSelect, MultiSelect } from 'react-selectize';
-import { typeOptions, statusOptions, interventionOptions, hazardOptions, solutionOptions } from 'constants/filters';
+import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions } from 'constants/filters';
+import { countriesOptions } from 'constants/countries';
 
 export default class Filters extends React.Component {
   render() {
     return (
       <div className="c-filters">
-        {/* Type */}
+        {/* Regions */}
         {/*<div className="c-select">
-          <span className="select-label">Type</span>
+          <span className="select-label">Locations</span>
           <SimpleSelect
             hideResetButton
-            value={typeOptions.find(opt => opt.value === this.props.filters.type)}
-            onValueChange={opt => this.props.setProjectsFilters({ type: opt.value })}
+            value={regionsOptions.find(opt => opt.value === this.props.filters.regions)}
+            onValueChange={opt => this.props.setProjectsFilters({ regions: opt.value })}
           >
-            {typeOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
+            {regionsOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
           </SimpleSelect>
         </div>*/}
-        {/* Status */}
-        {/*<div className="c-select">
-          <span className="select-label">Status</span>
-          <SimpleSelect
-            hideResetButton
-            value={statusOptions.find(opt => opt.value === this.props.filters.status)}
-            onValueChange={opt => this.props.setProjectsFilters({ status: opt.value })}
-          >
-            {statusOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
-          </SimpleSelect>
-        </div>*/}
+      {/* Organizations */}
+        <div className="c-select">
+          <span className="select-label">Organizations</span>
+          <MultiSelect
+            options={organizationsOptions}
+            values={organizationsOptions.filter(opt => this.props.filters.organizations.includes(opt.value))}
+            onValuesChange={opts => this.props.setProjectsFilters({ organizations: opts.map(opt => opt.value) })}
+          />
+        </div>
+        {/* Scales */}
+        <div className="c-select">
+          <span className="select-label">Scales</span>
+          <MultiSelect
+            options={scalesOptions}
+            values={scalesOptions.filter(opt => this.props.filters.scales.includes(opt.value))}
+            onValuesChange={opts => this.props.setProjectsFilters({ scales: opts.map(opt => opt.value) })}
+          />
+        </div>
+      {/* Countries */}
+        <div className="c-select">
+          <span className="select-label">Countries</span>
+          <MultiSelect
+            options={countriesOptions}
+            values={countriesOptions.filter(opt => this.props.filters.countries.includes(opt.value))}
+            onValuesChange={opts => this.props.setProjectsFilters({ countries: opts.map(opt => opt.value) })}
+          />
+        </div>
+        {/* Regions */}
+        <div className="c-select">
+          <span className="select-label">Regions</span>
+          <MultiSelect
+            options={regionsOptions}
+            values={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
+            onValuesChange={opts => this.props.setProjectsFilters({ regions: opts.map(opt => opt.value) })}
+          />
+        </div>
         {/* Intervention */}
         <div className="c-select">
           <span className="select-label">Intervention</span>

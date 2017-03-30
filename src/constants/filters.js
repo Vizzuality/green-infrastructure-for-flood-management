@@ -1,11 +1,4 @@
 
-const typeOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Projects', value: 'projects' },
-  { label: 'Another type', value: 'another_type' },
-  { label: 'Awesome type', value: 'awesome_type' },
-  { label: 'Last type', value: 'last_type' }
-];
 
 const statusOptions = [
   { label: 'All', value: 'all' },
@@ -40,4 +33,35 @@ const solutionOptions = [
   { label: 'Other', value: 10 },
 ];
 
-export { typeOptions, statusOptions, interventionOptions, hazardOptions, solutionOptions };
+const scalesOptions = [
+  { label: 'Local', value: 'local' },
+  { label: 'Regional', value: 'regional' },
+  { label: 'National', value: 'national' },
+  { label: 'International', value: 'international' }
+];
+
+const organizationsOptions = [
+  { label: 'World Bank', value: 1 },
+  { label: 'Renner, Swaniawski and Lindgren', value: 2 },
+  { label: 'Oberbrunner, Buckridge and Windler', value: 3 },
+  { label: 'Connelly, Zieme and Moen', value: 4 },
+  { label: 'Heaney-Hilll', value: 5 },
+  { label: 'Leuschke Inc', value: 6 },
+  { label: 'Littel Inc', value: 7 },
+  { label: 'Schimmel, Kilback and Schimmel', value: 8 },
+  { label: 'Monahan-Stark', value: 9 },
+  { label: 'Hirthe Group', value: 10 },
+  { label: 'Lueilwitz, Zemlak and Daniel', value: 11 }
+];
+
+const regionsOptions = [
+  { label: 'Sub-Saharan Africa', value: 'Sub-Saharan Africa' },
+  { label: 'Latin America & Caribbean', value: 'Latin America & Caribbean' },
+  { label: 'Europe & Central Asia', value: 'Europe & Central Asia' },
+  { label: 'East Asia & Pacific', value: 'East Asia & Pacific' },
+  { label: 'Middle East & North Africa', value: 'Middle East & North Africa' },
+  { label: 'South Asia', value: 'South Asia' },
+  { label: 'North America', value: 'North America' }
+];
+
+export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions };

@@ -14,8 +14,10 @@ const initialState = {
   detail: null,
   filters: {
     search: '',
-    // type: 'all',
-    // status: 'all',
+    countries: [],
+    regions: [],
+    organizations: [],
+    scales: [],
     intervention_types: [],
     hazard_types: [],
     nature_based_solutions: []
