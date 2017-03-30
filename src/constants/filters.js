@@ -18,20 +18,26 @@ const statusOptions = [
 const interventionOptions = [
   { label: 'Green', value: 'green' },
   { label: 'Grey', value: 'grey' },
-  { label: 'Yellow', value: 'yellow' },
-  { label: 'Red', value: 'red' }
+  { label: 'Hybrid', value: 'hybrid' }
 ];
 
 const hazardOptions = [
-  { label: 'Urban', value: 'urban' },
-  { label: 'River', value: 'river' }
+  { label: 'Urban', value: 1 },
+  { label: 'River', value: 2 },
+  { label: 'Coastal', value: 3 }
 ];
 
 const solutionOptions = [
-  { label: 'Solution A', value: 'solution_a' },
-  { label: 'Solution B', value: 'solution_b' },
-  { label: 'Solution C', value: 'solution_c' },
-  { label: 'Solution D', value: 'solution_d' }
+  { label: 'Urban green spaces', value: 1 },
+  { label: 'Forests & Vegetation', value: 2 },
+  { label: 'Rangelands', value: 3 },
+  { label: 'Rivers & floodplains', value: 4 },
+  { label: 'Terrestrial wetlands', value: 5 },
+  { label: 'Coastal wetlands', value: 6 },
+  { label: 'Dunes', value: 7 },
+  { label: 'Mangroves', value: 8 },
+  { label: 'Coral reefs & living shorelines', value: 9 },
+  { label: 'Other', value: 10 },
 ];
 
 export { typeOptions, statusOptions, interventionOptions, hazardOptions, solutionOptions };

@@ -14,11 +14,11 @@ const initialState = {
   detail: null,
   filters: {
     search: '',
-    type: 'all',
-    status: 'all',
-    intervention: ['green', 'grey'],
-    hazard: ['urban', 'river'],
-    solution: ['solution_a', 'solution_b']
+    // type: 'all',
+    // status: 'all',
+    intervention_types: [],
+    hazard_types: [],
+    nature_based_solutions: []
   }
 };
 

@@ -7,7 +7,7 @@ export default class Filters extends React.Component {
     return (
       <div className="c-filters">
         {/* Type */}
-        <div className="c-select">
+        {/*<div className="c-select">
           <span className="select-label">Type</span>
           <SimpleSelect
             hideResetButton
@@ -16,9 +16,9 @@ export default class Filters extends React.Component {
           >
             {typeOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
           </SimpleSelect>
-        </div>
+        </div>*/}
         {/* Status */}
-        <div className="c-select">
+        {/*<div className="c-select">
           <span className="select-label">Status</span>
           <SimpleSelect
             hideResetButton
@@ -27,14 +27,14 @@ export default class Filters extends React.Component {
           >
             {statusOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
           </SimpleSelect>
-        </div>
+        </div>*/}
         {/* Intervention */}
         <div className="c-select">
           <span className="select-label">Intervention</span>
           <MultiSelect
             options={interventionOptions}
-            values={interventionOptions.filter(opt => this.props.filters.intervention.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ intervention: opts.map(opt => opt.value) })}
+            values={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
+            onValuesChange={opts => this.props.setProjectsFilters({ intervention_types: opts.map(opt => opt.value) })}
           />
         </div>
         {/* Hazard */}
@@ -42,8 +42,8 @@ export default class Filters extends React.Component {
           <span className="select-label">Hazard</span>
           <MultiSelect
             options={hazardOptions}
-            values={hazardOptions.filter(opt => this.props.filters.hazard.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ hazard: opts.map(opt => opt.value) })}
+            values={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
+            onValuesChange={opts => this.props.setProjectsFilters({ hazard_types: opts.map(opt => opt.value) })}
           />
         </div>
         {/* Nature-based solutions */}
@@ -51,8 +51,8 @@ export default class Filters extends React.Component {
           <span className="select-label">Nature-based solutions</span>
           <MultiSelect
             options={solutionOptions}
-            values={solutionOptions.filter(opt => this.props.filters.solution.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ solution: opts.map(opt => opt.value) })}
+            values={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
+            onValuesChange={opts => this.props.setProjectsFilters({ nature_based_solutions: opts.map(opt => opt.value) })}
           />
         </div>
       </div>

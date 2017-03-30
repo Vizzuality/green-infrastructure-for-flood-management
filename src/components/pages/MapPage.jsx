@@ -45,9 +45,23 @@ export default class MapPage extends React.Component {
   /* Methods */
   getProjects(filters) {
     // TODO: pagination
-    const query = Object.keys(filters).reduce((total, filter, i) => {
-      return i === 1 ? `${total}=${filters[total]}` : `${total}&${filter}=${filters[filter]}`;
+    let paramsArray = [];
+
+    Object.keys(filters).forEach((key, i) => {
+      if (filters[key] instanceof Array) {
+        const arrayValues = filters[key].reduce((sum, val, i) => {
+          return i === 0 ? `${key}[]=${val}` : `${sum}&${key}[]=${val}`;
+        }, '');
+        arrayValues !== '' && paramsArray.push(arrayValues);
+      } else {
+        filters[key] !== '' && paramsArray.push(`${key}=${filters[key]}`);
+      }
     });
+
+    const query = paramsArray.reduce((total, val, i) => {
+      return i === 0 ? `${val}` : `${total}&${val}`;
+    }, '');
+
     this.props.getProjects(query);
   }
 
