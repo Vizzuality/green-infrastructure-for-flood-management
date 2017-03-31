@@ -117,12 +117,10 @@ export default class Filters extends React.Component {
           />
         </div>
 
-        <footer>
-          <div className="actions">
-            <button className="c-btn" onClick={this.resetFilters}>Reset FILTERS</button>
-            <button className="c-btn" onClick={() => this.context.toggleFilters()}>APPLY FILTERS</button>
-          </div>
-        </footer>
+        <div className="actions">
+          <button className="c-btn" onClick={this.resetFilters}>Reset FILTERS</button>
+          <button className="c-btn -filled" onClick={() => this.context.toggleFilters()}>APPLY FILTERS</button>
+        </div>
       </div>
     );
   }
