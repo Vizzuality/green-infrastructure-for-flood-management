@@ -1,86 +1,105 @@
 import React from 'react';
 import { SimpleSelect, MultiSelect } from 'react-selectize';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions } from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
 
 export default class Filters extends React.Component {
+
+  setProjectsFilter(opts, key) {
+    const filter = {};
+    filter[key] = opts.map(opt => opt.value);
+    this.props.setProjectsFilters(filter);
+  }
+
   render() {
     return (
       <div className="c-filters">
-        {/* Regions */}
-        {/*<div className="c-select">
-          <span className="select-label">Locations</span>
-          <SimpleSelect
-            hideResetButton
-            value={regionsOptions.find(opt => opt.value === this.props.filters.regions)}
-            onValueChange={opt => this.props.setProjectsFilters({ regions: opt.value })}
-          >
-            {regionsOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
-          </SimpleSelect>
-        </div>*/}
-      {/* Organizations */}
-        <div className="c-select">
-          <span className="select-label">Organizations</span>
-          <MultiSelect
+        {/* Organizations */}
+        <div className="filter-field">
+          <label>Organizations</label>
+          <Select
+            name="field"
+            multi={true}
             options={organizationsOptions}
-            values={organizationsOptions.filter(opt => this.props.filters.organizations.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ organizations: opts.map(opt => opt.value) })}
+            value={organizationsOptions.filter(opt => this.props.filters.organizations.includes(opt.value))}
+            onChange={opts => this.setProjectsFilter(opts, 'organizations')}
           />
         </div>
+
         {/* Scales */}
-        <div className="c-select">
-          <span className="select-label">Scales</span>
-          <MultiSelect
+        <div className="filter-field">
+          <label>Scales</label>
+          <Select
+            name="field"
+            multi={true}
             options={scalesOptions}
-            values={scalesOptions.filter(opt => this.props.filters.scales.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ scales: opts.map(opt => opt.value) })}
+            value={scalesOptions.filter(opt => this.props.filters.scales.includes(opt.value))}
+            onChange={opts => this.setProjectsFilter(opts, 'scales')}
           />
         </div>
-      {/* Countries */}
-        <div className="c-select">
-          <span className="select-label">Countries</span>
-          <MultiSelect
+
+        {/* Countries */}
+        <div className="filter-field">
+          <label>Countries</label>
+          <Select
+            name="field"
+            multi={true}
             options={countriesOptions}
-            values={countriesOptions.filter(opt => this.props.filters.countries.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ countries: opts.map(opt => opt.value) })}
+            value={countriesOptions.filter(opt => this.props.filters.countries.includes(opt.value))}
+            onChange={opts => this.setProjectsFilter(opts, 'countries')}
           />
         </div>
+  
         {/* Regions */}
-        <div className="c-select">
-          <span className="select-label">Regions</span>
-          <MultiSelect
+        <div className="filter-field">
+          <label>Regions</label>
+          <Select
+            name="field"
+            multi={true}
             options={regionsOptions}
-            values={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ regions: opts.map(opt => opt.value) })}
+            value={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
+            onChange={opts => this.setProjectsFilter(opts, 'regions')}
           />
         </div>
+       
         {/* Intervention */}
-        <div className="c-select">
-          <span className="select-label">Intervention</span>
-          <MultiSelect
+        <div className="filter-field">
+          <label>Intervention</label>
+          <Select
+            name="field"
+            multi={true}
             options={interventionOptions}
-            values={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ intervention_types: opts.map(opt => opt.value) })}
+            value={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
+            onChange={opts => this.setProjectsFilter(opts, 'intervention_types')}
           />
         </div>
-        {/* Hazard */}
-        <div className="c-select">
-          <span className="select-label">Hazard</span>
-          <MultiSelect
-            options={hazardOptions}
-            values={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ hazard_types: opts.map(opt => opt.value) })}
-          />
-        </div>
+
         {/* Nature-based solutions */}
-        <div className="c-select">
-          <span className="select-label">Nature-based solutions</span>
-          <MultiSelect
+        <div className="filter-field">
+          <label>Nature-based solutions</label>
+          <Select
+            name="field"
+            multi={true}
             options={solutionOptions}
-            values={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ nature_based_solutions: opts.map(opt => opt.value) })}
+            value={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
+            onChange={opts => this.setProjectsFilter(opts, 'nature_based_solutions')}
           />
         </div>
+
+        {/* Hazard */}
+        <div className="filter-field">
+          <label>Hazard</label>
+          <Select
+            name="field"
+            multi={true}
+            options={hazardOptions}
+            value={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
+            onChange={opts => this.setProjectsFilter(opts, 'hazard_types')}
+          />
+        </div>
+        
       </div>
     );
   }

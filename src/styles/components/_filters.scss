@@ -1,3 +1,18 @@
 .c-filters {
   padding: $space-1 * 5;
+  background-color: $primary-color;
+  max-height: 500px;
+  overflow-y: auto;
+
+  .filter-field {
+    margin-bottom: 30px; 
+
+    label {
+      display: inline-block;
+      color: white;
+      line-height: 30px;
+      font-size: $font-size-extrabig;
+      margin-bottom: 12px;
+    }
+  }
 }
