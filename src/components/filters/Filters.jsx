@@ -9,11 +9,25 @@ import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, 
 import { countriesOptions } from 'constants/countries';
 
 export default class Filters extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // Bindings
+    this.resetFilters = this.resetFilters.bind(this);
+  }
+
+  static contextTypes = {
+    toggleFilters: React.PropTypes.func
+  };
 
   setProjectsFilter(opts, key) {
     const filter = {};
     filter[key] = opts.map(opt => opt.value || opt);
     this.props.setProjectsFilters(filter);
+  }
+
+  resetFilters() {
+    Object.keys(this.props.filters).forEach(key => this.setProjectsFilter([], key));
   }
 
   render() {
@@ -102,7 +116,13 @@ export default class Filters extends React.Component {
             onChange={opts => this.setProjectsFilter(opts, 'hazard_types')}
           />
         </div>
-        
+
+        <footer>
+          <div className="actions">
+            <button className="c-btn" onClick={this.resetFilters}>Reset FILTERS</button>
+            <button className="c-btn" onClick={() => this.context.toggleFilters()}>APPLY FILTERS</button>
+          </div>
+        </footer>
       </div>
     );
   }
