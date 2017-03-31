@@ -4,9 +4,15 @@ $app-width: 1280px;
 // Colors
 $color-green: #248b6b;
 $color-mango: #ffb400;
+$color-white: white;
+$color-black: black;
 
 $primary-color: $color-green;
 $secondary-color: $color-mango;
+$color-secondary: $color-mango;
+
+$color-text-1: $color-black;
+$color-text-2: $color-white;
 
 $palettes: (
   blue: (
@@ -28,6 +34,7 @@ $palettes: (
     primary: #FFB400
   )
 );
+
 
 // Font families
 $font-size-default: 'Open Sans', sans-serif;

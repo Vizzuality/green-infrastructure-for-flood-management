@@ -15,9 +15,9 @@ const interventionOptions = [
 ];
 
 const hazardOptions = [
-  { label: 'Urban', value: 1 },
-  { label: 'River', value: 2 },
-  { label: 'Coastal', value: 3 }
+  { label: 'Urban', value: '1' },
+  { label: 'River', value: '2' },
+  { label: 'Coastal', value: '3' }
 ];
 
 const solutionOptions = [

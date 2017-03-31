@@ -2,6 +2,9 @@ import React from 'react';
 import { SimpleSelect, MultiSelect } from 'react-selectize';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+
+import CheckboxGroup from 'components/ui/CheckboxGroup';
+
 import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions } from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
 
@@ -9,7 +12,7 @@ export default class Filters extends React.Component {
 
   setProjectsFilter(opts, key) {
     const filter = {};
-    filter[key] = opts.map(opt => opt.value);
+    filter[key] = opts.map(opt => opt.value || opt);
     this.props.setProjectsFilters(filter);
   }
 
@@ -18,7 +21,7 @@ export default class Filters extends React.Component {
       <div className="c-filters">
         {/* Organizations */}
         <div className="filter-field">
-          <label>Organizations</label>
+          <label className="title">Organizations</label>
           <Select
             name="field"
             multi={true}
@@ -30,7 +33,7 @@ export default class Filters extends React.Component {
 
         {/* Scales */}
         <div className="filter-field">
-          <label>Scales</label>
+          <label className="title">Scales</label>
           <Select
             name="field"
             multi={true}
@@ -42,7 +45,7 @@ export default class Filters extends React.Component {
 
         {/* Countries */}
         <div className="filter-field">
-          <label>Countries</label>
+          <label className="title">Countries</label>
           <Select
             name="field"
             multi={true}
@@ -54,7 +57,7 @@ export default class Filters extends React.Component {
   
         {/* Regions */}
         <div className="filter-field">
-          <label>Regions</label>
+          <label className="title">Regions</label>
           <Select
             name="field"
             multi={true}
@@ -66,7 +69,7 @@ export default class Filters extends React.Component {
        
         {/* Intervention */}
         <div className="filter-field">
-          <label>Intervention</label>
+          <label className="title">Intervention</label>
           <Select
             name="field"
             multi={true}
@@ -78,7 +81,7 @@ export default class Filters extends React.Component {
 
         {/* Nature-based solutions */}
         <div className="filter-field">
-          <label>Nature-based solutions</label>
+          <label className="title">Nature-based solutions</label>
           <Select
             name="field"
             multi={true}
@@ -90,12 +93,12 @@ export default class Filters extends React.Component {
 
         {/* Hazard */}
         <div className="filter-field">
-          <label>Hazard</label>
-          <Select
-            name="field"
-            multi={true}
+          <label className="title">Hazard</label>
+          <CheckboxGroup 
+            name="asdf"
             options={hazardOptions}
-            value={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
+            selected={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
+            className=""
             onChange={opts => this.setProjectsFilter(opts, 'hazard_types')}
           />
         </div>

@@ -7,12 +7,23 @@
   .filter-field {
     margin-bottom: 30px; 
 
-    label {
+    label.title {
       display: inline-block;
       color: white;
       line-height: 30px;
       font-size: $font-size-extrabig;
       margin-bottom: 12px;
+    }
+
+    .c-checkbox-box {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .c-checkbox {
+      display: flex;
+      align-items: center;
+      margin: 0;
     }
   }
 }
