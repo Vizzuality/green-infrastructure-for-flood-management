@@ -13,7 +13,7 @@
     left: 0;
     transform: none;
     text-align: left;
-    color: $color-text-1;
+    color: $color-text-2;
     margin-left: 0;
 
     &:hover {
@@ -24,10 +24,10 @@
       position: absolute;
       top: 50%;
       left: 0;
-      width: 14px;
-      height: 14px;
-      border: 1px solid $color-black;
-      border-radius: 4px;
+      width: 15px;
+      height: 15px;
+      border: 1px solid rgba($color-black, .54);
+      border-radius: 2px;
       transform: translate(0,-50%);
 
       &:after {
@@ -36,7 +36,7 @@
         display: block;
         top: calc(50% - 1px);
         left: calc(50% + 1px);
-        width: 6px;
+        width: 7px;
         height: 4px;
         border-left: 2px solid $color-secondary;
         border-bottom: 2px solid $color-secondary;
@@ -59,7 +59,9 @@
     font-weight: 700;
 
     .checkbox-icon {
-      background-color: $color-black;
+      background-color: rgba($color-black, .54);
+      width: 16px;
+      height: 16px;
       
       &:after {
         transform: translate(-50%,-50%) rotate(-40deg) scale(1);

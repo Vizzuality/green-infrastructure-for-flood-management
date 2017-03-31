@@ -33,16 +33,16 @@
   .Select-control {
     background-color: transparent;
     border: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba($color-black, .54);
     border-radius: 0;
     cursor: pointer;
 
     .Select-clear {
-      color: black;
+      color: rgba($color-black, .54);
     }
    
     .Select-arrow {
-      border-color: black transparent transparent;
+      border-color: rgba($color-black, .54) transparent transparent;
     }
   }
 
