@@ -11,6 +11,16 @@
   &.-header {
     background-image: url("/images/bg_header.png");
     padding-top: 220px;
+    position: relative;
+
+    .section-icon {
+      width: 17px;
+      height: 17px;
+      fill: palette(white);
+      position: absolute;
+      margin: auto;
+      left: 0; right: 0; bottom: 30px;
+    }
   }
 
   &.-submit {

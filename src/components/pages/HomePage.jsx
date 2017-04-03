@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Row } from 'components/ui/Grid';
+import { SvgIcon } from 'vizz-components';
 
 export default class HomePage extends React.Component {
   render() {
@@ -13,6 +14,7 @@ export default class HomePage extends React.Component {
               <h1 className="h1 -secondary -big">The Nature of Risk Reduction</h1>
               <h2 className="h2">Get inspired to create your solution with green infrastructure projects implemented around the world</h2>
               <Link className="btn -primary" to="/map">Go to the map</Link>
+              <SvgIcon className="section-icon" name="icon-arrow-down-2" />
             </div>
           </div>
         </section>
