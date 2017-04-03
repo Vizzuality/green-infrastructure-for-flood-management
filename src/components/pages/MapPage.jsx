@@ -18,7 +18,8 @@ export default class MapPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebarScroll: 0
+      sidebarScroll: 0,
+      slidingMenuClose: true
     };
 
     // Bindings
@@ -199,6 +200,10 @@ export default class MapPage extends React.Component {
     return this.props.projects.length ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
   }
 
+  closeSlidignMenu(close) {
+    this.setState({ slidingMenuClose: close });
+  }
+
   /* Render */
   render() {
     /* Map params */
@@ -211,14 +216,14 @@ export default class MapPage extends React.Component {
 
     return (
       <div className="c-map-page l-map-page">
-        <Sidebar onToggle={this.props.setSidebarWidth} scroll={this.state.sidebarScroll}>
+        <Sidebar onToggle={this.props.setSidebarWidth} scroll={this.state.sidebarScroll} closeSlidignMenu={(close) => this.closeSlidignMenu(close)}>
           <Spinner className="-transparent" isLoading={this.props.loading} />
           {this.props.projectDetail ?
             <div className="project-detail-wrapper">
               <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} />
             </div> :
             <div className="project-list-wrapper">
-              <SlidingMenu title="filters">
+              <SlidingMenu title="filters" closed={this.state.slidingMenuClose}>
                 <Filters />
               </SlidingMenu>
               <Search

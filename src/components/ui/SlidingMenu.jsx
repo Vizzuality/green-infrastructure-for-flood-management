@@ -15,6 +15,11 @@ export default class SlidingMenu extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    newProps.closed !== this.state.closed &&
+      this.setState({ closed: newProps.closed })
+  }
+
   toggle() {
     this.setState({
       closed: !this.state.closed

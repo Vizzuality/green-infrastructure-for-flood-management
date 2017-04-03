@@ -38,7 +38,6 @@ $_btn-height: 50px;
       display: flex;
       transform: rotate(-90deg) translateX(-50%);
 
-
       li {
         margin: 0 20px;
         white-space: nowrap;
@@ -46,8 +45,9 @@ $_btn-height: 50px;
         text-transform: uppercase;
         font-weight: bold;
         opacity: .9;
+        cursor: pointer;
 
-        a { color: pallette(white); }
+        button { color: pallette(white); }
       }
     }
 
