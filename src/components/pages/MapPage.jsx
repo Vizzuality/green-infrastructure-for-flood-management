@@ -67,7 +67,7 @@ export default class MapPage extends React.Component {
   }
 
   onSearchChange(val) {
-    this.props.setProjectsFilters({ search: val });
+    this.props.setProjectsFilters({ name: val });
   }
 
   goToProjectDetail(projectId) {
@@ -227,7 +227,7 @@ export default class MapPage extends React.Component {
                 <Filters />
               </SlidingMenu>
               <Search
-                defaultValue={this.props.filters.search}
+                defaultValue={this.props.filters.name}
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
               <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
