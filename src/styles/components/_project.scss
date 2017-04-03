@@ -1,9 +1,13 @@
-/* Project list */
+$_separation: ($space-1 * 5);
 
 /* wrappers */
-.project-list-wrapper, .project-detail-wrapper {
+.project-list-wrapper {
+  padding: ($_separation + 50) $_separation $_separation;
   min-height: 100%;
-  padding: (($space-1 * 5) + 50) ($space-1 * 5) ($space-1 * 5);
+}
+.project-detail-wrapper {
+  min-height: 100%;
+  padding: $_separation;
 }
 
 .project-detail-wrapper {
@@ -86,26 +90,22 @@
   .project-bar {
     display: block;
     height: 50px;
-    background-color: palette(white);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+    background-color: palette(green);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: $space-1 * 5;
+    border-bottom: 1px solid rgba(palette(black), .3);
   }
 
   .project-back {
     padding: 0;
     border: none;
     background-color: transparent;
-    font-size: $font-size-big;
+    font-size: $font-size-default;
     font-weight: bold;
     text-transform: uppercase;
-    color: palette(blue);
+    color: palette(white);
     display: block;
     height: 100%;
     display: flex;
@@ -116,30 +116,29 @@
     margin-right: $space-1 * 2;
     width: 8px;
     height: 16px;
-    fill: palette(blue);
+    fill: palette(white);
   }
 
   .project-name {
     font-size: 36px;
     font-weight: bold;
-    color: palette(black);
+    color: palette(white);
     line-height: normal;
-    margin-bottom: $space-1 * 3;
   }
 
   .project-company {
     display: block;
     font-weight: bold;
-    color: palette(blue);
+    color: palette(white);
     text-transform: uppercase;
-    margin-bottom: $space-1 * 2;
+    margin-bottom: $space-1;
   }
 
   .project-date {
     display: block;
     margin-bottom: $space-1 * 4;
     text-transform: uppercase;
-    color: rgba(palette(black), .7);
+    color: palette(white);
   }
 
   .project-text {
@@ -154,43 +153,77 @@
     padding: $space-1 ($space-1 * 2);
     font-weight: bold;
     text-transform: uppercase;
-    color: palette(blue);
+    color: palette(green);
     border-radius: 3px;
-    border: 1px solid palette(blue);
-    float: right;
+    border: 1px solid palette(green);
     margin-top: $space-1 * 5;
   }
 
   .project-detail-section {
-    @include clearfix;
     padding-bottom: $space-1 * 7;
     border-bottom: solid 1px rgba(#0f6487, .2);
+    background-color: palette(green);
+    padding: $_separation;
   }
 
-  .project-detail-list {
+  .project-resumme {
+    border-bottom: 2px solid palette(gray, light);
+    padding: $_separation;
+  }
 
-    padding-top: $space-1 * 4;
+  .project-info {
+    padding: $_separation;
 
-    dt {
-      text-transform: uppercase;
-      color: palette(gray);
-      margin-bottom: $space-1;
-    }
-
-    dd {
-      color: palette(black);
-      font-size: $font-size-big;
-      line-height: 2.25;
+    .project-info-item {
       margin-bottom: $space-1 * 4;
-
-      &.-big {
-        font-size: 36px;
-        line-height: 1.2;
-      }
 
       &:last-of-type {
         margin-bottom: 0;
       }
+    }
+  }
+
+  .label {
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $font-size-default;
+    color: palette(green);
+    margin-bottom: $space-1;
+  }
+
+  .value {
+    color: palette(black);
+
+    &.-big {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .value-item {
+      margin-right: 4px;
+
+      &:after {
+        content: ','
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+
+        &:after {
+          content: ''
+        }
+      }
+    }
+  }
+
+  .list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $space-1 * 4;
+
+    li {
+      flex: 1;
     }
   }
 }

@@ -214,9 +214,7 @@ export default class MapPage extends React.Component {
         <Sidebar onToggle={this.props.setSidebarWidth} scroll={this.state.sidebarScroll}>
           <Spinner className="-transparent" isLoading={this.props.loading} />
           {this.props.projectDetail ?
-            <div className="project-detail-wrapper">
-              <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} />
-            </div> :
+            <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} /> :
             <div className="project-list-wrapper">
               <SlidingMenu title="filters">
                 <Filters />
