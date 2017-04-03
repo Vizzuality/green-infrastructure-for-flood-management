@@ -25,12 +25,50 @@
       align-items: center;
       margin: 0;
     }
+
+    // Input range override
+    .input-range {
+      margin-top: 20px;
+
+      .input-range__label--value {
+        color: palette(white);
+        font-weight: bold;
+        font-family: $font-size-default;
+      }
+
+      .input-range__label--max .input-range__label-container,
+      .input-range__label--min .input-range__label-container  {
+        font-family: $font-size-default;
+        color: rgba($color-black, .5);
+        left: 0;
+        top: -8px;
+      }
+
+      .input-range__slider {
+        background-color: white;
+        border: 0;
+        width: 14px;
+        height: 14px;
+      }
+
+      .input-range__track {
+        background-color: rgba($color-black, .3);
+        height: 1px;
+      }
+
+      .input-range__track--active {
+        background-color: $secondary-color;
+        height: 3px;
+        transform: translateY(-1px);
+      }
+    }
   }
 
   .actions {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    margin-top: 40px;
 
     .c-btn {
       margin-right: 5px;

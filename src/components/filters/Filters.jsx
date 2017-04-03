@@ -1,5 +1,8 @@
 import React from 'react';
 import { SimpleSelect, MultiSelect } from 'react-selectize';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
+
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
@@ -12,6 +15,13 @@ export default class Filters extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = { 
+      cost: {
+        from: props.filters.from_cost, 
+        to: props.filters.to_cost
+      }
+    };
+
     // Bindings
     this.resetFilters = this.resetFilters.bind(this);
   }
@@ -20,14 +30,18 @@ export default class Filters extends React.Component {
     toggleFilters: React.PropTypes.func
   };
 
-  setProjectsFilter(opts, key) {
+  setArrayProjectsFilter(opts, key) {
     const filter = {};
     filter[key] = opts.map(opt => opt.value || opt);
     this.props.setProjectsFilters(filter);
   }
 
+  setProjectsRangeFilter(opts) {
+    this.props.setProjectsFilters({ 'from_cost': opts.min, 'to_cost': opts.max });
+  }
+
   resetFilters() {
-    Object.keys(this.props.filters).forEach(key => this.setProjectsFilter([], key));
+    Object.keys(this.props.filters).forEach(key => this.setArrayProjectsFilter([], key));
   }
 
   render() {
@@ -41,7 +55,7 @@ export default class Filters extends React.Component {
             multi={true}
             options={organizationsOptions}
             value={organizationsOptions.filter(opt => this.props.filters.organizations.includes(opt.value))}
-            onChange={opts => this.setProjectsFilter(opts, 'organizations')}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'organizations')}
           />
         </div>
 
@@ -53,7 +67,7 @@ export default class Filters extends React.Component {
             multi={true}
             options={scalesOptions}
             value={scalesOptions.filter(opt => this.props.filters.scales.includes(opt.value))}
-            onChange={opts => this.setProjectsFilter(opts, 'scales')}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'scales')}
           />
         </div>
 
@@ -65,7 +79,7 @@ export default class Filters extends React.Component {
             multi={true}
             options={countriesOptions}
             value={countriesOptions.filter(opt => this.props.filters.countries.includes(opt.value))}
-            onChange={opts => this.setProjectsFilter(opts, 'countries')}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'countries')}
           />
         </div>
   
@@ -77,7 +91,7 @@ export default class Filters extends React.Component {
             multi={true}
             options={regionsOptions}
             value={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
-            onChange={opts => this.setProjectsFilter(opts, 'regions')}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'regions')}
           />
         </div>
        
@@ -89,7 +103,7 @@ export default class Filters extends React.Component {
             multi={true}
             options={interventionOptions}
             value={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
-            onChange={opts => this.setProjectsFilter(opts, 'intervention_types')}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'intervention_types')}
           />
         </div>
 
@@ -101,7 +115,7 @@ export default class Filters extends React.Component {
             multi={true}
             options={solutionOptions}
             value={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
-            onChange={opts => this.setProjectsFilter(opts, 'nature_based_solutions')}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'nature_based_solutions')}
           />
         </div>
 
@@ -113,7 +127,19 @@ export default class Filters extends React.Component {
             options={hazardOptions}
             selected={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
             className=""
-            onChange={opts => this.setProjectsFilter(opts, 'hazard_types')}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'hazard_types')}
+          />
+        </div>
+
+        {/* Costs */}
+        <div className="filter-field">
+          <label className="title">Cost range</label>
+          <InputRange
+            maxValue={10000}
+            minValue={0}
+            value={{ min: this.state.cost.from, max: this.state.cost.to }}
+            onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max }})} 
+            onChangeComplete={opts => this.setProjectsRangeFilter(opts)} 
           />
         </div>
 
@@ -128,7 +154,7 @@ export default class Filters extends React.Component {
 
 Filters.propTypes = {
   // Actions
-  setProjectsFilters: React.PropTypes.func,
+  setArrayProjectsFilters: React.PropTypes.func,
   filters: React.PropTypes.object
 };
 Filters.defaultProps = {};

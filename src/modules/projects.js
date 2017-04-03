@@ -20,7 +20,9 @@ const initialState = {
     scales: [],
     intervention_types: [],
     hazard_types: [],
-    nature_based_solutions: []
+    nature_based_solutions: [],
+    from_cost: 500,
+    to_cost: 4700
   }
 };
 
