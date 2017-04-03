@@ -27,3 +27,51 @@
     }
   }
 }
+
+/* Overried react select */
+.Select {
+  .Select-control {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(palette(black), .54);
+    border-radius: 0;
+    cursor: pointer;
+
+    .Select-clear {
+      color: rgba(palette(black), .54);
+    }
+   
+    .Select-arrow {
+      border-color: rgba(palette(black), .54) transparent transparent;
+    }
+  }
+
+  .Select-multi-value-wrapper {
+    .Select-value {
+      position: relative;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 100px;
+      padding-left: 5px;
+      margin-left: 0;
+
+      .Select-value-label {
+        font-weight: 700;
+        margin-right: 20px;
+        margin-bottom: 1px;
+      }
+
+      .Select-value-icon {
+        position: absolute;
+        right: 3px;
+        top: 1px;
+        border: 0;
+        color: $secondary-color;
+      }
+    }
+  }
+
+  .Select-menu-outer {
+    background-color: white;
+  }
+}
