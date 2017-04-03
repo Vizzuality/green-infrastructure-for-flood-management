@@ -13,7 +13,7 @@ const initialState = {
   loading: false,
   detail: null,
   filters: {
-    search: '',
+    name: '',
     countries: [],
     regions: [],
     organizations: [],

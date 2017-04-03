@@ -1,26 +1,38 @@
 $_btn-height: 50px;
 
 .c-sliding-menu {
-  z-index: 999;
+  z-index: 4;
   position: absolute;
   width: 100%;
   left: 0;
   top: 0;
-  background-color: palette(white);
-  transform: translateY(0);
-  transition: transform $ease-out-cubic $animation-time-2;
+  height: auto;
 
   &.-closed {
-    transform: translateY(calc(-100% + #{$_btn-height}));
+    height: $_btn-height;
+
+    .sliding-menu-content {
+      transform: translateY(calc(-100%));
+    }
+  }
+
+  .sliding-menu-header {
+    position: relative;
+    z-index: 5;
+    background-color: $primary-color;
+  }
+
+  .sliding-menu-content {
+    transform: translateY(0);
+    transition: all $ease-out-cubic $animation-time-2;
   }
 
   .sliding-menu-icon {
-    width: 36px;
-    height: 18px;
-    fill: palette(blue);
-    position: absolute;
-    top: 0; left: $space-1 * 4; bottom: 0;
+    fill: palette(white);
     margin: auto;
+    margin-left: 12px;
+    stroke-width: 2px;
+    stroke: palette(white);
   }
 
   .sliding-menu-btn {
@@ -32,9 +44,9 @@ $_btn-height: 50px;
     text-transform: uppercase;
     font-weight: bold;
     font-size: $font-size-big;
-    color: palette(blue);
+    color: palette(white);
     border: none;
-    background-color: palette(white);
+    background-color: $primary-color;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
   }
 }

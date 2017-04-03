@@ -15,6 +15,11 @@ export default class SlidingMenu extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    newProps.closed !== this.state.closed &&
+      this.setState({ closed: newProps.closed })
+  }
+
   toggle() {
     this.setState({
       closed: !this.state.closed
@@ -32,13 +37,13 @@ export default class SlidingMenu extends React.Component {
 
     return (
       <div className={cNames}>
-        <div className="sliding-menu-content">{this.props.children}</div>
         <div className="sliding-menu-header">
           <button className="sliding-menu-btn" onClick={this.toggle} type="button">
-            <SvgIcon className="sliding-menu-icon" name={this.state.closed ? 'icon-arrow-down-2' : 'icon-arrow-up-2'} />
             {this.props.title}
+            <SvgIcon className="sliding-menu-icon -small" name={this.state.closed ? 'icon-arrow-down-2' : 'icon-arrow-up-2'} />
           </button>
         </div>
+        <div className="sliding-menu-content">{this.props.children}</div>
       </div>
     );
   }
