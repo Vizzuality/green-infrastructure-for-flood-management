@@ -1,6 +1,6 @@
 .c-btn {
   font-family: $font-size-default;
-  color: rgba($color-text-1, .5);
+  color: rgba(palette(white), .5);
   text-transform: uppercase;
   font-weight: 600;
   background-color: transparent;
@@ -9,19 +9,19 @@
   border-radius: 2px;
 
   &:hover {
-    background-color: $color-white;
+    background-color: palette(white);
     color: rgba($color-primary, .9);
   }
 
   &.-filled {
-    background-color: $color-white;
+    background-color: palette(white);
     color: rgba($color-primary, .9);
     font-weight: bold;
 
     &:hover {
       background-color: transparent;
       color: rgba($color-text-1, .5);
-      border: 1px solid $color-white;
+      border: 1px solid palette(white);
     }
   }
 }
