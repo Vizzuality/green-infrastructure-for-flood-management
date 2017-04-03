@@ -40,8 +40,20 @@ export default class Filters extends React.Component {
     this.props.setProjectsFilters({ 'from_cost': opts.min, 'to_cost': opts.max });
   }
 
+  resetCost(){
+    this.setState({ cost: { from: 0, to: 10000 }}, () => {
+      this.props.setProjectsFilters({ 'from_cost': 0, 'to_cost': 10000 });
+    });
+  }
+
   resetFilters() {
-    Object.keys(this.props.filters).forEach(key => this.setArrayProjectsFilter([], key));
+    Object.keys(this.props.filters).forEach(key => {
+      if (key === 'from_cost') {
+        this.resetCost();
+      } else if (key !== 'to_cost'){
+        this.setArrayProjectsFilter([], key);
+      }
+    });
   }
 
   render() {

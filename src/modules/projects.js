@@ -21,8 +21,8 @@ const initialState = {
     intervention_types: [],
     hazard_types: [],
     nature_based_solutions: [],
-    from_cost: 500,
-    to_cost: 4700
+    from_cost: 0,
+    to_cost: 10000
   }
 };
 
