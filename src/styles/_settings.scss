@@ -2,6 +2,12 @@
 $app-width: 1280px;
 
 // Colors
+$primary-color: #248b6b;
+$color-primary: #248b6b;
+
+$secondary-color: #ffb400;
+$color-secondary: #ffb400;
+
 $palettes: (
   blue: (
     primary: #0F6487,
@@ -20,8 +26,17 @@ $palettes: (
   ),
   yellow: (
     primary: #FFB400
+  ),
+  green: (
+    primary: $primary-color
+  ),
+  orange: (
+    primary: $secondary-color
   )
 );
+
+$color-text-1: #4A4A4A;
+$color-text-2: #FFFFFF;
 
 // Font families
 $font-size-default: 'Open Sans', sans-serif;

@@ -1,85 +1,199 @@
 import React from 'react';
 import { SimpleSelect, MultiSelect } from 'react-selectize';
-import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions } from 'constants/filters';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
+
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
+import CheckboxGroup from 'components/ui/CheckboxGroup';
+
+import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions } from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
 
 export default class Filters extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      cost: {
+        from: props.filters.from_cost, 
+        to: props.filters.to_cost
+      }
+    };
+
+    // Bindings
+    this.resetFilters = this.resetFilters.bind(this);
+  }
+
+  static contextTypes = {
+    toggleFilters: React.PropTypes.func
+  };
+
+  setArrayProjectsFilter(opts, key) {
+    const filter = {};
+    filter[key] = opts.map(opt => opt.value || opt);
+    this.props.setProjectsFilters(filter);
+  }
+
+  setProjectsRangeFilter(opts) {
+    this.props.setProjectsFilters({ 'from_cost': opts.min, 'to_cost': opts.max });
+  }
+
+  resetCost(){
+    this.setState({ cost: { from: 0, to: 10000 }}, () => {
+      this.props.setProjectsFilters({ 'from_cost': 0, 'to_cost': 10000 });
+    });
+  }
+
+  resetFilters() {
+    Object.keys(this.props.filters).forEach(key => {
+      if (key === 'from_cost') {
+        this.resetCost();
+      } else if (key !== 'to_cost'){
+        this.setArrayProjectsFilter([], key);
+      }
+    });
+  }
+
   render() {
     return (
       <div className="c-filters">
-        {/* Regions */}
-        {/*<div className="c-select">
-          <span className="select-label">Locations</span>
-          <SimpleSelect
-            hideResetButton
-            value={regionsOptions.find(opt => opt.value === this.props.filters.regions)}
-            onValueChange={opt => this.props.setProjectsFilters({ regions: opt.value })}
-          >
-            {regionsOptions.map((opt, i) => <option key={i} value={opt.value}>{opt.label}</option>)}
-          </SimpleSelect>
-        </div>*/}
-      {/* Organizations */}
-        <div className="c-select">
-          <span className="select-label">Organizations</span>
-          <MultiSelect
+        {/* Organizations */}
+        <div className="filter-field">
+          <label className="title">Organizations</label>
+          <Select
+            name="field"
+            multi={true}
             options={organizationsOptions}
-            values={organizationsOptions.filter(opt => this.props.filters.organizations.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ organizations: opts.map(opt => opt.value) })}
+            value={organizationsOptions.filter(opt => this.props.filters.organizations.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'organizations')}
           />
         </div>
+
         {/* Scales */}
-        <div className="c-select">
-          <span className="select-label">Scales</span>
-          <MultiSelect
+        <div className="filter-field">
+          <label className="title">Scales</label>
+          <Select
+            name="field"
+            multi={true}
             options={scalesOptions}
-            values={scalesOptions.filter(opt => this.props.filters.scales.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ scales: opts.map(opt => opt.value) })}
+            value={scalesOptions.filter(opt => this.props.filters.scales.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'scales')}
           />
         </div>
-      {/* Countries */}
-        <div className="c-select">
-          <span className="select-label">Countries</span>
-          <MultiSelect
-            options={countriesOptions}
-            values={countriesOptions.filter(opt => this.props.filters.countries.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ countries: opts.map(opt => opt.value) })}
-          />
-        </div>
+       
         {/* Regions */}
-        <div className="c-select">
-          <span className="select-label">Regions</span>
-          <MultiSelect
+        <div className="filter-field">
+          <label className="title">Regions</label>
+          <Select
+            name="field"
+            multi={true}
             options={regionsOptions}
-            values={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ regions: opts.map(opt => opt.value) })}
+            value={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'regions')}
           />
         </div>
-        {/* Intervention */}
-        <div className="c-select">
-          <span className="select-label">Intervention</span>
-          <MultiSelect
-            options={interventionOptions}
-            values={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ intervention_types: opts.map(opt => opt.value) })}
+
+        {/* Countries */}
+        <div className="filter-field">
+          <label className="title">Countries</label>
+          <Select
+            name="field"
+            multi={true}
+            options={countriesOptions}
+            value={countriesOptions.filter(opt => this.props.filters.countries.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'countries')}
           />
         </div>
-        {/* Hazard */}
-        <div className="c-select">
-          <span className="select-label">Hazard</span>
-          <MultiSelect
-            options={hazardOptions}
-            values={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ hazard_types: opts.map(opt => opt.value) })}
-          />
-        </div>
+  
         {/* Nature-based solutions */}
-        <div className="c-select">
-          <span className="select-label">Nature-based solutions</span>
-          <MultiSelect
+        <div className="filter-field">
+          <label className="title">Nature-based solutions</label>
+          <Select
+            name="field"
+            multi={true}
             options={solutionOptions}
-            values={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
-            onValuesChange={opts => this.props.setProjectsFilters({ nature_based_solutions: opts.map(opt => opt.value) })}
+            value={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'nature_based_solutions')}
           />
+        </div>
+       
+        {/* Intervention */}
+        <div className="filter-field">
+          <label className="title">Intervention</label>
+          <Select
+            name="field"
+            multi={true}
+            options={interventionOptions}
+            value={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'intervention_types')}
+          />
+        </div>
+
+        {/* co benefits */}
+        <div className="filter-field">
+          <label className="title">Co benefits</label>
+          <Select
+            name="field"
+            multi={true}
+            options={coBenefitsOptions}
+            value={coBenefitsOptions.filter(opt => this.props.filters.co_benefits.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'co_benefits')}
+          />
+        </div>
+
+        {/* Primary benefits */}
+        <div className="filter-field">
+          <label className="title">Primary benefits</label>
+          <Select
+            name="field"
+            multi={true}
+            options={primaryBenefitsOptions}
+            value={primaryBenefitsOptions.filter(opt => this.props.filters.primary_benefits.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'primary_benefits')}
+          />
+        </div>
+
+        {/* Status */}
+        <div className="filter-field">
+          <label className="title">Status</label>
+          <Select
+            name="field"
+            multi={true}
+            options={statusOptions}
+            value={statusOptions.filter(opt => this.props.filters.status.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'status')}
+          />
+        </div>
+
+        {/* Hazard */}
+        <div className="filter-field">
+          <label className="title">Hazard</label>
+          <CheckboxGroup 
+            name="asdf"
+            options={hazardOptions}
+            selected={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
+            className=""
+            onChange={opts => this.setArrayProjectsFilter(opts, 'hazard_types')}
+          />
+        </div>
+
+        {/* Costs */}
+        <div className="filter-field">
+          <label className="title">Cost range</label>
+          <InputRange
+            maxValue={10000}
+            minValue={0}
+            value={{ min: this.state.cost.from, max: this.state.cost.to }}
+            onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max }})} 
+            onChangeComplete={opts => this.setProjectsRangeFilter(opts)} 
+          />
+        </div>
+
+        <div className="actions">
+          <button className="c-btn" onClick={this.resetFilters}>Reset FILTERS</button>
+          <button className="c-btn -filled" onClick={() => this.context.toggleFilters()}>APPLY FILTERS</button>
         </div>
       </div>
     );
@@ -88,7 +202,7 @@ export default class Filters extends React.Component {
 
 Filters.propTypes = {
   // Actions
-  setProjectsFilters: React.PropTypes.func,
+  setArrayProjectsFilters: React.PropTypes.func,
   filters: React.PropTypes.object
 };
 Filters.defaultProps = {};

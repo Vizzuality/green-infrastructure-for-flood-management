@@ -1,13 +1,4 @@
 
-
-const statusOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Status 1', value: 'status_1' },
-  { label: 'Status 2', value: 'status_2' },
-  { label: 'Status 3', value: 'status_3' },
-  { label: 'Status 4', value: 'status_4' }
-];
-
 const interventionOptions = [
   { label: 'Green', value: 'green' },
   { label: 'Grey', value: 'grey' },
@@ -15,9 +6,9 @@ const interventionOptions = [
 ];
 
 const hazardOptions = [
-  { label: 'Urban', value: 1 },
-  { label: 'River', value: 2 },
-  { label: 'Coastal', value: 3 }
+  { label: 'Urban', value: '1' },
+  { label: 'River', value: '2' },
+  { label: 'Coastal', value: '3' }
 ];
 
 const solutionOptions = [
@@ -64,4 +55,29 @@ const regionsOptions = [
   { label: 'North America', value: 'North America' }
 ];
 
-export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions };
+const coBenefitsOptions = [
+  { label: 'Shoreline stabilization & accretion', value: '1' },
+  { label: 'Employment, enterprise & property', value: '2' },
+  { label: 'Public health', value: '3' },
+  { label: 'Tourism & recreation', value: '4' },
+  { label: 'Biodiversity', value: '5' },
+  { label: 'Carbon sequestration', value: '6' },
+  { label: 'Other ecosystem services', value: '7' }
+];
+
+const primaryBenefitsOptions = [
+  { label: 'Coastal energy management', value: '1' },
+  { label: 'Redirection & drainage of flood & storm', value: '2' },
+  { label: 'Water storage & infiltration of flood & storm water', value: '3' },
+  { label: 'Wind speed reduction', value: '4' },
+  { label: 'Landslides, erosion & siltation', value: '5' },
+  { label: 'Control shoreline stabilization & accretion', value: '5' },
+];
+
+const statusOptions = [
+  { label: 'Pipeline', value: 'pipeline' },
+  { label: 'Ongoing', value: 'ongoing' },
+  { label: 'Completed', value: 'completed' }
+];
+
+export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions };

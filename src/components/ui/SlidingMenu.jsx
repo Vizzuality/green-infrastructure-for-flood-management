@@ -21,10 +21,15 @@ export default class SlidingMenu extends React.Component {
     });
   }
 
+  getChildContext() {
+    return { toggleFilters: this.toggle };
+  }
+
   render() {
     const cNames = classnames('c-sliding-menu', {
       '-closed': this.state.closed
     });
+
     return (
       <div className={cNames}>
         <div className="sliding-menu-content">{this.props.children}</div>
@@ -47,4 +52,9 @@ SlidingMenu.propTypes = {
 
 SlidingMenu.defaultProps = {
   closed: true
+};
+
+// make information available to its children
+SlidingMenu.childContextTypes = {
+  toggleFilters: React.PropTypes.func
 };
