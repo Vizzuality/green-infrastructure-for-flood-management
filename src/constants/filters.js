@@ -1,13 +1,4 @@
 
-
-const statusOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Status 1', value: 'status_1' },
-  { label: 'Status 2', value: 'status_2' },
-  { label: 'Status 3', value: 'status_3' },
-  { label: 'Status 4', value: 'status_4' }
-];
-
 const interventionOptions = [
   { label: 'Green', value: 'green' },
   { label: 'Grey', value: 'grey' },
@@ -83,4 +74,10 @@ const primaryBenefitsOptions = [
   { label: 'Control shoreline stabilization & accretion', value: '5' },
 ];
 
-export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions };
+const statusOptions = [
+  { label: 'Pipeline', value: 'pipeline' },
+  { label: 'Ongoing', value: 'ongoing' },
+  { label: 'Completed', value: 'completed' }
+];
+
+export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions };

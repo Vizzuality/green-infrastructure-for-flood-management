@@ -8,7 +8,7 @@ import 'react-select/dist/react-select.css';
 
 import CheckboxGroup from 'components/ui/CheckboxGroup';
 
-import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions } from 'constants/filters';
+import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions } from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
 
 export default class Filters extends React.Component {
@@ -152,6 +152,18 @@ export default class Filters extends React.Component {
             options={primaryBenefitsOptions}
             value={primaryBenefitsOptions.filter(opt => this.props.filters.primary_benefits.includes(opt.value))}
             onChange={opts => this.setArrayProjectsFilter(opts, 'primary_benefits')}
+          />
+        </div>
+
+        {/* Status */}
+        <div className="filter-field">
+          <label className="title">Status</label>
+          <Select
+            name="field"
+            multi={true}
+            options={statusOptions}
+            value={statusOptions.filter(opt => this.props.filters.status.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'status')}
           />
         </div>
 
