@@ -24,4 +24,9 @@
       border: 1px solid $color-white;
     }
   }
+
+  &.-transparent {
+    border: 1px solid $color-white;
+    color: rgba($color-text-2, .9);
+  }
 }

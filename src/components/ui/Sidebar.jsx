@@ -45,11 +45,24 @@ export default class Sidebar extends React.Component {
     const cNames = classnames('c-sidebar', { '-opened': this.state.opened });
     return (
       <aside ref={node => this.el = node} className={cNames}>
-        <button type="button" className="sidebar-btn" onClick={this.toggle}>
-          <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
-        </button>
         <div ref={node => this.elContent = node} className="sidebar-content">
+          <button type="button" className="sidebar-btn" onClick={this.toggle}>
+            <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
+          </button>
           {this.props.children}
+        </div>
+        <div className="sidebar-closed">
+          <button type="button" className="sidebar-btn" onClick={this.toggle}>
+            <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
+          </button>
+          <div className="rotate-list">
+            <ul>
+              <li>Projects list</li>
+              <li>Search</li>
+              <li>Filter / Sort by</li>
+            </ul>
+            <button className="c-btn -transparent">Download data</button>
+          </div>
         </div>
       </aside>
     );
