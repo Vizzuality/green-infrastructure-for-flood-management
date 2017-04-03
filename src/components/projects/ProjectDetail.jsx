@@ -9,33 +9,59 @@ export default function ProjectDetail(props) {
       <div className="project-bar">
         <button className="project-back" onClick={props.onBack} type="button">
           <SvgIcon className="project-back-icon" name="icon-arrow-left-2" />
-          See all projects
+          Project list
         </button>
       </div>
       <div className="project-detail-section">
-        <h1 className="project-name">{data.name}</h1>
         <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
         <span className="project-date">{data.start_year} - {data.completion_year}</span>
-        <p className="project-text">{data.summary}</p>
-        <a className="project-link" rel="noopener noreferrer" target="_blank" href="http://www.worldbank.org/">Project page</a>
+        <h1 className="project-name">{data.name}</h1>
       </div>
-      <div>
-        <dl className="project-detail-list">
-          <dt>Status</dt>
-          <dd>On going</dd>
-          <dt>Hazard</dt>
-          <dd>{data.hazard_types.map((ht, i) => <span key={i}>{ht.name}</span>)}</dd>
-          <dt>Intervention</dt>
-          <dd>Hybrid - Hybrid measures utilize a combination of both grey and green measures to simultaneously establish immediate risk reduction while maintaining the valuable role of the relevant ecosystem</dd>
-          <dt>Solution</dt>
-          <dd>River restoration and Wetland restoration</dd>
-          <dt>Co-benefits of intervention</dt>
-          <dd>{data.co_benefits_of_interventions.map((c, i) => <span key={i}>{c.name}</span>)}</dd>
-          <dt>Cost in million</dt>
-          <dd className="-big">{data.estimated_cost} USD</dd>
-          <dt>Benefits</dt>
-          <dd>{data.estimated_monetary_benefits}</dd>
-        </dl>
+      <div className="project-resumme">
+        <ul className="list">
+          <li>
+            <span className="label">Monetary cost ( us$ Millions)</span>
+            <span className="value -big">{data.estimated_cost}</span>
+          </li>
+          <li>
+            <span className="label">Monetary Benefits</span>
+            <span className="value -big">{data.estimated_monetary_benefits}</span>
+          </li>
+        </ul>
+        <p className="project-text">{data.summary}</p>
+        <a className="project-link" rel="noopener noreferrer" target="_blank" href="http://www.worldbank.org/">website</a>
+      </div>
+      <div className="project-info">
+        <ul className="list">
+          <li>
+            <span className="label">Intervention</span>
+            <span className="value">{data.intervention_type}</span>
+          </li>
+          <li>
+            <span className="label">Hazard</span>
+            <span className="value">{data.hazard_types.map((ht, i) => <span className="value-item" key={i}>{ht.name}</span>)}</span>
+          </li>
+          <li>
+            <span className="label">Main donor</span>
+            <span className="value">aaa</span>
+          </li>
+        </ul>
+
+        <div className="project-info-item">
+          <span className="label">Benefits detail</span>
+          <span className="value">{data.primary_benefits_of_interventions.map((pboi, i) => <span className="value-item" key={i}>{pboi.name}</span>)}</span>
+        </div>
+
+        <div className="project-info-item">
+          <span className="label">Co-benefits of intervention</span>
+          <span className="value">aaa</span>
+        </div>
+
+        <div className="project-info-item">
+          <span className="label">Natured-based solution</span>
+          <span className="value">{data.nature_based_solutions.map((nbs, i) => <span className="value-item" key={i}>{nbs.name}</span>)}</span>
+        </div>
+
       </div>
     </article>
   );

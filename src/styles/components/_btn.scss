@@ -24,4 +24,13 @@
       border: 1px solid palette(white);
     }
   }
+
+  &.-transparent {
+    border: 1px solid palette(white);
+    color: rgba($color-text-2, .9);
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
 }
