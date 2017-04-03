@@ -1,0 +1,14 @@
+.home-section {
+  padding: 116px 170px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  &.-header {
+    background-image: url("/images/bg_header.png");
+  }
+
+  &.-submit {
+    background-image: url("/images/bg_section_submit.png");
+  }
+}

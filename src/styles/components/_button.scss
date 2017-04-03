@@ -1,0 +1,24 @@
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: ($space-1 * 2) ($space-1 * 4);
+  text-transform: uppercase;
+  font-size: $font-size-default;
+  font-weight: bold;
+  border-radius: 2px;
+  transition: background-color $animation-time linear;
+
+  &.-primary {
+    background-color: palette(white);
+    color: palette(black);
+  }
+
+  &.-secondary {
+    background-color: #248B6B;
+    color: palette(white);
+
+    &:hover {
+      background-color: lighten(#248B6B, 10%);
+    }
+  }
+}
