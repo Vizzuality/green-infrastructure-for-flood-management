@@ -82,6 +82,18 @@ export default class Filters extends React.Component {
             onChange={opts => this.setArrayProjectsFilter(opts, 'scales')}
           />
         </div>
+       
+        {/* Regions */}
+        <div className="filter-field">
+          <label className="title">Regions</label>
+          <Select
+            name="field"
+            multi={true}
+            options={regionsOptions}
+            value={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'regions')}
+          />
+        </div>
 
         {/* Countries */}
         <div className="filter-field">
@@ -95,15 +107,15 @@ export default class Filters extends React.Component {
           />
         </div>
   
-        {/* Regions */}
+        {/* Nature-based solutions */}
         <div className="filter-field">
-          <label className="title">Regions</label>
+          <label className="title">Nature-based solutions</label>
           <Select
             name="field"
             multi={true}
-            options={regionsOptions}
-            value={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
-            onChange={opts => this.setArrayProjectsFilter(opts, 'regions')}
+            options={solutionOptions}
+            value={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'nature_based_solutions')}
           />
         </div>
        
@@ -116,18 +128,6 @@ export default class Filters extends React.Component {
             options={interventionOptions}
             value={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
             onChange={opts => this.setArrayProjectsFilter(opts, 'intervention_types')}
-          />
-        </div>
-
-        {/* Nature-based solutions */}
-        <div className="filter-field">
-          <label className="title">Nature-based solutions</label>
-          <Select
-            name="field"
-            multi={true}
-            options={solutionOptions}
-            value={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
-            onChange={opts => this.setArrayProjectsFilter(opts, 'nature_based_solutions')}
           />
         </div>
 
