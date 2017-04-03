@@ -3,7 +3,7 @@
 /* wrappers */
 .project-list-wrapper, .project-detail-wrapper {
   min-height: 100%;
-  padding: (($space-1 * 5) + 50) ($space-1 * 5) ($space-1 * 5);
+  padding: 50px 0 ($space-1 * 5);
 }
 
 .project-detail-wrapper {
@@ -11,7 +11,7 @@
 }
 
 .project-list-wrapper {
-  background-color: palette(blue);
+  background-color: palette(white);
 }
 
 .c-project-list {

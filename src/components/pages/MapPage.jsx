@@ -222,6 +222,7 @@ export default class MapPage extends React.Component {
                 <Filters />
               </SlidingMenu>
               <Search
+                title="Search"
                 defaultValue={this.props.filters.search}
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />

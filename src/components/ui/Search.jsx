@@ -7,6 +7,7 @@ export default function Search(props) {
       <input
         className="search-input"
         type="search"
+        placeholder={props.placeholder || 'Search'}
         {...props}
       />
       <SvgIcon className="search-icon" name="icon-search" />
