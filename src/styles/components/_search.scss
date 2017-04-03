@@ -1,7 +1,9 @@
+$_separation: ($space-1 * 4);
+
 .c-search {
   position: relative;
   display: flex;
-  padding: 18px 30px;
+  padding: 18px $_separation;
   background-color: rgba(palette(black), .04);
 
   .search-input {
