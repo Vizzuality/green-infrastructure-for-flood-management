@@ -17,7 +17,7 @@
     margin-left: 0;
 
     &:hover {
-      color: lighten($color-text-1, 12.5%);
+      color: $color-text-1;
     }
 
     .checkbox-icon {
@@ -26,7 +26,7 @@
       left: 0;
       width: 15px;
       height: 15px;
-      border: 1px solid rgba($color-black, .54);
+      border: 1px solid rgba(palette(black), .54);
       border-radius: 2px;
       transform: translate(0,-50%);
 
@@ -59,7 +59,7 @@
     font-weight: 700;
 
     .checkbox-icon {
-      background-color: rgba($color-black, .54);
+      background-color: rgba(palette(black), .54);
       width: 16px;
       height: 16px;
       

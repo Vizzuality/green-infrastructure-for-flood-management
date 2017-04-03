@@ -2,18 +2,11 @@
 $app-width: 1280px;
 
 // Colors
-$color-green: #248b6b;
-$color-mango: #ffb400;
-$color-white: white;
-$color-black: black;
+$primary-color: #248b6b;
+$color-primary: #248b6b;
 
-$primary-color: $color-green;
-$color-primary: $color-green;
-$secondary-color: $color-mango;
-$color-secondary: $color-mango;
-
-$color-text-1: $color-black;
-$color-text-2: $color-white;
+$secondary-color: #ffb400;
+$color-secondary: #ffb400;
 
 $palettes: (
   blue: (
@@ -29,19 +22,31 @@ $palettes: (
   ),
   gray: (
     primary: #AAAAAA,
-    light: #CCCCCC
+    light: #CCCCCC,
+    lighter: #EEEEEE
   ),
   yellow: (
     primary: #FFB400
+  ),
+  green: (
+    primary: $primary-color
+  ),
+  orange: (
+    primary: $secondary-color
+    dark: #0F3000
   )
 );
 
+$color-text-1: #4A4A4A;
+$color-text-2: #FFFFFF;
 
 // Font families
 $font-size-default: 'Open Sans', sans-serif;
+$font-size-secondary: 'Raleway', sans-serif;;
 
 $fonts: (
-  primary: $font-size-default
+  primary: $font-size-default,
+  secondary: $font-size-secondary
 );
 
 // Fonts sizes
@@ -51,6 +56,8 @@ $font-size-default:       14px;
 $font-size-big:           16px;
 $font-size-extrabig:      18px;
 $font-size-huge:          22px;
+$font-size-monster:       60px;
+$font-size-extra-monster: 72px;
 
 // Margins & Paddings
 $space-1: 8px;

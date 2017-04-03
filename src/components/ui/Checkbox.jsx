@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'components/ui/Icon';
+import { SvgIcon } from 'vizz-components';
 
 export default class Checkbox extends React.Component {
 
@@ -38,7 +38,7 @@ export default class Checkbox extends React.Component {
         />
         <label htmlFor={`checkbox-${name}-${value}`}>
           <span className="checkbox-icon">
-            {/*<Icon name="icon-checkbox" />*/}
+            {/*<SvgIcon name="icon-checkbox" />*/}
           </span>
           <span className="item-title">{label}</span>
         </label>

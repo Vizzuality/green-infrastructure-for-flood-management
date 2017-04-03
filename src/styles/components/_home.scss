@@ -1,0 +1,46 @@
+.home-section {
+  padding: 116px 170px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  &.-grayed {
+    background-color: palette(gray, lighter);
+  }
+
+  &.-header {
+    background-image: url("/images/bg_header.png");
+    padding-top: 220px;
+    position: relative;
+
+    .section-icon {
+      width: 17px;
+      height: 17px;
+      fill: palette(white);
+      position: absolute;
+      margin: auto;
+      left: 0; right: 0; bottom: 30px;
+    }
+  }
+
+  &.-submit {
+    background-image: url("/images/bg_section_submit.png");
+  }
+
+  .screenshot {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    box-shadow: 0px 6px 18px rgba(palette(black), .4);
+  }
+
+  .-container {
+    position: relative;
+  }
+
+  .section-wrapper {
+    max-width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
