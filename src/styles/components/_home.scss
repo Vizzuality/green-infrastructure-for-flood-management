@@ -6,9 +6,16 @@
 
   &.-header {
     background-image: url("/images/bg_header.png");
+    padding-top: 180px;
   }
 
   &.-submit {
     background-image: url("/images/bg_section_submit.png");
+  }
+
+  .section-wrapper {
+    max-width: 50%;
+    margin: 0 auto;
+    text-align: center;
   }
 }

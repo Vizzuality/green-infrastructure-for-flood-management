@@ -11,14 +11,18 @@
   &.-primary {
     background-color: palette(white);
     color: palette(black);
+
+    &:hover {
+      background-color: darken(palette(white), 20%);
+    }
   }
 
   &.-secondary {
-    background-color: #248B6B;
+    background-color: palette(green);
     color: palette(white);
 
     &:hover {
-      background-color: lighten(#248B6B, 10%);
+      background-color: lighten(palette(green), 10%);
     }
   }
 }

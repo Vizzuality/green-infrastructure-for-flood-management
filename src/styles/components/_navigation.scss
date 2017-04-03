@@ -1,5 +1,15 @@
 .c-nav {
 
+  &.-home {
+    .nav-link {
+      color: palette(white);
+
+      &:before {
+        background-color: palette(yellow);
+      }
+    }
+  }
+
   .nav-list {
     display: flex;
   }

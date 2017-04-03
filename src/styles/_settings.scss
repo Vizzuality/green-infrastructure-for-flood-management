@@ -20,14 +20,20 @@ $palettes: (
   ),
   yellow: (
     primary: #FFB400
+  ),
+  green: (
+    primary: #248B6B,
+    dark: #0F3000
   )
 );
 
 // Font families
 $font-size-default: 'Open Sans', sans-serif;
+$font-size-secondary: 'Raleway', sans-serif;;
 
 $fonts: (
-  primary: $font-size-default
+  primary: $font-size-default,
+  secondary: $font-size-secondary
 );
 
 // Fonts sizes
@@ -38,6 +44,7 @@ $font-size-big:           16px;
 $font-size-extrabig:      18px;
 $font-size-huge:          22px;
 $font-size-monster:       60px;
+$font-size-extra-monster: 72px;
 
 // Margins & Paddings
 $space-1: 8px;
