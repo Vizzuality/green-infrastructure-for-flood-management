@@ -17,13 +17,16 @@ export default class HomePage extends React.Component {
           </div>
         </section>
         {/* Projects */}
-        <section className="home-section">
+        <section className="home-section -grayed">
           <div className="l-app-wrapper">
             <Row>
               <div className="small-6">
                 <h1 className="h1 -line">Learn more about projects</h1>
                 <p className="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium commodi totam culpa, dolorum asperiores iusto quidem, nesciunt hic eaque blanditiis enim, id maiores nam nobis dignissimos aliquam ad minus nisi. </p>
                 <Link className="btn -secondary" to="/map">See all</Link>
+              </div>
+              <div className="small-6 -container">
+                <img className="screenshot" alt="screen capture" src="/images/screenshot.png" />
               </div>
             </Row>
           </div>
@@ -41,7 +44,7 @@ export default class HomePage extends React.Component {
           </div>
         </section>
         {/* Resources */}
-        <section className="home-section">
+        <section className="home-section -grayed">
           <div className="l-app-wrapper">
             <Row>
               <div className="small-6">
