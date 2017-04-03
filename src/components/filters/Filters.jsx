@@ -8,7 +8,7 @@ import 'react-select/dist/react-select.css';
 
 import CheckboxGroup from 'components/ui/CheckboxGroup';
 
-import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions } from 'constants/filters';
+import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions } from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
 
 export default class Filters extends React.Component {
@@ -128,6 +128,30 @@ export default class Filters extends React.Component {
             options={interventionOptions}
             value={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
             onChange={opts => this.setArrayProjectsFilter(opts, 'intervention_types')}
+          />
+        </div>
+
+        {/* co benefits */}
+        <div className="filter-field">
+          <label className="title">Co benefits</label>
+          <Select
+            name="field"
+            multi={true}
+            options={coBenefitsOptions}
+            value={coBenefitsOptions.filter(opt => this.props.filters.co_benefits.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'co_benefits')}
+          />
+        </div>
+
+        {/* Primary benefits */}
+        <div className="filter-field">
+          <label className="title">Primary benefits</label>
+          <Select
+            name="field"
+            multi={true}
+            options={primaryBenefitsOptions}
+            value={primaryBenefitsOptions.filter(opt => this.props.filters.primary_benefits.includes(opt.value))}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'primary_benefits')}
           />
         </div>
 

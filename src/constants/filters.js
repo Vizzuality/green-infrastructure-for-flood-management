@@ -64,4 +64,23 @@ const regionsOptions = [
   { label: 'North America', value: 'North America' }
 ];
 
-export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions };
+const coBenefitsOptions = [
+  { label: 'Shoreline stabilization & accretion', value: '1' },
+  { label: 'Employment, enterprise & property', value: '2' },
+  { label: 'Public health', value: '3' },
+  { label: 'Tourism & recreation', value: '4' },
+  { label: 'Biodiversity', value: '5' },
+  { label: 'Carbon sequestration', value: '6' },
+  { label: 'Other ecosystem services', value: '7' }
+];
+
+const primaryBenefitsOptions = [
+  { label: 'Coastal energy management', value: '1' },
+  { label: 'Redirection & drainage of flood & storm', value: '2' },
+  { label: 'Water storage & infiltration of flood & storm water', value: '3' },
+  { label: 'Wind speed reduction', value: '4' },
+  { label: 'Landslides, erosion & siltation', value: '5' },
+  { label: 'Control shoreline stabilization & accretion', value: '5' },
+];
+
+export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions };
