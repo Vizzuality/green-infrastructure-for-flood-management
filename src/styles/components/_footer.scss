@@ -1,3 +1,7 @@
 .c-footer {
-  background-color: gray;
+  .footer-content {
+    border-top: 2px solid palette(gray, light);
+    display: flex;
+    justify-content: flex-end;
+  }
 }
