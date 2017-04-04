@@ -108,7 +108,8 @@ export default class MapPage extends React.Component {
         bounds: [point, point],
         options: {
           paddingTopLeft: [this.props.sidebarWidth, 0],
-          paddingBottomRight: [0, 0]
+          paddingBottomRight: [0, 0],
+          maxZoom: 5
         }
       };
     }
@@ -121,7 +122,7 @@ export default class MapPage extends React.Component {
     return {
       zoom: this.props.mapState.zoom,
       minZoom: 2,
-      maxZoom: 9,
+      maxZoom: 7,
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
@@ -232,9 +233,9 @@ export default class MapPage extends React.Component {
 
     return (
       <div className="c-map-page l-map-page">
-        <Sidebar 
-          onToggle={this.props.setSidebarWidth} 
-          scroll={this.state.sidebarScroll} 
+        <Sidebar
+          onToggle={this.props.setSidebarWidth}
+          scroll={this.state.sidebarScroll}
           closeSlidignMenu={(close) => this.closeSlidignMenu(close)}
           showBtn={!this.props.projectDetail}
         >
@@ -254,7 +255,7 @@ export default class MapPage extends React.Component {
                   <SvgIcon name="icon-download" className="download -medium" />
                   Download data
                 </button>
-                <SortBy 
+                <SortBy
                   order={this.props.filters.order}
                   direction={this.props.filters.direction}
                   list={sortByOptions}
