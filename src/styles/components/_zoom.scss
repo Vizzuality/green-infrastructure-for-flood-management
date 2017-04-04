@@ -5,10 +5,10 @@ $zoom-size: 48px;
   top: $space-1 * 2;
   right: $space-1 * 2;
   z-index: 999;
+  border-radius: 3px;
+  border: 1px solid palette(gray, light);
 
   .zoom-control-item {
-    border: 1px solid palette(gray);
-    border-bottom-width: 0;
     overflow-x: hidden;
 
     &:first-child {
@@ -16,12 +16,11 @@ $zoom-size: 48px;
     }
 
     &:last-child {
-      border-bottom-width: 1px;
       border-radius: 0 0 3px 3px;
     }
   }
 
-  .zoom-control-btn, .btn-help {
+  .zoom-control-btn {
     user-select: none;
     padding: 0;
     display: block;
@@ -30,9 +29,10 @@ $zoom-size: 48px;
     height: $zoom-size;
     line-height: $zoom-size;
     border: none;
-    color: palette(black);
+    color: palette(green);
     background-color: white;
-    font-size: 18px;
+    font-size: 30px;
+    font-weight: bold;
     transition: background-color linear $animation-time;
 
     &.-disabled {

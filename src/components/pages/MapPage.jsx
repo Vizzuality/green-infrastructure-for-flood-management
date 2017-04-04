@@ -13,7 +13,6 @@ import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
 import debounce from 'lodash/debounce';
 
-
 export default class MapPage extends React.Component {
   constructor(props) {
     super(props);
@@ -126,8 +125,19 @@ export default class MapPage extends React.Component {
   }
 
   getPopupMarkup(data) {
+    const orgs = data.organizations.map(org => org.name).join(', ');
+    const hazards = data.hazard_types.map(haz => haz.name).join(', ');
+    const url = `/map?detail=${data.id}`;
+
     return `
-      <div class="c-tooltip">${data.name}</div>
+      <div class="c-tooltip">
+        <div class="tooltip-content">
+          <div class="project-name">${data.name}</div>
+          <div class="project-orgs">${orgs}</div>
+          <div class="project-hazards">${hazards}</div>
+        </div>
+        <a class="tooltip-link" href="${url}">More info</a>
+      </div>
     `;
   }
 
@@ -146,12 +156,15 @@ export default class MapPage extends React.Component {
       leafletMarker.bindPopup(this.getPopupMarkup(data));
 
       // Set listeners
-      leafletMarker.off('mouseover').on('mouseover', function mouseover() {
+      leafletMarker.off('click').on('click', function mouseover() {
         this.openPopup();
       });
-      leafletMarker.off('mouseout').on('mouseout', function mouseleave() {
-        this.closePopup();
-      });
+      // leafletMarker.off('mouseover').on('mouseover', function mouseover() {
+      //   this.openPopup();
+      // });
+      // leafletMarker.off('mouseout').on('mouseout', function mouseleave() {
+      //   this.closePopup();
+      // });
     };
 
     /* Cluster */

@@ -169,6 +169,10 @@ $_separation: ($space-1 * 5);
   .project-resumme {
     border-bottom: 2px solid palette(gray, light);
     padding: $_separation;
+
+    .project-cost {
+      margin-bottom: $space-1 * 3;
+    }
   }
 
   .project-info {
@@ -214,16 +218,6 @@ $_separation: ($space-1 * 5);
           content: ''
         }
       }
-    }
-  }
-
-  .list {
-    display: flex;
-    justify-content: center;
-    margin-bottom: $space-1 * 4;
-
-    li {
-      flex: 1;
     }
   }
 }
