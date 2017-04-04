@@ -8,7 +8,7 @@ import ProjectList from 'components/projects/ProjectList';
 import ProjectDetail from 'components/projects/ProjectDetail';
 import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
-import Spinner from 'components/ui/spinner';
+import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
 import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
