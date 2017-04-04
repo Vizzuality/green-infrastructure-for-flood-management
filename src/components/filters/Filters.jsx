@@ -158,11 +158,11 @@ export default class Filters extends React.Component {
         {/* Status */}
         <div className="filter-field">
           <label className="title">Status</label>
-          <Select
-            name="field"
-            multi={true}
+          <CheckboxGroup 
+            name="asdf"
             options={statusOptions}
-            value={statusOptions.filter(opt => this.props.filters.status.includes(opt.value))}
+            selected={statusOptions.filter(opt => this.props.filters.status.includes(opt.value))}
+            className=""
             onChange={opts => this.setArrayProjectsFilter(opts, 'status')}
           />
         </div>
