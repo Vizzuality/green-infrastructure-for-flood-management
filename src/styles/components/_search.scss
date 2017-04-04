@@ -3,6 +3,7 @@ $_separation: ($space-1 * 4);
 .c-search {
   position: relative;
   display: flex;
+  align-items: center;
   padding: 18px $_separation;
   background-color: rgba(palette(black), .04);
 
