@@ -26,6 +26,8 @@ const initialState = {
     status: [],
     from_cost: 0,
     to_cost: 10000,
+    order: 'name',
+    direction: 'asc'
   }
 };
 

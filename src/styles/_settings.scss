@@ -42,12 +42,12 @@ $color-text-1: #4A4A4A;
 $color-text-2: #FFFFFF;
 
 // Font families
-$font-size-default: 'Open Sans', sans-serif;
-$font-size-secondary: 'Raleway', sans-serif;;
+$font-family-default: 'Open Sans', sans-serif;
+$font-family-secondary: 'Raleway', sans-serif;;
 
 $fonts: (
-  primary: $font-size-default,
-  secondary: $font-size-secondary
+  primary: $font-family-default,
+  secondary: $font-family-secondary
 );
 
 // Fonts sizes

@@ -50,7 +50,7 @@ export default class Filters extends React.Component {
     Object.keys(this.props.filters).forEach(key => {
       if (key === 'from_cost') {
         this.resetCost();
-      } else if (key !== 'to_cost'){
+      } else if (key !== 'to_cost' && key !== 'order' && key !== 'direction'){
         this.setArrayProjectsFilter([], key);
       }
     });

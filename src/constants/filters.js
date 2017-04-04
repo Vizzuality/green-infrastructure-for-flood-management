@@ -80,4 +80,14 @@ const statusOptions = [
   { label: 'Completed', value: 'completed' }
 ];
 
-export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions };
+const sortByOptions = [
+  { label: 'Name', value: 'name' },
+  { label: 'Organization', value: 'organization' },
+  { label: 'Country', value: 'country' },
+  { label: 'Hazard type', value: 'hazard_type' },
+  { label: 'Nature based solution', value: 'nature_based_solution' },
+  { label: 'Start year', value: 'start_year' },
+  { label: 'Completion year', value: 'completion_year' }
+];
+
+export { organizationsOptions, scalesOptions, interventionOptions, hazardOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions, sortByOptions };
