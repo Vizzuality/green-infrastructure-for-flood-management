@@ -35,6 +35,7 @@ $_separation: ($space-1 * 4);
 
 .c-project-item {
   display: flex;
+  justify-content: space-between;
   padding: 20px $_separation 16px;
   border-bottom: 1px solid rgba(#000000, .1);
   cursor: pointer;
