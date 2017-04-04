@@ -71,10 +71,10 @@ export default function ProjectDetail(props) {
           <span className="label">Co-benefits of intervention</span>
           <span className="value">{setArrayValues(data.co_benefits_of_interventions)}</span>
         </div>}
-        
+
         <div className="project-info-item">
           <span className="label">Main Donor</span>
-          <span className="value">{data.donors.length ? data.donor[0].name : 'Unknown'}</span>
+          <span className="value">{data.donors.length ? data.donors[0].name : 'Unknown'}</span>
         </div>
 
         <div className="project-info-item">
