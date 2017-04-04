@@ -13,6 +13,17 @@ export default function ProjectDetail(props) {
           <SvgIcon className="project-back-icon" name="icon-arrow-left-2" />
           Project list
         </button>
+        <div className="project-actions">
+          <button className="action" type="button">
+            <SvgIcon className="project-share-icon -medium" name="icon-share" />
+            Share
+          </button>
+
+          <button className="action" type="button">
+            <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
+            Download
+          </button>
+        </div>
       </div>
       <div className="project-detail-section">
         <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
@@ -70,11 +81,11 @@ export default function ProjectDetail(props) {
           <Row>
             <div className="small-6">
               <span className="label">Est. Monetary Cost (Today's US$)</span>
-              <span className="value">{data.estimated_cost} US$</span>
+              <span className="value -big">{data.estimated_cost} US$</span>
             </div>
             <div className="small-6">
               <span className="label">Est. Monetary benefits</span>
-              <span className="value">{data.estimated_monetary_benefits} US$</span>
+              <span className="value -big">{data.estimated_monetary_benefits} US$</span>
             </div>
           </Row>
         </div>

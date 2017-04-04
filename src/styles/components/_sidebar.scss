@@ -73,10 +73,20 @@ $_btn-height: 50px;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
 
     button {
+      display: flex;
+      align-items: center;
       font-family: $font-family-default;
       font-size: $font-size-small;
       font-weight: bold;
       text-transform: uppercase;
+
+      &.download {
+        .c-icon { margin-right: 5px; }
+      }
+
+      .c-icon {
+        fill: palette(black);
+      }
     }
   }
 

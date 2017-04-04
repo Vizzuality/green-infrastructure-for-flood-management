@@ -250,8 +250,8 @@ export default class MapPage extends React.Component {
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
               <div className="sidebar-actions">
-                <button>
-                  <SvgIcon name="icon-arrow-right-2" className="-small" />
+                <button className="download">
+                  <SvgIcon name="icon-download" className="download -medium" />
                   Download data
                 </button>
                 <SortBy 

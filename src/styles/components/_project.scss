@@ -86,7 +86,6 @@ $_separation: ($space-1 * 4);
 /* Project detail */
 
 .c-project-detail {
-
   .project-bar {
     display: block;
     height: 50px;
@@ -94,7 +93,8 @@ $_separation: ($space-1 * 4);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: $space-1 * 5;
+    padding-left: $space-1 * 4;
+    padding-right: $space-1 * 4;
     border-bottom: 1px solid rgba(palette(black), .3);
   }
 
@@ -112,11 +112,33 @@ $_separation: ($space-1 * 4);
     align-items: center;
   }
 
-  .project-back-icon {
+  .c-icon {
     margin-right: $space-1 * 2;
     width: 8px;
     height: 16px;
     fill: palette(white);
+  }
+
+  .project-actions {
+    display: flex;
+    align-items: center;
+
+    button.action {
+      display: flex;
+      align-items: center;
+      color: palette(white);
+      font-size: $font-size-small;
+      margin-right: $space-1 * 5;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .c-icon {
+        margin-right: $space-1;
+        fill: palette(white);
+      }
+    }
   }
 
   .project-name {
@@ -214,6 +236,7 @@ $_separation: ($space-1 * 4);
     &.-big {
       font-size: 36px;
       font-weight: 600;
+      line-height: 40px;
     }
 
     .value-item {
