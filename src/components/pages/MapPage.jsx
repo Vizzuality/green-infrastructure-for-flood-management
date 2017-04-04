@@ -9,9 +9,12 @@ import ProjectDetail from 'components/projects/ProjectDetail';
 import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
 import Spinner from 'components/ui/spinner';
+import SortBy from 'components/ui/SortBy';
 import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
 import debounce from 'lodash/debounce';
+import { SvgIcon } from 'vizz-components';
+import { sortByOptions } from 'constants/filters';
 
 
 export default class MapPage extends React.Component {
@@ -228,7 +231,18 @@ export default class MapPage extends React.Component {
                 defaultValue={this.props.filters.name}
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
-              
+              <div className="sidebar-actions">
+                <button>
+                  <SvgIcon name="icon-arrow-right-2" className="-small" />
+                  Download data
+                </button>
+                <SortBy 
+                  order={this.props.filters.order}
+                  direction={this.props.filters.direction}
+                  list={sortByOptions}
+                  setProjectsFilters={this.props.setProjectsFilters}
+                />
+              </div>
               <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
             </div>
           }
