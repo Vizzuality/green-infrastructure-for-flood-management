@@ -1,9 +1,13 @@
-/* Project list */
+$_separation: ($space-1 * 4);
 
 /* wrappers */
-.project-list-wrapper, .project-detail-wrapper {
+.project-list-wrapper {
+  padding-bottom: $_separation;
   min-height: 100%;
-  padding: (($space-1 * 5) + 50) ($space-1 * 5) ($space-1 * 5);
+}
+.project-detail-wrapper {
+  min-height: 100%;
+  padding: $_separation;
 }
 
 .project-detail-wrapper {
@@ -11,15 +15,18 @@
 }
 
 .project-list-wrapper {
-  background-color: palette(blue);
+  background-color: palette(white);
 }
 
 .c-project-list {
-  margin: 0 ($space-1 * -5) ($space-1 * -5);
 
   > li {
     &:last-child {
       margin-bottom: 0;
+
+      .c-project-item {
+        border: 0;
+      }
     }
   }
 }
@@ -27,54 +34,52 @@
 /* Project item */
 
 .c-project-item {
-
-  padding-right: 77px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px $_separation 16px;
   border-bottom: 1px solid rgba(#000000, .1);
-  padding: ($space-1 * 4) ($space-1 * 5);
   cursor: pointer;
   transition: background-color linear $animation-time;
 
   &:hover {
-    background-color: rgba(palette(white), .1);
+    background-color: rgba(palette(gray), .2);
   }
 
   .project-name {
     display: block;
     font-size: $font-size-extrabig;
-    margin-bottom: $space-1 * 1.5;
+    margin-bottom: $space-1 * 1.6;
     line-height: 1.33;
-    color: palette(white);
+    color: $color-text-1;
+    font-weight: 600;
   }
 
   .project-company {
-    margin-bottom: $space-1 * 1.5;
-    font-weight: bold;
-    color: palette(blue, secondary);
+    margin-bottom: $space-1 * 1.05;
+    font-weight: 600;
+    color: rgba($color-text-1, .9);
     text-transform: uppercase;
+  }
+
+  .project-tags-container {
+    display: flex;
+    justify-content: space-between;
   }
 
   .project-tags {
     display: flex;
     flex-wrap: wrap;
+    color: $color-text-1;
+    opacity: .9;
+    font-size: $font-size-default;
+  }
 
-    > li {
-      margin-right: $space-1/2;
-      color: palette(white);
-      opacity: .5;
-      font-weight: bold;
-      font-size: $font-size-big;
+  .project-action {
+    padding-left: 30px;
+    padding-right: 0;
 
-      &:after {
-        content: ', ';
-      }
-
-      &:last-child {
-        margin-right: 0;
-
-        &:after {
-          content: '';
-        }
-      }
+    .c-icon {
+      fill: $primary-color;
     }
   }
 }
@@ -82,70 +87,87 @@
 /* Project detail */
 
 .c-project-detail {
-
   .project-bar {
     display: block;
     height: 50px;
-    background-color: palette(white);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+    background-color: palette(green);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: $space-1 * 5;
+    padding-left: $space-1 * 4;
+    padding-right: $space-1 * 4;
+    border-bottom: 1px solid rgba(palette(black), .3);
   }
 
   .project-back {
     padding: 0;
     border: none;
     background-color: transparent;
-    font-size: $font-size-big;
+    font-size: $font-size-default;
     font-weight: bold;
     text-transform: uppercase;
-    color: palette(blue);
+    color: palette(white);
     display: block;
     height: 100%;
     display: flex;
     align-items: center;
   }
 
-  .project-back-icon {
+  .c-icon {
     margin-right: $space-1 * 2;
     width: 8px;
     height: 16px;
-    fill: palette(blue);
+    fill: palette(white);
+  }
+
+  .project-actions {
+    display: flex;
+    align-items: center;
+
+    button.action {
+      display: flex;
+      align-items: center;
+      color: palette(white);
+      font-size: $font-size-small;
+      margin-right: $space-1 * 5;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .c-icon {
+        margin-right: $space-1;
+        fill: palette(white);
+      }
+    }
   }
 
   .project-name {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
-    color: palette(black);
+    color: palette(white);
     line-height: normal;
-    margin-bottom: $space-1 * 3;
   }
 
   .project-company {
     display: block;
     font-weight: bold;
-    color: palette(blue);
+    color: palette(white);
     text-transform: uppercase;
-    margin-bottom: $space-1 * 2;
+    margin-bottom: $space-1;
   }
 
   .project-date {
     display: block;
     margin-bottom: $space-1 * 4;
     text-transform: uppercase;
-    color: rgba(palette(black), .7);
+    color: palette(white);
   }
 
   .project-text {
     color: palette(black);
     font-size: $font-size-big;
-    line-height: 2.25;
+    line-height: 32px;
   }
 
   .project-link {
@@ -154,42 +176,85 @@
     padding: $space-1 ($space-1 * 2);
     font-weight: bold;
     text-transform: uppercase;
-    color: palette(blue);
+    color: palette(green);
     border-radius: 3px;
-    border: 1px solid palette(blue);
-    float: right;
+    border: 1px solid palette(green);
     margin-top: $space-1 * 5;
   }
 
   .project-detail-section {
-    @include clearfix;
     padding-bottom: $space-1 * 7;
     border-bottom: solid 1px rgba(#0f6487, .2);
+    background-color: palette(green);
+    padding: $_separation;
   }
 
-  .project-detail-list {
+  .project-resumme {
+    border-bottom: 1px solid rgba(palette(gray, light), .3);
+    padding: $_separation;
 
-    padding-top: $space-1 * 4;
-
-    dt {
-      text-transform: uppercase;
-      color: palette(gray);
-      margin-bottom: $space-1;
-    }
-
-    dd {
-      color: palette(black);
-      font-size: $font-size-big;
-      line-height: 2.25;
+    .project-cost {
       margin-bottom: $space-1 * 4;
 
-      &.-big {
-        font-size: 36px;
-        line-height: 1.2;
+      .label {
+        font-size: 13px;
       }
+
+      .value {
+        font-size: 24px;
+        font-weight: normal;
+        line-height: 36px;
+      }
+    }
+  }
+
+  .project-info {
+    padding: $_separation;
+
+    .project-info-item {
+      margin-bottom: $space-1 * 4;
 
       &:last-of-type {
         margin-bottom: 0;
+      }
+    }
+  }
+
+  .label {
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $font-size-default;
+    color: palette(green);
+    margin-bottom: $space-1;
+  }
+
+  .value {
+    color: palette(black);
+    text-transform: capitalize;
+    line-height: 24px;
+
+    &.-big {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 40px;
+    }
+
+    .value-item {
+      margin-right: 4px;
+      text-transform: capitalize;
+      line-height: 24px;
+
+      &:after {
+        content: ','
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+
+        &:after {
+          content: ''
+        }
       }
     }
   }

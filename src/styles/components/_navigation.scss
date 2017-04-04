@@ -1,5 +1,25 @@
 .c-nav {
 
+  &.-home {
+    .nav-link {
+      color: palette(white);
+
+      &:before {
+        background-color: palette(yellow);
+      }
+    }
+  }
+
+  &.-footer {
+    .nav-link {
+      font-weight: normal;
+
+      &:hover:before {
+        display: none;
+      }
+    }
+  }
+
   .nav-list {
     display: flex;
   }
@@ -28,7 +48,7 @@
       margin: auto;
       width: 0;
       top: 0; left: 0; right: 0;
-      background-color: palette(blue);
+      background-color: palette(green);
       transition: width $ease-out-cubic $animation-time;
     }
 

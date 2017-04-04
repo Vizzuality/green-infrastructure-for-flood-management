@@ -1,18 +1,17 @@
 import { connect } from 'react-redux';
 import MapPage from './MapPage';
-import { getProjects, setProjectsSearch, setProjectsDetail } from 'modules/projects';
-import getActiveProjects from 'selectors/projects_active';
+import { getProjects, setProjectsDetail, setProjectsFilters } from 'modules/projects';
 import getProjectDetails from 'selectors/project_detail';
 import { updateUrl } from 'modules/url';
 import { setMapLocation } from 'modules/map';
 import { setSidebarWidth } from 'modules/ui'
 
 const mapStateToProps = state => ({
+  filters: state.projects.filters,
   mapState: state.map,
-  projects: getActiveProjects(state),
+  projects: state.projects.list,
   loading: state.projects.loading,
   projectDetail: getProjectDetails(state),
-  searchQuery: state.projects.search,
   sidebarWidth: state.ui.sidebar.width
 });
 
@@ -31,11 +30,11 @@ const mapDispatchToProps = dispatch => ({
   updateUrl() {
     dispatch(updateUrl());
   },
-  getProjects() {
-    dispatch(getProjects());
+  getProjects(query) {
+    dispatch(getProjects(query));
   },
-  setProjectsSearch(query) {
-    dispatch(setProjectsSearch(query));
+  setProjectsFilters: (filters) => {
+    dispatch(setProjectsFilters(filters));
     dispatch(updateUrl());
   }
 });
