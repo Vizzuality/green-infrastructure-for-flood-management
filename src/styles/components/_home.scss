@@ -8,6 +8,10 @@
     background-color: palette(gray, lighter);
   }
 
+  &.-dark {
+    background-color: palette(green, dark);
+  }
+
   &.-header {
     background-image: url("/images/bg_header.png");
     padding-top: 220px;
@@ -42,5 +46,20 @@
     max-width: 50%;
     margin: 0 auto;
     text-align: center;
+  }
+}
+
+.c-partners {
+  margin-top: 60px;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+
+  li {
+    margin-right: $space-1 * 9;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

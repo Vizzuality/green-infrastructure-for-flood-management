@@ -1,0 +1,56 @@
+// Reset leaflet tooltip styles
+
+.leaflet-popup-content-wrapper {
+  box-shadow: 0 0 8px 0 rgba(black, 0.16);
+  border-radius: 0;
+  padding: 0;
+}
+.leaflet-popup-content {
+  margin: 0;
+}
+.leaflet-popup-close-button {
+  display: none;
+}
+.leaflet-popup-tip {
+  background-color: palette(yellow);
+}
+
+// Tooltip styles
+
+.c-tooltip {}
+
+.tooltip-content {
+  padding: 20px;
+
+  .project-name {
+    font-size: $font-size-extrabig;
+    font-weight: bold;
+    line-height: 1.33;
+    letter-spacing: .2;
+    margin-bottom: $space-1 * 2;
+  }
+
+  .project-orgs {
+    text-transform: uppercase;
+    font-size: $font-size-default;
+    font-weight: bold;
+    color: palette(gray);
+    margin-bottom: $space-1;
+  }
+
+  .project-hazards {
+    font-size: $font-size-small;
+    color: palette(gray);
+  }
+}
+
+.tooltip-link {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: palette(black) !important;
+  background-color: palette(yellow);
+  padding: $space-1 * 2;
+}

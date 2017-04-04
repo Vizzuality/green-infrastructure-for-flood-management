@@ -52,9 +52,9 @@ export default class Sidebar extends React.Component {
     return (
       <aside ref={node => this.el = node} className={cNames}>
         <div ref={node => this.elContent = node} className="sidebar-content">
-          <button type="button" className="sidebar-btn" onClick={this.toggle}>
+          {this.props.showBtn && <button type="button" className="sidebar-btn" onClick={this.toggle}>
             <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
-          </button>
+          </button>}
           {this.props.children}
         </div>
         <div className="sidebar-closed">
