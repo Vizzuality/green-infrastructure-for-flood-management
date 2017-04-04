@@ -1,0 +1,19 @@
+.c-icon {
+  width: 12px;
+  height: 12px;
+
+  &.-smaller {
+    width: 8px;
+    height: 8px;
+  }
+
+  &.-small {
+    width: 10px;
+    height: 10px;
+  }
+
+  &.-medium {
+    width: 14px;
+    height: 14px;
+  }
+}

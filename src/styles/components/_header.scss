@@ -1,12 +1,35 @@
 
 .c-header {
-  background-color: palette(white);
+  background-color: transparent;
   z-index: 1000;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+
+  &.-home {
+    background-color: rgba(black, .4);
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+
+    .logo {
+      color: palette(white);
+    }
+  }
 
   .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;;
+  }
+
+  .logo {
+    font-family: font(secondary);
+    font-weight: bold;
+    color: palette(green);
+    font-size: 20px;
+    transition: color $animation-time linear;
+
+    &:hover {
+      color: palette(yellow);
+    }
   }
 }

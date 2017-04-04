@@ -16,14 +16,13 @@ function decode(obj) {
 function updateUrl() {
   return (storeDispatch, getState) => {
     const state = getState();
-    const { search, filters, detail } = state.projects;
+    const { filters, detail } = state.projects;
     const { map } = state;
 
     const locationDescriptor = {
       pathname: '/map',
       query: {
         map: encode(map),
-        search,
         filters: encode(filters),
         detail
       }
@@ -33,7 +32,7 @@ function updateUrl() {
 }
 
 function onEnterMapPage({ location }, replaceUrl, done) {
-  const { filters, search, map, detail } = location.query;
+  const { filters, map, detail } = location.query;
   if (filters) {
     const parsedFilters = decode(filters);
     dispatch(setProjectsFilters(parsedFilters));

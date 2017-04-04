@@ -1,0 +1,34 @@
+.c-btn {
+  font-family: $font-size-default;
+  color: rgba(palette(black), .6);
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: transparent;
+  padding: 8px 20px;
+  border: 0;
+  border-radius: 2px;
+
+  &:hover {
+    color: rgba(palette(black), .9);
+  }
+
+  &.-filled {
+    background-color: palette(white);
+    color: rgba($color-primary, .9);
+    font-weight: bold;
+
+    &:hover {
+      background-color: rgba(palette(white), .9);
+      color: rgba($color-text-1, 1);
+    }
+  }
+
+  &.-transparent {
+    border: 1px solid palette(white);
+    color: rgba($color-text-1, .9);
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

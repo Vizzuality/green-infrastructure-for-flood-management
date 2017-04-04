@@ -39,17 +39,36 @@ export default class Sidebar extends React.Component {
     const opened = !this.state.opened;
     this.setState({ opened });
     this.onToggle(opened);
+    this.props.closeSlidignMenu && this.props.closeSlidignMenu(true);
+  }
+
+  onOpenSlidingMenu() {
+    this.toggle();
+    this.props.closeSlidignMenu(false);
   }
 
   render() {
     const cNames = classnames('c-sidebar', { '-opened': this.state.opened });
     return (
       <aside ref={node => this.el = node} className={cNames}>
-        <button type="button" className="sidebar-btn" onClick={this.toggle}>
-          <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
-        </button>
         <div ref={node => this.elContent = node} className="sidebar-content">
+          {this.props.showBtn && <button type="button" className="sidebar-btn" onClick={this.toggle}>
+            <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
+          </button>}
           {this.props.children}
+        </div>
+        <div className="sidebar-closed">
+          <button type="button" className="sidebar-btn" onClick={this.toggle}>
+            <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
+          </button>
+          <div className="rotate-list">
+            <ul>
+              <li onClick={() => this.toggle()}>Projects list</li>
+              <li onClick={() => this.toggle()}>Search</li>
+              <li onClick={() => this.onOpenSlidingMenu()}>Filter / Sort by</li>
+            </ul>
+            <button className="c-btn -transparent">Download data</button>
+          </div>
         </div>
       </aside>
     );

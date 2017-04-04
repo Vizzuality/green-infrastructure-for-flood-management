@@ -13,12 +13,21 @@ const initialState = {
   loading: false,
   detail: null,
   filters: {
-    search: '',
-    type: 'all',
-    status: 'all',
-    intervention: ['green', 'grey'],
-    hazard: ['urban', 'river'],
-    solution: ['solution_a', 'solution_b']
+    name: '',
+    countries: [],
+    regions: [],
+    organizations: [],
+    scales: [],
+    intervention_types: [],
+    hazard_types: [],
+    nature_based_solutions: [],
+    co_benefits: [],
+    primary_benefits: [],
+    status: [],
+    from_cost: 0,
+    to_cost: 10000,
+    order: 'name',
+    direction: 'asc'
   }
 };
 
