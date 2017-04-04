@@ -34,7 +34,7 @@ $_btn-height: 50px;
       justify-content: space-between;
       align-items: center;
       flex-flow: column;
-      height: 100%;
+      height: calc(100% - 50px);
     }
 
     ul {
