@@ -144,7 +144,7 @@ $_separation: ($space-1 * 5);
   .project-text {
     color: palette(black);
     font-size: $font-size-big;
-    line-height: 2.25;
+    line-height: 32px;
   }
 
   .project-link {
@@ -167,11 +167,21 @@ $_separation: ($space-1 * 5);
   }
 
   .project-resumme {
-    border-bottom: 2px solid palette(gray, light);
+    border-bottom: 1px solid rgba(palette(gray, light), .3);
     padding: $_separation;
 
     .project-cost {
-      margin-bottom: $space-1 * 3;
+      margin-bottom: $space-1 * 4;
+
+      .label {
+        font-size: 13px;
+      }
+
+      .value {
+        font-size: 24px;
+        font-weight: normal;
+        line-height: 36px;
+      }
     }
   }
 
@@ -198,6 +208,8 @@ $_separation: ($space-1 * 5);
 
   .value {
     color: palette(black);
+    text-transform: capitalize;
+    line-height: 24px;
 
     &.-big {
       font-size: 36px;
@@ -206,6 +218,8 @@ $_separation: ($space-1 * 5);
 
     .value-item {
       margin-right: 4px;
+      text-transform: capitalize;
+      line-height: 24px;
 
       &:after {
         content: ','
