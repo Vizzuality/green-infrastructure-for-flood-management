@@ -42,6 +42,7 @@ export default class MapPage extends React.Component {
   componentWillReceiveProps(newProps) {
     if (!isEqual(this.props.filters, newProps.filters)) {
       this.getProjects(newProps.filters);
+      this.setState({ slidingMenuClose: false });
     }
   }
 
