@@ -15,13 +15,13 @@ import isEqual from 'lodash/isEqual';
 import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
+import { mapDefaultOptions } from 'constants/map';
 
 export default class MapPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebarScroll: 0,
-      slidingMenuClose: true
+      sidebarScroll: 0
     };
 
     // Bindings
@@ -43,6 +43,10 @@ export default class MapPage extends React.Component {
     if (!isEqual(this.props.filters, newProps.filters)) {
       this.getProjects(newProps.filters);
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetMapState();
   }
 
   /* Methods */
@@ -101,17 +105,26 @@ export default class MapPage extends React.Component {
       ]
     };
 
-    if (this.props.projectDetail && this.props.projectDetail.locations.length && this.props.projectDetail.locations[0].centroid) {
-      const { coordinates } = this.props.projectDetail.locations[0].centroid;
-      const point = [coordinates[1], coordinates[0]];
+    if (this.props.projectDetail && this.props.projectDetail.locations.length) {
+      const points = this.props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
+      const bounds = L.latLngBounds(points);
+
       methods.fitBounds = {
-        bounds: [point, point],
+        bounds,
         options: {
           paddingTopLeft: [this.props.sidebarWidth, 0],
-          paddingBottomRight: [0, 0],
-          maxZoom: 5
+          paddingBottomRight: [0, 0]
         }
       };
+    } else {
+      // NOTE: Restore map state ?
+      // const point = [30, -120];
+      // methods.fitBounds = {
+      //   bounds: [point, point],
+      //   options: {
+      //     maxZoom: 3
+      //   }
+      // };
     }
 
     return methods;
@@ -121,8 +134,6 @@ export default class MapPage extends React.Component {
     /* Map options */
     return {
       zoom: this.props.mapState.zoom,
-      minZoom: 2,
-      maxZoom: 7,
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
@@ -163,12 +174,6 @@ export default class MapPage extends React.Component {
       leafletMarker.off('click').on('click', function mouseover() {
         this.openPopup();
       });
-      // leafletMarker.off('mouseover').on('mouseover', function mouseover() {
-      //   this.openPopup();
-      // });
-      // leafletMarker.off('mouseout').on('mouseout', function mouseleave() {
-      //   this.closePopup();
-      // });
     };
 
     /* Cluster */
@@ -205,20 +210,33 @@ export default class MapPage extends React.Component {
       return marker;
     };
 
-    this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
-    .forEach((p) => {
-      const lat = p.locations[0].centroid.coordinates[1];
-      const lng = p.locations[0].centroid.coordinates[0];
-      const marker = new PruneCluster.Marker(lat, lng);
-      marker.data = p;
-      pruneCluster.RegisterMarker(marker);
-    });
+    function pushMarker(project) {
+      let lat;
+      let lng;
+      let marker;
+      // Iterate over all posible project locations
+      project.locations.forEach((location) => {
+        lat = location.centroid.coordinates[1];
+        lng = location.centroid.coordinates[0];
+        marker = new PruneCluster.Marker(lat, lng);
+        marker.data = project;
+        pruneCluster.RegisterMarker(marker);
+      });
+    }
 
-    return this.props.projects.length ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
-  }
+    const { projectDetail } = this.props;
+    if (projectDetail) {
+      // If projectDetails is setted, just display that project on map
+      if (projectDetail.locations && projectDetail.locations.length) {
+        pushMarker(projectDetail);
+      }
+    } else {
+      // If not, let's show all projects
+      this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
+      .forEach(pushMarker);
+    }
 
-  closeSlidignMenu(close) {
-    this.setState({ slidingMenuClose: close });
+    return (this.props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
   }
 
   /* Render */
@@ -236,17 +254,21 @@ export default class MapPage extends React.Component {
         <Sidebar
           onToggle={this.props.setSidebarWidth}
           scroll={this.state.sidebarScroll}
-          closeSlidignMenu={(close) => this.closeSlidignMenu(close)}
           showBtn={!this.props.projectDetail}
+          actions={{
+            focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),
+            openFilters: () => this.props.setFiltersUi({ closed: false })
+          }}
         >
           <Spinner className="-transparent" isLoading={this.props.loading} />
           {this.props.projectDetail ?
             <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} /> :
             <div className="project-list-wrapper">
-              <SlidingMenu title="filters" closed={this.state.slidingMenuClose}>
-                <Filters />
+              <SlidingMenu title="filters" closed={this.props.filtersUi.closed}>
+                <Filters close={() => this.props.setFiltersUi({ closed: true })} />
               </SlidingMenu>
               <Search
+                focus={this.props.filtersUi.searchFocus}
                 defaultValue={this.props.filters.name}
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
@@ -269,6 +291,8 @@ export default class MapPage extends React.Component {
         <ZoomControl
           zoom={this.props.mapState.zoom}
           onZoomChange={zoom => this.props.setMapLocation({ zoom })}
+          maxZoom={mapDefaultOptions.maxZoom}
+          minZoom={mapDefaultOptions.minZoom}
         />
         <Map {...mapParams} />
       </div>
@@ -283,6 +307,7 @@ MapPage.propTypes = {
   filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
   loading: React.PropTypes.bool,
+  filtersUi: React.PropTypes.object,
   // Selector
   projectDetail: React.PropTypes.any,
   // Actions
@@ -291,5 +316,7 @@ MapPage.propTypes = {
   setSidebarWidth: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
-  setProjectsDetail: React.PropTypes.func
+  resetMapState: React.PropTypes.func,
+  setProjectsDetail: React.PropTypes.func,
+  setFiltersUi: React.PropTypes.func
 };

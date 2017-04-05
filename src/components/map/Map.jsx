@@ -5,14 +5,7 @@ import React from 'react';
 import L from 'leaflet/dist/leaflet';
 import isEqual from 'lodash/isEqual';
 import LayerManager from './LayerManager';
-
-const MAP_OPTIONS = {
-  zoom: 2,
-  minZoom: 2,
-  center: [30, -120],
-  zoomControl: true,
-  detectRetina: true
-};
+import { mapDefaultOptions } from 'constants/map';
 
 function addOrRemove(oldItems, newItems, addCb, removeCb) {
   // TODO: improve performace uning sets instead of looping over arrays
@@ -33,7 +26,7 @@ export default class Map extends React.Component {
   /* Component Lyfecyle */
   componentDidMount() {
     this._mounted = true;
-    const mapOptions = Object.assign({}, MAP_OPTIONS, this.props.mapOptions);
+    const mapOptions = Object.assign({}, mapDefaultOptions, this.props.mapOptions);
     this.map = L.map(this.mapNode, mapOptions);
 
     // Add event listeners
@@ -59,7 +52,9 @@ export default class Map extends React.Component {
 
     // Markers
     if (!isEqual(this.props.markers, nextProps.markers)) {
-      addOrRemove(this.props.markers, nextProps.markers, marker => this.addMarker(marker), marker => this.removeMarker(marker.id));
+      // TODO: just add or remove markers that have changed
+      this.removeMarker(this.props.markers);
+      this.addMarker(nextProps.markers);
     }
 
     // Zoom
@@ -161,6 +156,10 @@ export default class Map extends React.Component {
   }
 
   removeMarker(markerId) {
+    if (Array.isArray(markerId)) {
+      markerId.forEach(m => this.layerManager.removeMarker(m.id));
+      return;
+    }
     this.layerManager.removeMarker(markerId);
   }
 
@@ -179,7 +178,6 @@ Map.propTypes = {
   mapMethods: React.PropTypes.object,
   layers: React.PropTypes.array,
   markers: React.PropTypes.array,
-  markerIcon: React.PropTypes.object,
   listeners: React.PropTypes.object
 };
 
