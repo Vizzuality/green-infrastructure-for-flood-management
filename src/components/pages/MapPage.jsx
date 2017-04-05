@@ -16,17 +16,21 @@ import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
+import TetherComponent from 'react-tether';
 
 export default class MapPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebarScroll: 0
+      sidebarScroll: 0,
+      downloadOpen: false
     };
 
     // Bindings
     this.goToProjectDetail = this.goToProjectDetail.bind(this);
     this.onSearchChange = debounce(this.onSearchChange, 300);
+    this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
+    this.onScreenClick = this.onScreenClick.bind(this);
   }
 
   /* Component lifecycle */
@@ -47,6 +51,28 @@ export default class MapPage extends React.Component {
 
   componentWillUnmount() {
     this.props.resetMapState();
+    window.removeEventListener('click', this.onScreenClick);
+  }
+
+  onScreenClick(e) {
+    const el = document.querySelector('.c-dropdown');
+    const clickOutside = el && el.contains && !el.contains(e.target);
+    const isDownloadBtn = this.downloadBtn.contains(e.target);
+
+    if (clickOutside) {
+      (!isDownloadBtn) ? this.toggleDataDropdown(e, 'downloadOpen', true) : null;
+    }
+  }
+
+  toggleDataDropdown(e, specificDropdown, to) {
+    const { downloadOpen } = this.state;
+
+    this.setState({ downloadOpen: to ? false : !downloadOpen });
+
+    requestAnimationFrame(() => {
+      window[!this.state[specificDropdown] ?
+        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
+    });
   }
 
   /* Methods */
@@ -247,6 +273,7 @@ export default class MapPage extends React.Component {
     const mapOptions = this.getMapOptions();
     const markers = this.getMarkers();
 
+    const { downloadOpen } = this.state;
     const mapParams = { listeners, mapMethods, mapOptions, markers };
 
     return (
@@ -273,10 +300,33 @@ export default class MapPage extends React.Component {
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
               <div className="sidebar-actions">
-                <button className="download">
-                  <SvgIcon name="icon-download" className="download -medium" />
-                  Download data
-                </button>
+                <TetherComponent
+                  attachment="top center"
+                  constraints={[{
+                    to: 'scrollParent',
+                    attachment: 'together'
+                  }]}
+                  classes={{
+                    element: 'c-dropdown'
+                  }}
+                >
+                  { /* First child: This is what the item will be tethered to */ }
+                  <button 
+                    className="download" 
+                    onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')} 
+                    ref={c => this.downloadBtn = c}
+                  >
+                    <SvgIcon name="icon-download" className="download -medium" />
+                    Download data
+                  </button>
+                  { /* Second child: If present, this item will be tethered to the the first child */ }
+                  {
+                    downloadOpen &&
+                    <div>
+                      <p>Not available</p>
+                    </div>
+                  }
+                </TetherComponent>
                 <SortBy
                   order={this.props.filters.order}
                   direction={this.props.filters.direction}
