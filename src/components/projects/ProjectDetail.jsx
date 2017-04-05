@@ -2,6 +2,7 @@ import React from 'react';
 import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
+import isUrl from 'validator/lib/isUrl';
 
 export default class ProjectDetail extends React.Component {
 
@@ -172,11 +173,11 @@ export default class ProjectDetail extends React.Component {
             <Row>
               <div className="small-6">
                 <span className="label">Est. Monetary Cost (Today's US$)</span>
-                <span className="value -big">{data.estimated_cost} US$</span>
+                <span className="value -big">{data.estimated_cost ? `${data.estimated_cost} US$` : '-'}</span>
               </div>
               <div className="small-6">
                 <span className="label">Est. Monetary benefits</span>
-                <span className="value -big">{data.estimated_monetary_benefits} US$</span>
+                <span className="value -big">{data.estimated_monetary_benefits ? `${data.estimated_monetary_benefits} US$` : '-'}</span>
               </div>
             </Row>
           </div>
@@ -186,14 +187,14 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{data.benefit_details}</span>
           </div>}
 
-          {data.learn_more !== '' && <div className="project-info-item">
+          {data.learn_more && data.learn_more !== '' && <div className="project-info-item">
             <span className="label">Learn more</span>
-            <span className="value">{data.learn_more}</span>
+            <span className="value">{isUrl(data.learn_more) ? <a className="link" href={data.learn_more}>{data.learn_more}</a> : data.learn_more}</span>
           </div>}
 
-          {data.references !== '' && <div className="project-info-item">
+          {data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
-            <span className="value">{data.references}</span>
+            <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
           </div>}
         </div>
       </article>

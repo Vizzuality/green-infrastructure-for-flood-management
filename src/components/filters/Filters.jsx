@@ -197,6 +197,7 @@ export default class Filters extends React.Component {
 
 Filters.propTypes = {
   // Actions
+  filtersOptions: React.PropTypes.array,
   close: React.PropTypes.func,
   setArrayProjectsFilters: React.PropTypes.func,
   filters: React.PropTypes.object
