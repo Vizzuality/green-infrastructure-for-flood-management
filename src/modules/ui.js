@@ -9,7 +9,7 @@ const initialState = {
   },
   filters: {
     searchFocus: false,
-    opened: false
+    closed: true
   }
 };
 
@@ -18,12 +18,14 @@ function uiReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SIDEBAR_WIDTH:
       return {
+        ...state,
         sidebar: { width: action.payload }
       };
     case SET_FILTERS_UI:
       return {
+        ...state,
         filters: {
-          ...state.filters.ui,
+          ...state.filters,
           ...action.payload
         }
       };

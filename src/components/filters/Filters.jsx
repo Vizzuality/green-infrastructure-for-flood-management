@@ -188,7 +188,7 @@ export default class Filters extends React.Component {
 
         <div className="actions">
           <button className="c-btn" onClick={this.resetFilters}>Reset FILTERS</button>
-          <button className="c-btn -filled">APPLY FILTERS</button>
+          <button className="c-btn -filled" onClick={this.props.close}>APPLY FILTERS</button>
         </div>
       </div>
     );
@@ -197,6 +197,7 @@ export default class Filters extends React.Component {
 
 Filters.propTypes = {
   // Actions
+  close: React.PropTypes.func,
   setArrayProjectsFilters: React.PropTypes.func,
   filters: React.PropTypes.object
 };

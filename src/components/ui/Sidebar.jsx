@@ -39,7 +39,6 @@ export default class Sidebar extends React.Component {
     const opened = !this.state.opened;
     this.setState({ opened });
     this.onToggle(opened);
-    this.props.closeSlidignMenu && this.props.closeSlidignMenu(true);
   }
 
   render() {
@@ -59,8 +58,8 @@ export default class Sidebar extends React.Component {
           <div className="rotate-list">
             <ul>
               <li onClick={() => this.toggle()}>Projects list</li>
-              <li onClick={() => this.toggle()}>Search</li>
-              <li onClick={() => this.toggle()}>Filter / Sort by</li>
+              <li onClick={() => { this.toggle(); this.props.actions.focusSearch(); }}>Search</li>
+              <li onClick={() => { this.toggle(); this.props.actions.openFilters(); }}>Filter / Sort by</li>
             </ul>
             <button className="c-btn -transparent">Download data</button>
           </div>
@@ -72,6 +71,7 @@ export default class Sidebar extends React.Component {
 
 Sidebar.propTypes = {
   opened: React.PropTypes.bool,
+  actions: React.PropTypes.object,
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node
