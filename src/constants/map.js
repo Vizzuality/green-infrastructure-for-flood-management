@@ -1,8 +1,8 @@
 const mapDefaultOptions = {
   zoom: 2,
-  maxZoom: 18,
+  maxZoom: 10,
   minZoom: 3,
-  center: [30, -120],
+  center: [30, -40],
   zoomControl: true,
   detectRetina: true
 };
