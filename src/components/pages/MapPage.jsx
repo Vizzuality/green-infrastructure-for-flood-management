@@ -15,6 +15,7 @@ import isEqual from 'lodash/isEqual';
 import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
+import { mapDefaultOptions } from 'constants/map';
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -106,15 +107,15 @@ export default class MapPage extends React.Component {
       ]
     };
 
-    if (this.props.projectDetail && this.props.projectDetail.locations.length && this.props.projectDetail.locations[0].centroid) {
-      const { coordinates } = this.props.projectDetail.locations[0].centroid;
-      const point = [coordinates[1], coordinates[0]];
+    if (this.props.projectDetail && this.props.projectDetail.locations.length) {
+      const points = this.props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
+      const bounds = L.latLngBounds(points);
+
       methods.fitBounds = {
-        bounds: [point, point],
+        bounds,
         options: {
           paddingTopLeft: [this.props.sidebarWidth, 0],
-          paddingBottomRight: [0, 0],
-          maxZoom: 5
+          paddingBottomRight: [0, 0]
         }
       };
     } else {
@@ -135,8 +136,6 @@ export default class MapPage extends React.Component {
     /* Map options */
     return {
       zoom: this.props.mapState.zoom,
-      minZoom: 2,
-      maxZoom: 7,
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
@@ -214,17 +213,23 @@ export default class MapPage extends React.Component {
     };
 
     function pushMarker(project) {
-      const lat = project.locations[0].centroid.coordinates[1];
-      const lng = project.locations[0].centroid.coordinates[0];
-      const marker = new PruneCluster.Marker(lat, lng);
-      marker.data = project;
-      pruneCluster.RegisterMarker(marker);
+      let lat;
+      let lng;
+      let marker;
+      // Iterate over all posible project locations
+      project.locations.forEach((location) => {
+        lat = location.centroid.coordinates[1];
+        lng = location.centroid.coordinates[0];
+        marker = new PruneCluster.Marker(lat, lng);
+        marker.data = project;
+        pruneCluster.RegisterMarker(marker);
+      });
     }
 
     const { projectDetail } = this.props;
     if (projectDetail) {
       // If projectDetails is setted, just display that project on map
-      if (projectDetail.locations && projectDetail.locations.length && projectDetail.locations[0].centroid) {
+      if (projectDetail.locations && projectDetail.locations.length) {
         pushMarker(projectDetail);
       }
     } else {
@@ -288,6 +293,8 @@ export default class MapPage extends React.Component {
         <ZoomControl
           zoom={this.props.mapState.zoom}
           onZoomChange={zoom => this.props.setMapLocation({ zoom })}
+          maxZoom={mapDefaultOptions.maxZoom}
+          minZoom={mapDefaultOptions.minZoom}
         />
         <Map {...mapParams} />
       </div>

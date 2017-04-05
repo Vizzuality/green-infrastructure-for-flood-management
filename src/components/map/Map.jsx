@@ -5,14 +5,7 @@ import React from 'react';
 import L from 'leaflet/dist/leaflet';
 import isEqual from 'lodash/isEqual';
 import LayerManager from './LayerManager';
-
-const MAP_OPTIONS = {
-  zoom: 2,
-  minZoom: 2,
-  center: [30, -120],
-  zoomControl: true,
-  detectRetina: true
-};
+import { mapDefaultOptions } from 'constants/map';
 
 function addOrRemove(oldItems, newItems, addCb, removeCb) {
   // TODO: improve performace uning sets instead of looping over arrays
@@ -33,7 +26,7 @@ export default class Map extends React.Component {
   /* Component Lyfecyle */
   componentDidMount() {
     this._mounted = true;
-    const mapOptions = Object.assign({}, MAP_OPTIONS, this.props.mapOptions);
+    const mapOptions = Object.assign({}, mapDefaultOptions, this.props.mapOptions);
     this.map = L.map(this.mapNode, mapOptions);
 
     // Add event listeners
