@@ -21,8 +21,7 @@ export default class MapPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebarScroll: 0,
-      slidingMenuClose: true
+      sidebarScroll: 0
     };
 
     // Bindings
@@ -43,7 +42,6 @@ export default class MapPage extends React.Component {
   componentWillReceiveProps(newProps) {
     if (!isEqual(this.props.filters, newProps.filters)) {
       this.getProjects(newProps.filters);
-      this.setState({ slidingMenuClose: false });
     }
   }
 
@@ -241,10 +239,6 @@ export default class MapPage extends React.Component {
     return (this.props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
   }
 
-  closeSlidignMenu(close) {
-    this.setState({ slidingMenuClose: close });
-  }
-
   /* Render */
   render() {
     /* Map params */
@@ -260,7 +254,6 @@ export default class MapPage extends React.Component {
         <Sidebar
           onToggle={this.props.setSidebarWidth}
           scroll={this.state.sidebarScroll}
-          closeSlidignMenu={(close) => this.closeSlidignMenu(close)}
           showBtn={!this.props.projectDetail}
         >
           <Spinner className="-transparent" isLoading={this.props.loading} />
@@ -309,6 +302,7 @@ MapPage.propTypes = {
   filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
   loading: React.PropTypes.bool,
+  filtersUi: React.PropTypes.object,
   // Selector
   projectDetail: React.PropTypes.any,
   // Actions
@@ -318,5 +312,6 @@ MapPage.propTypes = {
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
   resetMapState: React.PropTypes.func,
-  setProjectsDetail: React.PropTypes.func
+  setProjectsDetail: React.PropTypes.func,
+  setFiltersUi: React.PropTypes.func
 };

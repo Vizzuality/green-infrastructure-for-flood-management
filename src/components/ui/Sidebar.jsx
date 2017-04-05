@@ -42,11 +42,6 @@ export default class Sidebar extends React.Component {
     this.props.closeSlidignMenu && this.props.closeSlidignMenu(true);
   }
 
-  onOpenSlidingMenu() {
-    this.toggle();
-    this.props.closeSlidignMenu(false);
-  }
-
   render() {
     const cNames = classnames('c-sidebar', { '-opened': this.state.opened });
     return (
@@ -65,7 +60,7 @@ export default class Sidebar extends React.Component {
             <ul>
               <li onClick={() => this.toggle()}>Projects list</li>
               <li onClick={() => this.toggle()}>Search</li>
-              <li onClick={() => this.onOpenSlidingMenu()}>Filter / Sort by</li>
+              <li onClick={() => this.toggle()}>Filter / Sort by</li>
             </ul>
             <button className="c-btn -transparent">Download data</button>
           </div>

@@ -15,9 +15,9 @@ export default class Filters extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       cost: {
-        from: props.filters.from_cost, 
+        from: props.filters.from_cost,
         to: props.filters.to_cost
       }
     };
@@ -25,10 +25,6 @@ export default class Filters extends React.Component {
     // Bindings
     this.resetFilters = this.resetFilters.bind(this);
   }
-
-  static contextTypes = {
-    toggleFilters: React.PropTypes.func
-  };
 
   setArrayProjectsFilter(opts, key) {
     const filter = {};
@@ -82,7 +78,7 @@ export default class Filters extends React.Component {
             onChange={opts => this.setArrayProjectsFilter(opts, 'scales')}
           />
         </div>
-       
+
         {/* Regions */}
         <div className="filter-field">
           <label className="title">Regions</label>
@@ -106,7 +102,7 @@ export default class Filters extends React.Component {
             onChange={opts => this.setArrayProjectsFilter(opts, 'countries')}
           />
         </div>
-  
+
         {/* Nature-based solutions */}
         <div className="filter-field">
           <label className="title">Nature-based solutions</label>
@@ -118,7 +114,7 @@ export default class Filters extends React.Component {
             onChange={opts => this.setArrayProjectsFilter(opts, 'nature_based_solutions')}
           />
         </div>
-       
+
         {/* Intervention */}
         <div className="filter-field">
           <label className="title">Intervention</label>
@@ -158,11 +154,10 @@ export default class Filters extends React.Component {
         {/* Status */}
         <div className="filter-field">
           <label className="title">Status</label>
-          <CheckboxGroup 
+          <CheckboxGroup
             name="asdf"
             options={statusOptions}
             selected={statusOptions.filter(opt => this.props.filters.status.includes(opt.value))}
-            className=""
             onChange={opts => this.setArrayProjectsFilter(opts, 'status')}
           />
         </div>
@@ -170,7 +165,7 @@ export default class Filters extends React.Component {
         {/* Hazard */}
         <div className="filter-field">
           <label className="title">Hazard</label>
-          <CheckboxGroup 
+          <CheckboxGroup
             name="asdf"
             options={hazardOptions}
             selected={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
@@ -186,14 +181,14 @@ export default class Filters extends React.Component {
             maxValue={10000}
             minValue={0}
             value={{ min: this.state.cost.from, max: this.state.cost.to }}
-            onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max }})} 
-            onChangeComplete={opts => this.setProjectsRangeFilter(opts)} 
+            onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max }})}
+            onChangeComplete={opts => this.setProjectsRangeFilter(opts)}
           />
         </div>
 
         <div className="actions">
           <button className="c-btn" onClick={this.resetFilters}>Reset FILTERS</button>
-          <button className="c-btn -filled" onClick={() => this.context.toggleFilters()}>APPLY FILTERS</button>
+          <button className="c-btn -filled">APPLY FILTERS</button>
         </div>
       </div>
     );
