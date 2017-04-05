@@ -205,6 +205,7 @@ Filters.propTypes = {
   options: React.PropTypes.object,
   close: React.PropTypes.func,
   setArrayProjectsFilters: React.PropTypes.func,
+  getFiltersOptions: React.PropTypes.func,
   filters: React.PropTypes.object
 };
 Filters.defaultProps = {};

@@ -139,18 +139,18 @@ export default class ProjectDetail extends React.Component {
         <div className="project-info">
           <div className="project-info-item">
             <Row>
-              <div className="small-4">
+              {data.intervention_type && <div className="small-4">
                 <span className="label">Intervention</span>
                 <span className="value">{data.intervention_type}</span>
-              </div>
-              <div className="small-4">
+              </div>}
+              {data.hazard_types.length ? <div className="small-4">
                 <span className="label">Hazard</span>
                 <span className="value">{data.hazard_types.map((ht, i) => <span className="value-item" key={i}>{ht.name}</span>)}</span>
-              </div>
-              <div className="small-4">
+              </div> : ''}
+              {data.scale && <div className="small-4">
                 <span className="label">Scale</span>
                 <span className="value">{data.scale}</span>
-              </div>
+              </div>}
             </Row>
           </div>
 
@@ -164,21 +164,21 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{setArrayValues(data.co_benefits_of_interventions)}</span>
           </div>}
 
-          <div className="project-info-item">
+          {data.donors.length ? <div className="project-info-item">
             <span className="label">Main Donor</span>
             <span className="value">{data.donors.length ? data.donors[0].name : 'Unknown'}</span>
-          </div>
+          </div> : ''}
 
           <div className="project-info-item">
             <Row>
-              <div className="small-6">
+              {data.estimated_cost && <div className="small-6">
                 <span className="label">Est. Monetary Cost (Today's US$)</span>
                 <span className="value -big">{data.estimated_cost ? `${data.estimated_cost} US$` : '-'}</span>
-              </div>
-              <div className="small-6">
+              </div>}
+              {data.estimated_monetary_benefits && <div className="small-6">
                 <span className="label">Est. Monetary benefits</span>
                 <span className="value -big">{data.estimated_monetary_benefits ? `${data.estimated_monetary_benefits} US$` : '-'}</span>
-              </div>
+              </div>}
             </Row>
           </div>
 
