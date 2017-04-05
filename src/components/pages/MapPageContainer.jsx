@@ -3,7 +3,7 @@ import MapPage from './MapPage';
 import { getProjects, setProjectsDetail, setProjectsFilters } from 'modules/projects';
 import getProjectDetails from 'selectors/project_detail';
 import { updateUrl } from 'modules/url';
-import { setMapLocation } from 'modules/map';
+import { setMapLocation, resetMapState } from 'modules/map';
 import { setSidebarWidth } from 'modules/ui'
 
 const mapStateToProps = state => ({
@@ -22,6 +22,10 @@ const mapDispatchToProps = dispatch => ({
   setProjectsDetail(projectId) {
     dispatch(setProjectsDetail(projectId));
     dispatch(updateUrl());
+  },
+  resetMapState() {
+    dispatch(resetMapState());
+    dispatch(setProjectsDetail(null));
   },
   setMapLocation(params) {
     dispatch(setMapLocation(params));

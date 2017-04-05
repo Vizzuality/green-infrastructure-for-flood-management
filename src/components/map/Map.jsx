@@ -59,7 +59,9 @@ export default class Map extends React.Component {
 
     // Markers
     if (!isEqual(this.props.markers, nextProps.markers)) {
-      addOrRemove(this.props.markers, nextProps.markers, marker => this.addMarker(marker), marker => this.removeMarker(marker.id));
+      // TODO: just add or remove markers that have changed
+      this.removeMarker(this.props.markers);
+      this.addMarker(nextProps.markers);
     }
 
     // Zoom
@@ -161,6 +163,10 @@ export default class Map extends React.Component {
   }
 
   removeMarker(markerId) {
+    if (Array.isArray(markerId)) {
+      markerId.forEach(m => this.layerManager.removeMarker(m.id));
+      return;
+    }
     this.layerManager.removeMarker(markerId);
   }
 
@@ -179,7 +185,6 @@ Map.propTypes = {
   mapMethods: React.PropTypes.object,
   layers: React.PropTypes.array,
   markers: React.PropTypes.array,
-  markerIcon: React.PropTypes.object,
   listeners: React.PropTypes.object
 };
 

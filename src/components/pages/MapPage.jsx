@@ -46,6 +46,10 @@ export default class MapPage extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.resetMapState();
+  }
+
   /* Methods */
   getProjects(filters) {
     // TODO: pagination
@@ -113,6 +117,15 @@ export default class MapPage extends React.Component {
           maxZoom: 5
         }
       };
+    } else {
+      // NOTE: Restore map state ?
+      // const point = [30, -120];
+      // methods.fitBounds = {
+      //   bounds: [point, point],
+      //   options: {
+      //     maxZoom: 3
+      //   }
+      // };
     }
 
     return methods;
@@ -164,12 +177,6 @@ export default class MapPage extends React.Component {
       leafletMarker.off('click').on('click', function mouseover() {
         this.openPopup();
       });
-      // leafletMarker.off('mouseover').on('mouseover', function mouseover() {
-      //   this.openPopup();
-      // });
-      // leafletMarker.off('mouseout').on('mouseout', function mouseleave() {
-      //   this.closePopup();
-      // });
     };
 
     /* Cluster */
@@ -206,16 +213,27 @@ export default class MapPage extends React.Component {
       return marker;
     };
 
-    this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
-    .forEach((p) => {
-      const lat = p.locations[0].centroid.coordinates[1];
-      const lng = p.locations[0].centroid.coordinates[0];
+    function pushMarker(project) {
+      const lat = project.locations[0].centroid.coordinates[1];
+      const lng = project.locations[0].centroid.coordinates[0];
       const marker = new PruneCluster.Marker(lat, lng);
-      marker.data = p;
+      marker.data = project;
       pruneCluster.RegisterMarker(marker);
-    });
+    }
 
-    return this.props.projects.length ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
+    const { projectDetail } = this.props;
+    if (projectDetail) {
+      // If projectDetails is setted, just display that project on map
+      if (projectDetail.locations && projectDetail.locations.length && projectDetail.locations[0].centroid) {
+        pushMarker(projectDetail);
+      }
+    } else {
+      // If not, let's show all projects
+      this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
+      .forEach(pushMarker);
+    }
+
+    return (this.props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
   }
 
   closeSlidignMenu(close) {
@@ -292,5 +310,6 @@ MapPage.propTypes = {
   setSidebarWidth: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
+  resetMapState: React.PropTypes.func,
   setProjectsDetail: React.PropTypes.func
 };
