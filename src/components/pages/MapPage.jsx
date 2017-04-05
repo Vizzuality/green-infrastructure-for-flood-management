@@ -305,7 +305,11 @@ export default class MapPage extends React.Component {
           {this.props.projectDetail ?
             <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} /> :
             <div className="project-list-wrapper">
-              <SlidingMenu title="filters" closed={this.props.filtersUi.closed}>
+              <SlidingMenu
+                title="filters"
+                closed={this.props.filtersUi.closed}
+                onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
+              >
                 <Filters close={() => this.props.setFiltersUi({ closed: true })} />
               </SlidingMenu>
               <Search
@@ -325,9 +329,9 @@ export default class MapPage extends React.Component {
                   }}
                 >
                   { /* First child: This is what the item will be tethered to */ }
-                  <button 
-                    className="download" 
-                    onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')} 
+                  <button
+                    className="download"
+                    onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')}
                     ref={c => this.downloadBtn = c}
                   >
                     <SvgIcon name="icon-download" className="download -medium" />
