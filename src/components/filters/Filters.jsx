@@ -26,6 +26,10 @@ export default class Filters extends React.Component {
     this.resetFilters = this.resetFilters.bind(this);
   }
 
+  componentWillMount() {
+    this.props.getFiltersOptions();
+  }
+
   setArrayProjectsFilter(opts, key) {
     const filter = {};
     filter[key] = opts.map(opt => opt.value || opt);
@@ -53,6 +57,8 @@ export default class Filters extends React.Component {
   }
 
   render() {
+    const { options } = this.props;
+
     return (
       <div className="c-filters">
         {/* Organizations */}
@@ -73,8 +79,8 @@ export default class Filters extends React.Component {
           <Select
             name="field"
             multi={true}
-            options={scalesOptions}
-            value={scalesOptions.filter(opt => this.props.filters.scales.includes(opt.value))}
+            options={options.scales}
+            value={options.scales ? options.scales.filter(opt => this.props.filters.scales.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'scales')}
           />
         </div>
@@ -85,8 +91,8 @@ export default class Filters extends React.Component {
           <Select
             name="field"
             multi={true}
-            options={regionsOptions}
-            value={regionsOptions.filter(opt => this.props.filters.regions.includes(opt.value))}
+            options={options.regions}
+            value={options.regions ? options.regions.filter(opt => this.props.filters.regions.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'regions')}
           />
         </div>
@@ -109,8 +115,8 @@ export default class Filters extends React.Component {
           <Select
             name="field"
             multi={true}
-            options={solutionOptions}
-            value={solutionOptions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value))}
+            options={options.nature_based_solutions}
+            value={options.nature_based_solutions ? options.nature_based_solutions.filter(opt => this.props.filters.nature_based_solutions.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'nature_based_solutions')}
           />
         </div>
@@ -121,8 +127,8 @@ export default class Filters extends React.Component {
           <Select
             name="field"
             multi={true}
-            options={interventionOptions}
-            value={interventionOptions.filter(opt => this.props.filters.intervention_types.includes(opt.value))}
+            options={options.intervention_types}
+            value={options.intervention_types ? options.intervention_types.filter(opt => this.props.filters.intervention_types.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'intervention_types')}
           />
         </div>
@@ -133,8 +139,8 @@ export default class Filters extends React.Component {
           <Select
             name="field"
             multi={true}
-            options={coBenefitsOptions}
-            value={coBenefitsOptions.filter(opt => this.props.filters.co_benefits.includes(opt.value))}
+            options={options.co_benefits}
+            value={options.co_benefits ? options.co_benefits.filter(opt => this.props.filters.co_benefits.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'co_benefits')}
           />
         </div>
@@ -145,9 +151,21 @@ export default class Filters extends React.Component {
           <Select
             name="field"
             multi={true}
-            options={primaryBenefitsOptions}
-            value={primaryBenefitsOptions.filter(opt => this.props.filters.primary_benefits.includes(opt.value))}
+            options={options.primary_benefits}
+            value={options.primary_benefits ? options.primary_benefits.filter(opt => this.props.filters.primary_benefits.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'primary_benefits')}
+          />
+        </div>
+
+        {/* Hazard */}
+        <div className="filter-field">
+          <label className="title">Hazard</label>
+          <Select
+            name="field"
+            multi={true}
+            options={options.hazard_types}
+            value={options.hazard_types ? options.hazard_types.filter(opt => this.props.filters.hazard_types.includes(opt.value)) : []}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'hazard_types')}
           />
         </div>
 
@@ -155,22 +173,9 @@ export default class Filters extends React.Component {
         <div className="filter-field">
           <label className="title">Status</label>
           <CheckboxGroup
-            name="asdf"
-            options={statusOptions}
-            selected={statusOptions.filter(opt => this.props.filters.status.includes(opt.value))}
+            options={options.implementation_statuses ? options.implementation_statuses : []}
+            selected={options.implementation_statuses ? options.implementation_statuses.filter(opt => this.props.filters.status.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'status')}
-          />
-        </div>
-
-        {/* Hazard */}
-        <div className="filter-field">
-          <label className="title">Hazard</label>
-          <CheckboxGroup
-            name="asdf"
-            options={hazardOptions}
-            selected={hazardOptions.filter(opt => this.props.filters.hazard_types.includes(opt.value))}
-            className=""
-            onChange={opts => this.setArrayProjectsFilter(opts, 'hazard_types')}
           />
         </div>
 
@@ -197,7 +202,7 @@ export default class Filters extends React.Component {
 
 Filters.propTypes = {
   // Actions
-  filtersOptions: React.PropTypes.array,
+  options: React.PropTypes.object,
   close: React.PropTypes.func,
   setArrayProjectsFilters: React.PropTypes.func,
   filters: React.PropTypes.object
