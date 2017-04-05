@@ -198,12 +198,25 @@ export default class MapPage extends React.Component {
             new L.LatLng(b.minLat, b.maxLng),
             new L.LatLng(b.maxLat, b.minLng));
 
-          // We should check if the sidebar is opened
-          const sidebarWidth = this.props.sidebarWidth + 25;
-          pruneCluster._map.fitBounds(bounds, {
-            paddingTopLeft: [sidebarWidth, 25],
-            paddingBottomRight: [50, 25]
-          });
+          const zoomLevelBefore = pruneCluster._map.getZoom();
+          const zoomLevelAfter = pruneCluster._map.getBoundsZoom(bounds, false, new L.Point(20, 20, null));
+
+          if (zoomLevelAfter === zoomLevelBefore) {
+            pruneCluster._map.fire('overlappingmarkers', {
+              cluster: pruneCluster,
+              markers: markersArea,
+              center: marker.getLatLng(),
+              marker
+            });
+          } else {
+            // We should check if the sidebar is opened
+            const sidebarWidth = this.props.sidebarWidth + 25;
+            pruneCluster._map.fitBounds(bounds, {
+              paddingTopLeft: [sidebarWidth, 25],
+              paddingBottomRight: [50, 25]
+            });
+          }
+
         }
       });
 

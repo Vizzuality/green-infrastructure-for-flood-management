@@ -6,7 +6,7 @@ const RESET_MAP_STATE = 'RESET_MAP_STATE';
 const initialState = {
   latLng: {
     lat: 30,
-    lng: -120
+    lng: -40
   },
   zoom: 3
 };
