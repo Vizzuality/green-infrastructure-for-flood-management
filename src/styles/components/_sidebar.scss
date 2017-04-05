@@ -28,6 +28,7 @@ $_btn-height: 50px;
     width: $_btn-height;
     background-color: $primary-color;
     transition: all $animation-time-2 $ease-in-out-sine;
+    box-shadow: 0 0 10px rgba(black, 0.25);
 
     .rotate-list {
       display: flex;
