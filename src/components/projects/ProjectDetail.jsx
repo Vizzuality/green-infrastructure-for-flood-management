@@ -173,11 +173,11 @@ export default class ProjectDetail extends React.Component {
             <Row>
               {data.estimated_cost && <div className="small-6">
                 <span className="label">Est. Monetary Cost (Today's US$)</span>
-                <span className="value -big">{data.estimated_cost ? `${data.estimated_cost} US$` : '-'}</span>
+                <span className="value -big">{data.estimated_cost ? `${data.estimated_cost}M US$` : '-'}</span>
               </div>}
               {data.estimated_monetary_benefits && <div className="small-6">
                 <span className="label">Est. Monetary benefits</span>
-                <span className="value -big">{data.estimated_monetary_benefits ? `${data.estimated_monetary_benefits} US$` : '-'}</span>
+                <span className="value -big">{data.estimated_monetary_benefits ? `${data.estimated_monetary_benefits}M US$` : '-'}</span>
               </div>}
             </Row>
           </div>
