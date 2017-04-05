@@ -131,10 +131,20 @@ export default class MapPage extends React.Component {
       ]
     };
 
-    if (this.props.projectDetail && this.props.projectDetail.locations.length) {
-      const points = this.props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
-      const bounds = L.latLngBounds(points);
+    let points = [];
 
+    if (this.props.projectDetail && this.props.projectDetail.locations.length) {
+      // If we are in project detail, bounds are the project detail locations
+      points = this.props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
+    } else {
+      // If we are in global view, bounds are all project locations
+      this.props.projects.forEach((project) => {
+        points.push(project.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]));
+      });
+    }
+
+    if (points.length) {
+      const bounds = L.latLngBounds(points);
       methods.fitBounds = {
         bounds,
         options: {
@@ -142,15 +152,6 @@ export default class MapPage extends React.Component {
           paddingBottomRight: [0, 0]
         }
       };
-    } else {
-      // NOTE: Restore map state ?
-      // const point = [30, -120];
-      // methods.fitBounds = {
-      //   bounds: [point, point],
-      //   options: {
-      //     maxZoom: 3
-      //   }
-      // };
     }
 
     return methods;
