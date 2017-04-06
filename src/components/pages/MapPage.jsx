@@ -136,10 +136,20 @@ export default class MapPage extends React.Component {
       ]
     };
 
-    if (this.props.projectDetail && this.props.projectDetail.locations.length) {
-      const points = this.props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
-      const bounds = L.latLngBounds(points);
+    let points = [];
 
+    if (this.props.projectDetail && this.props.projectDetail.locations.length) {
+      // If we are in project detail, bounds are the project detail locations
+      points = this.props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
+    } else {
+      // If we are in global view, bounds are all project locations
+      this.props.projects.forEach((project) => {
+        points.push(project.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]));
+      });
+    }
+
+    if (points.length) {
+      const bounds = L.latLngBounds(points);
       methods.fitBounds = {
         bounds,
         options: {
@@ -147,15 +157,6 @@ export default class MapPage extends React.Component {
           paddingBottomRight: [0, 0]
         }
       };
-    } else {
-      // NOTE: Restore map state ?
-      // const point = [30, -120];
-      // methods.fitBounds = {
-      //   bounds: [point, point],
-      //   options: {
-      //     maxZoom: 3
-      //   }
-      // };
     }
 
     return methods;
@@ -309,7 +310,11 @@ export default class MapPage extends React.Component {
           {this.props.projectDetail ?
             <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} /> :
             <div className="project-list-wrapper">
-              <SlidingMenu title="filters" closed={this.props.filtersUi.closed}>
+              <SlidingMenu
+                title="filters"
+                closed={this.props.filtersUi.closed}
+                onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
+              >
                 <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
               </SlidingMenu>
               <Search
@@ -329,9 +334,9 @@ export default class MapPage extends React.Component {
                   }}
                 >
                   { /* First child: This is what the item will be tethered to */ }
-                  <button 
-                    className="download" 
-                    onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')} 
+                  <button
+                    className="download"
+                    onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')}
                     ref={c => this.downloadBtn = c}
                   >
                     <SvgIcon name="icon-download" className="download -medium" />
