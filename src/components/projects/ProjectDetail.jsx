@@ -118,7 +118,7 @@ export default class ProjectDetail extends React.Component {
         </div>
         <div className="project-detail-section">
           <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
-          <span className="project-date">{data.start_year} - {data.completion_year}</span>
+          <span className="project-date">{`${data.start_year} - ${data.completion_year || 'Present'}`}</span>
           <h1 className="project-name">{data.name}</h1>
         </div>
         <div className="project-resumme">
