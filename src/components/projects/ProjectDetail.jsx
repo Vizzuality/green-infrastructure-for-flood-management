@@ -112,7 +112,7 @@ export default class ProjectDetail extends React.Component {
               { /* First child: This is what the item will be tethered to */ }
               <button className="action" type="button" onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')} ref={c => this.downloadBtn = c}>
                 <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
-                Download
+                Download PDF
               </button>
               { /* Second child: If present, this item will be tethered to the the first child */ }
               {
@@ -178,11 +178,14 @@ export default class ProjectDetail extends React.Component {
 
           <div className="project-info-item">
             <Row>
-              {data.estimated_cost && <div className="small-6">
-                <span className="label">Est. Monetary Cost (Today's US$)</span>
+              <div className="property small-6">
+                <span className="label">
+                  <span>Est. Monetary Cost</span>
+                  <span className="sublabel">(Today's US$)</span>
+                </span>
                 <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : '-'}</span>
-              </div>}
-              <div className="small-6">
+              </div>
+              <div className="property small-6">
                 <span className="label">Est. Monetary benefits</span>
                 <span className="value -big">{data.estimated_monetary_benefits ? `${this.parseCost(data.estimated_monetary_benefits)} US$` : 'Unknown'}</span>
               </div>
