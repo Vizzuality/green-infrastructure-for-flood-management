@@ -41,6 +41,11 @@ export default class MapPage extends React.Component {
     if (!this.props.projects.length) {
       this.getProjects(this.props.filters);
     }
+
+    // Fetch projects from server if they haven't been fetched yet
+    if (!this.props.filtersOptions.length) {
+      this.props.getFiltersOptions();
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -310,7 +315,7 @@ export default class MapPage extends React.Component {
                 closed={this.props.filtersUi.closed}
                 onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
               >
-                <Filters close={() => this.props.setFiltersUi({ closed: true })} />
+                <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
               </SlidingMenu>
               <Search
                 focus={this.props.filtersUi.searchFocus}

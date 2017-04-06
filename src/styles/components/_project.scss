@@ -240,6 +240,14 @@ $_separation: ($space-1 * 4);
       line-height: 40px;
     }
 
+    .link {
+      color: $primary-color;
+
+      &:hover {
+        opacity: .5;
+      }
+    }
+
     .value-item {
       margin-right: 4px;
       text-transform: capitalize;

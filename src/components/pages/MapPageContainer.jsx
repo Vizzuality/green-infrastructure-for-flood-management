@@ -5,6 +5,7 @@ import getProjectDetails from 'selectors/project_detail';
 import { updateUrl } from 'modules/url';
 import { setMapLocation, resetMapState } from 'modules/map';
 import { setSidebarWidth, setFiltersUi } from 'modules/ui';
+import { getFiltersOptions } from 'modules/filters_options';
 
 const mapStateToProps = state => ({
   filters: state.projects.filters,
@@ -13,7 +14,8 @@ const mapStateToProps = state => ({
   loading: state.projects.loading,
   projectDetail: getProjectDetails(state),
   sidebarWidth: state.ui.sidebar.width,
-  filtersUi: state.ui.filters
+  filtersUi: state.ui.filters,
+  filtersOptions: state.filtersOptions.options
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -40,6 +42,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getProjects(query) {
     dispatch(getProjects(query));
+  },
+  getFiltersOptions() {
+    dispatch(getFiltersOptions());
   },
   setProjectsFilters: (filters) => {
     dispatch(setProjectsFilters(filters));
