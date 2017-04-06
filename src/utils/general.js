@@ -1,20 +1,10 @@
-import { format } from 'd3-format';
+import numeral from 'numeral';
 
 function setNumberFormat(number) {
-  const letterformat = format(".2s");
-  const thousand = format(",");
   const numLen = `${number}`.length;
-  let result = number;
+  const type = numLen < 7 ? '0,0' : '0.0a';
 
-  if (numLen > 9) {
-    result = letterformat(number).replace('G', 'b');
-  } else if (numLen > 6) {
-    result = letterformat(number).replace('M', 'm');
-  } else if (numLen > 3) {
-    result = thousand(number);
-  }
-
-  return result;
+  return numeral(number).format(type);
 }
 
 export { setNumberFormat };

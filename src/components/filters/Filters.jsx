@@ -2,7 +2,6 @@ import React from 'react';
 import { SimpleSelect, MultiSelect } from 'react-selectize';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
-
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
