@@ -72,6 +72,12 @@ $_separation: ($space-1 * 4);
     color: $color-text-1;
     opacity: .9;
     font-size: $font-size-default;
+    line-height: 18px;
+    padding-right: 10px;;
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 
   .project-action {
@@ -160,7 +166,6 @@ $_separation: ($space-1 * 4);
   .project-date {
     display: block;
     margin-bottom: $space-1 * 4;
-    text-transform: uppercase;
     color: palette(white);
   }
 

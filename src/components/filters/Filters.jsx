@@ -11,19 +11,32 @@ import CheckboxGroup from 'components/ui/CheckboxGroup';
 import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions } from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
 
+const million = 1000000;
+
 export default class Filters extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       cost: {
-        from: props.filters.from_cost,
-        to: props.filters.to_cost
+        from: 0,
+        to: null
       }
     };
 
     // Bindings
     this.resetFilters = this.resetFilters.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!this.state.cost.to && newProps.options.cost_max) {
+      this.setState({
+        cost: {
+          from: 0,
+          to: newProps.options.cost_max * million
+        }
+      });
+    }
   }
 
   setArrayProjectsFilter(opts, key) {
@@ -33,12 +46,12 @@ export default class Filters extends React.Component {
   }
 
   setProjectsRangeFilter(opts) {
-    this.props.setProjectsFilters({ 'from_cost': opts.min, 'to_cost': opts.max });
+    this.props.setProjectsFilters({ 'from_cost': (opts.min / million), 'to_cost': (opts.max / million) });
   }
 
   resetCost(){
-    this.setState({ cost: { from: 0, to: 10000 }}, () => {
-      this.props.setProjectsFilters({ 'from_cost': 0, 'to_cost': 10000 });
+    this.setState({ cost: { from: null, to: null }}, () => {
+      this.props.setProjectsFilters({ 'from_cost': null, 'to_cost': null });
     });
   }
 
@@ -119,13 +132,25 @@ export default class Filters extends React.Component {
 
         {/* Intervention */}
         <div className="filter-field">
-          <label className="title">Intervention</label>
+          <label className="title">Intervention type</label>
           <Select
             name="field"
             multi={true}
             options={options.intervention_types}
             value={options.intervention_types ? options.intervention_types.filter(opt => this.props.filters.intervention_types.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'intervention_types')}
+          />
+        </div>
+
+        {/* Primary benefits */}
+        <div className="filter-field">
+          <label className="title">Risk reduction benefits</label>
+          <Select
+            name="field"
+            multi={true}
+            options={options.primary_benefits}
+            value={options.primary_benefits ? options.primary_benefits.filter(opt => this.props.filters.primary_benefits.includes(opt.value)) : []}
+            onChange={opts => this.setArrayProjectsFilter(opts, 'primary_benefits')}
           />
         </div>
 
@@ -138,18 +163,6 @@ export default class Filters extends React.Component {
             options={options.co_benefits}
             value={options.co_benefits ? options.co_benefits.filter(opt => this.props.filters.co_benefits.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'co_benefits')}
-          />
-        </div>
-
-        {/* Primary benefits */}
-        <div className="filter-field">
-          <label className="title">Primary benefits</label>
-          <Select
-            name="field"
-            multi={true}
-            options={options.primary_benefits}
-            value={options.primary_benefits ? options.primary_benefits.filter(opt => this.props.filters.primary_benefits.includes(opt.value)) : []}
-            onChange={opts => this.setArrayProjectsFilter(opts, 'primary_benefits')}
           />
         </div>
 
@@ -177,13 +190,14 @@ export default class Filters extends React.Component {
 
         {/* Costs */}
         <div className="filter-field">
-          <label className="title">Cost range</label>
+          <label className="title">Cost range (US$)</label>
           <InputRange
-            maxValue={10000}
+            maxValue={(options.cost_max * million) || million}
             minValue={0}
-            value={{ min: this.state.cost.from, max: this.state.cost.to }}
+            value={{ min: this.state.cost.from, max: this.state.cost.to || 0 }}
             onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max }})}
             onChangeComplete={opts => this.setProjectsRangeFilter(opts)}
+            step={10000}
           />
         </div>
 

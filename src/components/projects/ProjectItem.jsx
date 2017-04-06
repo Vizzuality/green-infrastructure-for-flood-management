@@ -9,9 +9,11 @@ export default function ProjectItem(props) {
         <ul className="project-company">
           {props.data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}
         </ul>
-        <div className="project-tags-container">
-          <p className="project-tags">Intervention: {props.data.intervention_type}</p>
-          <p className="project-tags">
+        <div className="project-tags-container row collapse">
+          <p className="project-tags column small-12 medium-8">
+            Solution: {props.data.primary_benefits_of_interventions.map((nat, i) => i !== props.data.primary_benefits_of_interventions.length-1 ? `${nat.name}, ` : nat.name)}
+          </p>
+          <p className="project-tags column small-12 medium-4">
             Hazard: {props.data.hazard_types.map((nat, i) => i !== props.data.hazard_types.length-1 ? `${nat.name}, ` : nat.name)}
           </p>
         </div>

@@ -119,7 +119,7 @@ export default class ProjectDetail extends React.Component {
         </div>
         <div className="project-detail-section">
           <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
-          <span className="project-date">{`${data.start_year} - ${data.completion_year || 'Present'}`}</span>
+          <span className="project-date">{`${data.start_year} - ${data.completion_year || 'present'}`}</span>
           <h1 className="project-name">{data.name}</h1>
         </div>
         <div className="project-resumme">
@@ -134,7 +134,7 @@ export default class ProjectDetail extends React.Component {
 
           <span className="label">Project resume</span>
           <p className="project-text">{data.summary}</p>
-          <a className="project-link" rel="noopener noreferrer" target="_blank" href="http://www.worldbank.org/">website</a>
+          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.url}>website</a>
         </div>
         <div className="project-info">
           <div className="project-info-item">
@@ -155,7 +155,7 @@ export default class ProjectDetail extends React.Component {
           </div>
 
           {data.primary_benefits_of_interventions.length && <div className="project-info-item">
-            <span className="label">Primary benefits of intervention</span>
+            <span className="label">Risk reduction benefits</span>
             <span className="value">{setArrayValues(data.primary_benefits_of_interventions)}</span>
           </div>}
 
@@ -175,10 +175,10 @@ export default class ProjectDetail extends React.Component {
                 <span className="label">Est. Monetary Cost (Today's US$)</span>
                 <span className="value -big">{data.estimated_cost ? `${data.estimated_cost}M US$` : '-'}</span>
               </div>}
-              {data.estimated_monetary_benefits && <div className="small-6">
+              <div className="small-6">
                 <span className="label">Est. Monetary benefits</span>
-                <span className="value -big">{data.estimated_monetary_benefits ? `${data.estimated_monetary_benefits}M US$` : '-'}</span>
-              </div>}
+                <span className="value -big">{data.estimated_monetary_benefits ? `${data.estimated_monetary_benefits}M US$` : 'Unknown'}</span>
+              </div>
             </Row>
           </div>
 
@@ -187,15 +187,15 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{data.benefit_details}</span>
           </div>}
 
-          {data.learn_more && data.learn_more !== '' && <div className="project-info-item">
+          {/*data.learn_more && data.learn_more !== '' && <div className="project-info-item">
             <span className="label">Learn more</span>
             <span className="value">{isUrl(data.learn_more) ? <a className="link" href={data.learn_more}>{data.learn_more}</a> : data.learn_more}</span>
-          </div>}
+          </div>*/}
 
-          {data.references && data.references !== '' && <div className="project-info-item">
+          {/*data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
-          </div>}
+          </div>*/}
         </div>
       </article>
     );

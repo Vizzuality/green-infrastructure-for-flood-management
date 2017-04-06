@@ -92,7 +92,7 @@ export default class MapPage extends React.Component {
         }, '');
         arrayValues !== '' && paramsArray.push(arrayValues);
       } else {
-        filters[key] !== '' && paramsArray.push(`${key}=${filters[key]}`);
+        filters[key] && filters[key] !== '' && paramsArray.push(`${key}=${filters[key]}`);
       }
     });
 

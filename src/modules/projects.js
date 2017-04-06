@@ -24,8 +24,8 @@ const initialState = {
     co_benefits: [],
     primary_benefits: [],
     status: [],
-    from_cost: 0,
-    to_cost: 10000,
+    from_cost: null,
+    to_cost: null,
     order: 'name',
     direction: 'asc'
   }
