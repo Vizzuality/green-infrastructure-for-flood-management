@@ -26,10 +26,6 @@ export default class Filters extends React.Component {
     this.resetFilters = this.resetFilters.bind(this);
   }
 
-  componentWillMount() {
-    this.props.getFiltersOptions();
-  }
-
   setArrayProjectsFilter(opts, key) {
     const filter = {};
     filter[key] = opts.map(opt => opt.value || opt);
