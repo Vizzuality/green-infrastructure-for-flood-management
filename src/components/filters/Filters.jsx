@@ -8,6 +8,7 @@ import 'react-select/dist/react-select.css';
 
 import CheckboxGroup from 'components/ui/CheckboxGroup';
 
+import { setNumberFormat } from 'utils/general';
 import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions } from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
 
@@ -194,6 +195,7 @@ export default class Filters extends React.Component {
           <InputRange
             maxValue={(options.cost_max * million) || million}
             minValue={0}
+            formatLabel={value => value === 0 ? value : `$${setNumberFormat(value)}`}
             value={{ min: this.state.cost.from, max: this.state.cost.to || 0 }}
             onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max }})}
             onChangeComplete={opts => this.setProjectsRangeFilter(opts)}

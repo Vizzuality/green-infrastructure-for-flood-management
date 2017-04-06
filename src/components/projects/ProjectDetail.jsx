@@ -4,6 +4,8 @@ import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import isUrl from 'validator/lib/isUrl';
 
+import { setNumberFormat } from 'utils/general';
+
 export default class ProjectDetail extends React.Component {
 
   constructor(props) {
@@ -55,10 +57,15 @@ export default class ProjectDetail extends React.Component {
     });
   }
 
+  parseCost(millions) {
+    return setNumberFormat(millions * 1000000);
+  }
+
   render() {
     const { data } = this.props;
     const { shareOpen, downloadOpen } = this.state;
     const setArrayValues = array => array.map((pboi, i) => <span className="value-item" key={i}>{pboi.name}</span>);
+
 
     return (
       <article className="c-project-detail">
@@ -173,11 +180,11 @@ export default class ProjectDetail extends React.Component {
             <Row>
               {data.estimated_cost && <div className="small-6">
                 <span className="label">Est. Monetary Cost (Today's US$)</span>
-                <span className="value -big">{data.estimated_cost ? `${data.estimated_cost}M US$` : '-'}</span>
+                <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : '-'}</span>
               </div>}
               <div className="small-6">
                 <span className="label">Est. Monetary benefits</span>
-                <span className="value -big">{data.estimated_monetary_benefits ? `${data.estimated_monetary_benefits}M US$` : 'Unknown'}</span>
+                <span className="value -big">{data.estimated_monetary_benefits ? `${this.parseCost(data.estimated_monetary_benefits)} US$` : 'Unknown'}</span>
               </div>
             </Row>
           </div>
