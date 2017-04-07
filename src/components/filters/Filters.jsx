@@ -76,8 +76,8 @@ export default class Filters extends React.Component {
           <Select
             name="field"
             multi={true}
-            options={organizationsOptions}
-            value={organizationsOptions.filter(opt => this.props.filters.organizations.includes(opt.value))}
+            options={options.organizations}
+            value={options.organizations ? options.organizations.filter(opt => this.props.filters.organizations.includes(opt.value)) : []}
             onChange={opts => this.setArrayProjectsFilter(opts, 'organizations')}
           />
         </div>

@@ -5,14 +5,14 @@ function setNameOption(arr) {
 function setIdOption(arr) {
   return arr.map(c => {
     return {
-      label: c[Object.keys(c)[0]].name,
+      label: c[Object.keys(c)[0]].name || c[Object.keys(c)[0]].adm0_name,
       value: `${c[Object.keys(c)[0]].id}`
     };
   });
 }
 
 function setFiltersOptions(options) {
-  const arrayItems = ['co_benefits', 'hazard_types', 'nature_based_solutions', 'primary_benefits'];
+  const arrayItems = ['co_benefits', 'hazard_types', 'nature_based_solutions', 'primary_benefits', 'organizations', 'countries'];
   const keys = Object.keys(options);
   let result = {};
 
