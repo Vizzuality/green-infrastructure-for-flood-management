@@ -141,7 +141,7 @@ export default class ProjectDetail extends React.Component {
 
           <span className="label">Project resume</span>
           <p className="project-text">{data.summary}</p>
-          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.url}>website</a>
+          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>website</a>
         </div>
         <div className="project-info">
           <div className="project-info-item">
@@ -183,7 +183,7 @@ export default class ProjectDetail extends React.Component {
                   <span>Est. Monetary Cost</span>
                   <span className="sublabel">(Today's US$)</span>
                 </span>
-                <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : '-'}</span>
+                <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
               </div>
               <div className="property small-6">
                 <span className="label">Est. Monetary benefits</span>

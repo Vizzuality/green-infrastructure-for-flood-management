@@ -172,8 +172,8 @@ export default class MapPage extends React.Component {
   }
 
   getPopupMarkup(data) {
-    const orgs = data.organizations.map(org => org.name).join(', ');
-    const hazards = data.hazard_types.map(haz => haz.name).join(', ');
+    const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
+    const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
     const url = `/map?detail=${data.id}`;
 
     return `

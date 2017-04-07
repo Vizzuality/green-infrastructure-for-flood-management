@@ -42,7 +42,11 @@ $_separation: ($space-1 * 4);
   transition: background-color linear $animation-time;
 
   &:hover {
-    background-color: rgba(palette(gray), .2);
+    background-color: rgba(palette(gray), .1);
+  }
+
+  .project-advance {
+    flex-grow: 1;
   }
 
   .project-name {
@@ -59,24 +63,36 @@ $_separation: ($space-1 * 4);
     font-weight: 600;
     color: rgba($color-text-1, .9);
     text-transform: uppercase;
+    line-height: 18px;
   }
 
   .project-tags-container {
     display: flex;
     justify-content: space-between;
+
+    &.row.collapse {
+      .project-tags {
+        padding-right: 10px;
+      }
+    }
   }
 
   .project-tags {
     display: flex;
     flex-wrap: wrap;
-    color: $color-text-1;
-    opacity: .9;
+    color: rgba($primary-color, .9);
     font-size: $font-size-default;
     line-height: 18px;
-    padding-right: 10px;;
+    padding-right: 10px;
 
     &:last-child {
       padding-right: 0;
+    }
+
+    .title {
+      display: inline-block;
+      color: rgba($color-text-1, .9);
+      margin-right: 5px;
     }
   }
 
@@ -161,6 +177,7 @@ $_separation: ($space-1 * 4);
     color: palette(white);
     text-transform: uppercase;
     margin-bottom: $space-1;
+    line-height: 18px;
   }
 
   .project-date {
