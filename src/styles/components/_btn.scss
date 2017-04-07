@@ -28,7 +28,7 @@
     color: rgba(palette(white), .9);
 
     &:hover {
-      color: $primary-color;
+      opacity: .6;
     }
   }
 }
