@@ -4,6 +4,8 @@ import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import Switch from 'react-toggle-switch'
+import 'react-toggle-switch/dist/css/switch.min.css';
 
 import CheckboxGroup from 'components/ui/CheckboxGroup';
 
@@ -20,12 +22,14 @@ export default class Filters extends React.Component {
     this.state = {
       cost: {
         from: 0,
-        to: null
+        to: null,
+        disabled: true
       }
     };
 
     // Bindings
     this.resetFilters = this.resetFilters.bind(this);
+    this.onChangeCostSwitch = this.onChangeCostSwitch.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -33,7 +37,8 @@ export default class Filters extends React.Component {
       this.setState({
         cost: {
           from: 0,
-          to: newProps.options.cost_max * million
+          to: newProps.options.cost_max * million,
+          disabled: this.state.cost.disabled
         }
       });
     }
@@ -50,7 +55,7 @@ export default class Filters extends React.Component {
   }
 
   resetCost(){
-    this.setState({ cost: { from: null, to: null }}, () => {
+    this.setState({ cost: { from: 0, to: null, disabled: true }}, () => {
       this.props.setProjectsFilters({ 'from_cost': null, 'to_cost': null });
     });
   }
@@ -65,8 +70,21 @@ export default class Filters extends React.Component {
     });
   }
 
+  onChangeCostSwitch(e) {
+    if (this.state.cost.disabled) {
+      const newCost = Object.assign({}, this.state.cost, { disabled: !this.state.cost.disabled });
+      this.setState({cost: newCost }, () => {
+        this.props.setProjectsFilters({ 'from_cost': this.state.cost.from || 0, 'to_cost': this.state.cost.to || 0 });
+      });
+    } else {
+      this.resetCost();
+    }
+  }
+
   render() {
     const { options } = this.props;
+    console.log(this.state.cost.disabled);
+
 
     return (
       <div className="c-filters">
@@ -190,8 +208,16 @@ export default class Filters extends React.Component {
 
         {/* Costs */}
         <div className="filter-field">
-          <label className="title">Cost range (US$)</label>
+          <label className="title">
+            <span>Cost range (US$)</span>
+            <Switch 
+              onClick={this.onChangeCostSwitch}
+              on={!this.state.cost.disabled}
+              className="c-switch"
+            />
+          </label>
           <InputRange
+            disabled={this.state.cost.disabled}
             maxValue={(options.cost_max * million) || million}
             minValue={0}
             formatLabel={value => value === 0 ? value : `$${setNumberFormat(value)}`}
