@@ -218,6 +218,12 @@ $_separation: ($space-1 * 4);
 
     .project-info-item {
       margin-bottom: $space-1 * 4;
+      
+      .property {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+      }
 
       &:last-of-type {
         margin-bottom: 0;
@@ -226,12 +232,19 @@ $_separation: ($space-1 * 4);
   }
 
   .label {
-    display: block;
+    display: flex;
+    flex-flow: column;
     text-transform: uppercase;
     font-weight: bold;
     font-size: $font-size-default;
     color: palette(green);
     margin-bottom: $space-1;
+
+    .sublabel {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 10px;
+    }
   }
 
   .value {
