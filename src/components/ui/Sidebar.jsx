@@ -52,7 +52,7 @@ export default class Sidebar extends React.Component {
           {this.props.children}
         </div>
         <div className="sidebar-closed">
-          <button type="button" className="sidebar-btn" onClick={this.toggle}>
+          <button type="button" className="sidebar-btn -relative" onClick={this.toggle}>
             <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
           </button>
           <div className="rotate-list">

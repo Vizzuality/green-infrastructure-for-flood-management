@@ -102,7 +102,7 @@ $_btn-height: 50px;
 
   // Toggle button
   .sidebar-btn {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     width: $_btn-height;
@@ -113,6 +113,10 @@ $_btn-height: 50px;
     cursor: pointer;
     z-index: 999;
     transition: background $animation-time linear;
+
+    &.-relative {
+      position: relative;
+    }
 
     svg {
       fill: palette(white);
