@@ -1,7 +1,33 @@
 .c-plus-number {
   display: inline-block;
+  color: rgba($color-text-1, .5);
+  font-size: 13px!important;
+  font-weight: normal!important;
+  position: relative;
   
   &.-right {
-    margin-left: 8px;
+    margin-left: 4px;
+  }
+
+  &:hover {
+    .c-dropdown {
+      display: flex;
+    }
+  }
+
+  .c-dropdown {
+    display: none;
+    position: absolute;
+    max-width: 160px;
+    text-transform: capitalize;
+    line-height: 18px;
+    transform: translate(-46%, 13px);
+    max-height: 120px;
+
+    .tooltip-content {
+      overflow: auto;
+      display: inline-block;
+      padding: 0 15px;
+    }
   }
 }
