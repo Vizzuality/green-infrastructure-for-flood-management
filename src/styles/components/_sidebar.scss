@@ -80,6 +80,12 @@ $_btn-height: 50px;
       font-size: $font-size-small;
       font-weight: bold;
       text-transform: uppercase;
+      color: $color-text-1;
+      cursor: pointer;
+
+      &:hover {
+        opacity: .7;
+      }
 
       &.download {
         .c-icon { margin-right: 5px; }

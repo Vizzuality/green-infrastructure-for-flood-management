@@ -157,6 +157,10 @@ $_separation: ($space-1 * 4);
         margin-right: 0;
       }
 
+      &:hover {
+        opacity: .7;
+      }
+
       .c-icon {
         margin-right: $space-1;
         fill: palette(white);

@@ -16,6 +16,7 @@ import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
+import { saveAsFile } from 'utils/general';
 import TetherComponent from 'react-tether';
 
 export default class MapPage extends React.Component {
@@ -323,33 +324,14 @@ export default class MapPage extends React.Component {
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
               <div className="sidebar-actions">
-                <TetherComponent
-                  attachment="top center"
-                  constraints={[{
-                    to: 'scrollParent',
-                    attachment: 'together'
-                  }]}
-                  classes={{
-                    element: 'c-dropdown'
-                  }}
+                <button
+                  className="download"
+                  onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
                 >
-                  { /* First child: This is what the item will be tethered to */ }
-                  <button
-                    className="download"
-                    onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')}
-                    ref={c => this.downloadBtn = c}
-                  >
-                    <SvgIcon name="icon-download" className="download -medium" />
-                    Download data
-                  </button>
-                  { /* Second child: If present, this item will be tethered to the the first child */ }
-                  {
-                    downloadOpen &&
-                    <div>
-                      <p>Not available</p>
-                    </div>
-                  }
-                </TetherComponent>
+                  <SvgIcon name="icon-download" className="download -medium" />
+                  Download data
+                </button>
+                
                 <SortBy
                   order={this.props.filters.order}
                   direction={this.props.filters.direction}

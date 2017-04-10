@@ -6,7 +6,7 @@ function setIdOption(arr) {
   return arr.map(c => {
     return {
       label: c[Object.keys(c)[0]].name || c[Object.keys(c)[0]].adm0_name,
-      value: c[Object.keys(c)[0]].id ? `${c[Object.keys(c)[0]].id}` : c[Object.keys(c)[0]].iso
+      value: c[Object.keys(c)[0]].iso  || `${c[Object.keys(c)[0]].id}`
     };
   });
 }

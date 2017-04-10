@@ -4,7 +4,7 @@ import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import isUrl from 'validator/lib/isUrl';
 
-import { setNumberFormat } from 'utils/general';
+import { setNumberFormat, saveAsFile } from 'utils/general';
 
 export default class ProjectDetail extends React.Component {
 
@@ -99,29 +99,14 @@ export default class ProjectDetail extends React.Component {
               }
             </TetherComponent>
 
-            <TetherComponent
-              attachment="top center"
-              constraints={[{
-                to: 'scrollParent',
-                attachment: 'together'
-              }]}
-              classes={{
-                element: 'c-dropdown'
-              }}
+            <button 
+              className="action" 
+              type="button" 
+              onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
             >
-              { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')} ref={c => this.downloadBtn = c}>
-                <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
-                Download PDF
-              </button>
-              { /* Second child: If present, this item will be tethered to the the first child */ }
-              {
-                downloadOpen &&
-                <div>
-                  <p>Not available</p>
-                </div>
-              }
-            </TetherComponent>
+              <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
+              Download PDF
+            </button>
           </div>
         </div>
         <div className="project-detail-section">
