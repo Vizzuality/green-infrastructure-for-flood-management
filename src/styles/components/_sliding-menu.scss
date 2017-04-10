@@ -2,10 +2,8 @@ $_btn-height: 50px;
 
 .c-sliding-menu {
   z-index: 4;
-  position: absolute;
+  position: relative;
   width: 100%;
-  left: 0;
-  top: 0;
   height: auto;
 
   &.-closed {

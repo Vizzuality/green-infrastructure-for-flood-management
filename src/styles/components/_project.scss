@@ -28,6 +28,10 @@ $_separation: ($space-1 * 4);
         border: 0;
       }
     }
+
+    &.no-items {
+      padding: $_separation;
+    }
   }
 }
 
@@ -42,14 +46,18 @@ $_separation: ($space-1 * 4);
   transition: background-color linear $animation-time;
 
   &:hover {
-    background-color: rgba(palette(gray), .2);
+    background-color: rgba(palette(gray), .1);
+  }
+
+  .project-advance {
+    flex-grow: 1;
   }
 
   .project-name {
     display: block;
-    font-size: $font-size-extrabig;
+    font-size: $font-size-big;
     margin-bottom: $space-1 * 1.6;
-    line-height: 1.33;
+    line-height: 24px;
     color: $color-text-1;
     font-weight: 600;
   }
@@ -59,19 +67,37 @@ $_separation: ($space-1 * 4);
     font-weight: 600;
     color: rgba($color-text-1, .9);
     text-transform: uppercase;
+    line-height: 18px;
   }
 
   .project-tags-container {
     display: flex;
     justify-content: space-between;
+
+    &.row.collapse {
+      .project-tags {
+        padding-right: 10px;
+      }
+    }
   }
 
   .project-tags {
     display: flex;
     flex-wrap: wrap;
-    color: $color-text-1;
-    opacity: .9;
+    color: rgba($primary-color, .9);
     font-size: $font-size-default;
+    line-height: 18px;
+    padding-right: 10px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    .title {
+      display: inline-block;
+      color: rgba($color-text-1, .9);
+      margin-right: 5px;
+    }
   }
 
   .project-action {
@@ -135,6 +161,10 @@ $_separation: ($space-1 * 4);
         margin-right: 0;
       }
 
+      &:hover {
+        opacity: .7;
+      }
+
       .c-icon {
         margin-right: $space-1;
         fill: palette(white);
@@ -146,7 +176,7 @@ $_separation: ($space-1 * 4);
     font-size: 32px;
     font-weight: bold;
     color: palette(white);
-    line-height: normal;
+    line-height: 36px;;
   }
 
   .project-company {
@@ -155,12 +185,12 @@ $_separation: ($space-1 * 4);
     color: palette(white);
     text-transform: uppercase;
     margin-bottom: $space-1;
+    line-height: 18px;
   }
 
   .project-date {
     display: block;
     margin-bottom: $space-1 * 4;
-    text-transform: uppercase;
     color: palette(white);
   }
 
@@ -213,6 +243,12 @@ $_separation: ($space-1 * 4);
 
     .project-info-item {
       margin-bottom: $space-1 * 4;
+      
+      .property {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+      }
 
       &:last-of-type {
         margin-bottom: 0;
@@ -221,12 +257,19 @@ $_separation: ($space-1 * 4);
   }
 
   .label {
-    display: block;
+    display: flex;
+    flex-flow: column;
     text-transform: uppercase;
     font-weight: bold;
     font-size: $font-size-default;
     color: palette(green);
     margin-bottom: $space-1;
+
+    .sublabel {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 10px;
+    }
   }
 
   .value {
@@ -238,6 +281,14 @@ $_separation: ($space-1 * 4);
       font-size: 36px;
       font-weight: 600;
       line-height: 40px;
+    }
+
+    .link {
+      color: $primary-color;
+
+      &:hover {
+        opacity: .5;
+      }
     }
 
     .value-item {

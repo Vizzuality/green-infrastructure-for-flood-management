@@ -8,7 +8,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div className="c-submit">
-        <img src="/images/sumbit_image.svg" />
+        <img src="/images/submit_image.svg" />
       </div>
     );
   }

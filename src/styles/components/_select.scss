@@ -29,7 +29,13 @@
 }
 
 /* Overried react select */
+.is-focused:not(.is-open) > .Select-control {
+  border-color: rgba(palette(black), .7);
+  box-shadow: none;
+}
+
 .Select {
+
   .Select-control {
     background-color: transparent;
     border: 0;
@@ -83,6 +89,7 @@
     border-bottom-right-radius: 2px;
 
     .Select-option {
+      text-transform: capitalize;
 
       &.is-focused {
         background-color: rgba($color-text-1, .07);

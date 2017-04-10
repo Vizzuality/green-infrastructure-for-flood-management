@@ -16,6 +16,7 @@ import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
+import { saveAsFile } from 'utils/general';
 import TetherComponent from 'react-tether';
 
 export default class MapPage extends React.Component {
@@ -40,6 +41,11 @@ export default class MapPage extends React.Component {
     // Fetch projects from server if they haven't been fetched yet
     if (!this.props.projects.length) {
       this.getProjects(this.props.filters);
+    }
+
+    // Fetch projects from server if they haven't been fetched yet
+    if (!this.props.filtersOptions.length) {
+      this.props.getFiltersOptions();
     }
   }
 
@@ -87,7 +93,7 @@ export default class MapPage extends React.Component {
         }, '');
         arrayValues !== '' && paramsArray.push(arrayValues);
       } else {
-        filters[key] !== '' && paramsArray.push(`${key}=${filters[key]}`);
+        filters[key] && filters[key] !== '' && paramsArray.push(`${key}=${filters[key]}`);
       }
     });
 
@@ -167,8 +173,8 @@ export default class MapPage extends React.Component {
   }
 
   getPopupMarkup(data) {
-    const orgs = data.organizations.map(org => org.name).join(', ');
-    const hazards = data.hazard_types.map(haz => haz.name).join(', ');
+    const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
+    const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
     const url = `/map?detail=${data.id}`;
 
     return `
@@ -301,7 +307,7 @@ export default class MapPage extends React.Component {
             openFilters: () => this.props.setFiltersUi({ closed: false })
           }}
         >
-          <Spinner className="-transparent" isLoading={this.props.loading} />
+          <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
             <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} /> :
             <div className="project-list-wrapper">
@@ -310,7 +316,7 @@ export default class MapPage extends React.Component {
                 closed={this.props.filtersUi.closed}
                 onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
               >
-                <Filters close={() => this.props.setFiltersUi({ closed: true })} />
+                <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
               </SlidingMenu>
               <Search
                 focus={this.props.filtersUi.searchFocus}
@@ -318,33 +324,14 @@ export default class MapPage extends React.Component {
                 onChange={evt => this.onSearchChange(evt.target.value)}
               />
               <div className="sidebar-actions">
-                <TetherComponent
-                  attachment="top center"
-                  constraints={[{
-                    to: 'scrollParent',
-                    attachment: 'together'
-                  }]}
-                  classes={{
-                    element: 'c-dropdown'
-                  }}
+                <button
+                  className="download"
+                  onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
                 >
-                  { /* First child: This is what the item will be tethered to */ }
-                  <button
-                    className="download"
-                    onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')}
-                    ref={c => this.downloadBtn = c}
-                  >
-                    <SvgIcon name="icon-download" className="download -medium" />
-                    Download data
-                  </button>
-                  { /* Second child: If present, this item will be tethered to the the first child */ }
-                  {
-                    downloadOpen &&
-                    <div>
-                      <p>Not available</p>
-                    </div>
-                  }
-                </TetherComponent>
+                  <SvgIcon name="icon-download" className="download -medium" />
+                  Download data
+                </button>
+                
                 <SortBy
                   order={this.props.filters.order}
                   direction={this.props.filters.direction}

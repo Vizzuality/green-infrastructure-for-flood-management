@@ -2,6 +2,9 @@ import React from 'react';
 import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
+import isUrl from 'validator/lib/isUrl';
+
+import { setNumberFormat, saveAsFile } from 'utils/general';
 
 export default class ProjectDetail extends React.Component {
 
@@ -54,10 +57,15 @@ export default class ProjectDetail extends React.Component {
     });
   }
 
+  parseCost(millions) {
+    return setNumberFormat(millions * 1000000);
+  }
+
   render() {
     const { data } = this.props;
     const { shareOpen, downloadOpen } = this.state;
     const setArrayValues = array => array.map((pboi, i) => <span className="value-item" key={i}>{pboi.name}</span>);
+
 
     return (
       <article className="c-project-detail">
@@ -91,34 +99,19 @@ export default class ProjectDetail extends React.Component {
               }
             </TetherComponent>
 
-            <TetherComponent
-              attachment="top center"
-              constraints={[{
-                to: 'scrollParent',
-                attachment: 'together'
-              }]}
-              classes={{
-                element: 'c-dropdown'
-              }}
+            <button 
+              className="action" 
+              type="button" 
+              onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
             >
-              { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={(e) => this.toggleDataDropdown(e, 'downloadOpen')} ref={c => this.downloadBtn = c}>
-                <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
-                Download
-              </button>
-              { /* Second child: If present, this item will be tethered to the the first child */ }
-              {
-                downloadOpen &&
-                <div>
-                  <p>Not available</p>
-                </div>
-              }
-            </TetherComponent>
+              <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
+              Download PDF
+            </button>
           </div>
         </div>
         <div className="project-detail-section">
           <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
-          <span className="project-date">{`${data.start_year} - ${data.completion_year || 'Present'}`}</span>
+          <span className="project-date">{`${data.start_year} - ${data.completion_year || 'present'}`}</span>
           <h1 className="project-name">{data.name}</h1>
         </div>
         <div className="project-resumme">
@@ -133,28 +126,28 @@ export default class ProjectDetail extends React.Component {
 
           <span className="label">Project resume</span>
           <p className="project-text">{data.summary}</p>
-          <a className="project-link" rel="noopener noreferrer" target="_blank" href="http://www.worldbank.org/">website</a>
+          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>website</a>
         </div>
         <div className="project-info">
           <div className="project-info-item">
             <Row>
-              <div className="small-4">
+              {data.intervention_type && <div className="small-4">
                 <span className="label">Intervention</span>
                 <span className="value">{data.intervention_type}</span>
-              </div>
-              <div className="small-4">
+              </div>}
+              {data.hazard_types.length ? <div className="small-4">
                 <span className="label">Hazard</span>
                 <span className="value">{data.hazard_types.map((ht, i) => <span className="value-item" key={i}>{ht.name}</span>)}</span>
-              </div>
-              <div className="small-4">
+              </div> : ''}
+              {data.scale && <div className="small-4">
                 <span className="label">Scale</span>
                 <span className="value">{data.scale}</span>
-              </div>
+              </div>}
             </Row>
           </div>
 
           {data.primary_benefits_of_interventions.length && <div className="project-info-item">
-            <span className="label">Primary benefits of intervention</span>
+            <span className="label">Risk reduction benefits</span>
             <span className="value">{setArrayValues(data.primary_benefits_of_interventions)}</span>
           </div>}
 
@@ -163,20 +156,23 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{setArrayValues(data.co_benefits_of_interventions)}</span>
           </div>}
 
-          <div className="project-info-item">
+          {data.donors.length ? <div className="project-info-item">
             <span className="label">Main Donor</span>
             <span className="value">{data.donors.length ? data.donors[0].name : 'Unknown'}</span>
-          </div>
+          </div> : ''}
 
           <div className="project-info-item">
             <Row>
-              <div className="small-6">
-                <span className="label">Est. Monetary Cost (Today's US$)</span>
-                <span className="value -big">{data.estimated_cost} US$</span>
+              <div className="property small-6">
+                <span className="label">
+                  <span>Est. Monetary Cost</span>
+                  <span className="sublabel">(Today's US$)</span>
+                </span>
+                <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
               </div>
-              <div className="small-6">
+              <div className="property small-6">
                 <span className="label">Est. Monetary benefits</span>
-                <span className="value -big">{data.estimated_monetary_benefits} US$</span>
+                <span className="value -big">{data.estimated_monetary_benefits ? `${this.parseCost(data.estimated_monetary_benefits)} US$` : 'Unknown'}</span>
               </div>
             </Row>
           </div>
@@ -186,15 +182,15 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{data.benefit_details}</span>
           </div>}
 
-          {data.learn_more !== '' && <div className="project-info-item">
+          {/*data.learn_more && data.learn_more !== '' && <div className="project-info-item">
             <span className="label">Learn more</span>
-            <span className="value">{data.learn_more}</span>
-          </div>}
+            <span className="value">{isUrl(data.learn_more) ? <a className="link" href={data.learn_more}>{data.learn_more}</a> : data.learn_more}</span>
+          </div>*/}
 
-          {data.references !== '' && <div className="project-info-item">
+          {/*data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
-            <span className="value">{data.references}</span>
-          </div>}
+            <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
+          </div>*/}
         </div>
       </article>
     );

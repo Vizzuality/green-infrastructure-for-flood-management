@@ -1,3 +1,5 @@
+import { get } from 'utils/request';
+
 /* Constants */
 const SET_MAP_LOCATION = 'SET_MAP_LOCATION';
 const RESET_MAP_STATE = 'RESET_MAP_STATE';
