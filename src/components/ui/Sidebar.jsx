@@ -1,6 +1,7 @@
 import React from 'react';
 import { SvgIcon } from 'vizz-components';
 import classnames from 'classnames';
+import { saveAsFile } from 'utils/general';
 
 export default class Sidebar extends React.Component {
 
@@ -61,7 +62,12 @@ export default class Sidebar extends React.Component {
               <li onClick={() => { this.toggle(); this.props.actions.focusSearch(); }}>Search</li>
               <li onClick={() => { this.toggle(); this.props.actions.openFilters(); }}>Filter / Sort by</li>
             </ul>
-            <button className="c-btn -transparent">Download data</button>
+            <button 
+              className="c-btn -transparent"
+              onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
+            >
+              Download data
+            </button>
           </div>
         </div>
       </aside>

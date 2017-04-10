@@ -307,7 +307,7 @@ export default class MapPage extends React.Component {
             openFilters: () => this.props.setFiltersUi({ closed: false })
           }}
         >
-          <Spinner className="-transparent" isLoading={this.props.loading} />
+          <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
             <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} /> :
             <div className="project-list-wrapper">

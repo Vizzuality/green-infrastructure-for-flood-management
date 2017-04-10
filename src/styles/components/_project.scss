@@ -28,6 +28,10 @@ $_separation: ($space-1 * 4);
         border: 0;
       }
     }
+
+    &.no-items {
+      padding: $_separation;
+    }
   }
 }
 
