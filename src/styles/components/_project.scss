@@ -51,9 +51,9 @@ $_separation: ($space-1 * 4);
 
   .project-name {
     display: block;
-    font-size: $font-size-extrabig;
+    font-size: $font-size-big;
     margin-bottom: $space-1 * 1.6;
-    line-height: 1.33;
+    line-height: 24px;
     color: $color-text-1;
     font-weight: 600;
   }
