@@ -14,7 +14,7 @@ export default function ProjectItem(props) {
         </ul>
         <div className="project-tags-container row collapse">
           <p className="project-tags column small-12 medium-8">
-            <span className="title">Solution:</span><span> {data.primary_benefits_of_interventions[0].name} {data.primary_benefits_of_interventions.length > 1 && <PlusNumber list={data.primary_benefits_of_interventions} className='-right' />}</span>
+            <span className="title">Solution:</span><span> {data.nature_based_solutions[0].name} {data.nature_based_solutions.length > 1 && <PlusNumber list={data.nature_based_solutions} className='-right' />}</span>
           </p>
           <p className="project-tags column small-12 medium-4">
             <span className="title">Hazard: </span><span> {data.hazard_types[0].name} {data.hazard_types.length > 1 && <PlusNumber list={data.hazard_types} className='-right' />}</span>
