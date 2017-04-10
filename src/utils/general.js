@@ -7,4 +7,15 @@ function setNumberFormat(number) {
   return numeral(number).format(type);
 }
 
-export { setNumberFormat };
+function saveAsFile(fileUrl, fileName) {
+  const a = document.createElement('a');
+  a.href = fileUrl;
+  a.style.display = 'none';
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+}
+
+export { setNumberFormat, saveAsFile };
