@@ -58,7 +58,7 @@ export default class HomePage extends React.Component {
               <div className="small-6">
                 <h1 className="h1 -secondary -line">Submit your project</h1>
                 <p className="text -secondary">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
-                <Link className="btn -primary">Submit a project</Link>
+                <Link to="/submit" className="btn -primary">Submit a project</Link>
               </div>
             </Row>
           </div>
