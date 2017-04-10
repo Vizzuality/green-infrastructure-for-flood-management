@@ -26,7 +26,7 @@
   padding: 20px;
 
   .project-name {
-    font-size: $font-size-extrabig;
+    font-size: $font-size-big;
     font-weight: bold;
     line-height: 1.33;
     letter-spacing: .2;
@@ -44,6 +44,7 @@
   .project-hazards {
     font-size: $font-size-small;
     color: palette(gray);
+    text-transform: capitalize;
   }
 }
 
