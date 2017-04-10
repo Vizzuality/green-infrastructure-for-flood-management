@@ -83,8 +83,6 @@ export default class Filters extends React.Component {
 
   render() {
     const { options } = this.props;
-    console.log(this.state.cost.disabled);
-
 
     return (
       <div className="c-filters">
