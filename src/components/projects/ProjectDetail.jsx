@@ -2,7 +2,7 @@ import React from 'react';
 import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
-import isUrl from 'validator/lib/isUrl';
+// import isUrl from 'validator/lib/isUrl';
 
 import { setNumberFormat, saveAsFile } from 'utils/general';
 
