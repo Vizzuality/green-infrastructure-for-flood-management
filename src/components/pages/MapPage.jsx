@@ -24,7 +24,7 @@ export default class MapPage extends React.Component {
     super(props);
     this.state = {
       sidebarScroll: 0,
-      downloadOpen: false
+      markers: []
     };
 
     // Bindings
@@ -52,6 +52,12 @@ export default class MapPage extends React.Component {
   componentWillReceiveProps(newProps) {
     if (!isEqual(this.props.filters, newProps.filters)) {
       this.getProjects(newProps.filters);
+    }
+
+    if (!isEqual(this.props.projects, newProps.projects)) {
+      this.setState({
+        markers: this.getMarkers(newProps)
+      });
     }
   }
 
@@ -189,7 +195,7 @@ export default class MapPage extends React.Component {
     `;
   }
 
-  getMarkers() {
+  getMarkers(props) {
     const pruneCluster = new PruneClusterForLeaflet();
 
     /* Marker icon */
@@ -243,13 +249,12 @@ export default class MapPage extends React.Component {
             });
           } else {
             // We should check if the sidebar is opened
-            const sidebarWidth = this.props.sidebarWidth + 25;
+            const sidebarWidth = props.sidebarWidth + 25;
             pruneCluster._map.fitBounds(bounds, {
               paddingTopLeft: [sidebarWidth, 25],
               paddingBottomRight: [50, 25]
             });
           }
-
         }
       });
 
@@ -270,7 +275,7 @@ export default class MapPage extends React.Component {
       });
     }
 
-    const { projectDetail } = this.props;
+    const { projectDetail } = props;
     if (projectDetail) {
       // If projectDetails is setted, just display that project on map
       if (projectDetail.locations && projectDetail.locations.length) {
@@ -278,11 +283,11 @@ export default class MapPage extends React.Component {
       }
     } else {
       // If not, let's show all projects
-      this.props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
+      props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
       .forEach(pushMarker);
     }
 
-    return (this.props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
+    return (props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
   }
 
   /* Render */
@@ -291,9 +296,7 @@ export default class MapPage extends React.Component {
     const listeners = this.getMapListeners();
     const mapMethods = this.getMapMethods();
     const mapOptions = this.getMapOptions();
-    const markers = this.getMarkers();
-
-    const { downloadOpen } = this.state;
+    const { markers } = this.state;
     const mapParams = { listeners, mapMethods, mapOptions, markers };
 
     return (
@@ -331,7 +334,7 @@ export default class MapPage extends React.Component {
                   <SvgIcon name="icon-download" className="download -medium" />
                   Download data
                 </button>
-                
+
                 <SortBy
                   order={this.props.filters.order}
                   direction={this.props.filters.direction}
