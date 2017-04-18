@@ -54,7 +54,7 @@ export default class MapPage extends React.Component {
       this.getProjects(newProps.filters);
     }
 
-    if (!isEqual(this.props.projects, newProps.projects)) {
+    if (!isEqual(this.props.projects, newProps.projects) || !isEqual(this.props.projectDetail, newProps.projectDetail)) {
       this.setState({
         markers: this.getMarkers(newProps)
       });
@@ -276,6 +276,7 @@ export default class MapPage extends React.Component {
     }
 
     const { projectDetail } = props;
+
     if (projectDetail) {
       // If projectDetails is setted, just display that project on map
       if (projectDetail.locations && projectDetail.locations.length) {
