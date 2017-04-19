@@ -18,14 +18,19 @@ function updateUrl() {
     const state = getState();
     const { filters } = state.projects;
     const { map } = state;
+    const { pathname } = window.location;
 
     const locationDescriptor = {
-      pathname: '/map',
+      pathname,
       query: {
-        map: encode(map),
-        filters: encode(filters)
+        map: encode(map)
       }
     };
+
+    if (pathname === '/map') {
+      locationDescriptor.query.filters = encode(filters);
+    }
+
     storeDispatch(replace(locationDescriptor));
   };
 }
@@ -41,6 +46,7 @@ function onEnterMapPage({ location }, replaceUrl, done) {
     dispatch(setMapLocation(parsedMap));
   }
 
+  dispatch(setProjectsDetail(null));
   done();
 }
 

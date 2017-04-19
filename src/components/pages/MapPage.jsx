@@ -305,7 +305,7 @@ export default class MapPage extends React.Component {
         >
           <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
-            <ProjectDetail data={this.props.projectDetail} onBack={() => this.props.setProjectsDetail(null)} /> :
+            <ProjectDetail data={this.props.projectDetail} /> :
             <div className="project-list-wrapper">
               <SlidingMenu
                 title="filters"
@@ -368,6 +368,5 @@ MapPage.propTypes = {
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
   resetMapState: React.PropTypes.func,
-  setProjectsDetail: React.PropTypes.func,
   setFiltersUi: React.PropTypes.func
 };

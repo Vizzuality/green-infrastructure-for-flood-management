@@ -2,6 +2,7 @@ import React from 'react';
 import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
+import { Link } from 'react-router';
 // import isUrl from 'validator/lib/isUrl';
 
 import { setNumberFormat, saveAsFile } from 'utils/general';
@@ -70,10 +71,10 @@ export default class ProjectDetail extends React.Component {
     return (
       <article className="c-project-detail">
         <div className="project-bar">
-          <button className="project-back" onClick={this.props.onBack} type="button">
+          <Link to="/map" className="project-back">
             <SvgIcon className="project-back-icon" name="icon-arrow-left-2" />
             Project list
-          </button>
+          </Link>
           <div className="project-actions">
             <TetherComponent
               attachment="top center"
@@ -99,9 +100,9 @@ export default class ProjectDetail extends React.Component {
               }
             </TetherComponent>
 
-            <button 
-              className="action" 
-              type="button" 
+            <button
+              className="action"
+              type="button"
               onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
             >
               <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
@@ -198,6 +199,5 @@ export default class ProjectDetail extends React.Component {
 }
 
 ProjectDetail.propTypes = {
-  data: React.PropTypes.object,
-  onBack: React.PropTypes.func
+  data: React.PropTypes.object
 };
