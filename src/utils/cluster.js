@@ -3,7 +3,7 @@ import { PruneCluster, PruneClusterForLeaflet } from 'lib/PruneCluster';
 function getPopupMarkup(data) {
   const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
   const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
-  const url = `/map?detail=${data.id}`;
+  const url = `/map/project/${data.id}`;
 
   return `
     <div class="c-tooltip">
