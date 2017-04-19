@@ -44,9 +44,10 @@ export default class Sidebar extends React.Component {
 
   render() {
     const cNames = classnames('c-sidebar', { '-opened': this.state.opened });
+    const contentCNames = classnames('sidebar-content', { '-no-scroll': this.props.filtersOpened });
     return (
       <aside ref={node => this.el = node} className={cNames}>
-        <div ref={node => this.elContent = node} className="sidebar-content">
+        <div ref={node => this.elContent = node} className={contentCNames}>
           {this.props.showBtn && <button type="button" className="sidebar-btn" onClick={this.toggle}>
             <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
           </button>}
@@ -62,7 +63,7 @@ export default class Sidebar extends React.Component {
               <li onClick={() => { this.toggle(); this.props.actions.focusSearch(); }}>Search</li>
               <li onClick={() => { this.toggle(); this.props.actions.openFilters(); }}>Filter / Sort by</li>
             </ul>
-            <button 
+            <button
               className="c-btn -transparent"
               onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
             >
@@ -77,6 +78,7 @@ export default class Sidebar extends React.Component {
 
 Sidebar.propTypes = {
   opened: React.PropTypes.bool,
+  filtersOpened: React.PropTypes.bool,
   actions: React.PropTypes.object,
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.node),
