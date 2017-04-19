@@ -21,14 +21,14 @@ function updateUrl() {
     const { pathname } = window.location;
 
     const locationDescriptor = {
-      pathname,
-      query: {
-        map: encode(map)
-      }
+      pathname
     };
 
     if (pathname === '/map') {
-      locationDescriptor.query.filters = encode(filters);
+      locationDescriptor.query = {
+        filters: encode(filters),
+        map: encode(map)
+      };
     }
 
     storeDispatch(replace(locationDescriptor));
