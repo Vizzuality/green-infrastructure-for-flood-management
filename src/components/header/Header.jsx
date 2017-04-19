@@ -8,7 +8,7 @@ export default function Header() {
   const cNames = {
     header: classnames('c-header', { '-home': window.location.pathname === '/' }),
     nav: classnames('header-nav', { '-home': window.location.pathname === '/' }),
-    headerContent: classnames('header-content', { 'l-app-wrapper': window.location.pathname !== '/map' })
+    headerContent: classnames('header-content', { 'l-app-wrapper': !window.location.pathname.startsWith('/map') })
   };
 
   return (
