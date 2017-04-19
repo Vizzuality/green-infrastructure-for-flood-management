@@ -28,7 +28,6 @@ export default class MapPage extends React.Component {
     };
 
     // Bindings
-    this.goToProjectDetail = this.goToProjectDetail.bind(this);
     this.onSearchChange = debounce(this.onSearchChange, 300);
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
@@ -112,13 +111,6 @@ export default class MapPage extends React.Component {
 
   onSearchChange(val) {
     this.props.setProjectsFilters({ name: val });
-  }
-
-  goToProjectDetail(projectId) {
-    this.setState({
-      sidebarScroll: 0
-    });
-    this.props.setProjectsDetail(projectId);
   }
 
   getMapListeners() {
@@ -343,7 +335,7 @@ export default class MapPage extends React.Component {
                   setProjectsFilters={this.props.setProjectsFilters}
                 />
               </div>
-              <ProjectList projects={this.props.projects} onProjectSelect={this.goToProjectDetail} />
+              <ProjectList projects={this.props.projects} />
             </div>
           }
         </Sidebar>
