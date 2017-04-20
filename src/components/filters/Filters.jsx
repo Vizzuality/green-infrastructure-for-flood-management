@@ -10,8 +10,21 @@ import 'react-toggle-switch/dist/css/switch.min.css';
 import CheckboxGroup from 'components/ui/CheckboxGroup';
 
 import { setNumberFormat } from 'utils/general';
-import { typeOptions, interventionOptions, hazardOptions, organizationsOptions, scalesOptions, solutionOptions, regionsOptions, coBenefitsOptions, primaryBenefitsOptions, statusOptions } from 'constants/filters';
+import {
+  typeOptions,
+  interventionOptions,
+  hazardOptions,
+  organizationsOptions,
+  scalesOptions,
+  solutionOptions,
+  regionsOptions,
+  coBenefitsOptions,
+  primaryBenefitsOptions,
+  statusOptions
+} from 'constants/filters';
 import { countriesOptions } from 'constants/countries';
+import { resetProjectFilters } from 'modules/projects';
+import { dispatch } from 'main';
 
 const million = 1000000;
 
@@ -61,13 +74,7 @@ export default class Filters extends React.Component {
   }
 
   resetFilters() {
-    Object.keys(this.props.filters).forEach(key => {
-      if (key === 'from_cost') {
-        this.resetCost();
-      } else if (key !== 'to_cost' && key !== 'order' && key !== 'direction'){
-        this.setArrayProjectsFilter([], key);
-      }
-    });
+    dispatch(resetProjectFilters());
   }
 
   onChangeCostSwitch(e) {
@@ -208,7 +215,7 @@ export default class Filters extends React.Component {
         <div className="filter-field">
           <label className="title">
             <span>Cost range (US$)</span>
-            <Switch 
+            <Switch
               onClick={this.onChangeCostSwitch}
               on={!this.state.cost.disabled}
               className="c-switch"
@@ -239,8 +246,6 @@ Filters.propTypes = {
   // Actions
   options: React.PropTypes.object,
   close: React.PropTypes.func,
-  setArrayProjectsFilters: React.PropTypes.func,
-  getFiltersOptions: React.PropTypes.func,
   filters: React.PropTypes.object
 };
 Filters.defaultProps = {};
