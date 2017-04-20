@@ -1,4 +1,5 @@
 import React from 'react';
+import upperFirst from 'lodash/upperFirst';
 import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
@@ -64,9 +65,10 @@ export default class ProjectDetail extends React.Component {
 
   render() {
     const { data } = this.props;
-    const { shareOpen, downloadOpen } = this.state;
-    const setArrayValues = array => array.map((pboi, i) => <li className="value-item" key={i}>{pboi.name}</li>);
-
+    const { shareOpen } = this.state;
+    const setArrayValues = array => array.map((pboi, i) => (
+      <li className="value-item" key={i}>{upperFirst(pboi.name)}</li>
+    ));
 
     return (
       <article className="c-project-detail">
@@ -87,7 +89,7 @@ export default class ProjectDetail extends React.Component {
               }}
             >
               { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={(e) => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
+              <button className="action" type="button" onClick={e => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
                 <SvgIcon className="project-share-icon -medium" name="icon-share" />
                 Share
               </button>
@@ -134,15 +136,15 @@ export default class ProjectDetail extends React.Component {
             <Row>
               {data.intervention_type && <div className="column small-4">
                 <span className="label">Intervention</span>
-                <span className="value">{data.intervention_type}</span>
+                <span className="value">{upperFirst(data.intervention_type)}</span>
               </div>}
               {data.hazard_types.length ? <div className="column small-4">
                 <span className="label">Hazard</span>
-                <ul className="value">{data.hazard_types.map((ht, i) => <li className="value-item" key={i}>{ht.name}</li>)}</ul>
+                <ul className="value">{data.hazard_types.map((ht, i) => <li className="value-item" key={i}>{upperFirst(ht.name)}</li>)}</ul>
               </div> : ''}
               {data.scale && <div className="column small-4">
                 <span className="label">Scale</span>
-                <span className="value">{data.scale}</span>
+                <span className="value">{upperFirst(data.scale)}</span>
               </div>}
             </Row>
           </div>
@@ -159,7 +161,7 @@ export default class ProjectDetail extends React.Component {
 
           {data.donors.length ? <div className="project-info-item">
             <span className="label">Main Donor</span>
-            <span className="value">{data.donors.length ? data.donors[0].name : 'Unknown'}</span>
+            <span className="value">{data.donors.length ? upperFirst(data.donors[0].name) : 'Unknown'}</span>
           </div> : ''}
 
           <div className="project-info-item">
