@@ -9,4 +9,9 @@
   font-size: $font-size-default;
   font-weight: 600;
   box-shadow: 0 0 8px 0 rgba(black, 0.16);
+
+  &.-current {
+    box-shadow: $primary-color 0 0 11px 7px;
+    // background-color: darken(palette(yellow), 5%);
+  }
 }

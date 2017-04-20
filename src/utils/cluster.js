@@ -22,9 +22,17 @@ function getMarkers(props) {
 
   /* Marker icon */
   pruneCluster.PrepareLeafletMarker = (leafletMarker, data) => {
+    const { projectDetail } = props;
+    let className = 'c-marker';
+
+    // Highlight current project marker
+    if (projectDetail && projectDetail.id === data.id) {
+      className += ' -current';
+    }
+
     leafletMarker.setIcon(L.divIcon({
       iconSize: [15, 15],
-      className: 'c-marker',
+      className,
       html: '<div class="marker-inner"></div>'
     }));
 
@@ -97,20 +105,24 @@ function getMarkers(props) {
     });
   }
 
-  const { projectDetail } = props;
+  // NOTE: following commented code just displays selected project locations
+  // const { projectDetail } = props;
+  // if (projectDetail) {
+  //   // If projectDetails is setted, just display that project on map
+  //   if (projectDetail.locations && projectDetail.locations.length) {
+  //     pushMarker(projectDetail);
+  //   }
+  // } else {
+  //   // If not, let's show all projects
+  //   props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
+  //   .forEach(pushMarker);
+  // }
+  // return (props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
 
-  if (projectDetail) {
-    // If projectDetails is setted, just display that project on map
-    if (projectDetail.locations && projectDetail.locations.length) {
-      pushMarker(projectDetail);
-    }
-  } else {
-    // If not, let's show all projects
-    props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
-    .forEach(pushMarker);
-  }
+  props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
+  .forEach(pushMarker);
 
-  return (props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
+  return props.projects.length ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
 }
 
 export { getMarkers };
