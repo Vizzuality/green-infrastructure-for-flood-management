@@ -37,12 +37,10 @@ export default class MapPage extends React.Component {
   componentWillMount() {
     this.props.updateUrl();
 
-    // Fetch projects from server if they haven't been fetched yet
-    if (!this.props.projects.length) {
-      this.getProjects(this.props.filters);
-    }
+    // Projects has to be fetched every time becaouse of filter is being done at server
+    this.getProjects(this.props.filters);
 
-    // Fetch projects from server if they haven't been fetched yet
+    // Fetch filter options from server if they haven't been fetched yet
     if (!this.props.filtersOptions.length) {
       this.props.getFiltersOptions();
     }
