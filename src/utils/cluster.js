@@ -1,5 +1,7 @@
 import { PruneCluster, PruneClusterForLeaflet } from 'lib/PruneCluster';
 
+PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
+
 function getPopupMarkup(data) {
   const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
   const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
@@ -19,10 +21,10 @@ function getPopupMarkup(data) {
 
 function getMarkers(props) {
   const pruneCluster = new PruneClusterForLeaflet();
+  const { projectDetail } = props;
 
   /* Marker icon */
   pruneCluster.PrepareLeafletMarker = (leafletMarker, data) => {
-    const { projectDetail } = props;
     let className = 'c-marker';
 
     // Highlight current project marker
@@ -46,12 +48,22 @@ function getMarkers(props) {
   };
 
   /* Cluster */
+
   pruneCluster.BuildLeafletCluster = (cluster, position) => {
+    let className = 'c-marker';
+    const markers = cluster.GetClusterMarkers();
+
+    markers.forEach((marker) => {
+      if (marker.data.id === projectDetail.id) {
+        className += ' -current';
+      }
+    });
+
     const size = 15 + Math.pow(cluster.population * 100, 0.5);
     /* Cluster icon */
     const icon = L.divIcon({
       iconSize: [size, size],
-      className: 'c-marker',
+      className,
       html: `<div class="marker-inner">${cluster.population}</div>`
     });
 
