@@ -1,4 +1,6 @@
 import { PruneCluster, PruneClusterForLeaflet } from 'lib/PruneCluster';
+import { push } from 'react-router-redux';
+import { dispatch } from 'main';
 
 PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
 
@@ -7,16 +9,21 @@ function getPopupMarkup(data) {
   const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
   const url = `/map/project/${data.id}`;
 
-  return `
+  const myPopup = L.DomUtil.create('div', 'infoWindow');
+  myPopup.innerHTML = `
     <div class="c-tooltip">
       <div class="tooltip-content">
         <div class="project-name">${data.name}</div>
         <div class="project-orgs">${orgs}</div>
         <div class="project-hazards">${hazards}</div>
       </div>
-      <a class="tooltip-link" href="${url}">More info</a>
+      <a class="tooltip-link">More info</a>
     </div>
   `;
+
+  myPopup.querySelector('a').addEventListener('click', () => dispatch(push(url)));
+
+  return myPopup;
 }
 
 function getMarkers(props) {
