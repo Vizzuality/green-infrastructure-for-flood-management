@@ -24,7 +24,7 @@ export default class MapPage extends React.Component {
     super(props);
     this.state = {
       sidebarScroll: 0,
-      markers: []
+      markers: getMarkers(props)
     };
 
     // Bindings
