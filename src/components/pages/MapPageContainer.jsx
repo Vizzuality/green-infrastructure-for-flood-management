@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import MapPage from './MapPage';
-import { getProjects, setProjectsDetail, setProjectsFilters } from 'modules/projects';
+import { getProjects, setProjectsDetail, setProjectsFilters, resetProjectFilters } from 'modules/projects';
 import getProjectDetails from 'selectors/project_detail';
 import { updateUrl } from 'modules/url';
 import { setMapLocation, resetMapState } from 'modules/map';
-import { setSidebarWidth, setFiltersUi } from 'modules/ui';
+import { setSidebarWidth, setFiltersUi, resetFiltersUi } from 'modules/ui';
 import { getFiltersOptions } from 'modules/filters_options';
 
 const mapStateToProps = state => ({
@@ -27,6 +27,8 @@ const mapDispatchToProps = dispatch => ({
   },
   resetMapState() {
     dispatch(resetMapState());
+    dispatch(resetProjectFilters());
+    dispatch(resetFiltersUi());
     dispatch(setProjectsDetail(null));
   },
   setMapLocation(params) {

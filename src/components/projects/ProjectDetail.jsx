@@ -65,7 +65,7 @@ export default class ProjectDetail extends React.Component {
   render() {
     const { data } = this.props;
     const { shareOpen, downloadOpen } = this.state;
-    const setArrayValues = array => array.map((pboi, i) => <span className="value-item" key={i}>{pboi.name}</span>);
+    const setArrayValues = array => array.map((pboi, i) => <li className="value-item" key={i}>{pboi.name}</li>);
 
 
     return (
@@ -118,29 +118,29 @@ export default class ProjectDetail extends React.Component {
         <div className="project-resumme">
           <div className="project-cost">
             <Row>
-              <div className="small-12">
+              <div className="column small-12">
                 <span className="label">Nature based solutions</span>
-                <span className="value -big">{setArrayValues(data.nature_based_solutions)}</span>
+                <ul className="value -big">{setArrayValues(data.nature_based_solutions)}</ul>
               </div>
             </Row>
           </div>
 
-          <span className="label">Project resume</span>
+          <span className="label">Project summary</span>
           <p className="project-text">{data.summary}</p>
           <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>website</a>
         </div>
         <div className="project-info">
           <div className="project-info-item">
             <Row>
-              {data.intervention_type && <div className="small-4">
+              {data.intervention_type && <div className="column small-4">
                 <span className="label">Intervention</span>
                 <span className="value">{data.intervention_type}</span>
               </div>}
-              {data.hazard_types.length ? <div className="small-4">
+              {data.hazard_types.length ? <div className="column small-4">
                 <span className="label">Hazard</span>
-                <span className="value">{data.hazard_types.map((ht, i) => <span className="value-item" key={i}>{ht.name}</span>)}</span>
+                <ul className="value">{data.hazard_types.map((ht, i) => <li className="value-item" key={i}>{ht.name}</li>)}</ul>
               </div> : ''}
-              {data.scale && <div className="small-4">
+              {data.scale && <div className="column small-4">
                 <span className="label">Scale</span>
                 <span className="value">{data.scale}</span>
               </div>}
@@ -149,12 +149,12 @@ export default class ProjectDetail extends React.Component {
 
           {data.primary_benefits_of_interventions.length && <div className="project-info-item">
             <span className="label">Risk reduction benefits</span>
-            <span className="value">{setArrayValues(data.primary_benefits_of_interventions)}</span>
+            <ul className="value">{setArrayValues(data.primary_benefits_of_interventions)}</ul>
           </div>}
 
           {data.co_benefits_of_interventions.length && <div className="project-info-item">
             <span className="label">Co-benefits of intervention</span>
-            <span className="value">{setArrayValues(data.co_benefits_of_interventions)}</span>
+            <ul className="value">{setArrayValues(data.co_benefits_of_interventions)}</ul>
           </div>}
 
           {data.donors.length ? <div className="project-info-item">
@@ -164,14 +164,14 @@ export default class ProjectDetail extends React.Component {
 
           <div className="project-info-item">
             <Row>
-              <div className="property small-6">
+              <div className="property column small-6">
                 <span className="label">
                   <span>Est. Monetary Cost</span>
                   <span className="sublabel">(Today's US$)</span>
                 </span>
                 <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
               </div>
-              <div className="property small-6">
+              <div className="property column small-6">
                 <span className="label">Est. Monetary benefits</span>
                 <span className="value -big">{data.estimated_monetary_benefits ? `${this.parseCost(data.estimated_monetary_benefits)} US$` : 'Unknown'}</span>
               </div>

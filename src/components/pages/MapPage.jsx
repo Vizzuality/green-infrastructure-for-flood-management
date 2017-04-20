@@ -24,7 +24,8 @@ export default class MapPage extends React.Component {
     super(props);
     this.state = {
       sidebarScroll: 0,
-      markers: []
+      markers: getMarkers(props),
+      mapMethods: this.getMapMethods(props)
     };
 
     // Bindings
@@ -37,12 +38,10 @@ export default class MapPage extends React.Component {
   componentWillMount() {
     this.props.updateUrl();
 
-    // Fetch projects from server if they haven't been fetched yet
-    if (!this.props.projects.length) {
-      this.getProjects(this.props.filters);
-    }
+    // Projects has to be fetched every time becaouse of filter is being done at server
+    this.getProjects(this.props.filters);
 
-    // Fetch projects from server if they haven't been fetched yet
+    // Fetch filter options from server if they haven't been fetched yet
     if (!this.props.filtersOptions.length) {
       this.props.getFiltersOptions();
     }
@@ -55,7 +54,8 @@ export default class MapPage extends React.Component {
 
     if (!isEqual(this.props.projects, newProps.projects) || !isEqual(this.props.projectDetail, newProps.projectDetail)) {
       this.setState({
-        markers: getMarkers(newProps)
+        markers: getMarkers(newProps),
+        mapMethods: this.getMapMethods(newProps)
       });
     }
   }
@@ -126,7 +126,7 @@ export default class MapPage extends React.Component {
     };
   }
 
-  getMapMethods() {
+  getMapMethods(props) {
     /* Map methods */
     const methods = {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
@@ -137,12 +137,12 @@ export default class MapPage extends React.Component {
 
     let points = [];
 
-    if (this.props.projectDetail && this.props.projectDetail.locations.length) {
+    if (props.projectDetail && props.projectDetail.locations.length) {
       // If we are in project detail, bounds are the project detail locations
-      points = this.props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
+      points = props.projectDetail.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]);
     } else {
       // If we are in global view, bounds are all project locations
-      this.props.projects.forEach((project) => {
+      props.projects.forEach((project) => {
         points.push(project.locations.map(p => [p.centroid.coordinates[1], p.centroid.coordinates[0]]));
       });
     }
@@ -152,7 +152,7 @@ export default class MapPage extends React.Component {
       methods.fitBounds = {
         bounds,
         options: {
-          paddingTopLeft: [this.props.sidebarWidth, 0],
+          paddingTopLeft: [props.sidebarWidth, 0],
           paddingBottomRight: [0, 0]
         }
       };
@@ -174,9 +174,8 @@ export default class MapPage extends React.Component {
   render() {
     /* Map params */
     const listeners = this.getMapListeners();
-    const mapMethods = this.getMapMethods();
     const mapOptions = this.getMapOptions();
-    const { markers } = this.state;
+    const { markers, mapMethods } = this.state;
     const mapParams = { listeners, mapMethods, mapOptions, markers };
 
     return (
@@ -206,6 +205,8 @@ export default class MapPage extends React.Component {
                 focus={this.props.filtersUi.searchFocus}
                 defaultValue={this.props.filters.name}
                 onChange={evt => this.onSearchChange(evt.target.value)}
+                onClear={() => this.props.setProjectsFilters({ name: '' })}
+                placeholder="Search by project title"
               />
               <div className="sidebar-actions">
                 <button
