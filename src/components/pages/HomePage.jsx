@@ -68,9 +68,21 @@ export default class HomePage extends React.Component {
           <div className="l-app-wrapper">
             <h1 className="h1 -line">Partners</h1>
             <div className="c-partners">
-              <li><img src="/images/partners/deltares.png" alt="deltares" /></li>
-              <li><img src="/images/partners/wbg.png" alt="wbg" /></li>
-              <li><img src="/images/partners/gfdrr.png" alt="gfdrr" /></li>
+              <li>
+                <a href="https://www.deltares.nl/en/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/deltares.png" alt="deltares" />
+                </a>
+              </li>
+              <li>
+                <a href="http://www.worldbank.org/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/wbg.png" alt="wbg" />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.gfdrr.org/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/gfdrr.png" alt="gfdrr" />
+                </a>
+              </li>
             </div>
           </div>
         </section>
