@@ -243,7 +243,7 @@ $_separation: ($space-1 * 4);
 
     .project-info-item {
       margin-bottom: $space-1 * 4;
-      
+
       .property {
         display: flex;
         flex-flow: column;
@@ -276,6 +276,8 @@ $_separation: ($space-1 * 4);
     color: palette(black);
     text-transform: capitalize;
     line-height: 24px;
+    display: flex;
+    flex-wrap: wrap;
 
     &.-big {
       font-size: 36px;
