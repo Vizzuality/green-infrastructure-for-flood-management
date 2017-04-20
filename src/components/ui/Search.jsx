@@ -3,12 +3,20 @@ import { SvgIcon } from 'vizz-components';
 
 export default class Search extends React.Component {
 
+  /* Lifecycle */
   componentWillReceiveProps(newProps) {
     newProps.focus && this.input.focus();
   }
 
+  /* Methods */
+  clear() {
+    this.input.value = '';
+    this.props.onClear && this.props.onClear();
+  }
+
+  /* Render */
   render() {
-    const { focus, placeholder, ...props } = this.props;
+    const { focus, placeholder, onClear, ...props } = this.props;
     return (
       <div className="c-search">
         <input
@@ -18,6 +26,9 @@ export default class Search extends React.Component {
           placeholder={placeholder || 'Search'}
           {...props}
         />
+        <button onClick={() => this.clear()} className="clear-btn">
+          <SvgIcon className="clear-icon" name="icon-cross" />
+        </button>
         <SvgIcon className="search-icon" name="icon-search" />
       </div>
     );
@@ -26,5 +37,6 @@ export default class Search extends React.Component {
 
 Search.propTypes = {
   focus: React.PropTypes.bool,
-  placeholder: React.PropTypes.string
+  placeholder: React.PropTypes.string,
+  onClear: React.PropTypes.func
 };
