@@ -70,6 +70,8 @@ export default class ProjectDetail extends React.Component {
       <li className="value-item" key={i}>{upperFirst(pboi.name)}</li>
     ));
 
+    const a = null;
+
     return (
       <article className="c-project-detail">
         <div className="project-bar">
@@ -114,7 +116,7 @@ export default class ProjectDetail extends React.Component {
         </div>
         <div className="project-detail-section">
           <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
-          <span className="project-date">{`${data.start_year} - ${data.completion_year || 'present'}`}</span>
+          <span className="project-date">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
           <h1 className="project-name">{data.name}</h1>
         </div>
         <div className="project-resumme">
@@ -138,10 +140,10 @@ export default class ProjectDetail extends React.Component {
                 <span className="label">Intervention</span>
                 <span className="value">{upperFirst(data.intervention_type)}</span>
               </div>}
-              {data.hazard_types.length ? <div className="column small-4">
+              {data.hazard_types.length > 0 && <div className="column small-4">
                 <span className="label">Hazard</span>
                 <ul className="value">{data.hazard_types.map((ht, i) => <li className="value-item" key={i}>{upperFirst(ht.name)}</li>)}</ul>
-              </div> : ''}
+              </div>}
               {data.scale && <div className="column small-4">
                 <span className="label">Scale</span>
                 <span className="value">{upperFirst(data.scale)}</span>
@@ -149,20 +151,20 @@ export default class ProjectDetail extends React.Component {
             </Row>
           </div>
 
-          {data.primary_benefits_of_interventions.length && <div className="project-info-item">
+          {data.primary_benefits_of_interventions.length > 0 && <div className="project-info-item">
             <span className="label">Risk reduction benefits</span>
             <ul className="value">{setArrayValues(data.primary_benefits_of_interventions)}</ul>
           </div>}
 
-          {data.co_benefits_of_interventions.length && <div className="project-info-item">
+          {data.co_benefits_of_interventions.length > 0 && <div className="project-info-item">
             <span className="label">Co-benefits of intervention</span>
             <ul className="value">{setArrayValues(data.co_benefits_of_interventions)}</ul>
           </div>}
 
-          {data.donors.length ? <div className="project-info-item">
+          {data.donors.length > 0 && <div className="project-info-item">
             <span className="label">Main Donor</span>
             <span className="value">{data.donors.length ? upperFirst(data.donors[0].name) : 'Unknown'}</span>
-          </div> : ''}
+          </div>}
 
           <div className="project-info-item">
             <Row>
