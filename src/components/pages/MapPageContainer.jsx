@@ -25,10 +25,6 @@ const mapDispatchToProps = dispatch => ({
   setSidebarWidth(width) {
     dispatch(setSidebarWidth(width));
   },
-  setProjectsDetail(projectId) {
-    dispatch(setProjectsDetail(projectId));
-    dispatch(updateUrl());
-  },
   resetMapState() {
     dispatch(resetMapState());
     dispatch(setProjectsDetail(null));

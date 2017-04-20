@@ -1,4 +1,4 @@
-.btn {
+.c-btn {
   cursor: pointer;
   display: inline-block;
   padding: ($space-1 * 2) ($space-1 * 4);
@@ -35,10 +35,25 @@
     }
   }
 
+  &.-filled {
+    background-color: palette(white);
+    color: rgba($color-primary, .9);
+    font-weight: bold;
+
+    &:hover {
+      background-color: rgba(palette(white), .9);
+      color: rgba($color-text-1, 1);
+    }
+  }
+
   &.-transparent {
     background-color: transparent;
     color: palette(white);
     border: 1px solid palette(white);
+
+    &:hover {
+      opacity: .6;
+    }
   }
 
   &.-fixed {

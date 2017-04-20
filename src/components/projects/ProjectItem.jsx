@@ -1,12 +1,12 @@
 import React from 'react';
 import { SvgIcon } from 'vizz-components';
 import PlusNumber from 'components/ui/PlusNumber';
+import { Link }  from 'react-router';
 
 export default function ProjectItem(props) {
   const data = props.data;
-
   return (
-    <div className="c-project-item" onClick={() => props.onProjectSelect(data.id)}>
+    <Link to={`/map/project/${data.id}`} className="c-project-item">
       <div className="project-advance">
         <span className="project-name">{data.name}</span>
         <ul className="project-company">
@@ -24,11 +24,10 @@ export default function ProjectItem(props) {
       <button className="project-action">
         <SvgIcon name="icon-arrow-right-2" className="-medium"></SvgIcon>
       </button>
-    </div>
+    </Link>
   );
 }
 
 ProjectItem.propTypes = {
-  data: React.PropTypes.object.isRequired,
-  onProjectSelect: React.PropTypes.func
+  data: React.PropTypes.object.isRequired
 };

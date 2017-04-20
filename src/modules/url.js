@@ -16,23 +16,27 @@ function decode(obj) {
 function updateUrl() {
   return (storeDispatch, getState) => {
     const state = getState();
-    const { filters, detail } = state.projects;
+    const { filters } = state.projects;
     const { map } = state;
+    const { pathname } = window.location;
 
     const locationDescriptor = {
-      pathname: '/map',
-      query: {
-        map: encode(map),
-        filters: encode(filters),
-        detail
-      }
+      pathname
     };
+
+    if (pathname === '/map') {
+      locationDescriptor.query = {
+        filters: encode(filters),
+        map: encode(map)
+      };
+    }
+
     storeDispatch(replace(locationDescriptor));
   };
 }
 
 function onEnterMapPage({ location }, replaceUrl, done) {
-  const { filters, map, detail } = location.query;
+  const { filters, map } = location.query;
   if (filters) {
     const parsedFilters = decode(filters);
     dispatch(setProjectsFilters(parsedFilters));
@@ -41,11 +45,15 @@ function onEnterMapPage({ location }, replaceUrl, done) {
     const parsedMap = decode(map);
     dispatch(setMapLocation(parsedMap));
   }
-  if (detail) {
-    dispatch(setProjectsDetail(+detail));
-  }
 
+  dispatch(setProjectsDetail(null));
   done();
 }
 
-export { updateUrl, onEnterMapPage };
+function onEnterProjectDetail({ params }, replaceUrl, done) {
+  const { id } = params;
+  dispatch(setProjectsDetail(+id));
+  done();
+}
+
+export { updateUrl, onEnterMapPage, onEnterProjectDetail };
