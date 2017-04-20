@@ -4,7 +4,7 @@ import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
-// import isUrl from 'validator/lib/isUrl';
+import isUrl from 'validator/lib/isUrl';
 
 import { setNumberFormat, saveAsFile } from 'utils/general';
 
@@ -69,8 +69,6 @@ export default class ProjectDetail extends React.Component {
     const setArrayValues = array => array.map((pboi, i) => (
       <li className="value-item" key={i}>{upperFirst(pboi.name)}</li>
     ));
-
-    const a = null;
 
     return (
       <article className="c-project-detail">
@@ -187,15 +185,15 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{data.benefit_details}</span>
           </div>}
 
-          {/*data.learn_more && data.learn_more !== '' && <div className="project-info-item">
+          {data.learn_more && data.learn_more !== '' && <div className="project-info-item">
             <span className="label">Learn more</span>
             <span className="value">{isUrl(data.learn_more) ? <a className="link" href={data.learn_more}>{data.learn_more}</a> : data.learn_more}</span>
-          </div>*/}
+          </div>}
 
-          {/*data.references && data.references !== '' && <div className="project-info-item">
+          {data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
-          </div>*/}
+          </div>}
         </div>
       </article>
     );
