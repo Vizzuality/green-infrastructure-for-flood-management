@@ -27,7 +27,6 @@ function getPopupMarkup(data) {
 }
 
 function getMarkers(props) {
-  const pruneCluster = new PruneClusterForLeaflet(60);
   const { projectDetail } = props;
 
   /* Marker icon */
@@ -76,6 +75,7 @@ function getMarkers(props) {
     });
 
     const marker = new L.Marker(position, { icon });
+    const pruneCluster = this;
 
     marker.on('click', () => {
       /* Fitbounds width sidebar width padding */
@@ -113,28 +113,34 @@ function getMarkers(props) {
   }
 
   // Create a cluster for each country
-  const countryClusters = {};
+  const countryClusters = [];
   let lat;
   let lng;
   let marker;
+  let cluster;
 
   props.projects.forEach((project) => {
     project.locations.forEach((location) => {
-      if (!countryClusters[location.country_iso]) {
-        countryClusters[location.country_iso] = new PruneClusterForLeaflet(60);
-        countryClusters[location.country_iso].PrepareLeafletMarker = PrepareLeafletMarker;
-        countryClusters[location.country_iso].BuildLeafletCluster = BuildLeafletCluster;
+      cluster = countryClusters.find(c => c.id === location.country_iso);
+      if (!cluster) {
+        cluster = {
+          id: location.country_iso,
+          marker: new PruneClusterForLeaflet(60)
+        };
+        cluster.marker.PrepareLeafletMarker = PrepareLeafletMarker;
+        cluster.marker.BuildLeafletCluster = BuildLeafletCluster;
+        countryClusters.push(cluster);
       }
 
       lat = location.centroid.coordinates[1];
       lng = location.centroid.coordinates[0];
       marker = new PruneCluster.Marker(lat, lng);
       marker.data = project;
-      countryClusters[location.country_iso].RegisterMarker(marker);
+      cluster.marker.RegisterMarker(marker);
     });
   });
 
-  return props.projects.length ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
+  return countryClusters;
 }
 
 export { getMarkers };
