@@ -27,11 +27,11 @@ function getPopupMarkup(data) {
 }
 
 function getMarkers(props) {
-  const pruneCluster = new PruneClusterForLeaflet();
+  const pruneCluster = new PruneClusterForLeaflet(60);
   const { projectDetail } = props;
 
   /* Marker icon */
-  pruneCluster.PrepareLeafletMarker = (leafletMarker, data) => {
+  function PrepareLeafletMarker(leafletMarker, data) {
     let className = 'c-marker';
 
     // Highlight current project marker
@@ -52,11 +52,11 @@ function getMarkers(props) {
     leafletMarker.off('click').on('click', function mouseover() {
       this.openPopup();
     });
-  };
+  }
 
   /* Cluster */
 
-  pruneCluster.BuildLeafletCluster = (cluster, position) => {
+  function BuildLeafletCluster(cluster, position) {
     let className = 'c-marker';
     const markers = cluster.GetClusterMarkers();
     let isCurrent = false;
@@ -101,6 +101,7 @@ function getMarkers(props) {
           // We should check if the sidebar is opened
           const sidebarWidth = props.sidebarWidth + 25;
           pruneCluster._map.fitBounds(bounds, {
+            // maxZoom: pruneCluster._map.getZoom() + 2,
             paddingTopLeft: [sidebarWidth, 25],
             paddingBottomRight: [50, 25]
           });
@@ -109,38 +110,29 @@ function getMarkers(props) {
     });
 
     return marker;
-  };
+  }
 
-  function pushMarker(project) {
-    let lat;
-    let lng;
-    let marker;
-    // Iterate over all posible project locations
+  // Create a cluster for each country
+  const countryClusters = {};
+  let lat;
+  let lng;
+  let marker;
+
+  props.projects.forEach((project) => {
     project.locations.forEach((location) => {
+      if (!countryClusters[location.country_iso]) {
+        countryClusters[location.country_iso] = new PruneClusterForLeaflet(60);
+        countryClusters[location.country_iso].PrepareLeafletMarker = PrepareLeafletMarker;
+        countryClusters[location.country_iso].BuildLeafletCluster = BuildLeafletCluster;
+      }
+
       lat = location.centroid.coordinates[1];
       lng = location.centroid.coordinates[0];
       marker = new PruneCluster.Marker(lat, lng);
       marker.data = project;
-      pruneCluster.RegisterMarker(marker);
+      countryClusters[location.country_iso].RegisterMarker(marker);
     });
-  }
-
-  // NOTE: following commented code just displays selected project locations
-  // const { projectDetail } = props;
-  // if (projectDetail) {
-  //   // If projectDetails is setted, just display that project on map
-  //   if (projectDetail.locations && projectDetail.locations.length) {
-  //     pushMarker(projectDetail);
-  //   }
-  // } else {
-  //   // If not, let's show all projects
-  //   props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
-  //   .forEach(pushMarker);
-  // }
-  // return (props.projects.length || projectDetail) ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
-
-  props.projects.filter(p => p.locations && p.locations.length && p.locations[0].centroid)
-  .forEach(pushMarker);
+  });
 
   return props.projects.length ? [{ id: 'clusterLayer', marker: pruneCluster }] : [];
 }
