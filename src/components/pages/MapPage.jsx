@@ -16,7 +16,6 @@ import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
 import { saveAsFile } from 'utils/general';
-import TetherComponent from 'react-tether';
 import { getMarkers } from 'utils/cluster';
 
 export default class MapPage extends React.Component {
@@ -193,7 +192,7 @@ export default class MapPage extends React.Component {
         >
           <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
-            <ProjectDetail data={this.props.projectDetail} /> :
+            <ProjectDetail data={this.props.projectDetail} relatedProjects={[]} /> :
             <div className="project-list-wrapper">
               <SlidingMenu
                 title="filters"

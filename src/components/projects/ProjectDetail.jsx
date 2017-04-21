@@ -5,6 +5,7 @@ import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
 import isUrl from 'validator/lib/isUrl';
+import ProjectList from 'components/projects/ProjectList';
 
 import { setNumberFormat, saveAsFile } from 'utils/general';
 
@@ -195,11 +196,23 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
           </div>}
         </div>
+
+        {this.props.relatedProjects && this.props.relatedProjects.length > 0 &&
+          <div className="project-detail-related">
+            <header className="header">
+              <h2 className="title">Realted Projects</h2>
+            </header>
+            <div className="related-projects">
+              <ProjectList projects={this.props.relatedProjects} />
+            </div>
+          </div>
+        }
       </article>
     );
   }
 }
 
 ProjectDetail.propTypes = {
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  relatedProjects: React.PropTypes.array
 };
