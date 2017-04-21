@@ -41,6 +41,17 @@ export default class Filters extends React.Component {
     }
   }
 
+  onChangeCostSwitch() {
+    if (this.state.cost.disabled) {
+      const newCost = Object.assign({}, this.state.cost, { disabled: !this.state.cost.disabled });
+      this.setState({ cost: newCost }, () => {
+        this.props.setProjectsFilters({ from_cost: this.state.cost.from || 0, to_cost: this.state.cost.to || 0 });
+      });
+    } else {
+      this.resetCost();
+    }
+  }
+
   setArrayProjectsFilter(opts, key) {
     const filter = {};
     filter[key] = opts.map(opt => opt.value || opt);
@@ -48,29 +59,18 @@ export default class Filters extends React.Component {
   }
 
   setProjectsRangeFilter(opts) {
-    this.props.setProjectsFilters({ 'from_cost': (opts.min / million), 'to_cost': (opts.max / million) });
+    this.props.setProjectsFilters({ from_cost: (opts.min / million), to_cost: (opts.max / million) });
   }
 
-  resetCost(){
-    this.setState({ cost: { from: 0, to: null, disabled: true }}, () => {
-      this.props.setProjectsFilters({ 'from_cost': null, 'to_cost': null });
+  resetCost() {
+    this.setState({ cost: { from: 0, to: null, disabled: true } }, () => {
+      this.props.setProjectsFilters({ from_cost: null, to_cost: null });
     });
   }
 
   resetFilters() {
     this.resetCost();
     dispatch(resetProjectFilters());
-  }
-
-  onChangeCostSwitch(e) {
-    if (this.state.cost.disabled) {
-      const newCost = Object.assign({}, this.state.cost, { disabled: !this.state.cost.disabled });
-      this.setState({cost: newCost }, () => {
-        this.props.setProjectsFilters({ 'from_cost': this.state.cost.from || 0, 'to_cost': this.state.cost.to || 0 });
-      });
-    } else {
-      this.resetCost();
-    }
   }
 
   render() {
@@ -212,7 +212,7 @@ export default class Filters extends React.Component {
             minValue={0}
             formatLabel={value => value === 0 ? value : `$${setNumberFormat(value)}`}
             value={{ min: this.state.cost.from, max: this.state.cost.to || 0 }}
-            onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max }})}
+            onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max } })}
             onChangeComplete={opts => this.setProjectsRangeFilter(opts)}
             step={10000}
           />
@@ -230,7 +230,8 @@ export default class Filters extends React.Component {
 Filters.propTypes = {
   // Actions
   options: React.PropTypes.object,
+  filters: React.PropTypes.object,
   close: React.PropTypes.func,
-  filters: React.PropTypes.object
+  setProjectsFilters: React.PropTypes.func
 };
 Filters.defaultProps = {};

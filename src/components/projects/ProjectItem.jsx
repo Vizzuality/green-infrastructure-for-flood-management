@@ -2,7 +2,7 @@ import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { SvgIcon } from 'vizz-components';
 import PlusNumber from 'components/ui/PlusNumber';
-import { Link }  from 'react-router';
+import { Link } from 'react-router';
 
 export default function ProjectItem(props) {
   const data = props.data;
