@@ -75,23 +75,16 @@ export default class MapPage extends React.Component {
     }
   }
 
-  toggleDataDropdown(e, specificDropdown, to) {
-    const { downloadOpen } = this.state;
-
-    this.setState({ downloadOpen: to ? false : !downloadOpen });
-
-    requestAnimationFrame(() => {
-      window[!this.state[specificDropdown] ?
-        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
-    });
+  /* Methods */
+  onSearchChange(val) {
+    this.props.setProjectsFilters({ name: val });
   }
 
-  /* Methods */
   getProjects(filters) {
     // TODO: pagination
     let paramsArray = [];
 
-    Object.keys(filters).forEach((key, i) => {
+    Object.keys(filters).forEach((key) => {
       if (filters[key] instanceof Array) {
         const arrayValues = filters[key].reduce((sum, val, i) => {
           return i === 0 ? `${key}[]=${val}` : `${sum}&${key}[]=${val}`;
@@ -107,10 +100,6 @@ export default class MapPage extends React.Component {
     }, '');
 
     this.props.getProjects(query);
-  }
-
-  onSearchChange(val) {
-    this.props.setProjectsFilters({ name: val });
   }
 
   getMapListeners() {
@@ -168,6 +157,17 @@ export default class MapPage extends React.Component {
       zoomControl: false,
       center: [this.props.mapState.latLng.lat, this.props.mapState.latLng.lng]
     };
+  }
+
+  toggleDataDropdown(e, specificDropdown, to) {
+    const { downloadOpen } = this.state;
+
+    this.setState({ downloadOpen: to ? false : !downloadOpen });
+
+    requestAnimationFrame(() => {
+      window[!this.state[specificDropdown] ?
+        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
+    });
   }
 
   /* Render */
@@ -243,6 +243,7 @@ export default class MapPage extends React.Component {
 MapPage.propTypes = {
   // State
   projects: React.PropTypes.array,
+  filtersOptions: React.PropTypes.object,
   mapState: React.PropTypes.object,
   filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
@@ -257,5 +258,6 @@ MapPage.propTypes = {
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
   resetMapState: React.PropTypes.func,
-  setFiltersUi: React.PropTypes.func
+  setFiltersUi: React.PropTypes.func,
+  getFiltersOptions: React.PropTypes.func
 };

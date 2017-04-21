@@ -5,6 +5,9 @@ import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
 import isUrl from 'validator/lib/isUrl';
+import { setProjectsFilters } from 'modules/projects';
+import { dispatch } from 'main';
+import { push } from 'react-router-redux';
 
 import { setNumberFormat, saveAsFile } from 'utils/general';
 
@@ -38,6 +41,13 @@ export default class ProjectDetail extends React.Component {
     }
   }
 
+  setArrayProjectsFilter(id, key) {
+    const filter = {};
+    filter[key] = [`${id}`];
+    dispatch(setProjectsFilters(filter));
+    dispatch(push('/map'));
+  }
+
   toggleDataDropdown(e, specificDropdown, to) {
     const { shareOpen, downloadOpen } = this.state;
 
@@ -66,8 +76,14 @@ export default class ProjectDetail extends React.Component {
   render() {
     const { data } = this.props;
     const { shareOpen } = this.state;
-    const setArrayValues = array => array.map((pboi, i) => (
-      <li className="value-item" key={i}>{upperFirst(pboi.name)}</li>
+    const setArrayValues = (array, type) => array.map((pboi, i) => (
+      <li
+        className={`value-item ${type ? '-clickable' : ''}`}
+        key={i}
+        onClick={() => type && this.setArrayProjectsFilter(pboi.id, type)}
+      >
+        {upperFirst(pboi.name)}
+      </li>
     ));
 
     return (
@@ -122,7 +138,7 @@ export default class ProjectDetail extends React.Component {
             <Row>
               <div className="column small-12">
                 <span className="label">Nature based solutions</span>
-                <ul className="value -big">{setArrayValues(data.nature_based_solutions)}</ul>
+                <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
             </Row>
           </div>

@@ -75,7 +75,6 @@ export default class Filters extends React.Component {
 
   render() {
     const { options } = this.props;
-
     return (
       <div className="c-filters">
         {/* Organizations */}
