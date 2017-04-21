@@ -61,12 +61,13 @@ function getMarkers(props) {
     const markers = cluster.GetClusterMarkers();
     let isCurrent = false;
 
+    // Highlight the cluster if contains a marker that belongs to current project
     if (projectDetail) {
       isCurrent = markers.some(marker => marker.data.id === projectDetail.id);
     }
     if (isCurrent) className += ' -current';
 
-    const size = 15 + Math.pow(cluster.population * 100, 0.5);
+    const size = 15 + ((cluster.population * 100) ** 0.5);
     /* Cluster icon */
     const icon = L.divIcon({
       iconSize: [size, size],
