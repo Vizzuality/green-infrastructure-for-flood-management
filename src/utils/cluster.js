@@ -54,8 +54,7 @@ function getMarkers(props) {
   }
 
   /* Cluster */
-
-  function BuildLeafletCluster(cluster, position) {
+  function BuildLeafletClusterIcon(cluster) {
     let className = 'c-marker';
     const markers = cluster.GetClusterMarkers();
     let isCurrent = false;
@@ -74,8 +73,14 @@ function getMarkers(props) {
       html: `<div class="marker-inner">${cluster.population}</div>`
     });
 
+    return icon;
+  }
+
+  function BuildLeafletCluster(cluster, position) {
+    const icon = BuildLeafletClusterIcon(cluster);
     const marker = new L.Marker(position, { icon });
     const pruneCluster = this;
+    // pruneCluster.RedrawIcons();
 
     marker.on('click', () => {
       /* Fitbounds width sidebar width padding */
@@ -129,6 +134,7 @@ function getMarkers(props) {
         };
         cluster.marker.PrepareLeafletMarker = PrepareLeafletMarker;
         cluster.marker.BuildLeafletCluster = BuildLeafletCluster;
+        cluster.marker.BuildLeafletClusterIcon = BuildLeafletClusterIcon;
         countryClusters.push(cluster);
       }
 
