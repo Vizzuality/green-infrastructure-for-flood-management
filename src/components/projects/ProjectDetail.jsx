@@ -1,12 +1,15 @@
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { SvgIcon } from 'vizz-components';
-import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
 import isUrl from 'validator/lib/isUrl';
-
+import { toggleModal } from 'modules/modal';
+import { dispatch } from 'main';
 import { setNumberFormat, saveAsFile } from 'utils/general';
+
+import { Row } from 'components/ui/Grid';
+import ShareModal from 'components/modal/ShareModal';
 
 export default class ProjectDetail extends React.Component {
 
@@ -63,6 +66,16 @@ export default class ProjectDetail extends React.Component {
     return setNumberFormat(millions * 1000000);
   }
 
+  toggleModal() {
+    const opts = {
+      children: ShareModal,
+      childrenProps: {
+        url: window.location.href
+      }
+    };
+    dispatch(toggleModal(true, opts));
+  }
+
   render() {
     const { data } = this.props;
     const { shareOpen } = this.state;
@@ -78,30 +91,10 @@ export default class ProjectDetail extends React.Component {
             Project list
           </Link>
           <div className="project-actions">
-            <TetherComponent
-              attachment="top center"
-              constraints={[{
-                to: 'scrollParent',
-                attachment: 'together'
-              }]}
-              classes={{
-                element: 'c-dropdown'
-              }}
-            >
-              { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={e => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
-                <SvgIcon className="project-share-icon -medium" name="icon-share" />
-                Share
-              </button>
-              { /* Second child: If present, this item will be tethered to the the first child */ }
-              {
-                shareOpen &&
-                <div>
-                  <p>Not available</p>
-                </div>
-              }
-            </TetherComponent>
-
+            <button className="action" type="button" onClick={() => this.toggleModal()}>
+              <SvgIcon className="project-share-icon -medium" name="icon-share" />
+              Share
+            </button>
             <button
               className="action"
               type="button"
