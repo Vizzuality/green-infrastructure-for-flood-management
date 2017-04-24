@@ -27,13 +27,13 @@ export default class Sidebar extends React.Component {
     }
   }
 
-  setContentScroll(scroll) {
-    this.elContent.scrollTop = scroll;
-  }
-
   onToggle(opened) {
     const size = opened ? this.el.clientWidth : 0;
     this.props.onToggle && this.props.onToggle(size);
+  }
+
+  setContentScroll(scroll) {
+    this.elContent.scrollTop = scroll;
   }
 
   toggle() {
@@ -79,6 +79,7 @@ export default class Sidebar extends React.Component {
 Sidebar.propTypes = {
   opened: React.PropTypes.bool,
   filtersOpened: React.PropTypes.bool,
+  showBtn: React.PropTypes.bool,
   actions: React.PropTypes.object,
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.node),
