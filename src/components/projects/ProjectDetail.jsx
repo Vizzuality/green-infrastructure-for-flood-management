@@ -1,11 +1,16 @@
 import React from 'react';
+import { push } from 'react-router-redux';
 import upperFirst from 'lodash/upperFirst';
 import { SvgIcon } from 'vizz-components';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
 import isUrl from 'validator/lib/isUrl';
+
+// Modules
 import { toggleModal } from 'modules/modal';
+import { setProjectsFilters } from 'modules/projects';
 import { dispatch } from 'main';
+
 import { setNumberFormat, saveAsFile } from 'utils/general';
 
 import { Row } from 'components/ui/Grid';
@@ -39,6 +44,13 @@ export default class ProjectDetail extends React.Component {
       (!isShareBtn) ? this.toggleDataDropdown(e, 'shareOpen', true) : null;
       (!isDownloadBtn) ? this.toggleDataDropdown(e, 'downloadOpen', true) : null;
     }
+  }
+
+  setArrayProjectsFilter(id, key) {
+    const filter = {};
+    filter[key] = [`${id}`];
+    dispatch(setProjectsFilters(filter));
+    dispatch(push('/map'));
   }
 
   toggleDataDropdown(e, specificDropdown, to) {
@@ -79,8 +91,14 @@ export default class ProjectDetail extends React.Component {
   render() {
     const { data } = this.props;
     const { shareOpen } = this.state;
-    const setArrayValues = array => array.map((pboi, i) => (
-      <li className="value-item" key={i}>{upperFirst(pboi.name)}</li>
+    const setArrayValues = (array, type) => array.map((pboi, i) => (
+      <li
+        className={`value-item ${type ? '-clickable' : ''}`}
+        key={i}
+        onClick={() => type && this.setArrayProjectsFilter(pboi.id, type)}
+      >
+        {upperFirst(pboi.name)}
+      </li>
     ));
 
     return (
@@ -115,7 +133,7 @@ export default class ProjectDetail extends React.Component {
             <Row>
               <div className="column small-12">
                 <span className="label">Nature based solutions</span>
-                <ul className="value -big">{setArrayValues(data.nature_based_solutions)}</ul>
+                <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
             </Row>
           </div>
