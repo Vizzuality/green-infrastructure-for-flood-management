@@ -1,9 +1,13 @@
 import React from 'react';
+import upperFirst from 'lodash/upperFirst';
 import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
-// import isUrl from 'validator/lib/isUrl';
+import isUrl from 'validator/lib/isUrl';
+import { setProjectsFilters } from 'modules/projects';
+import { dispatch } from 'main';
+import { push } from 'react-router-redux';
 
 import { setNumberFormat, saveAsFile } from 'utils/general';
 
@@ -37,6 +41,13 @@ export default class ProjectDetail extends React.Component {
     }
   }
 
+  setArrayProjectsFilter(id, key) {
+    const filter = {};
+    filter[key] = [`${id}`];
+    dispatch(setProjectsFilters(filter));
+    dispatch(push('/map'));
+  }
+
   toggleDataDropdown(e, specificDropdown, to) {
     const { shareOpen, downloadOpen } = this.state;
 
@@ -64,9 +75,16 @@ export default class ProjectDetail extends React.Component {
 
   render() {
     const { data } = this.props;
-    const { shareOpen, downloadOpen } = this.state;
-    const setArrayValues = array => array.map((pboi, i) => <li className="value-item" key={i}>{pboi.name}</li>);
-
+    const { shareOpen } = this.state;
+    const setArrayValues = (array, type) => array.map((pboi, i) => (
+      <li
+        className={`value-item ${type ? '-clickable' : ''}`}
+        key={i}
+        onClick={() => type && this.setArrayProjectsFilter(pboi.id, type)}
+      >
+        {upperFirst(pboi.name)}
+      </li>
+    ));
 
     return (
       <article className="c-project-detail">
@@ -87,7 +105,7 @@ export default class ProjectDetail extends React.Component {
               }}
             >
               { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={(e) => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
+              <button className="action" type="button" onClick={e => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
                 <SvgIcon className="project-share-icon -medium" name="icon-share" />
                 Share
               </button>
@@ -112,7 +130,7 @@ export default class ProjectDetail extends React.Component {
         </div>
         <div className="project-detail-section">
           <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
-          <span className="project-date">{`${data.start_year} - ${data.completion_year || 'present'}`}</span>
+          <span className="project-date">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
           <h1 className="project-name">{data.name}</h1>
         </div>
         <div className="project-resumme">
@@ -120,7 +138,7 @@ export default class ProjectDetail extends React.Component {
             <Row>
               <div className="column small-12">
                 <span className="label">Nature based solutions</span>
-                <ul className="value -big">{setArrayValues(data.nature_based_solutions)}</ul>
+                <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
             </Row>
           </div>
@@ -134,33 +152,33 @@ export default class ProjectDetail extends React.Component {
             <Row>
               {data.intervention_type && <div className="column small-4">
                 <span className="label">Intervention</span>
-                <span className="value">{data.intervention_type}</span>
+                <span className="value">{upperFirst(data.intervention_type)}</span>
               </div>}
-              {data.hazard_types.length ? <div className="column small-4">
+              {data.hazard_types.length > 0 && <div className="column small-4">
                 <span className="label">Hazard</span>
-                <ul className="value">{data.hazard_types.map((ht, i) => <li className="value-item" key={i}>{ht.name}</li>)}</ul>
-              </div> : ''}
+                <ul className="value">{data.hazard_types.map((ht, i) => <li className="value-item" key={i}>{upperFirst(ht.name)}</li>)}</ul>
+              </div>}
               {data.scale && <div className="column small-4">
                 <span className="label">Scale</span>
-                <span className="value">{data.scale}</span>
+                <span className="value">{upperFirst(data.scale)}</span>
               </div>}
             </Row>
           </div>
 
-          {data.primary_benefits_of_interventions.length && <div className="project-info-item">
+          {data.primary_benefits_of_interventions.length > 0 && <div className="project-info-item">
             <span className="label">Risk reduction benefits</span>
             <ul className="value">{setArrayValues(data.primary_benefits_of_interventions)}</ul>
           </div>}
 
-          {data.co_benefits_of_interventions.length && <div className="project-info-item">
+          {data.co_benefits_of_interventions.length > 0 && <div className="project-info-item">
             <span className="label">Co-benefits of intervention</span>
             <ul className="value">{setArrayValues(data.co_benefits_of_interventions)}</ul>
           </div>}
 
-          {data.donors.length ? <div className="project-info-item">
+          {data.donors.length > 0 && <div className="project-info-item">
             <span className="label">Main Donor</span>
-            <span className="value">{data.donors.length ? data.donors[0].name : 'Unknown'}</span>
-          </div> : ''}
+            <span className="value">{data.donors.length ? upperFirst(data.donors[0].name) : 'Unknown'}</span>
+          </div>}
 
           <div className="project-info-item">
             <Row>
@@ -183,15 +201,15 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{data.benefit_details}</span>
           </div>}
 
-          {/*data.learn_more && data.learn_more !== '' && <div className="project-info-item">
+          {data.learn_more && data.learn_more !== '' && <div className="project-info-item">
             <span className="label">Learn more</span>
             <span className="value">{isUrl(data.learn_more) ? <a className="link" href={data.learn_more}>{data.learn_more}</a> : data.learn_more}</span>
-          </div>*/}
+          </div>}
 
-          {/*data.references && data.references !== '' && <div className="project-info-item">
+          {data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
-          </div>*/}
+          </div>}
         </div>
       </article>
     );
