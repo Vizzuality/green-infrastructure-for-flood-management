@@ -44,7 +44,7 @@ export default class Sidebar extends React.Component {
 
   render() {
     const cNames = classnames('c-sidebar', { '-opened': this.state.opened });
-    const contentCNames = classnames('sidebar-content', { '-no-scroll': this.props.filtersOpened });
+    const contentCNames = classnames('sidebar-content', { '-no-scroll': this.props.filtersOpened && !this.props.onDetail });
     return (
       <aside ref={node => this.el = node} className={cNames}>
         <div ref={node => this.elContent = node} className={contentCNames}>
@@ -78,6 +78,7 @@ export default class Sidebar extends React.Component {
 
 Sidebar.propTypes = {
   opened: React.PropTypes.bool,
+  onDetail: React.PropTypes.bool,
   filtersOpened: React.PropTypes.bool,
   showBtn: React.PropTypes.bool,
   actions: React.PropTypes.object,
