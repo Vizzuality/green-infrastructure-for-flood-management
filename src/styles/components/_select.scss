@@ -35,18 +35,17 @@
 }
 
 .Select {
-
   .Select-control {
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid rgba(palette(black), .54);
     border-radius: 0;
-    cursor: pointer;
+    cursor: text;
 
     .Select-clear {
       color: rgba(palette(black), .54);
     }
-   
+
     .Select-arrow {
       border-color: rgba(palette(black), .54) transparent transparent;
     }

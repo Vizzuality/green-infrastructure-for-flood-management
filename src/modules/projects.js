@@ -6,6 +6,7 @@ const SET_PROJECTS_LOADING = 'SET_PROJECTS_LOADING';
 const SET_PROJECTS_SEARCH = 'SET_PROJECTS_SEARCH';
 const SET_PROJECTS_FILTERS = 'SET_PROJECTS_FILTERS';
 const SET_PROJECTS_DETAIL = 'SET_PROJECTS_DETAIL';
+const RESET_PROJECT_FILTERS = 'RESET_PROJECT_FILTERS';
 
 /* Initial state */
 const initialState = {
@@ -52,6 +53,11 @@ function projectsReducer(state = initialState, action) {
           ...action.payload
         }
       };
+    case RESET_PROJECT_FILTERS:
+      return {
+        ...state,
+        filters: initialState.filters
+      };
     case SET_PROJECTS_DETAIL:
       return {
         ...state,
@@ -63,6 +69,12 @@ function projectsReducer(state = initialState, action) {
 }
 
 /* Action creators */
+function resetProjectFilters() {
+  return {
+    type: RESET_PROJECT_FILTERS
+  };
+}
+
 function setProjectsLoading(loading) {
   return {
     type: SET_PROJECTS_LOADING,
@@ -106,4 +118,4 @@ function getProjects(query) {
   };
 }
 
-export { projectsReducer, setProjectsFilters, setProjects, getProjects, setProjectsDetail };
+export { projectsReducer, setProjectsFilters, setProjects, getProjects, setProjectsDetail, resetProjectFilters };

@@ -43,3 +43,9 @@ input[type="search"] {
     display: none;
   }
 }
+
+.row {
+  &.out-collapse {
+    margin: 0 -0.9375rem !important;
+  }
+}

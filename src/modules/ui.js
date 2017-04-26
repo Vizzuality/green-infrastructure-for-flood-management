@@ -1,6 +1,7 @@
 /* Constants */
 const SET_SIDEBAR_WIDTH = 'SET_SIDEBAR_WIDTH';
 const SET_FILTERS_UI = 'SET_FILTERS_UI';
+const RESET_FILTERS_UI = 'RESET_FILTERS_UI';
 
 /* Initial state */
 const initialState = {
@@ -29,6 +30,11 @@ function uiReducer(state = initialState, action) {
           ...action.payload
         }
       };
+    case RESET_FILTERS_UI:
+      return {
+        ...state,
+        filters: initialState.filters
+      };
     default:
       return state;
   }
@@ -49,4 +55,10 @@ function setFiltersUi(params) {
   };
 }
 
-export { uiReducer, setSidebarWidth, setFiltersUi };
+function resetFiltersUi() {
+  return {
+    type: RESET_FILTERS_UI
+  };
+}
+
+export { uiReducer, setSidebarWidth, setFiltersUi, resetFiltersUi };
