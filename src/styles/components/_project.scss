@@ -173,19 +173,25 @@ $_separation: ($space-1 * 4);
   }
 
   .project-name {
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
     color: palette(white);
-    line-height: 36px;;
+    line-height: 36px;
+
+    &.-small {
+      font-size: 24px;
+    }
   }
 
   .project-company {
-    display: block;
+    display: inline-block;
     font-weight: bold;
     color: palette(white);
     text-transform: uppercase;
     margin-bottom: $space-1;
     line-height: 18px;
+
+    &.-drop { cursor: pointer; }
   }
 
   .project-date {

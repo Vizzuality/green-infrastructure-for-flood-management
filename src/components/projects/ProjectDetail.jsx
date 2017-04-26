@@ -16,8 +16,8 @@ export default class ProjectDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shareOpen: false,
-      downloadOpen: false
+      organizationsOpen: false
+      // downloadOpen: false
     };
 
     // BINDINGS
@@ -32,12 +32,12 @@ export default class ProjectDetail extends React.Component {
   onScreenClick(e) {
     const el = document.querySelector('.c-dropdown');
     const clickOutside = el && el.contains && !el.contains(e.target);
-    const isShareBtn = this.shareBtn.contains(e.target);
-    const isDownloadBtn = this.downloadBtn.contains(e.target);
+    const isOrganizationsBtn = this.organizationsBtn.contains(e.target);
+    // const isDownloadBtn = this.downloadBtn.contains(e.target);
 
     if (clickOutside) {
-      (!isShareBtn) ? this.toggleDataDropdown(e, 'shareOpen', true) : null;
-      (!isDownloadBtn) ? this.toggleDataDropdown(e, 'downloadOpen', true) : null;
+      (!isOrganizationsBtn) ? this.toggleDataDropdown(e, 'organizationsOpen', true) : null;
+      // (!isDownloadBtn) ? this.toggleDataDropdown(e, 'downloadOpen', true) : null;
     }
   }
 
@@ -49,19 +49,20 @@ export default class ProjectDetail extends React.Component {
   }
 
   toggleDataDropdown(e, specificDropdown, to) {
-    const { shareOpen, downloadOpen } = this.state;
+    const { organizationsOpen } = this.state;
 
-    if (specificDropdown === 'shareOpen') {
+    if (specificDropdown === 'organizationsOpen') {
       this.setState({
-        shareOpen: to ? false : !shareOpen,
+        organizationsOpen: to ? false : !organizationsOpen,
         downloadOpen: false
       });
-    } else {
-      this.setState({
-        downloadOpen: to ? false : !downloadOpen,
-        shareOpen: false
-      });
     }
+    // } else {
+    //   this.setState({
+    //     downloadOpen: to ? false : !downloadOpen,
+    //     organizationsOpen: false
+    //   });
+
 
     requestAnimationFrame(() => {
       window[!this.state[specificDropdown] ?
@@ -75,7 +76,7 @@ export default class ProjectDetail extends React.Component {
 
   render() {
     const { data } = this.props;
-    const { shareOpen } = this.state;
+    const { organizationsOpen } = this.state;
     const setArrayValues = (array, type) => array.map((pboi, i) => (
       <li
         className={`value-item ${type ? '-clickable' : ''}`}
@@ -94,30 +95,6 @@ export default class ProjectDetail extends React.Component {
             Project list
           </Link>
           <div className="project-actions">
-            <TetherComponent
-              attachment="top center"
-              constraints={[{
-                to: 'scrollParent',
-                attachment: 'together'
-              }]}
-              classes={{
-                element: 'c-dropdown'
-              }}
-            >
-              { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={e => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
-                <SvgIcon className="project-share-icon -medium" name="icon-share" />
-                Share
-              </button>
-              { /* Second child: If present, this item will be tethered to the the first child */ }
-              {
-                shareOpen &&
-                <div>
-                  <p>Not available</p>
-                </div>
-              }
-            </TetherComponent>
-
             <button
               className="action"
               type="button"
@@ -129,9 +106,38 @@ export default class ProjectDetail extends React.Component {
           </div>
         </div>
         <div className="project-detail-section">
-          <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
+          {data.organizations.length === 1 ?
+            <p className="project-company">{data.organizations[0].name}</p> :
+            <TetherComponent
+              attachment='top left'
+              targetAttachment='bottom left'
+              constraints={[{
+                to: 'scrollParent',
+                attachment: 'together',
+                pin: true
+              }]}
+              classes={{
+                element: 'c-dropdown -arrow-left'
+              }}
+            >
+              { /* First child: This is what the item will be tethered to */ }
+              <p className="project-company -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'organizationsOpen')} ref={c => this.organizationsBtn = c}>
+                {data.organizations.length} organizations
+              </p>
+              { /* Second child: If present, this item will be tethered to the the first child */ }
+              {
+                organizationsOpen &&
+                <div>
+                  <ul className="info">
+                    {data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}
+                  </ul>
+                </div>
+              }
+            </TetherComponent>
+          }
+
           <span className="project-date">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
-          <h1 className="project-name">{data.name}</h1>
+          <h1 className={`project-name ${data.name.length > 40 ? '-small' : ''}`}>{data.name}</h1>
         </div>
         <div className="project-resumme">
           <div className="project-cost">
