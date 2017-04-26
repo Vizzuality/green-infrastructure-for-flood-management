@@ -4,7 +4,7 @@ import { SvgIcon } from 'vizz-components';
 import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
-import isUrl from 'validator/lib/isUrl';
+import isUrl from 'validator/lib/isURL';
 import { setProjectsFilters } from 'modules/projects';
 import { dispatch } from 'main';
 import { push } from 'react-router-redux';
