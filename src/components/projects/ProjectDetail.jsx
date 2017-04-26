@@ -93,6 +93,7 @@ export default class ProjectDetail extends React.Component {
             <SvgIcon className="project-back-icon" name="icon-arrow-left-2" />
             Project list
           </Link>
+
           <div className="project-actions">
             <TetherComponent
               attachment="top center"
@@ -118,14 +119,19 @@ export default class ProjectDetail extends React.Component {
               }
             </TetherComponent>
 
-            <button
+            <Link to={`/download/project/${data.id}`} className="action">
+              <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
+              Download PDF
+            </Link>
+
+            {/* <button
               className="action"
               type="button"
               onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
             >
               <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
               Download PDF
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="project-detail-section">
