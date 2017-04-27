@@ -47,21 +47,19 @@ export default class Sidebar extends React.Component {
     const contentCNames = classnames('sidebar-content', { '-no-scroll': this.props.filtersOpened && !this.props.onDetail });
     return (
       <aside ref={node => this.el = node} className={cNames}>
+        {this.props.showBtn && <button type="button" className="sidebar-btn" onClick={this.toggle}>
+          <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
+        </button>}
         <div ref={node => this.elContent = node} className={contentCNames}>
-          {this.props.showBtn && <button type="button" className="sidebar-btn" onClick={this.toggle}>
-            <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
-          </button>}
           {this.props.children}
         </div>
         <div className="sidebar-closed">
-          <button type="button" className="sidebar-btn -relative" onClick={this.toggle}>
-            <SvgIcon name={this.state.opened ? 'icon-arrow-left-2' : 'icon-arrow-right-2'} />
-          </button>
           <div className="rotate-list">
             <ul>
               <li onClick={() => this.toggle()}>Projects list</li>
               <li onClick={() => { this.toggle(); this.props.actions.focusSearch(); }}>Search</li>
-              <li onClick={() => { this.toggle(); this.props.actions.openFilters(); }}>Filter / Sort by</li>
+              <li onClick={() => this.toggle()}>Sort by</li>
+              <li onClick={() => { this.toggle(); this.props.actions.openFilters(); }}>Filter</li>
             </ul>
             <button
               className="c-btn -transparent"

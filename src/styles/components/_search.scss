@@ -42,14 +42,19 @@ $_separation: ($space-1 * 4);
   }
 
   .search-icon {
-    fill: $primary-color;
+    fill: rgba(palette(gray, medium), .3);
     width: 18px;
     height: 18px;
+    margin-right: 5px;
   }
 
   .clear-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .clear-icon {
+      fill: rgba(palette(gray, medium), .5);
+    }
   }
 }
