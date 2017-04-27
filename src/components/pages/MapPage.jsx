@@ -143,7 +143,7 @@ export default class MapPage extends React.Component {
         options: {
           paddingTopLeft: [props.sidebarWidth, 0],
           paddingBottomRight: [0, 0],
-          maxZoom: 5
+          maxZoom: 6
         }
       };
     }
