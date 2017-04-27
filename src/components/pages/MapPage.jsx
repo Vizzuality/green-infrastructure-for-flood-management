@@ -15,7 +15,6 @@ import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
-import { saveAsFile } from 'utils/general';
 import TetherComponent from 'react-tether';
 import { getMarkers } from 'utils/cluster';
 
@@ -200,17 +199,30 @@ export default class MapPage extends React.Component {
                 title="filters"
                 closed={this.props.filtersUi.closed}
                 onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
+                downloadUrl="http://nature-of-risk-reduction.vizzuality.com/downloads/projects"
+                download
               >
                 <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
               </SlidingMenu>
-              <Search
-                focus={this.props.filtersUi.searchFocus}
-                defaultValue={this.props.filters.name}
-                onChange={evt => this.onSearchChange(evt.target.value)}
-                onClear={() => this.props.setProjectsFilters({ name: '' })}
-                placeholder="Search by project title"
-              />
-              <div className="sidebar-actions">
+              <div className="list-actions">
+                <Search
+                  focus={this.props.filtersUi.searchFocus}
+                  defaultValue={this.props.filters.name}
+                  onChange={evt => this.onSearchChange(evt.target.value)}
+                  onClear={() => this.props.setProjectsFilters({ name: '' })}
+                  placeholder="Search project"
+                />
+
+                <div className="sidebar-actions">
+                  <SortBy
+                    order={this.props.filters.order}
+                    direction={this.props.filters.direction}
+                    list={sortByOptions}
+                    setProjectsFilters={this.props.setProjectsFilters}
+                  />
+                </div>
+              </div>
+              {/* <div className="sidebar-actions">
                 <button
                   className="download"
                   onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
@@ -218,14 +230,7 @@ export default class MapPage extends React.Component {
                   <SvgIcon name="icon-download" className="download -medium" />
                   Download data
                 </button>
-
-                <SortBy
-                  order={this.props.filters.order}
-                  direction={this.props.filters.direction}
-                  list={sortByOptions}
-                  setProjectsFilters={this.props.setProjectsFilters}
-                />
-              </div>
+              </div> */}
               <ProjectList projects={this.props.projects} />
             </div>
           }

@@ -19,6 +19,7 @@ export default class Search extends React.Component {
     const { focus, placeholder, onClear, ...props } = this.props;
     return (
       <div className="c-search">
+        <SvgIcon className="search-icon" name="icon-search" />
         <input
           ref={node => this.input = node}
           className="search-input"
@@ -29,7 +30,6 @@ export default class Search extends React.Component {
         <button onClick={() => this.clear()} className="clear-btn">
           <SvgIcon className="clear-icon" name="icon-cross" />
         </button>
-        <SvgIcon className="search-icon" name="icon-search" />
       </div>
     );
   }

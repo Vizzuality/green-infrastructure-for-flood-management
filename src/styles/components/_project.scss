@@ -16,6 +16,16 @@ $_separation: ($space-1 * 4);
 
 .project-list-wrapper {
   background-color: palette(white);
+
+  .list-actions {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(palette(black), .04);
+  }
+
+  .c-search {
+    flex-grow: 1;
+  }
 }
 
 .c-project-list {
