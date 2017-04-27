@@ -27,9 +27,9 @@ export default class Search extends React.Component {
           placeholder={placeholder || 'Search'}
           {...props}
         />
-        <button onClick={() => this.clear()} className="clear-btn">
+        {props.close && <button onClick={() => this.clear()} className="clear-btn">
           <SvgIcon className="clear-icon" name="icon-cross" />
-        </button>
+        </button>}
       </div>
     );
   }

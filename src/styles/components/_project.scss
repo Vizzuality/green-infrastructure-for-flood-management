@@ -26,7 +26,29 @@ $_separation: ($space-1 * 4);
   .c-search {
     flex-grow: 1;
   }
+
+  .current-filters {
+    padding: 20px 32px 5px;
+
+    .filters-list {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .filter-tag {
+      padding: 3px 9px;
+      border-radius: 100px;
+	    background-color: #f8f8f8;
+      border: 1px solid rgba(74, 74, 74, 0.03);
+      margin-right: 5px;
+      margin-bottom: 3px;
+      color: $color-text-1;
+
+      &:last-child { margin: 0; }
+    }
+  }
 }
+
 
 .c-project-list {
 

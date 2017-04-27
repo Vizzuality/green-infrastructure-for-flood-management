@@ -11,6 +11,7 @@ import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
 import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
+import upperFirst from 'lodash/upperFirst';
 import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
@@ -170,6 +171,25 @@ export default class MapPage extends React.Component {
     });
   }
 
+  setFiltersTags(currentFilters) {
+    const excludedFilters = ['order', 'direction'];
+    const { filtersOptions } = this.props;
+
+    if (Object.keys(filtersOptions).length) {
+      return currentFilters.filter(fil => !excludedFilters.includes(fil.filter))
+      .map((fil) => {
+        if (fil.value instanceof Array) {
+          return fil.value.map((v, i) => {
+            const itemFound = filtersOptions[fil.filter].find(it => v === it.value);
+            return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
+          });
+        }
+        return <li key={fil.filter} className="filter-tag">{upperFirst(fil.value)}</li>;
+      });
+    }
+    return [];
+  }
+
   /* Render */
   render() {
     /* Map params */
@@ -177,6 +197,9 @@ export default class MapPage extends React.Component {
     const mapOptions = this.getMapOptions();
     const { markers, mapMethods } = this.state;
     const mapParams = { listeners, mapMethods, mapOptions, markers };
+    const intoArrayFilters = Object.keys(this.props.filters)
+      .map(k => Object.assign({}, { filter: k, value: this.props.filters[k] || {} }))
+      .filter(obj => obj.value && obj.value.length);
 
     return (
       <div className="c-map-page l-map-page">
@@ -222,15 +245,9 @@ export default class MapPage extends React.Component {
                   />
                 </div>
               </div>
-              {/* <div className="sidebar-actions">
-                <button
-                  className="download"
-                  onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
-                >
-                  <SvgIcon name="icon-download" className="download -medium" />
-                  Download data
-                </button>
-              </div> */}
+              <div className="current-filters">
+                <ul className="filters-list">{this.setFiltersTags(intoArrayFilters)}</ul>
+              </div>
               <ProjectList projects={this.props.projects} />
             </div>
           }
