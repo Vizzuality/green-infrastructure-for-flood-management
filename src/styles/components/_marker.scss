@@ -13,8 +13,8 @@
 
   &.-current {
     /* !important for overriding Leaflet inline styles */
-    width: 6px !important;
-    height: 6px !important;
+    // width: 6px !important;
+    // height: 6px !important;
     background-color: palette(yellow);
     box-shadow: none;
   }
@@ -23,8 +23,8 @@
     /* !important for overriding Leaflet inline styles */
     border: 2px solid palette(white);
     background-color: palette(yellow);
-    width: 20px !important;
-    height: 20px !important;
+    // width: 20px !important;
+    // height: 20px !important;
     box-shadow: none;
   }
 }

@@ -33,15 +33,18 @@ function getMarkers(props) {
   /* Project centroid marker icon */
   function PrepareLeafletMarker(leafletMarker, data) {
     let className = 'c-marker';
+    let iconSize;
     if (data.current) {
       className += ' -current';
+      iconSize = [6, 6];
     }
     if (data.centroid) {
       className += ' -centroid';
+      iconSize = [20, 20];
     }
 
     leafletMarker.setIcon(L.divIcon({
-      iconSize: [15, 15],
+      iconSize,
       className,
       html: '<div class="marker-inner"></div>'
     }));
@@ -144,7 +147,9 @@ function getMarkers(props) {
         // Avoid adding project points if there is just one location
         if (!(projectLocations.length === 1 && projectLocations[0][1] === centroid.lat && projectLocations[0][0] === centroid.lng)) {
           projectLocations.forEach((location) => {
-            marker = new PruneCluster.Marker(location[0], location[1]);
+            // const offset = 0.005;
+            const offset = 0; // Offset for correct centering marker on line
+            marker = new PruneCluster.Marker(location[0] - offset, location[1] + offset);
             marker.data = { ...project, current: true };
             pruneClusterDetailMarker.RegisterMarker(marker);
 
