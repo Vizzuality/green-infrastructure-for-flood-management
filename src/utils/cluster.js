@@ -33,14 +33,13 @@ function getMarkers(props) {
   /* Project centroid marker icon */
   function PrepareLeafletMarker(leafletMarker, data) {
     let className = 'c-marker';
-    let iconSize;
+    let iconSize = [20, 20];
     if (data.current) {
       className += ' -current';
       iconSize = [6, 6];
     }
     if (data.centroid) {
       className += ' -centroid';
-      iconSize = [20, 20];
     }
 
     leafletMarker.setIcon(L.divIcon({
