@@ -12,19 +12,14 @@
   box-shadow: 0 0 8px 0 rgba(black, 0.16);
 
   &.-current {
-    /* !important for overriding Leaflet inline styles */
-    // width: 6px !important;
-    // height: 6px !important;
+    cursor: auto !important;
     background-color: palette(yellow);
     box-shadow: none;
   }
 
   &.-centroid {
-    /* !important for overriding Leaflet inline styles */
     border: 2px solid palette(white);
     background-color: palette(yellow);
-    // width: 20px !important;
-    // height: 20px !important;
     box-shadow: none;
   }
 }

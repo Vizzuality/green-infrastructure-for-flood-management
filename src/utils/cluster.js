@@ -5,6 +5,12 @@ import { dispatch } from 'main';
 
 PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
 
+function clearMapLine() {
+  return window.__map__ &&
+    window.__map__.__line__ &&
+    window.__map__.removeLayer(window.__map__.__line__);
+}
+
 function getPopupMarkup(data) {
   const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
   const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
@@ -29,6 +35,7 @@ function getPopupMarkup(data) {
 
 function getMarkers(props) {
   const { projectDetail } = props;
+  clearMapLine();
 
   /* Project centroid marker icon */
   function PrepareLeafletMarker(leafletMarker, data) {
@@ -48,7 +55,7 @@ function getMarkers(props) {
       html: '<div class="marker-inner"></div>'
     }));
 
-    if (data.centroid) {
+    if (!data.current) {
       // Bind Popup
       leafletMarker.bindPopup(getPopupMarkup(data));
       // Set listeners
@@ -86,25 +93,13 @@ function getMarkers(props) {
           new L.LatLng(b.minLat, b.maxLng),
           new L.LatLng(b.maxLat, b.minLng));
 
-        const zoomLevelBefore = pruneCluster._map.getZoom();
-        const zoomLevelAfter = pruneCluster._map.getBoundsZoom(bounds, false, new L.Point(20, 20, null));
-
-        if (zoomLevelAfter === zoomLevelBefore) {
-          pruneCluster._map.fire('overlappingmarkers', {
-            cluster: pruneCluster,
-            markers: markersArea,
-            center: marker.getLatLng(),
-            marker
-          });
-        } else {
-          // We should check if the sidebar is opened
-          const sidebarWidth = props.sidebarWidth + 25;
-          pruneCluster._map.fitBounds(bounds, {
-            // maxZoom: pruneCluster._map.getZoom() + 2,
-            paddingTopLeft: [sidebarWidth, 25],
-            paddingBottomRight: [50, 25]
-          });
-        }
+        // We should check if the sidebar is opened
+        const sidebarWidth = props.sidebarWidth + 25;
+        pruneCluster._map.fitBounds(bounds, {
+          // maxZoom: pruneCluster._map.getZoom() + 2,
+          paddingTopLeft: [sidebarWidth, 25],
+          paddingBottomRight: [50, 25]
+        });
       }
     });
 
@@ -114,6 +109,7 @@ function getMarkers(props) {
   // Create a cluster for each country
   let projectLocations = [];
   let pruneClusterDetailMarker;
+  let lines;
 
   const pruneClusterMarker = new PruneClusterForLeaflet(60);
   pruneClusterMarker.PrepareLeafletMarker = PrepareLeafletMarker;
@@ -144,11 +140,10 @@ function getMarkers(props) {
         pruneClusterDetailMarker.RegisterMarker(marker);
 
         // Avoid adding project points if there is just one location
-        if (!(projectLocations.length === 1 && projectLocations[0][1] === centroid.lat && projectLocations[0][0] === centroid.lng)) {
+        if (projectLocations.length > 1) {
+          lines = [];
           projectLocations.forEach((location) => {
-            // const offset = 0.005;
-            const offset = 0; // Offset for correct centering marker on line
-            marker = new PruneCluster.Marker(location[0] - offset, location[1] + offset);
+            marker = new PruneCluster.Marker(location[0], location[1]);
             marker.data = { ...project, current: true };
             pruneClusterDetailMarker.RegisterMarker(marker);
 
@@ -157,8 +152,16 @@ function getMarkers(props) {
               color: '#FFB400',
               weight: 2
             });
-            line.addTo(window.__map__);
+
+            lines.push(line);
           });
+
+          // Draw lines as one layer
+          if (lines.length) {
+            const polylines = L.layerGroup(lines);
+            polylines.addTo(window.__map__);
+            window.__map__.__line__ = polylines;
+          }
         }
       } else {
         // All other projects
@@ -170,7 +173,7 @@ function getMarkers(props) {
     }
   });
 
-  // Create cluster object that map can understand
+  //Create cluster object that map can understand
   const clusters = [{
     id: 'cluster',
     marker: pruneClusterMarker
