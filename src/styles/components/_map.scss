@@ -3,6 +3,6 @@
 }
 
 // TODO: set zIndex using Leaflet
-.leaflet-overlay-pane {
+.leaflet-overlay-pane, .leaflet-popup-pane {
   z-index: 999 !important;
 }
