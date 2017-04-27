@@ -15,11 +15,15 @@
     cursor: auto !important;
     background-color: palette(yellow);
     box-shadow: none;
+    // TODO: set zIndex using Leaflet
+    z-index: 999 !important;
   }
 
   &.-centroid {
     border: 2px solid palette(white);
     background-color: palette(yellow);
     box-shadow: none;
+    // TODO: set zIndex using Leaflet
+    z-index: 999 !important;
   }
 }

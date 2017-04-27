@@ -41,6 +41,8 @@ function getMarkers(props) {
   function PrepareLeafletMarker(leafletMarker, data) {
     let className = 'c-marker';
     let iconSize = [20, 20];
+    let zIndexOffset = 100;
+
     if (data.current) {
       className += ' -current';
       iconSize = [6, 6];
@@ -159,7 +161,7 @@ function getMarkers(props) {
           // Draw lines as one layer
           if (lines.length) {
             const polylines = L.layerGroup(lines);
-            polylines.addTo(window.__map__);
+            polylines.addTo(window.__map__).setZIndex(200);
             window.__map__.__line__ = polylines;
           }
         }
@@ -173,7 +175,7 @@ function getMarkers(props) {
     }
   });
 
-  //Create cluster object that map can understand
+  // Create cluster object that map can understand
   const clusters = [{
     id: 'cluster',
     marker: pruneClusterMarker
