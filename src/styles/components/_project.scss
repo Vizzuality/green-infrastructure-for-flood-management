@@ -40,7 +40,7 @@ $_separation: ($space-1 * 4);
 .c-project-item {
   display: flex;
   justify-content: space-between;
-  padding: 20px $_separation 16px;
+  padding: 20px $_separation;
   border-bottom: 1px solid rgba(#000000, .1);
   cursor: pointer;
   transition: background-color linear $animation-time;
@@ -56,15 +56,16 @@ $_separation: ($space-1 * 4);
   .project-name {
     display: block;
     font-size: $font-size-big;
-    margin-bottom: $space-1 * 1.6;
+    margin-bottom: 4px;
     line-height: 24px;
-    color: $color-text-1;
+    color: $color-primary;
     font-weight: 600;
   }
 
   .project-company {
-    margin-bottom: $space-1 * 1.05;
+    margin-bottom: 3px;
     font-weight: 600;
+    font-size: 13px;
     color: rgba($color-text-1, .9);
     text-transform: uppercase;
     line-height: 18px;
@@ -72,7 +73,6 @@ $_separation: ($space-1 * 4);
 
   .project-tags-container {
     display: flex;
-    justify-content: space-between;
 
     &.row.collapse {
       .project-tags {
@@ -84,12 +84,14 @@ $_separation: ($space-1 * 4);
   .project-tags {
     display: flex;
     flex-wrap: wrap;
-    color: rgba($primary-color, .9);
+    color: rgba($color-text-1, .9);
     font-size: $font-size-default;
     line-height: 18px;
     padding-right: 10px;
+    margin-right: 20px;
 
     &:last-child {
+      margin-right: 0;
       padding-right: 0;
     }
 
