@@ -113,6 +113,11 @@ $_separation: ($space-1 * 4);
 /* Project detail */
 
 .c-project-detail {
+  .pair-data {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .project-bar {
     display: block;
     height: 50px;
@@ -169,6 +174,10 @@ $_separation: ($space-1 * 4);
         margin-right: $space-1;
         fill: palette(white);
       }
+
+      &.c-btn {
+        padding: 5px 12px;
+      }
     }
   }
 
@@ -194,9 +203,10 @@ $_separation: ($space-1 * 4);
     &.-drop { cursor: pointer; }
   }
 
-  .project-date {
+  .project-data {
     display: block;
     margin-bottom: $space-1 * 4;
+    text-transform: uppercase;
     color: palette(white);
   }
 
