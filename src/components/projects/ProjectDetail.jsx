@@ -181,7 +181,15 @@ export default class ProjectDetail extends React.Component {
           <div className="project-cost">
             <Row>
               <div className="column small-12">
-                <span className="label">Nature based solutions</span>
+                <span className="label -info">
+                  Nature based solutions
+                  <span className="info">
+                    <SvgIcon className="info-icon -smaller" name="icon-info" />
+                    <div className="c-dropdown -arrow-bottom">
+                      <p className="text">Explanation text lorem ipsum id casius nibh uricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna.</p>
+                    </div>
+                  </span>
+                </span>
                 <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
             </Row>
