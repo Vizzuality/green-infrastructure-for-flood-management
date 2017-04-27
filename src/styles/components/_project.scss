@@ -105,6 +105,7 @@ $_separation: ($space-1 * 4);
 
   .project-tags-container {
     display: flex;
+    flex-wrap: wrap;
 
     &.row.collapse {
       .project-tags {
@@ -115,12 +116,12 @@ $_separation: ($space-1 * 4);
 
   .project-tags {
     display: flex;
-    flex-wrap: wrap;
     color: rgba($color-text-1, .9);
     font-size: $font-size-default;
     line-height: 18px;
     padding-right: 10px;
     margin-right: 20px;
+    margin-bottom: 5px;
 
     &:last-child {
       margin-right: 0;

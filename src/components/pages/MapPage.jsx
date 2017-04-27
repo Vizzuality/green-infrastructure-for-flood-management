@@ -18,6 +18,9 @@ import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
 import TetherComponent from 'react-tether';
 import { getMarkers } from 'utils/cluster';
+import { setNumberFormat } from 'utils/general';
+
+const million = 1000000;
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -180,11 +183,15 @@ export default class MapPage extends React.Component {
       .map((fil) => {
         if (fil.value instanceof Array) {
           return fil.value.map((v, i) => {
-            const itemFound = filtersOptions[fil.filter].find(it => v === it.value);
+            const key = fil.filter === 'status' ? 'implementation_statuses' : fil.filter;
+            const itemFound = filtersOptions[key].find(it => v === it.value);
             return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
           });
         }
-        return <li key={fil.filter} className="filter-tag">{upperFirst(fil.value)}</li>;
+        return (
+          <li key={fil.filter} className="filter-tag">{typeof fil.value !== 'number' ?
+            upperFirst(fil.value) : `$${setNumberFormat((fil.value * million))}`}</li>
+        );
       });
     }
     return [];
@@ -199,7 +206,9 @@ export default class MapPage extends React.Component {
     const mapParams = { listeners, mapMethods, mapOptions, markers };
     const intoArrayFilters = Object.keys(this.props.filters)
       .map(k => Object.assign({}, { filter: k, value: this.props.filters[k] || {} }))
-      .filter(obj => obj.value && obj.value.length);
+      .filter(obj => obj.value && obj.value.length || typeof obj.value === 'number');
+
+    const filtersTags = this.setFiltersTags(intoArrayFilters);
 
     return (
       <div className="c-map-page l-map-page">
@@ -213,6 +222,7 @@ export default class MapPage extends React.Component {
             focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),
             openFilters: () => this.props.setFiltersUi({ closed: false })
           }}
+          className={this.props.projectDetail ? '-project-detail' : ''}
         >
           <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
@@ -245,9 +255,10 @@ export default class MapPage extends React.Component {
                   />
                 </div>
               </div>
-              <div className="current-filters">
-                <ul className="filters-list">{this.setFiltersTags(intoArrayFilters)}</ul>
-              </div>
+              {filtersTags.length > 0 &&
+                <div className="current-filters">
+                  <ul className="filters-list">{filtersTags}</ul>
+                </div>}
               <ProjectList projects={this.props.projects} />
             </div>
           }

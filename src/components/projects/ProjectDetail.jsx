@@ -198,9 +198,9 @@ export default class ProjectDetail extends React.Component {
           <span className="label">Project summary</span>
           <div className={`project-summary ${this.state.summaryOpen ? '-open' : ''}`}>
             <p className="project-text">{data.summary}</p>
-            <button className="more" onClick={this.onShowSummary}>
+            {!this.state.summaryOpen && <button className="more" onClick={this.onShowSummary}>
               <SvgIcon className="more-icon -medium" name="icon-arrow-down-2" />
-            </button>
+            </button>}
           </div>
           <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>Project website</a>
         </div>

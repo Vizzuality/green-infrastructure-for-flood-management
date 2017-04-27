@@ -5,11 +5,13 @@ $_btn-height: 50px;
   transform: translate(calc(-100% + 50px),0);
   transition: all $animation-time-2 $ease-in-out-sine;
   height: 100%;
-  width: 600px;
+  width: 450px;
   position: absolute;
   left: 0;
   top: 0;
   z-index: 999;
+
+  &.-project-detail { width: 600px; }
 
   &.-opened {
     transform: translate(0,0);
