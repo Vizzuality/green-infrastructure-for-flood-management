@@ -2,13 +2,14 @@ import L from 'leaflet/dist/leaflet';
 import { PruneCluster, PruneClusterForLeaflet } from 'lib/PruneCluster';
 import { push } from 'react-router-redux';
 import { dispatch } from 'main';
+import * as polyneSnake from 'leaflet.polyline.snakeanim';
 
 PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
 
 function clearMapLine() {
   return window.__map__ &&
     window.__map__.__line__ &&
-    window.__map__.removeLayer(window.__map__.__line__);
+    window.__map__.__line__.forEach(l => window.__map__.removeLayer(l));
 }
 
 function getPopupMarkup(data) {
@@ -41,7 +42,6 @@ function getMarkers(props) {
   function PrepareLeafletMarker(leafletMarker, data) {
     let className = 'c-marker';
     let iconSize = [20, 20];
-    let zIndexOffset = 100;
 
     if (data.current) {
       className += ' -current';
@@ -95,13 +95,24 @@ function getMarkers(props) {
           new L.LatLng(b.minLat, b.maxLng),
           new L.LatLng(b.maxLat, b.minLng));
 
-        // We should check if the sidebar is opened
-        const sidebarWidth = props.sidebarWidth + 25;
-        pruneCluster._map.fitBounds(bounds, {
-          // maxZoom: pruneCluster._map.getZoom() + 2,
-          paddingTopLeft: [sidebarWidth, 25],
-          paddingBottomRight: [50, 25]
-        });
+        const zoomLevelBefore = pruneCluster._map.getZoom();
+        const zoomLevelAfter = pruneCluster._map.getBoundsZoom(bounds, false, new L.Point(20, 20, null));
+
+        if (zoomLevelAfter === zoomLevelBefore) {
+          pruneCluster._map.fire('overlappingmarkers', {
+            cluster: pruneCluster,
+            markers: markersArea,
+            center: marker.getLatLng(),
+            marker
+          });
+        } else {
+          // We should check if the sidebar is opened
+          const sidebarWidth = props.sidebarWidth + 25;
+          pruneCluster._map.fitBounds(bounds, {
+            paddingTopLeft: [sidebarWidth, 25],
+            paddingBottomRight: [50, 25]
+          });
+        }
       }
     });
 
@@ -111,12 +122,12 @@ function getMarkers(props) {
   // Create a cluster for each country
   let projectLocations = [];
   let pruneClusterDetailMarker;
-  let lines;
 
-  const pruneClusterMarker = new PruneClusterForLeaflet(60);
+  const pruneClusterMarker = new PruneClusterForLeaflet(20);
   pruneClusterMarker.PrepareLeafletMarker = PrepareLeafletMarker;
   pruneClusterMarker.BuildLeafletCluster = BuildLeafletCluster;
   pruneClusterMarker.BuildLeafletClusterIcon = BuildLeafletClusterIcon;
+  let delay = 200;
 
   props.projects.forEach((project) => {
     // Push all project locations to projectLocations
@@ -143,7 +154,6 @@ function getMarkers(props) {
 
         // Avoid adding project points if there is just one location
         if (projectLocations.length > 1) {
-          lines = [];
           projectLocations.forEach((location) => {
             marker = new PruneCluster.Marker(location[0], location[1]);
             marker.data = { ...project, current: true };
@@ -152,18 +162,19 @@ function getMarkers(props) {
             // Connect point to centroid with a line
             const line = L.polyline([centroid, location], {
               color: '#FFB400',
-              weight: 2
+              weight: 2,
+              snakingSpeed: 1280
             });
 
-            lines.push(line);
-          });
+            delay += 300;
 
-          // Draw lines as one layer
-          if (lines.length) {
-            const polylines = L.layerGroup(lines);
-            polylines.addTo(window.__map__).setZIndex(200);
-            window.__map__.__line__ = polylines;
-          }
+            setTimeout(() => {
+              line.addTo(window.__map__).snakeIn();
+            }, delay);
+
+            window.__map__.__line__ = window.__map__.__line__ || [];
+            window.__map__.__line__.push(line);
+          });
         }
       } else {
         // All other projects
