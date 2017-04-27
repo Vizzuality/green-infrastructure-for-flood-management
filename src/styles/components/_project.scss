@@ -185,10 +185,11 @@ $_separation: ($space-1 * 4);
     font-size: 40px;
     font-weight: bold;
     color: palette(white);
-    line-height: 36px;
+    line-height: 52px;
 
     &.-small {
       font-size: 24px;
+      line-height: 31px;
     }
   }
 
@@ -210,10 +211,50 @@ $_separation: ($space-1 * 4);
     color: palette(white);
   }
 
+  .project-summary {
+    position: relative;
+
+    &.-open {
+      .project-text {
+        max-height: none;
+      }
+
+      .more {
+        position: relative;
+        padding-top: 5px;
+        bottom: 0;
+
+        .more-icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .more {
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      padding-top: 20px;
+      background: linear-gradient(to top, rgba(255, 255, 255, 1) 55%, rgba(255, 255, 255, 0) 127%);
+
+      &:hover .more-icon { opacity: .7; }
+
+      .more-icon {
+        fill: $color-primary;
+        transition: all $animation-time $ease-in-sine;
+      }
+    }
+  }
+
   .project-text {
     color: palette(black);
     font-size: $font-size-big;
     line-height: 32px;
+    max-height: 120px;
+    overflow: hidden;
   }
 
   .project-link {

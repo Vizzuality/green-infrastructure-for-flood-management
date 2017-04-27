@@ -18,12 +18,14 @@ export default class ProjectDetail extends React.Component {
     super(props);
     this.state = {
       organizationsOpen: false,
-      countriesOpen: false
+      countriesOpen: false,
+      summaryOpen: false
     };
 
     // BINDINGS
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
+    this.onShowSummary = this.onShowSummary.bind(this);
   }
 
   componentWillUnmount() {
@@ -72,6 +74,10 @@ export default class ProjectDetail extends React.Component {
 
   parseCost(millions) {
     return setNumberFormat(millions * 1000000);
+  }
+
+  onShowSummary() {
+    this.setState({ summaryOpen: !this.state.summaryOpen });
   }
 
   render() {
@@ -182,8 +188,13 @@ export default class ProjectDetail extends React.Component {
           </div>
 
           <span className="label">Project summary</span>
-          <p className="project-text">{data.summary}</p>
-          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>website</a>
+          <div className={`project-summary ${this.state.summaryOpen ? '-open' : ''}`}>
+            <p className="project-text">{data.summary}</p>
+            <button className="more" onClick={this.onShowSummary}>
+              <SvgIcon className="more-icon -medium" name="icon-arrow-down-2" />
+            </button>
+          </div>
+          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>Project website</a>
         </div>
         <div className="project-info">
           <div className="project-info-item">
