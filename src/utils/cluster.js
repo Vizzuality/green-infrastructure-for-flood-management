@@ -1,8 +1,15 @@
+import L from 'leaflet/dist/leaflet';
 import { PruneCluster, PruneClusterForLeaflet } from 'lib/PruneCluster';
 import { push } from 'react-router-redux';
 import { dispatch } from 'main';
 
 PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
+
+function clearMapLine() {
+  return window.__map__ &&
+    window.__map__.__line__ &&
+    window.__map__.removeLayer(window.__map__.__line__);
+}
 
 function getPopupMarkup(data) {
   const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
@@ -28,48 +35,45 @@ function getPopupMarkup(data) {
 
 function getMarkers(props) {
   const { projectDetail } = props;
+  clearMapLine();
 
-  /* Marker icon */
+  /* Project centroid marker icon */
   function PrepareLeafletMarker(leafletMarker, data) {
     let className = 'c-marker';
+    let iconSize = [20, 20];
+    let zIndexOffset = 100;
 
-    // Highlight current project marker
-    if (projectDetail && projectDetail.id === data.id) {
+    if (data.current) {
       className += ' -current';
+      iconSize = [6, 6];
+    }
+    if (data.centroid) {
+      className += ' -centroid';
     }
 
     leafletMarker.setIcon(L.divIcon({
-      iconSize: [15, 15],
+      iconSize,
       className,
       html: '<div class="marker-inner"></div>'
     }));
 
-    // Bind Popup
-    leafletMarker.bindPopup(getPopupMarkup(data));
-
-    // Set listeners
-    leafletMarker.off('click').on('click', function mouseover() {
-      this.openPopup();
-    });
+    if (!data.current) {
+      // Bind Popup
+      leafletMarker.bindPopup(getPopupMarkup(data));
+      // Set listeners
+      leafletMarker.off('click').on('click', function mouseover() {
+        this.openPopup();
+      });
+    }
   }
 
   /* Cluster */
   function BuildLeafletClusterIcon(cluster) {
-    let className = 'c-marker';
-    const markers = cluster.GetClusterMarkers();
-    let isCurrent = false;
-
-    // Highlight the cluster if contains a marker that belongs to current project
-    if (projectDetail) {
-      isCurrent = markers.some(marker => marker.data.id === projectDetail.id);
-    }
-    if (isCurrent) className += ' -current';
-
     const size = 15 + ((cluster.population * 100) ** 0.5);
     /* Cluster icon */
     const icon = L.divIcon({
       iconSize: [size, size],
-      className,
+      className: 'c-marker',
       html: `<div class="marker-inner">${cluster.population}</div>`
     });
 
@@ -80,7 +84,6 @@ function getMarkers(props) {
     const icon = BuildLeafletClusterIcon(cluster);
     const marker = new L.Marker(position, { icon });
     const pruneCluster = this;
-    // pruneCluster.RedrawIcons();
 
     marker.on('click', () => {
       /* Fitbounds width sidebar width padding */
@@ -92,25 +95,13 @@ function getMarkers(props) {
           new L.LatLng(b.minLat, b.maxLng),
           new L.LatLng(b.maxLat, b.minLng));
 
-        const zoomLevelBefore = pruneCluster._map.getZoom();
-        const zoomLevelAfter = pruneCluster._map.getBoundsZoom(bounds, false, new L.Point(20, 20, null));
-
-        if (zoomLevelAfter === zoomLevelBefore) {
-          pruneCluster._map.fire('overlappingmarkers', {
-            cluster: pruneCluster,
-            markers: markersArea,
-            center: marker.getLatLng(),
-            marker
-          });
-        } else {
-          // We should check if the sidebar is opened
-          const sidebarWidth = props.sidebarWidth + 25;
-          pruneCluster._map.fitBounds(bounds, {
-            // maxZoom: pruneCluster._map.getZoom() + 2,
-            paddingTopLeft: [sidebarWidth, 25],
-            paddingBottomRight: [50, 25]
-          });
-        }
+        // We should check if the sidebar is opened
+        const sidebarWidth = props.sidebarWidth + 25;
+        pruneCluster._map.fitBounds(bounds, {
+          // maxZoom: pruneCluster._map.getZoom() + 2,
+          paddingTopLeft: [sidebarWidth, 25],
+          paddingBottomRight: [50, 25]
+        });
       }
     });
 
@@ -118,35 +109,86 @@ function getMarkers(props) {
   }
 
   // Create a cluster for each country
-  const countryClusters = [];
-  let lat;
-  let lng;
-  let marker;
-  let cluster;
+  let projectLocations = [];
+  let pruneClusterDetailMarker;
+  let lines;
+
+  const pruneClusterMarker = new PruneClusterForLeaflet(60);
+  pruneClusterMarker.PrepareLeafletMarker = PrepareLeafletMarker;
+  pruneClusterMarker.BuildLeafletCluster = BuildLeafletCluster;
+  pruneClusterMarker.BuildLeafletClusterIcon = BuildLeafletClusterIcon;
 
   props.projects.forEach((project) => {
-    project.locations.forEach((location) => {
-      cluster = countryClusters.find(c => c.id === location.country_iso);
-      if (!cluster) {
-        cluster = {
-          id: location.country_iso,
-          marker: new PruneClusterForLeaflet(60)
-        };
-        cluster.marker.PrepareLeafletMarker = PrepareLeafletMarker;
-        cluster.marker.BuildLeafletCluster = BuildLeafletCluster;
-        cluster.marker.BuildLeafletClusterIcon = BuildLeafletClusterIcon;
-        countryClusters.push(cluster);
+    // Push all project locations to projectLocations
+    projectLocations = project.locations.map((location) => {
+      const lat = location.centroid.coordinates[1];
+      const lng = location.centroid.coordinates[0];
+      return [lat, lng];
+    });
+
+    // Get centroid from projectLocations and add it to cluster
+    if (projectLocations.length) {
+      const centroid = L.latLngBounds(projectLocations).getCenter();
+      let marker = new PruneCluster.Marker(centroid.lat, centroid.lng);
+
+      // Push project detail centroid into another different cluster
+      if (projectDetail && (projectDetail.id === project.id)) {
+        // Detail project
+        pruneClusterDetailMarker = new PruneClusterForLeaflet(1);
+        pruneClusterDetailMarker.PrepareLeafletMarker = PrepareLeafletMarker;
+        pruneClusterDetailMarker.BuildLeafletCluster = BuildLeafletCluster;
+        pruneClusterDetailMarker.BuildLeafletClusterIcon = BuildLeafletClusterIcon;
+        marker.data = { ...project, centroid };
+        pruneClusterDetailMarker.RegisterMarker(marker);
+
+        // Avoid adding project points if there is just one location
+        if (projectLocations.length > 1) {
+          lines = [];
+          projectLocations.forEach((location) => {
+            marker = new PruneCluster.Marker(location[0], location[1]);
+            marker.data = { ...project, current: true };
+            pruneClusterDetailMarker.RegisterMarker(marker);
+
+            // Connect point to centroid with a line
+            const line = L.polyline([centroid, location], {
+              color: '#FFB400',
+              weight: 2
+            });
+
+            lines.push(line);
+          });
+
+          // Draw lines as one layer
+          if (lines.length) {
+            const polylines = L.layerGroup(lines);
+            polylines.addTo(window.__map__).setZIndex(200);
+            window.__map__.__line__ = polylines;
+          }
+        }
+      } else {
+        // All other projects
+        marker.data = project;
+        pruneClusterMarker.RegisterMarker(marker);
       }
 
-      lat = location.centroid.coordinates[1];
-      lng = location.centroid.coordinates[0];
-      marker = new PruneCluster.Marker(lat, lng);
-      marker.data = project;
-      cluster.marker.RegisterMarker(marker);
-    });
+      projectLocations = [];
+    }
   });
 
-  return countryClusters;
+  // Create cluster object that map can understand
+  const clusters = [{
+    id: 'cluster',
+    marker: pruneClusterMarker
+  }];
+
+  if (pruneClusterDetailMarker) {
+    clusters.push({
+      id: 'detail',
+      marker: pruneClusterDetailMarker
+    });
+  }
+
+  return clusters;
 }
 
 export { getMarkers };
