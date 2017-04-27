@@ -216,7 +216,7 @@ export default class MapPage extends React.Component {
           filtersOpened={!this.props.filtersUi.closed}
           onToggle={this.props.setSidebarWidth}
           scroll={this.state.sidebarScroll}
-          showBtn={!this.props.projectDetail}
+          showBtn
           onDetail={!!this.props.projectDetail}
           actions={{
             focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),

@@ -54,20 +54,33 @@ export default class Sidebar extends React.Component {
           {this.props.children}
         </div>
         <div className="sidebar-closed">
-          <div className="rotate-list">
-            <ul>
-              <li onClick={() => this.toggle()}>Projects list</li>
-              <li onClick={() => { this.toggle(); this.props.actions.focusSearch(); }}>Search</li>
-              <li onClick={() => this.toggle()}>Sort by</li>
-              <li onClick={() => { this.toggle(); this.props.actions.openFilters(); }}>Filter</li>
-            </ul>
-            <button
-              className="c-btn -transparent"
-              onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
-            >
-              Download data
-            </button>
-          </div>
+          {!this.props.onDetail ?
+            <div className="rotate-list">
+              <ul>
+                <li onClick={() => this.toggle()}>Projects list</li>
+                <li onClick={() => { this.toggle(); this.props.actions.focusSearch(); }}>Search</li>
+                <li onClick={() => this.toggle()}>Sort by</li>
+                <li onClick={() => { this.toggle(); this.props.actions.openFilters(); }}>Filter</li>
+              </ul>
+              <button
+                className="c-btn -transparent"
+                onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
+              >
+                Download data
+              </button>
+            </div> :
+            <div className="rotate-list">
+              <ul>
+                <li onClick={() => this.toggle()}>Project detail</li>
+              </ul>
+              <button
+                className="c-btn -transparent"
+                onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
+              >
+                Download Pdf
+              </button>
+            </div>
+          }
         </div>
       </aside>
     );
