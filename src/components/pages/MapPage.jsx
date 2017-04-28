@@ -126,7 +126,17 @@ export default class MapPage extends React.Component {
     const methods = {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
       tileLayers: [
-        { url: config.BASEMAP_TILE_URL, zIndex: 0 }
+        {
+          url: config.BASEMAP_TILE_URL,
+          zIndex: 0
+        },
+        {
+          url: 'https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png',
+          zIndex: 1,
+          options: {
+            tms: true
+          }
+        }
       ]
     };
 
