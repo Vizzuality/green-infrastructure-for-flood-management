@@ -9,6 +9,7 @@ import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
 import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
+import ShareModal from 'components/modal/ShareModal';
 import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
 import debounce from 'lodash/debounce';
@@ -17,6 +18,7 @@ import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
 import { saveAsFile } from 'utils/general';
 import { getMarkers } from 'utils/cluster';
+
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -31,6 +33,7 @@ export default class MapPage extends React.Component {
     this.onSearchChange = debounce(this.onSearchChange, 300);
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   /* Component lifecycle */
@@ -74,23 +77,16 @@ export default class MapPage extends React.Component {
     }
   }
 
-  toggleDataDropdown(e, specificDropdown, to) {
-    const { downloadOpen } = this.state;
-
-    this.setState({ downloadOpen: to ? false : !downloadOpen });
-
-    requestAnimationFrame(() => {
-      window[!this.state[specificDropdown] ?
-        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
-    });
+  /* Methods */
+  onSearchChange(val) {
+    this.props.setProjectsFilters({ name: val });
   }
 
-  /* Methods */
   getProjects(filters) {
     // TODO: pagination
-    let paramsArray = [];
+    const paramsArray = [];
 
-    Object.keys(filters).forEach((key, i) => {
+    Object.keys(filters).forEach((key) => {
       if (filters[key] instanceof Array) {
         const arrayValues = filters[key].reduce((sum, val, i) => {
           return i === 0 ? `${key}[]=${val}` : `${sum}&${key}[]=${val}`;
@@ -106,10 +102,6 @@ export default class MapPage extends React.Component {
     }, '');
 
     this.props.getProjects(query);
-  }
-
-  onSearchChange(val) {
-    this.props.setProjectsFilters({ name: val });
   }
 
   getMapListeners() {
@@ -153,7 +145,7 @@ export default class MapPage extends React.Component {
         options: {
           paddingTopLeft: [props.sidebarWidth, 0],
           paddingBottomRight: [0, 0],
-          maxZoom: 5
+          maxZoom: 6
         }
       };
     }
@@ -170,6 +162,27 @@ export default class MapPage extends React.Component {
     };
   }
 
+  toggleDataDropdown(e, specificDropdown, to) {
+    const { downloadOpen } = this.state;
+
+    this.setState({ downloadOpen: to ? false : !downloadOpen });
+
+    requestAnimationFrame(() => {
+      window[!this.state[specificDropdown] ?
+        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
+    });
+  }
+
+  toggleModal() {
+    const opts = {
+      children: ShareModal,
+      childrenProps: {
+        url: window.location.href
+      }
+    };
+    this.props.toggleModal(true, opts);
+  }
+
   /* Render */
   render() {
     /* Map params */
@@ -180,11 +193,16 @@ export default class MapPage extends React.Component {
 
     return (
       <div className="c-map-page l-map-page">
+        <button className="share-btn" onClick={this.toggleModal}>
+          <SvgIcon name="icon-share" className="-medium" />
+        </button>
+
         <Sidebar
           filtersOpened={!this.props.filtersUi.closed}
           onToggle={this.props.setSidebarWidth}
           scroll={this.state.sidebarScroll}
           showBtn={!this.props.projectDetail}
+          onDetail={!!this.props.projectDetail}
           actions={{
             focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),
             openFilters: () => this.props.setFiltersUi({ closed: false })
@@ -247,21 +265,24 @@ export default class MapPage extends React.Component {
 MapPage.propTypes = {
   // State
   projects: React.PropTypes.array,
+  loading: React.PropTypes.bool,
   relatedProjects: React.PropTypes.array,
+  relatedLoading: React.PropTypes.bool,
+  filtersOptions: React.PropTypes.object,
   mapState: React.PropTypes.object,
   filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
-  loading: React.PropTypes.bool,
-  relatedLoading: React.PropTypes.bool,
   filtersUi: React.PropTypes.object,
   // Selector
   projectDetail: React.PropTypes.any,
   // Actions
   getProjects: React.PropTypes.func,
   setProjectsFilters: React.PropTypes.func,
+  toggleModal: React.PropTypes.func,
   setSidebarWidth: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,
   resetMapState: React.PropTypes.func,
-  setFiltersUi: React.PropTypes.func
+  setFiltersUi: React.PropTypes.func,
+  getFiltersOptions: React.PropTypes.func
 };

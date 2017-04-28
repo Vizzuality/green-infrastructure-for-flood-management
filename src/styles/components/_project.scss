@@ -313,6 +313,8 @@ $_separation: ($space-1 * 4);
           content: ''
         }
       }
+
+      &.-clickable { cursor: pointer; }
     }
   }
 

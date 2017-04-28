@@ -1,15 +1,17 @@
 import React from 'react';
-import upperFirst from 'lodash/upperFirst';
-import { SvgIcon } from 'vizz-components';
-import { Row } from 'components/ui/Grid';
-import TetherComponent from 'react-tether';
+import { push } from 'react-router-redux';
 import { Link } from 'react-router';
-import isUrl from 'validator/lib/isUrl';
-import ProjectList from 'components/projects/ProjectList';
+import { SvgIcon } from 'vizz-components';
+import upperFirst from 'lodash/upperFirst';
+import TetherComponent from 'react-tether';
+import isUrl from 'validator/lib/isURL';
 import { setNumberFormat, saveAsFile } from 'utils/general';
-
-import { getRelatedProjects } from 'modules/projects';
+import ProjectList from 'components/projects/ProjectList';
+import { Row } from 'components/ui/Grid';
+// Modules
 import { dispatch } from 'main';
+import { setProjectsFilters } from 'modules/projects';
+import { getRelatedProjects } from 'modules/projects';
 
 
 export default class ProjectDetail extends React.Component {
@@ -17,7 +19,6 @@ export default class ProjectDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shareOpen: false,
       downloadOpen: false
     };
 
@@ -54,6 +55,13 @@ export default class ProjectDetail extends React.Component {
     }
   }
 
+  setArrayProjectsFilter(id, key) {
+    const filter = {};
+    filter[key] = [`${id}`];
+    dispatch(setProjectsFilters(filter));
+    dispatch(push('/map'));
+  }
+
   toggleDataDropdown(e, specificDropdown, to) {
     const { shareOpen, downloadOpen } = this.state;
 
@@ -81,9 +89,14 @@ export default class ProjectDetail extends React.Component {
 
   render() {
     const { data } = this.props;
-    const { shareOpen } = this.state;
-    const setArrayValues = array => array.map((pboi, i) => (
-      <li className="value-item" key={i}>{upperFirst(pboi.name)}</li>
+    const setArrayValues = (array, type) => array.map((pboi, i) => (
+      <li
+        className={`value-item ${type ? '-clickable' : ''}`}
+        key={i}
+        onClick={() => type && this.setArrayProjectsFilter(pboi.id, type)}
+      >
+        {upperFirst(pboi.name)}
+      </li>
     ));
 
     return (
@@ -94,30 +107,6 @@ export default class ProjectDetail extends React.Component {
             Project list
           </Link>
           <div className="project-actions">
-            <TetherComponent
-              attachment="top center"
-              constraints={[{
-                to: 'scrollParent',
-                attachment: 'together'
-              }]}
-              classes={{
-                element: 'c-dropdown'
-              }}
-            >
-              { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={e => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
-                <SvgIcon className="project-share-icon -medium" name="icon-share" />
-                Share
-              </button>
-              { /* Second child: If present, this item will be tethered to the the first child */ }
-              {
-                shareOpen &&
-                <div>
-                  <p>Not available</p>
-                </div>
-              }
-            </TetherComponent>
-
             <button
               className="action"
               type="button"
@@ -138,7 +127,7 @@ export default class ProjectDetail extends React.Component {
             <Row>
               <div className="column small-12">
                 <span className="label">Nature based solutions</span>
-                <ul className="value -big">{setArrayValues(data.nature_based_solutions)}</ul>
+                <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
             </Row>
           </div>
