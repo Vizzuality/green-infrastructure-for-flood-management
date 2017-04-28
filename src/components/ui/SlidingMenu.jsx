@@ -18,7 +18,7 @@ export default function SlidingMenu(props) {
         {props.download &&
           <button
             className="c-btn -transparent download"
-            onClick={() => saveAsFile(props.downloadUrl || '', '')}
+            onClick={() => saveAsFile(props.downloadUrl || '', 'project.csv')}
           >
             Download data
             <SvgIcon name="icon-download-white" className="download -medium" />
