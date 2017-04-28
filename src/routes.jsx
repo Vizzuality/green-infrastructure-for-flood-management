@@ -5,7 +5,7 @@ import Footer from 'components/footer/Footer';
 import { onEnterMapPage, onEnterProjectDetail } from 'modules/url';
 
 // App
-import App from 'components/app/App';
+import App from 'components/app/AppContainer';
 // Pages
 import HomePage from 'components/pages/HomePage';
 import SubmitPage from 'components/pages/SubmitPage';
