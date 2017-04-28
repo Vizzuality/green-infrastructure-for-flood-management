@@ -4,24 +4,18 @@ import upperFirst from 'lodash/upperFirst';
 import { SvgIcon } from 'vizz-components';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
-import isUrl from 'validator/lib/isUrl';
-
+import isUrl from 'validator/lib/isURL';
+import { Row } from 'components/ui/Grid';
+import { setNumberFormat, saveAsFile } from 'utils/general';
 // Modules
-import { toggleModal } from 'modules/modal';
 import { setProjectsFilters } from 'modules/projects';
 import { dispatch } from 'main';
-
-import { setNumberFormat, saveAsFile } from 'utils/general';
-
-import { Row } from 'components/ui/Grid';
-import ShareModal from 'components/modal/ShareModal';
 
 export default class ProjectDetail extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      shareOpen: false,
       downloadOpen: false
     };
 
@@ -78,19 +72,8 @@ export default class ProjectDetail extends React.Component {
     return setNumberFormat(millions * 1000000);
   }
 
-  toggleModal() {
-    const opts = {
-      children: ShareModal,
-      childrenProps: {
-        url: window.location.href
-      }
-    };
-    dispatch(toggleModal(true, opts));
-  }
-
   render() {
     const { data } = this.props;
-    const { shareOpen } = this.state;
     const setArrayValues = (array, type) => array.map((pboi, i) => (
       <li
         className={`value-item ${type ? '-clickable' : ''}`}
@@ -109,10 +92,6 @@ export default class ProjectDetail extends React.Component {
             Project list
           </Link>
           <div className="project-actions">
-            <button className="action" type="button" onClick={() => this.toggleModal()}>
-              <SvgIcon className="project-share-icon -medium" name="icon-share" />
-              Share
-            </button>
             <button
               className="action"
               type="button"
