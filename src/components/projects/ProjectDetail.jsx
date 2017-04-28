@@ -9,6 +9,8 @@ import isUrl from 'validator/lib/isURL';
 import { setNumberFormat, saveAsFile } from 'utils/general';
 import ProjectList from 'components/projects/ProjectList';
 import { Row } from 'components/ui/Grid';
+import PlusNumber from 'components/ui/PlusNumber';
+
 // Modules
 import { dispatch } from 'main';
 import { setProjectsFilters } from 'modules/projects';
@@ -127,8 +129,10 @@ export default class ProjectDetail extends React.Component {
           </div>
         </div>
         <div className="project-detail-section">
-          {data.organizations.length === 1 ?
-            <p className="project-company">{data.organizations[0].name}</p> :
+          {data.organizations.length < 3 ?
+            <ul className="project-company">
+              {data.organizations.map((o, i) => <li key={i}>{o.name}</li>)}
+            </ul> :
             <TetherComponent
               attachment="top left"
               targetAttachment="bottom left"
@@ -143,7 +147,7 @@ export default class ProjectDetail extends React.Component {
             >
               { /* First child: This is what the item will be tethered to */ }
               <p className="project-company -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'organizationsOpen')} ref={c => this.organizationsBtn = c}>
-                {data.organizations.length} organizations
+                {data.organizations[0].name} <PlusNumber list={data.organizations} className="-right" />
               </p>
               { /* Second child: If present, this item will be tethered to the the first child */ }
               {
@@ -248,8 +252,8 @@ export default class ProjectDetail extends React.Component {
           </div>}
 
           {data.donors.length > 0 && <div className="project-info-item">
-            <span className="label">Main Donor</span>
-            <span className="value">{data.donors.length ? upperFirst(data.donors[0].name) : 'Unknown'}</span>
+            <span className="label">Donor(s)</span>
+            <span className="value">{data.donors.map((d, i) => i < data.donors.length - 1 ? `${d.name}, ` : d.name)}</span>
           </div>}
 
           <div className="project-info-item">

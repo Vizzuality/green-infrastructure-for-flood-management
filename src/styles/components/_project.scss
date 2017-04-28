@@ -84,31 +84,27 @@ $_separation: ($space-1 * 4);
   .project-advance {
     flex-grow: 1;
 
+    .project-name {
+      display: block;
+      font-size: $font-size-big;
+      margin-bottom: 4px;
+      line-height: 24px;
+      color: $color-primary;
+      font-weight: 600;
+    }
 
+    .project-company {
+      margin-bottom: 3px;
+      font-weight: 600;
+      font-size: 13px;
+      color: rgba($color-text-1, .9);
+      text-transform: uppercase;
+      line-height: 18px;
+    }
 
-
-
-  .project-name {
-    display: block;
-    font-size: $font-size-big;
-    margin-bottom: 4px;
-    line-height: 24px;
-    color: $color-primary;
-    font-weight: 600;
-  }
-
-  .project-company {
-    margin-bottom: 3px;
-    font-weight: 600;
-    font-size: 13px;
-    color: rgba($color-text-1, .9);
-    text-transform: uppercase;
-    line-height: 18px;
-  }
-
-  .project-tags-container {
-    display: flex;
-    flex-wrap: wrap;
+    .project-tags-container {
+      display: flex;
+      flex-wrap: wrap;
 
 
       &.row.collapse {
@@ -118,23 +114,21 @@ $_separation: ($space-1 * 4);
       }
     }
 
+    .project-tags {
+      display: flex;
+      color: rgba($color-text-1, .9);
+      font-size: $font-size-default;
+      line-height: 18px;
+      padding-right: 10px;
+      margin-right: 20px;
+      margin-bottom: 5px;
 
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+      }
 
-
-  .project-tags {
-    display: flex;
-    color: rgba($color-text-1, .9);
-    font-size: $font-size-default;
-    line-height: 18px;
-    padding-right: 10px;
-    margin-right: 20px;
-    margin-bottom: 5px;
-
-    &:last-child {
-      margin-right: 0;
-      padding-right: 0;
-    }
-
+      svg { fill: rgba($color-text-1, .9); }
 
       & > .title {
         display: inline-block;
@@ -188,14 +182,15 @@ $_separation: ($space-1 * 4);
     height: 100%;
     display: flex;
     align-items: center;
+
+    .c-icon {
+      margin-right: $space-1 * 2;
+      width: 8px;
+      height: 16px;
+      fill: palette(white);
+    }
   }
 
-  .c-icon {
-    margin-right: $space-1 * 2;
-    width: 8px;
-    height: 16px;
-    fill: palette(white);
-  }
 
   .project-actions {
     display: flex;
@@ -248,6 +243,8 @@ $_separation: ($space-1 * 4);
     line-height: 18px;
 
     &.-drop { cursor: pointer; }
+
+    .c-plus-number { color: palette(white); }
   }
 
   .project-data {
