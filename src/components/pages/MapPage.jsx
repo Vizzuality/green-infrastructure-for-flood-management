@@ -12,12 +12,16 @@ import SortBy from 'components/ui/SortBy';
 import ShareModal from 'components/modal/ShareModal';
 import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
+import upperFirst from 'lodash/upperFirst';
 import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
 import { saveAsFile } from 'utils/general';
 import { getMarkers } from 'utils/cluster';
+import { setNumberFormat } from 'utils/general';
+
+const million = 1000000;
 
 
 export default class MapPage extends React.Component {
@@ -173,6 +177,29 @@ export default class MapPage extends React.Component {
     });
   }
 
+  setFiltersTags(currentFilters) {
+    const excludedFilters = ['order', 'direction'];
+    const { filtersOptions } = this.props;
+
+    if (Object.keys(filtersOptions).length) {
+      return currentFilters.filter(fil => !excludedFilters.includes(fil.filter))
+      .map((fil) => {
+        if (fil.value instanceof Array) {
+          return fil.value.map((v, i) => {
+            const key = fil.filter === 'status' ? 'implementation_statuses' : fil.filter;
+            const itemFound = filtersOptions[key].find(it => v === it.value);
+            return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
+          });
+        }
+        return (
+          <li key={fil.filter} className="filter-tag">{typeof fil.value !== 'number' ?
+            upperFirst(fil.value) : `$${setNumberFormat((fil.value * million))}`}</li>
+        );
+      });
+    }
+    return [];
+  }
+
   toggleModal() {
     const opts = {
       children: ShareModal,
@@ -190,6 +217,11 @@ export default class MapPage extends React.Component {
     const mapOptions = this.getMapOptions();
     const { markers, mapMethods } = this.state;
     const mapParams = { listeners, mapMethods, mapOptions, markers };
+    const intoArrayFilters = Object.keys(this.props.filters)
+      .map(k => Object.assign({}, { filter: k, value: this.props.filters[k] || {} }))
+      .filter(obj => obj.value && obj.value.length || typeof obj.value === 'number');
+
+    const filtersTags = this.setFiltersTags(intoArrayFilters);
 
     return (
       <div className="c-map-page l-map-page">
@@ -201,12 +233,13 @@ export default class MapPage extends React.Component {
           filtersOpened={!this.props.filtersUi.closed}
           onToggle={this.props.setSidebarWidth}
           scroll={this.state.sidebarScroll}
-          showBtn={!this.props.projectDetail}
+          showBtn
           onDetail={!!this.props.projectDetail}
           actions={{
             focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),
             openFilters: () => this.props.setFiltersUi({ closed: false })
           }}
+          className={this.props.projectDetail ? '-project-detail' : ''}
         >
           <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
@@ -220,32 +253,33 @@ export default class MapPage extends React.Component {
                 title="filters"
                 closed={this.props.filtersUi.closed}
                 onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
+                downloadUrl="http://nature-of-risk-reduction.vizzuality.com/downloads/projects"
+                download
               >
                 <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
               </SlidingMenu>
-              <Search
-                focus={this.props.filtersUi.searchFocus}
-                defaultValue={this.props.filters.name}
-                onChange={evt => this.onSearchChange(evt.target.value)}
-                onClear={() => this.props.setProjectsFilters({ name: '' })}
-                placeholder="Search by project title"
-              />
-              <div className="sidebar-actions">
-                <button
-                  className="download"
-                  onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
-                >
-                  <SvgIcon name="icon-download" className="download -medium" />
-                  Download data
-                </button>
-
-                <SortBy
-                  order={this.props.filters.order}
-                  direction={this.props.filters.direction}
-                  list={sortByOptions}
-                  setProjectsFilters={this.props.setProjectsFilters}
+              <div className="list-actions">
+                <Search
+                  focus={this.props.filtersUi.searchFocus}
+                  defaultValue={this.props.filters.name}
+                  onChange={evt => this.onSearchChange(evt.target.value)}
+                  onClear={() => this.props.setProjectsFilters({ name: '' })}
+                  placeholder="Search project"
                 />
+
+                <div className="sidebar-actions">
+                  <SortBy
+                    order={this.props.filters.order}
+                    direction={this.props.filters.direction}
+                    list={sortByOptions}
+                    setProjectsFilters={this.props.setProjectsFilters}
+                  />
+                </div>
               </div>
+              {filtersTags.length > 0 &&
+                <div className="current-filters">
+                  <ul className="filters-list">{filtersTags}</ul>
+                </div>}
               <ProjectList projects={this.props.projects} />
             </div>
           }

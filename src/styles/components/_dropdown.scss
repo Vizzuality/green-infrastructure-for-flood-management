@@ -23,6 +23,24 @@
     box-shadow: -1px -1px 0px 0px rgba(palette(black), 0.1);
   }
 
+  &.-arrow-left {
+    &:before {
+      left: 20px;
+    }
+  }
+
+  &.-arrow-bottom {
+    &:before {
+      top: auto;
+      bottom: -5px;
+      border-right: 6px solid palette(white);
+      border-bottom: 6px solid palette(white);
+      border-top: 6px solid transparent;
+      border-left: 6px solid transparent;
+      box-shadow: 1px 1px 0px 0px rgba(palette(black), 0.1);
+    }
+  }
+
   > div > p {
     padding: 0 20px;
     font-size: 12px;
@@ -31,6 +49,21 @@
   ul {
     max-height: 150px;
     overflow-y: auto;
+
+    &.info {
+      font-weight: bold;
+      font-size: 13px;
+      color: rgba($color-text-1, .9);
+
+      li {
+        cursor: default;
+
+        &:hover {
+          color: rgba($color-text-1, .9);
+          background-color: transparent;
+        }
+      }
+    }
 
     li {
       padding: 8px 20px;
