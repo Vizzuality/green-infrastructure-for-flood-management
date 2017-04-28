@@ -12,6 +12,8 @@ const mapStateToProps = state => ({
   mapState: state.map,
   projects: state.projects.list,
   loading: state.projects.loading,
+  relatedProjects: state.projects.relatedProjects,
+  relatedLoading: state.projects.relatedLoading,
   projectDetail: getProjectDetails(state),
   sidebarWidth: state.ui.sidebar.width,
   filtersUi: state.ui.filters,

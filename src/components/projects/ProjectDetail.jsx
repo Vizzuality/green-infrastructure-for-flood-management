@@ -6,8 +6,11 @@ import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
 import isUrl from 'validator/lib/isUrl';
 import ProjectList from 'components/projects/ProjectList';
-
 import { setNumberFormat, saveAsFile } from 'utils/general';
+
+import { getRelatedProjects } from 'modules/projects';
+import { dispatch } from 'main';
+
 
 export default class ProjectDetail extends React.Component {
 
@@ -21,6 +24,18 @@ export default class ProjectDetail extends React.Component {
     // BINDINGS
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.data && this.props.data.id &&
+      dispatch(getRelatedProjects(this.props.data.id));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    (!this.props.data || !this.props.data.id) && (!this.props.relatedProjects ||
+      Object.keys(this.props.relatedProjects).length === 0) &&
+      nextProps.data && nextProps.data.id &&
+      dispatch(getRelatedProjects(nextProps.data.id));
   }
 
   componentWillUnmount() {
@@ -214,5 +229,6 @@ export default class ProjectDetail extends React.Component {
 
 ProjectDetail.propTypes = {
   data: React.PropTypes.object,
-  relatedProjects: React.PropTypes.array
+  relatedProjects: React.PropTypes.array,
+  params: React.PropTypes.object
 };

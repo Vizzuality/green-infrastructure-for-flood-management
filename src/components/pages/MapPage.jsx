@@ -192,7 +192,11 @@ export default class MapPage extends React.Component {
         >
           <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
-            <ProjectDetail data={this.props.projectDetail} relatedProjects={[]} /> :
+            <ProjectDetail
+              data={this.props.projectDetail}
+              relatedProjects={this.props.relatedProjects || []}
+              relatedLoading={this.props.relatedLoading}
+            /> :
             <div className="project-list-wrapper">
               <SlidingMenu
                 title="filters"
@@ -243,10 +247,12 @@ export default class MapPage extends React.Component {
 MapPage.propTypes = {
   // State
   projects: React.PropTypes.array,
+  relatedProjects: React.PropTypes.array,
   mapState: React.PropTypes.object,
   filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
   loading: React.PropTypes.bool,
+  relatedLoading: React.PropTypes.bool,
   filtersUi: React.PropTypes.object,
   // Selector
   projectDetail: React.PropTypes.any,
