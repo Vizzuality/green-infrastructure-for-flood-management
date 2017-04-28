@@ -1,16 +1,16 @@
 import React from 'react';
+import { push } from 'react-router-redux';
 import upperFirst from 'lodash/upperFirst';
 import uniq from 'lodash/uniq';
 import { SvgIcon } from 'vizz-components';
-import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
 import isUrl from 'validator/lib/isURL';
+import { Row } from 'components/ui/Grid';
+import { setNumberFormat, saveAsFile } from 'utils/general';
+// Modules
 import { setProjectsFilters } from 'modules/projects';
 import { dispatch } from 'main';
-import { push } from 'react-router-redux';
-
-import { setNumberFormat, saveAsFile } from 'utils/general';
 
 export default class ProjectDetail extends React.Component {
 
@@ -44,6 +44,10 @@ export default class ProjectDetail extends React.Component {
     }
   }
 
+  onShowSummary() {
+    this.setState({ summaryOpen: !this.state.summaryOpen });
+  }
+
   setArrayProjectsFilter(id, key) {
     const filter = {};
     filter[key] = [`${id}`];
@@ -74,10 +78,6 @@ export default class ProjectDetail extends React.Component {
 
   parseCost(millions) {
     return setNumberFormat(millions * 1000000);
-  }
-
-  onShowSummary() {
-    this.setState({ summaryOpen: !this.state.summaryOpen });
   }
 
   render() {
@@ -115,8 +115,8 @@ export default class ProjectDetail extends React.Component {
           {data.organizations.length === 1 ?
             <p className="project-company">{data.organizations[0].name}</p> :
             <TetherComponent
-              attachment='top left'
-              targetAttachment='bottom left'
+              attachment="top left"
+              targetAttachment="bottom left"
               constraints={[{
                 to: 'scrollParent',
                 attachment: 'together',
@@ -148,8 +148,8 @@ export default class ProjectDetail extends React.Component {
             {countries.length === 1 ?
               <span className="project-data">{countries[0]}</span> :
               <TetherComponent
-                attachment='top right'
-                targetAttachment='bottom right'
+                attachment="top right"
+                targetAttachment="bottom right"
                 constraints={[{
                   to: 'scrollParent',
                   attachment: 'together',

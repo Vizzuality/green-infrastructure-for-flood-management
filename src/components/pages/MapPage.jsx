@@ -9,6 +9,7 @@ import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
 import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
+import ShareModal from 'components/modal/ShareModal';
 import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
 import upperFirst from 'lodash/upperFirst';
@@ -21,6 +22,7 @@ import { getMarkers } from 'utils/cluster';
 import { setNumberFormat } from 'utils/general';
 
 const million = 1000000;
+
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -35,6 +37,7 @@ export default class MapPage extends React.Component {
     this.onSearchChange = debounce(this.onSearchChange, 300);
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   /* Component lifecycle */
@@ -85,7 +88,7 @@ export default class MapPage extends React.Component {
 
   getProjects(filters) {
     // TODO: pagination
-    let paramsArray = [];
+    const paramsArray = [];
 
     Object.keys(filters).forEach((key) => {
       if (filters[key] instanceof Array) {
@@ -146,7 +149,7 @@ export default class MapPage extends React.Component {
         options: {
           paddingTopLeft: [props.sidebarWidth, 0],
           paddingBottomRight: [0, 0],
-          maxZoom: 5
+          maxZoom: 6
         }
       };
     }
@@ -197,6 +200,16 @@ export default class MapPage extends React.Component {
     return [];
   }
 
+  toggleModal() {
+    const opts = {
+      children: ShareModal,
+      childrenProps: {
+        url: window.location.href
+      }
+    };
+    this.props.toggleModal(true, opts);
+  }
+
   /* Render */
   render() {
     /* Map params */
@@ -212,6 +225,10 @@ export default class MapPage extends React.Component {
 
     return (
       <div className="c-map-page l-map-page">
+        <button className="share-btn" onClick={this.toggleModal}>
+          <SvgIcon name="icon-share" className="-medium" />
+        </button>
+
         <Sidebar
           filtersOpened={!this.props.filtersUi.closed}
           onToggle={this.props.setSidebarWidth}
@@ -289,6 +306,7 @@ MapPage.propTypes = {
   // Actions
   getProjects: React.PropTypes.func,
   setProjectsFilters: React.PropTypes.func,
+  toggleModal: React.PropTypes.func,
   setSidebarWidth: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,

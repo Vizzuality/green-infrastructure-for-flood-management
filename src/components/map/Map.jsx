@@ -29,6 +29,9 @@ export default class Map extends React.Component {
     const mapOptions = Object.assign({}, mapDefaultOptions, this.props.mapOptions);
     this.map = L.map(this.mapNode, mapOptions);
 
+    // TODO: don't expose map to window
+    window.__map__ = this.map;
+
     // Add event listeners
     this.props.listeners && this.setMapEventListeners();
     // Exec leaflet methods
@@ -72,6 +75,7 @@ export default class Map extends React.Component {
     this._mounted = false;
     this.props.listeners && this.removeMapEventListeners();
     this.map.remove();
+    window.__map__ = null;
   }
 
   /* LayerManager initialization */

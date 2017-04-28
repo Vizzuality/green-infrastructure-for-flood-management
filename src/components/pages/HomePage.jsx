@@ -32,7 +32,7 @@ export default class HomePage extends React.Component {
                 <Link className="c-btn -secondary" to="/map">See all projects</Link>
               </div>
               <div className="column small-6 -container">
-                <img className="screenshot" alt="screen capture" src="/images/screenshot.png" />
+                <img className="screenshot" alt="screen capture" src="/images/projects-page.jpg" />
               </div>
             </Row>
           </div>
