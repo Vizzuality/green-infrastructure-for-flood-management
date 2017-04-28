@@ -1,5 +1,25 @@
+$zoom-size: 40px;
+
 .c-map, .map-leaflet {
   height: 100%;
+}
+
+.share-btn {
+  position: absolute;
+  top: 100px;
+  right: 16px;
+  width: $zoom-size;
+  height: $zoom-size;
+  z-index: 1000;
+  padding: 0;
+  background-color: palette(white);
+  border-radius: 2px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+
+  svg {
+    fill: $color-primary;
+    margin-top: 3px;
+  }
 }
 
 // TODO: set zIndex using Leaflet

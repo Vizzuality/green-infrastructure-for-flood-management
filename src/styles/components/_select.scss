@@ -51,7 +51,7 @@
     }
 
     .Select-placeholder {
-      color: rgba(palette(black), .7);
+      color: rgba(palette(white), .5);
     }
   }
 
@@ -59,7 +59,7 @@
     .Select-value {
       position: relative;
       color: white;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.1);
       border-radius: 100px;
       padding-left: 5px;
       margin-left: 0;
@@ -75,6 +75,8 @@
         right: 3px;
         top: 1px;
         border: 0;
+        font-size: 16px;
+        line-height: 19px;
         color: $secondary-color;
       }
     }

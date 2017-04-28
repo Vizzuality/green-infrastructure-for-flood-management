@@ -1,4 +1,5 @@
 $_btn-height: 50px;
+$padding: 32px;
 
 .c-sliding-menu {
   z-index: 4;
@@ -16,8 +17,24 @@ $_btn-height: 50px;
 
   .sliding-menu-header {
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 5;
+    height: 50px;
+    padding: 0 $padding;
     background-color: $primary-color;
+
+    .c-btn.download {
+      display: flex;
+      align-items: center;
+      padding: 5px 12px;
+
+      svg {
+        margin-left: 8px;
+        fill: palette(white);
+      }
+    }
   }
 
   .sliding-menu-content {
@@ -36,8 +53,8 @@ $_btn-height: 50px;
   .sliding-menu-btn {
     position: relative;
     display: block;
-    width: 100%;
     height: $_btn-height;
+    padding: 0;
     line-height: $_btn-height;
     text-transform: uppercase;
     font-weight: bold;
@@ -45,6 +62,6 @@ $_btn-height: 50px;
     color: palette(white);
     border: none;
     background-color: $primary-color;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+    // box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
   }
 }
