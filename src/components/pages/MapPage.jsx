@@ -17,7 +17,7 @@ import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
-import TetherComponent from 'react-tether';
+import { saveAsFile } from 'utils/general';
 import { getMarkers } from 'utils/cluster';
 import { setNumberFormat } from 'utils/general';
 
@@ -243,7 +243,11 @@ export default class MapPage extends React.Component {
         >
           <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
-            <ProjectDetail data={this.props.projectDetail} /> :
+            <ProjectDetail
+              data={this.props.projectDetail}
+              relatedProjects={this.props.relatedProjects || []}
+              relatedLoading={this.props.relatedLoading}
+            /> :
             <div className="project-list-wrapper">
               <SlidingMenu
                 title="filters"
@@ -295,11 +299,13 @@ export default class MapPage extends React.Component {
 MapPage.propTypes = {
   // State
   projects: React.PropTypes.array,
+  loading: React.PropTypes.bool,
+  relatedProjects: React.PropTypes.array,
+  relatedLoading: React.PropTypes.bool,
   filtersOptions: React.PropTypes.object,
   mapState: React.PropTypes.object,
   filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
-  loading: React.PropTypes.bool,
   filtersUi: React.PropTypes.object,
   // Selector
   projectDetail: React.PropTypes.any,

@@ -83,7 +83,10 @@ $_separation: ($space-1 * 4);
 
   .project-advance {
     flex-grow: 1;
-  }
+
+
+
+
 
   .project-name {
     display: block;
@@ -107,12 +110,16 @@ $_separation: ($space-1 * 4);
     display: flex;
     flex-wrap: wrap;
 
-    &.row.collapse {
-      .project-tags {
-        padding-right: 10px;
+
+      &.row.collapse {
+        .project-tags {
+          padding-right: 10px;
+        }
       }
     }
-  }
+
+
+
 
   .project-tags {
     display: flex;
@@ -128,10 +135,14 @@ $_separation: ($space-1 * 4);
       padding-right: 0;
     }
 
-    .title {
-      display: inline-block;
-      color: rgba($color-text-1, .9);
-      margin-right: 5px;
+
+      & > .title {
+        display: inline-block;
+        color: rgba($color-text-1, .9);
+        margin-right: 5px;
+        font-size: $font-size-default;
+        line-height: 18px;
+      }
     }
   }
 
@@ -328,6 +339,7 @@ $_separation: ($space-1 * 4);
       }
 
       .value {
+        word-break: break-word;
         font-size: 24px;
         font-weight: normal;
         line-height: 36px;
@@ -427,6 +439,7 @@ $_separation: ($space-1 * 4);
     line-height: 24px;
     display: flex;
     flex-wrap: wrap;
+    word-break: break-word;
 
     &.-big {
       font-size: 36px;
@@ -461,6 +474,25 @@ $_separation: ($space-1 * 4);
       }
 
       &.-clickable { cursor: pointer; }
+    }
+  }
+
+  .project-detail-related {
+    background-color: rgba(palette(black), .03);
+
+    .header {
+      padding: $_separation;
+      border-bottom: 1px solid rgba(palette(black), .13);
+    }
+
+    .title {
+      color: $color-primary;
+      font-size: $font-size-huger;
+      line-height: 44px;
+    }
+
+    .related-projects {
+
     }
   }
 }
