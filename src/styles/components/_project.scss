@@ -51,52 +51,54 @@ $_separation: ($space-1 * 4);
 
   .project-advance {
     flex-grow: 1;
-  }
 
-  .project-name {
-    display: block;
-    font-size: $font-size-big;
-    margin-bottom: $space-1 * 1.6;
-    line-height: 24px;
-    color: $color-text-1;
-    font-weight: 600;
-  }
+    & > .project-name {
+      display: block;
+      font-size: $font-size-big;
+      margin-bottom: $space-1 * 1.6;
+      line-height: 24px;
+      color: $color-text-1;
+      font-weight: 600;
+    }
 
-  .project-company {
-    margin-bottom: $space-1 * 1.05;
-    font-weight: 600;
-    color: rgba($color-text-1, .9);
-    text-transform: uppercase;
-    line-height: 18px;
-  }
+    & > .project-company {
+      margin-bottom: $space-1 * 1.05;
+      font-weight: 600;
+      color: rgba($color-text-1, .9);
+      text-transform: uppercase;
+      line-height: 18px;
+    }
 
-  .project-tags-container {
-    display: flex;
-    justify-content: space-between;
+    & > .project-tags-container {
+      display: flex;
+      justify-content: space-between;
 
-    &.row.collapse {
-      .project-tags {
-        padding-right: 10px;
+      &.row.collapse {
+        .project-tags {
+          padding-right: 10px;
+        }
       }
     }
-  }
 
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    color: rgba($primary-color, .9);
-    font-size: $font-size-default;
-    line-height: 18px;
-    padding-right: 10px;
+    & .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      color: rgba($primary-color, .9);
+      font-size: $font-size-default;
+      line-height: 18px;
+      padding-right: 10px;
 
-    &:last-child {
-      padding-right: 0;
-    }
+      &:last-child {
+        padding-right: 0;
+      }
 
-    .title {
-      display: inline-block;
-      color: rgba($color-text-1, .9);
-      margin-right: 5px;
+      & > .title {
+        display: inline-block;
+        color: rgba($color-text-1, .9);
+        margin-right: 5px;
+        font-size: $font-size-default;
+        line-height: 18px;
+      }
     }
   }
 
@@ -231,6 +233,7 @@ $_separation: ($space-1 * 4);
       }
 
       .value {
+        word-break: break-word;
         font-size: 24px;
         font-weight: normal;
         line-height: 36px;
@@ -277,6 +280,7 @@ $_separation: ($space-1 * 4);
     line-height: 24px;
     display: flex;
     flex-wrap: wrap;
+    word-break: break-word;
 
     &.-big {
       font-size: 36px;
@@ -311,6 +315,25 @@ $_separation: ($space-1 * 4);
       }
 
       &.-clickable { cursor: pointer; }
+    }
+  }
+
+  .project-detail-related {
+    background-color: rgba(palette(black), .03);
+
+    .header {
+      padding: $_separation;
+      border-bottom: 1px solid rgba(palette(black), .13);
+    }
+
+    .title {
+      color: $color-primary;
+      font-size: $font-size-huger;
+      line-height: 44px;
+    }
+
+    .related-projects {
+
     }
   }
 }

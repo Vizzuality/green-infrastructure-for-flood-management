@@ -1,15 +1,18 @@
 import React from 'react';
 import { push } from 'react-router-redux';
-import upperFirst from 'lodash/upperFirst';
-import { SvgIcon } from 'vizz-components';
-import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
+import { SvgIcon } from 'vizz-components';
+import upperFirst from 'lodash/upperFirst';
+import TetherComponent from 'react-tether';
 import isUrl from 'validator/lib/isURL';
-import { Row } from 'components/ui/Grid';
 import { setNumberFormat, saveAsFile } from 'utils/general';
+import ProjectList from 'components/projects/ProjectList';
+import { Row } from 'components/ui/Grid';
 // Modules
-import { setProjectsFilters } from 'modules/projects';
 import { dispatch } from 'main';
+import { setProjectsFilters } from 'modules/projects';
+import { getRelatedProjects } from 'modules/projects';
+
 
 export default class ProjectDetail extends React.Component {
 
@@ -22,6 +25,18 @@ export default class ProjectDetail extends React.Component {
     // BINDINGS
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.data && this.props.data.id &&
+      dispatch(getRelatedProjects(this.props.data.id));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    (!this.props.data || !this.props.data.id) && (!this.props.relatedProjects ||
+      Object.keys(this.props.relatedProjects).length === 0) &&
+      nextProps.data && nextProps.data.id &&
+      dispatch(getRelatedProjects(nextProps.data.id));
   }
 
   componentWillUnmount() {
@@ -185,11 +200,24 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
           </div>}
         </div>
+
+        {this.props.relatedProjects && this.props.relatedProjects.length > 0 &&
+          <div className="project-detail-related">
+            <header className="header">
+              <h2 className="title">Realted Projects</h2>
+            </header>
+            <div className="related-projects">
+              <ProjectList projects={this.props.relatedProjects} />
+            </div>
+          </div>
+        }
       </article>
     );
   }
 }
 
 ProjectDetail.propTypes = {
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  relatedProjects: React.PropTypes.array,
+  params: React.PropTypes.object
 };
