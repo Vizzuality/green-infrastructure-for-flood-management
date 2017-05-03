@@ -44,6 +44,16 @@
       background-color: rgba(palette(white), .9);
       color: rgba($color-text-1, 1);
     }
+
+    &.-primary {
+      background-color: $color-primary;
+      color: rgba(palette(white), .9);
+
+      &:hover {
+        background-color: rgba($color-primary, .9);
+        color: rgba(palette(white), 1);
+      }
+    }
   }
 
   &.-transparent {

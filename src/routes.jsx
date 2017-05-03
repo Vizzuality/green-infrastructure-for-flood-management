@@ -8,7 +8,7 @@ import { onEnterMapPage, onEnterProjectDetail } from 'modules/url';
 import App from 'components/app/AppContainer';
 // Pages
 import HomePage from 'components/pages/HomePage';
-import SubmitPage from 'components/pages/SubmitPage';
+import SubmitPage from 'components/pages/SubmitPageContainer';
 import MapPageContainer from 'components/pages/MapPageContainer';
 
 const Routes = ({ history }) => (
