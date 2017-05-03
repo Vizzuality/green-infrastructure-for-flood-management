@@ -12,6 +12,7 @@ import InputMap from 'components/ui/InputMap';
 
 const defaultValues = {
   name: '',
+  location: '',
   scale: '',
   organizations: [],
   primary_benefits: [],
@@ -114,9 +115,9 @@ export default class SubmitPage extends React.Component {
                     ref={n => this.location = n}
                     name="location"
                     type="text"
-                    onChange={e => this.setFieldValue('location', e.currentTarget.value)}
+                    onChange={e => this.setState({ mapSearch: e.currentTarget.value })}
                   />
-                  <InputMap />
+                  <InputMap inputProps={{ name: 'pepe' }} />
                 </div>
 
                 {/* Scale */}

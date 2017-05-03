@@ -5,40 +5,43 @@ import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps/lib';
 import SearchBox from 'react-google-maps/lib/places/SearchBox';
 
 const INPUT_STYLE = {
-  boxSizing: 'border-box',
-  MozBoxSizing: 'border-box',
-  border: '1px solid transparent',
-  width: '240px',
-  height: '32px',
-  marginTop: '27px',
-  padding: '0 12px',
-  borderRadius: '1px',
-  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
-  fontSize: '14px',
-  outline: 'none',
-  textOverflow: 'ellipses'
+  boxSizing: 'border-box'
+  // MozBoxSizing: 'border-box',
+  // border: '1px solid transparent',
+  // width: '240px',
+  // height: '32px',
+  // marginTop: '27px',
+  // padding: '0 12px',
+  // borderRadius: '1px',
+  // boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+  // fontSize: '14px',
+  // outline: 'none',
+  // textOverflow: 'ellipses'
 };
 
-const SearchBoxExampleGoogleMap = withGoogleMap(props => (
-  <GoogleMap
-    ref={props.onMapMounted}
-    defaultZoom={15}
-    center={props.center}
-    onBoundsChanged={props.onBoundsChanged}
-  >
-    <SearchBox
-      ref={props.onSearchBoxMounted}
-      bounds={props.bounds}
-      controlPosition={google.maps.ControlPosition.TOP_LEFT}
-      onPlacesChanged={props.onPlacesChanged}
-      inputPlaceholder="Customized your placeholder"
-      inputStyle={INPUT_STYLE}
-    />
-    {props.markers.map((marker, index) => (
-      <Marker position={marker.position} key={index} />
-    ))}
-  </GoogleMap>
-));
+const SearchBoxGoogleMap = withGoogleMap(props => {
+  return (
+    <GoogleMap
+      ref={props.onMapMounted}
+      defaultZoom={15}
+      center={props.center}
+      onBoundsChanged={props.onBoundsChanged}
+    >
+      <SearchBox
+        ref={props.onSearchBoxMounted}
+        bounds={props.bounds}
+        controlPosition={google.maps.ControlPosition.TOP_LEFT}
+        onPlacesChanged={props.onPlacesChanged}
+        inputPlaceholder="Type a location"
+        inputStyle={INPUT_STYLE}
+        inputProps={props.inputProps}
+      />
+      {props.markers.map((marker, index) => (
+        <Marker position={marker.position} key={index} />
+      ))}
+    </GoogleMap>);
+});
+
 
 export default class InputMap extends React.Component {
 
@@ -51,7 +54,8 @@ export default class InputMap extends React.Component {
         lat: 47.6205588,
         lng: -122.3212725
       },
-      markers: []
+      markers: [],
+      value: props.inputProps && props.inputProps.value
     };
 
     // BINDINGS
@@ -59,6 +63,11 @@ export default class InputMap extends React.Component {
     this.handleBoundsChanged = this.handleBoundsChanged.bind(this);
     this.handleSearchBoxMounted = this.handleSearchBoxMounted.bind(this);
     this.handlePlacesChanged = this.handlePlacesChanged.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    nextProps.inputProps.value !== this.state.value &&
+      this.setState({ value: nextProps.inputProps.value });
   }
 
   /**
@@ -98,9 +107,11 @@ export default class InputMap extends React.Component {
   }
 
   render() {
+    const inputProps = Object.assign({}, this.props.inputProps, { value: this.state.value });
+
     return (
       <div className="c-input-map">
-        <SearchBoxExampleGoogleMap
+        <SearchBoxGoogleMap
           containerElement={
             <div style={{ height: '100%' }} />
           }
@@ -114,6 +125,7 @@ export default class InputMap extends React.Component {
           bounds={this.state.bounds}
           onPlacesChanged={this.handlePlacesChanged}
           markers={this.state.markers}
+          inputProps={inputProps}
         />
       </div>
     );
@@ -122,7 +134,7 @@ export default class InputMap extends React.Component {
 
 InputMap.propTypes = {
   // name: React.PropTypes.string,
-  // value: React.PropTypes.string,
+  value: React.PropTypes.string
   // label: React.PropTypes.string,
   // className: React.PropTypes.string,
   // checked: React.PropTypes.bool,

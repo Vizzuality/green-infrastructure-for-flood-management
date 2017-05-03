@@ -1,4 +1,29 @@
 .c-input-map {
-  padding-top: 90px;
   height: 300px;
+
+  .gmnoprint,
+  .gm-svpc,
+  .gm-style-cc {
+    display: none;
+  }
+
+  .gm-style {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: white;
+      z-index: 2;
+    }
+
+    input {
+      width: 100%;
+      left: 0 !important;
+      top: 30px !important;
+      z-index: 3 !important;
+    }
+  }
 }
