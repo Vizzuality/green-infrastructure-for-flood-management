@@ -9,15 +9,20 @@ import ZoomControl from 'components/zoom/ZoomControl';
 import SlidingMenu from 'components/ui/SlidingMenu'
 import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
+import ShareModal from 'components/modal/ShareModal';
 import Search from 'components/ui/Search';
 import isEqual from 'lodash/isEqual';
+import upperFirst from 'lodash/upperFirst';
 import debounce from 'lodash/debounce';
 import { SvgIcon } from 'vizz-components';
 import { sortByOptions } from 'constants/filters';
 import { mapDefaultOptions } from 'constants/map';
 import { saveAsFile } from 'utils/general';
-import TetherComponent from 'react-tether';
 import { getMarkers } from 'utils/cluster';
+import { setNumberFormat } from 'utils/general';
+
+const million = 1000000;
+
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -32,6 +37,7 @@ export default class MapPage extends React.Component {
     this.onSearchChange = debounce(this.onSearchChange, 300);
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   /* Component lifecycle */
@@ -80,9 +86,8 @@ export default class MapPage extends React.Component {
     this.props.setProjectsFilters({ name: val });
   }
 
-  getProjects(filters) {
-    // TODO: pagination
-    let paramsArray = [];
+  getQuery(filters) {
+    const paramsArray = [];
 
     Object.keys(filters).forEach((key) => {
       if (filters[key] instanceof Array) {
@@ -91,7 +96,8 @@ export default class MapPage extends React.Component {
         }, '');
         arrayValues !== '' && paramsArray.push(arrayValues);
       } else {
-        filters[key] && filters[key] !== '' && paramsArray.push(`${key}=${filters[key]}`);
+        const keyFilter = key === 'name' ? 'q' : key;
+        filters[key] && filters[key] !== '' && paramsArray.push(`${keyFilter}=${filters[key]}`);
       }
     });
 
@@ -99,6 +105,12 @@ export default class MapPage extends React.Component {
       return i === 0 ? `${val}` : `${total}&${val}`;
     }, '');
 
+    return query;
+  }
+
+  getProjects(filters) {
+    // TODO: pagination
+    const query = this.getQuery(filters);
     this.props.getProjects(query);
   }
 
@@ -171,6 +183,39 @@ export default class MapPage extends React.Component {
     });
   }
 
+  setFiltersTags(currentFilters) {
+    const excludedFilters = ['order', 'direction'];
+    const { filtersOptions } = this.props;
+
+    if (Object.keys(filtersOptions).length) {
+      return currentFilters.filter(fil => !excludedFilters.includes(fil.filter))
+      .map((fil) => {
+        if (fil.value instanceof Array) {
+          return fil.value.map((v, i) => {
+            const key = fil.filter === 'status' ? 'implementation_statuses' : fil.filter;
+            const itemFound = filtersOptions[key].find(it => v === it.value);
+            return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
+          });
+        }
+        return (
+          <li key={fil.filter} className="filter-tag">{typeof fil.value !== 'number' ?
+            upperFirst(fil.value) : `$${setNumberFormat((fil.value * million))}`}</li>
+        );
+      });
+    }
+    return [];
+  }
+
+  toggleModal() {
+    const opts = {
+      children: ShareModal,
+      childrenProps: {
+        url: window.location.href
+      }
+    };
+    this.props.toggleModal(true, opts);
+  }
+
   /* Render */
   render() {
     /* Map params */
@@ -178,54 +223,70 @@ export default class MapPage extends React.Component {
     const mapOptions = this.getMapOptions();
     const { markers, mapMethods } = this.state;
     const mapParams = { listeners, mapMethods, mapOptions, markers };
+    const intoArrayFilters = Object.keys(this.props.filters)
+      .map(k => Object.assign({}, { filter: k, value: this.props.filters[k] || {} }))
+      .filter(obj => obj.value && obj.value.length || typeof obj.value === 'number');
+
+    const filtersTags = this.setFiltersTags(intoArrayFilters);
+    const filtersQuery = this.getQuery(this.props.filters);
 
     return (
       <div className="c-map-page l-map-page">
+        <button className="share-btn" onClick={this.toggleModal}>
+          <SvgIcon name="icon-share" className="-medium" />
+        </button>
+
         <Sidebar
           filtersOpened={!this.props.filtersUi.closed}
           onToggle={this.props.setSidebarWidth}
           scroll={this.state.sidebarScroll}
-          showBtn={!this.props.projectDetail}
+          showBtn
           onDetail={!!this.props.projectDetail}
           actions={{
             focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),
             openFilters: () => this.props.setFiltersUi({ closed: false })
           }}
+          className={this.props.projectDetail ? '-project-detail' : ''}
         >
           <Spinner isLoading={this.props.loading} />
           {this.props.projectDetail ?
-            <ProjectDetail data={this.props.projectDetail} /> :
+            <ProjectDetail
+              data={this.props.projectDetail}
+              relatedProjects={this.props.relatedProjects || []}
+              relatedLoading={this.props.relatedLoading}
+            /> :
             <div className="project-list-wrapper">
               <SlidingMenu
                 title="filters"
                 closed={this.props.filtersUi.closed}
                 onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
+                downloadUrl={`http://nature-of-risk-reduction.vizzuality.com//api/projects.csv?${filtersQuery}`}
+                download
               >
                 <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
               </SlidingMenu>
-              <Search
-                focus={this.props.filtersUi.searchFocus}
-                defaultValue={this.props.filters.name}
-                onChange={evt => this.onSearchChange(evt.target.value)}
-                onClear={() => this.props.setProjectsFilters({ name: '' })}
-                placeholder="Search by project title"
-              />
-              <div className="sidebar-actions">
-                <button
-                  className="download"
-                  onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
-                >
-                  <SvgIcon name="icon-download" className="download -medium" />
-                  Download data
-                </button>
-
-                <SortBy
-                  order={this.props.filters.order}
-                  direction={this.props.filters.direction}
-                  list={sortByOptions}
-                  setProjectsFilters={this.props.setProjectsFilters}
+              <div className="list-actions">
+                <Search
+                  focus={this.props.filtersUi.searchFocus}
+                  defaultValue={this.props.filters.name}
+                  onChange={evt => this.onSearchChange(evt.target.value)}
+                  onClear={() => this.props.setProjectsFilters({ name: '' })}
+                  placeholder="Search project"
                 />
+
+                <div className="sidebar-actions">
+                  <SortBy
+                    order={this.props.filters.order}
+                    direction={this.props.filters.direction}
+                    list={sortByOptions}
+                    setProjectsFilters={this.props.setProjectsFilters}
+                  />
+                </div>
               </div>
+              {filtersTags.length > 0 &&
+                <div className="current-filters">
+                  <ul className="filters-list">{filtersTags}</ul>
+                </div>}
               <ProjectList projects={this.props.projects} />
             </div>
           }
@@ -245,17 +306,20 @@ export default class MapPage extends React.Component {
 MapPage.propTypes = {
   // State
   projects: React.PropTypes.array,
+  loading: React.PropTypes.bool,
+  relatedProjects: React.PropTypes.array,
+  relatedLoading: React.PropTypes.bool,
   filtersOptions: React.PropTypes.object,
   mapState: React.PropTypes.object,
   filters: React.PropTypes.object,
   sidebarWidth: React.PropTypes.number,
-  loading: React.PropTypes.bool,
   filtersUi: React.PropTypes.object,
   // Selector
   projectDetail: React.PropTypes.any,
   // Actions
   getProjects: React.PropTypes.func,
   setProjectsFilters: React.PropTypes.func,
+  toggleModal: React.PropTypes.func,
   setSidebarWidth: React.PropTypes.func,
   updateUrl: React.PropTypes.func,
   setMapLocation: React.PropTypes.func,

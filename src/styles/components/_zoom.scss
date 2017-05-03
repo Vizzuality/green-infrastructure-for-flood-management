@@ -1,12 +1,13 @@
-$zoom-size: 46px;
+$zoom-size: 40px;
 
 .c-zoom-control {
   position: absolute;
   top: $space-1 * 2;
   right: $space-1 * 2;
   z-index: 999;
-  border-radius: 3px;
-  border: 1px solid palette(gray, light);
+  border-radius: 2px;
+  // border: 1px solid palette(gray, light);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
 
   .zoom-control-item {
     overflow-x: hidden;

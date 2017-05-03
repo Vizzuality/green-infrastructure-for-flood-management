@@ -42,7 +42,7 @@ export default class SortBy extends React.Component {
 
   setFilters(key, value) {
     this.setState({ isOpen: false }, () => {
-      let filter = {};
+      const filter = {};
       filter[key] = value;
       this.props.setProjectsFilters(filter);
     });
@@ -68,12 +68,12 @@ export default class SortBy extends React.Component {
             attachment: 'together'
           }]}
           classes={{
-            element: 'c-dropdown'
+            element: 'c-dropdown -sortby'
           }}
         >
           { /* First child: This is what the item will be tethered to */ }
-          <button 
-            className="sort-header" 
+          <button
+            className="sort-header"
             ref={co => this.sortByBtn = co}
             onClick={(e) => this.toggleDataDropdown(e, 'isOpen')}
           >
@@ -88,7 +88,7 @@ export default class SortBy extends React.Component {
             </ul>
           }
         </TetherComponent>
-        
+
         <div className="arrows">
           <button onClick={() => this.setFilters('direction', 'asc')}>
             <SvgIcon name="icon-arrow-up-2" className={`-small ${this.props.direction === 'asc' ? '-active' : ''}`} />
@@ -106,8 +106,10 @@ SortBy.propTypes = {
   order: React.PropTypes.string,
   direction: React.PropTypes.string,
   list: React.PropTypes.array,
-  className: React.PropTypes.string
+  className: React.PropTypes.string,
+  setProjectsFilters: React.PropTypes.func
 };
+
 SortBy.defaultProps = {
   list: []
 };

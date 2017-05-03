@@ -51,8 +51,16 @@
     color: palette(white);
     border: 1px solid palette(white);
 
-    &:hover {
-      opacity: .6;
+    &:hover { opacity: .6; }
+
+    &.-primary {
+      color: $color-primary;
+      border: 1px solid $color-primary;
+
+      &:hover {
+        opacity: .6;
+        background-color: transparent;
+      }
     }
   }
 

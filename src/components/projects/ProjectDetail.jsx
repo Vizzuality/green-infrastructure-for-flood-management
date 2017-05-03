@@ -1,28 +1,48 @@
 import React from 'react';
-import upperFirst from 'lodash/upperFirst';
-import { SvgIcon } from 'vizz-components';
-import { Row } from 'components/ui/Grid';
-import TetherComponent from 'react-tether';
-import { Link } from 'react-router';
-import isUrl from 'validator/lib/isURL';
-import { setProjectsFilters } from 'modules/projects';
-import { dispatch } from 'main';
 import { push } from 'react-router-redux';
-
+import { Link } from 'react-router';
+import upperFirst from 'lodash/upperFirst';
+import uniq from 'lodash/uniq';
+import { SvgIcon } from 'vizz-components';
+import TetherComponent from 'react-tether';
+import isUrl from 'validator/lib/isURL';
 import { setNumberFormat, saveAsFile } from 'utils/general';
+import ProjectList from 'components/projects/ProjectList';
+import { Row } from 'components/ui/Grid';
+import PlusNumber from 'components/ui/PlusNumber';
+
+// Modules
+import { dispatch } from 'main';
+import { setProjectsFilters } from 'modules/projects';
+import { getRelatedProjects } from 'modules/projects';
+
 
 export default class ProjectDetail extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      shareOpen: false,
-      downloadOpen: false
+      organizationsOpen: false,
+      countriesOpen: false,
+      summaryOpen: false
     };
 
     // BINDINGS
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
+    this.onShowSummary = this.onShowSummary.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.data && this.props.data.id &&
+      dispatch(getRelatedProjects(this.props.data.id));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    (!this.props.data || !this.props.data.id) && (!this.props.relatedProjects ||
+      Object.keys(this.props.relatedProjects).length === 0) &&
+      nextProps.data && nextProps.data.id &&
+      dispatch(getRelatedProjects(nextProps.data.id));
   }
 
   componentWillUnmount() {
@@ -32,13 +52,17 @@ export default class ProjectDetail extends React.Component {
   onScreenClick(e) {
     const el = document.querySelector('.c-dropdown');
     const clickOutside = el && el.contains && !el.contains(e.target);
-    const isShareBtn = this.shareBtn.contains(e.target);
-    const isDownloadBtn = this.downloadBtn.contains(e.target);
+    const isOrganizationsBtn = this.organizationsBtn && this.organizationsBtn.contains(e.target);
+    const isCountriesBtn = this.countriesBtn && this.countriesBtn.contains(e.target);
 
     if (clickOutside) {
-      (!isShareBtn) ? this.toggleDataDropdown(e, 'shareOpen', true) : null;
-      (!isDownloadBtn) ? this.toggleDataDropdown(e, 'downloadOpen', true) : null;
+      (!isOrganizationsBtn) ? this.toggleDataDropdown(e, 'organizationsOpen', true) : null;
+      (!isCountriesBtn) ? this.toggleDataDropdown(e, 'countriesOpen', true) : null;
     }
+  }
+
+  onShowSummary() {
+    this.setState({ summaryOpen: !this.state.summaryOpen });
   }
 
   setArrayProjectsFilter(id, key) {
@@ -49,17 +73,17 @@ export default class ProjectDetail extends React.Component {
   }
 
   toggleDataDropdown(e, specificDropdown, to) {
-    const { shareOpen, downloadOpen } = this.state;
+    const { organizationsOpen, countriesOpen } = this.state;
 
-    if (specificDropdown === 'shareOpen') {
+    if (specificDropdown === 'organizationsOpen') {
       this.setState({
-        shareOpen: to ? false : !shareOpen,
-        downloadOpen: false
+        organizationsOpen: to ? false : !organizationsOpen,
+        countriesOpen: false
       });
     } else {
       this.setState({
-        downloadOpen: to ? false : !downloadOpen,
-        shareOpen: false
+        countriesOpen: to ? false : !countriesOpen,
+        organizationsOpen: false
       });
     }
 
@@ -75,7 +99,7 @@ export default class ProjectDetail extends React.Component {
 
   render() {
     const { data } = this.props;
-    const { shareOpen } = this.state;
+    const { organizationsOpen, countriesOpen } = this.state;
     const setArrayValues = (array, type) => array.map((pboi, i) => (
       <li
         className={`value-item ${type ? '-clickable' : ''}`}
@@ -85,6 +109,7 @@ export default class ProjectDetail extends React.Component {
         {upperFirst(pboi.name)}
       </li>
     ));
+    const countries = uniq(data.locations.map(l => l.adm0_name));
 
     return (
       <article className="c-project-detail">
@@ -94,58 +119,109 @@ export default class ProjectDetail extends React.Component {
             Project list
           </Link>
           <div className="project-actions">
-            <TetherComponent
-              attachment="top center"
-              constraints={[{
-                to: 'scrollParent',
-                attachment: 'together'
-              }]}
-              classes={{
-                element: 'c-dropdown'
-              }}
-            >
-              { /* First child: This is what the item will be tethered to */ }
-              <button className="action" type="button" onClick={e => this.toggleDataDropdown(e, 'shareOpen')} ref={c => this.shareBtn = c}>
-                <SvgIcon className="project-share-icon -medium" name="icon-share" />
-                Share
-              </button>
-              { /* Second child: If present, this item will be tethered to the the first child */ }
-              {
-                shareOpen &&
-                <div>
-                  <p>Not available</p>
-                </div>
-              }
-            </TetherComponent>
-
             <button
-              className="action"
+              className="c-btn -transparent action"
               type="button"
               onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
             >
-              <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
               Download PDF
             </button>
           </div>
         </div>
         <div className="project-detail-section">
-          <ul className="project-company">{data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
-          <span className="project-date">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
-          <h1 className="project-name">{data.name}</h1>
+          {data.organizations.length < 3 ?
+            <ul className="project-company">
+              {data.organizations.map((o, i) => <li key={i}>{o.name}</li>)}
+            </ul> :
+            <TetherComponent
+              attachment="top left"
+              targetAttachment="bottom left"
+              constraints={[{
+                to: 'scrollParent',
+                attachment: 'together',
+                pin: true
+              }]}
+              classes={{
+                element: 'c-dropdown -arrow-left'
+              }}
+            >
+              { /* First child: This is what the item will be tethered to */ }
+              <p className="project-company -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'organizationsOpen')} ref={c => this.organizationsBtn = c}>
+                {data.organizations[0].name} <PlusNumber list={data.organizations} className="-right" />
+              </p>
+              { /* Second child: If present, this item will be tethered to the the first child */ }
+              {
+                organizationsOpen &&
+                <div>
+                  <ul className="info">
+                    {data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}
+                  </ul>
+                </div>
+              }
+            </TetherComponent>
+          }
+
+          <div className="pair-data">
+            <span className="project-data">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
+            <span className="project-data">{data.country}</span>
+            {countries.length === 1 ?
+              <span className="project-data">{countries[0]}</span> :
+              <TetherComponent
+                attachment="top right"
+                targetAttachment="bottom right"
+                constraints={[{
+                  to: 'scrollParent',
+                  attachment: 'together',
+                  pin: true
+                }]}
+                classes={{
+                  element: 'c-dropdown -arrow-left'
+                }}
+              >
+                { /* First child: This is what the item will be tethered to */ }
+                <p className="project-country -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'countriesOpen')} ref={c => this.countriesBtn = c}>
+                  {countries.length} countries
+                </p>
+                { /* Second child: If present, this item will be tethered to the the first child */ }
+                {
+                  countriesOpen &&
+                  <div>
+                    <ul className="info">
+                      {countries.map((c, i) => <li key={i}>{c}</li>)}
+                    </ul>
+                  </div>
+                }
+              </TetherComponent>
+            }
+          </div>
+          <h1 className={`project-name ${data.name.length > 40 ? '-small' : ''}`}>{data.name}</h1>
         </div>
         <div className="project-resumme">
           <div className="project-cost">
             <Row>
               <div className="column small-12">
-                <span className="label">Nature based solutions</span>
+                <span className="label -info">
+                  Nature based solutions
+                  <span className="info">
+                    <SvgIcon className="info-icon -smaller" name="icon-info" />
+                    <div className="c-dropdown -arrow-bottom">
+                      <p className="text">Explanation text lorem ipsum id casius nibh uricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna.</p>
+                    </div>
+                  </span>
+                </span>
                 <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
             </Row>
           </div>
 
           <span className="label">Project summary</span>
-          <p className="project-text">{data.summary}</p>
-          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>website</a>
+          <div className={`project-summary ${this.state.summaryOpen ? '-open' : ''}`}>
+            <p className="project-text">{data.summary}</p>
+            {!this.state.summaryOpen && <button className="more" onClick={this.onShowSummary}>
+              <SvgIcon className="more-icon -medium" name="icon-arrow-down-2" />
+            </button>}
+          </div>
+          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>Project website</a>
         </div>
         <div className="project-info">
           <div className="project-info-item">
@@ -176,8 +252,8 @@ export default class ProjectDetail extends React.Component {
           </div>}
 
           {data.donors.length > 0 && <div className="project-info-item">
-            <span className="label">Main Donor</span>
-            <span className="value">{data.donors.length ? upperFirst(data.donors[0].name) : 'Unknown'}</span>
+            <span className="label">Donor(s)</span>
+            <span className="value">{data.donors.map((d, i) => i < data.donors.length - 1 ? `${d.name}, ` : d.name)}</span>
           </div>}
 
           <div className="project-info-item">
@@ -211,11 +287,24 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
           </div>}
         </div>
+
+        {this.props.relatedProjects && this.props.relatedProjects.length > 0 &&
+          <div className="project-detail-related">
+            <header className="header">
+              <h2 className="title">Realted Projects</h2>
+            </header>
+            <div className="related-projects">
+              <ProjectList projects={this.props.relatedProjects} />
+            </div>
+          </div>
+        }
       </article>
     );
   }
 }
 
 ProjectDetail.propTypes = {
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  relatedProjects: React.PropTypes.array,
+  params: React.PropTypes.object
 };

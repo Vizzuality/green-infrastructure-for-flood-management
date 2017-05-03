@@ -4,6 +4,8 @@ import { push } from 'react-router-redux';
 import { dispatch } from 'main';
 import * as polyneSnake from 'leaflet.polyline.snakeanim';
 
+import { SvgIcon } from 'vizz-components';
+
 PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
 
 function clearMapLine() {
@@ -14,6 +16,7 @@ function clearMapLine() {
 
 function getPopupMarkup(data) {
   const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
+  const solutions = `${data.nature_based_solutions[0].name} ${data.nature_based_solutions.length > 1 ? `<span class="c-plus-number -right"}>+${data.nature_based_solutions.length - 1}</span>` : ''}`;
   const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
   const url = `/map/project/${data.id}`;
 
@@ -21,9 +24,18 @@ function getPopupMarkup(data) {
   myPopup.innerHTML = `
     <div class="c-tooltip">
       <div class="tooltip-content">
-        <div class="project-name">${data.name}</div>
         <div class="project-orgs">${orgs}</div>
-        <div class="project-hazards">${hazards}</div>
+        <div class="project-name">${data.name}</div>
+        <ul class="project-properties">
+          <li class="property" title="Nature Base Solutions">
+            <svg class="c-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-enter"></use></svg>
+            ${solutions}
+          </li>
+          <li class="property" title="Hazards">
+            <svg class="c-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-flag"></use></svg>
+            ${hazards}
+          </li>
+        </ul>
       </div>
       <a class="tooltip-link">More info</a>
     </div>
