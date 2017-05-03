@@ -11,7 +11,6 @@ import RadioGroup from 'components/ui/RadioGroup';
 const defaultValues = {
   name: '',
   scale: '',
-  implementation_statuses: '',
   organizations: [],
   primary_benefits: [],
   co_benefits: [],
@@ -20,6 +19,7 @@ const defaultValues = {
   estimated_cost: '',
   monetary_benefits: '',
   intervention_types: [],
+  implementation_statuses: '',
   currency: '',
   benefit_details: '',
   summary: '',
@@ -30,10 +30,14 @@ export default class SubmitPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = defaultValues;
+    this.state = {
+      fields: Object.assign({}, defaultValues),
+      requiredOn: []
+    };
 
     // BINDINGS
     this.clear = this.clear.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   componentWillMount() {
@@ -45,14 +49,35 @@ export default class SubmitPage extends React.Component {
       this.benefit_details, this.summary, this.references_typo];
     inputs.forEach(inp => inp.value = '');
 
-    this.setState(Object.assign({}, defaultValues));
+    this.setState({ fields: Object.assign({}, defaultValues) });
+  }
+
+  submit() {
+    const { name, intervention_types, implementation_statuses } = this.state.fields;
+    const requiredOn = [];
+
+    name === '' && requiredOn.push('name');
+    !intervention_types.length && requiredOn.push('intervention_types');
+    !implementation_statuses.length && requiredOn.push('implementation_statuses');
+
+    this.setState({ requiredOn });
+  }
+
+  isRequiredOn(name) {
+    return this.state.requiredOn.includes(name) ? 'required-error' : '';
+  }
+
+  setFieldValue(key, value) {
+    const newFields = Object.assign({}, this.state.fields);
+    newFields[key] = value;
+    this.setState({ fields: newFields });
   }
 
   render() {
     const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];
     const { filtersOptions } = this.props;
-    const { name, scale, organizations, primary_benefits, co_benefits, nature_based_solutions,
-      hazard_types, intervention_types, currency, implementation_statuses } = this.state;
+    const { scale, organizations, primary_benefits, co_benefits, nature_based_solutions,
+      hazard_types, intervention_types, currency, implementation_statuses } = this.state.fields;
 
     return (
       <div className="c-submit">
@@ -70,14 +95,13 @@ export default class SubmitPage extends React.Component {
               <div className="column small-12 medium-8 medium-offset-2">
 
                 {/* Name */}
-                <div className="form-field">
+                <div className={`form-field ${this.isRequiredOn('name')}`}>
                   <h2>Name</h2>
                   <input
                     ref={n => this.name = n}
                     name="name"
                     type="text"
-                    required
-                    onBlur={e => this.setState({ name: e.currentTarget.value })}
+                    onBlur={e => this.setFieldValue('name', e.currentTarget.value)}
                   />
                 </div>
 
@@ -88,7 +112,7 @@ export default class SubmitPage extends React.Component {
                     name="scale"
                     options={filtersOptions.scales || []}
                     selected={filtersOptions.scales && filtersOptions.scales.find(imp => imp.value === scale)}
-                    onChange={value => this.setState({ scale: value })}
+                    onChange={value => this.setFieldValue('scale', value)}
                   />
                 </div>
 
@@ -100,7 +124,7 @@ export default class SubmitPage extends React.Component {
                     multi
                     options={filtersOptions.organizations}
                     value={filtersOptions.organizations ? filtersOptions.organizations.filter(opt => organizations.includes(opt.value)) : []}
-                    onChange={opts => this.setState({ organizations: opts.map(o => o.value) })}
+                    onChange={opts => this.setFieldValue('organizations', opts.map(o => o.value))}
                   />
                 </div>
 
@@ -112,7 +136,7 @@ export default class SubmitPage extends React.Component {
                     multi
                     options={filtersOptions.primary_benefits}
                     value={filtersOptions.primary_benefits ? filtersOptions.primary_benefits.filter(opt => primary_benefits.includes(opt.value)) : []}
-                    onChange={opts => this.setState({ primary_benefits: opts.map(o => o.value) })}
+                    onChange={opts => this.setFieldValue('primary_benefits', opts.map(o => o.value))}
                   />
                 </div>
 
@@ -124,7 +148,7 @@ export default class SubmitPage extends React.Component {
                     multi
                     options={filtersOptions.co_benefits}
                     value={filtersOptions.co_benefits ? filtersOptions.co_benefits.filter(opt => co_benefits.includes(opt.value)) : []}
-                    onChange={opts => this.setState({ co_benefits: opts.map(o => o.value) })}
+                    onChange={opts => this.setFieldValue('co_benefits', opts.map(o => o.value))}
                   />
                 </div>
 
@@ -136,7 +160,7 @@ export default class SubmitPage extends React.Component {
                     multi
                     options={filtersOptions.nature_based_solutions}
                     value={filtersOptions.nature_based_solutions ? filtersOptions.nature_based_solutions.filter(opt => nature_based_solutions.includes(opt.value)) : []}
-                    onChange={opts => this.setState({ nature_based_solutions: opts.map(o => o.value) })}
+                    onChange={opts => this.setFieldValue('nature_based_solutions', opts.map(o => o.value))}
                   />
                 </div>
 
@@ -148,7 +172,7 @@ export default class SubmitPage extends React.Component {
                     multi
                     options={filtersOptions.hazard_types}
                     value={filtersOptions.hazard_types ? filtersOptions.hazard_types.filter(opt => hazard_types.includes(opt.value)) : []}
-                    onChange={opts => this.setState({ hazard_types: opts.map(o => o.value) })}
+                    onChange={opts => this.setFieldValue('hazard_types', opts.map(o => o.value))}
                   />
                 </div>
 
@@ -173,7 +197,7 @@ export default class SubmitPage extends React.Component {
                       name="estimated_cost"
                       type="number"
                       min="0"
-                      onBlur={e => this.setState({ estimated_cost: e.currentTarget.value })}
+                      onBlur={e => this.setFieldValue('estimated_cost', e.currentTarget.value)}
                     />
                   </div>
 
@@ -184,7 +208,7 @@ export default class SubmitPage extends React.Component {
                       name="monetary_benefits"
                       type="number"
                       min="0"
-                      onBlur={e => this.setState({ monetary_benefits: e.currentTarget.value })}
+                      onBlur={e => this.setFieldValue('monetary_benefits', e.currentTarget.value)}
                     />
                   </div>
 
@@ -195,30 +219,30 @@ export default class SubmitPage extends React.Component {
                       multi={false}
                       options={currencyOptions}
                       value={currency || ''}
-                      onChange={opt => this.setState({ currency: opt ? opt.value : '' })}
+                      onChange={opt => this.setFieldValue('currency', opt ? opt.value : '')}
                     />
                   </div>
                 </div>
 
                 {/* Intervention type* */}
-                <div className="form-field">
+                <div className={`form-field ${this.isRequiredOn('intervention_types')}`}>
                   <h2>Intervention type*</h2>
                   <Select
                     name="field"
                     multi
                     options={filtersOptions.intervention_types}
                     value={filtersOptions.intervention_types ? filtersOptions.intervention_types.filter(opt => intervention_types.includes(opt.value)) : []}
-                    onChange={opts => this.setState({ intervention_types: opts.map(o => o.value) })}
+                    onChange={opts => this.setFieldValue('intervention_types', opts.map(o => o.value))}
                   />
                 </div>
 
-                <div className="form-field">
+                <div className={`form-field ${this.isRequiredOn('implementation_statuses')}`}>
                   <h2>Implementation status*</h2>
                   <RadioGroup
                     name="implementation_statuses"
                     options={filtersOptions.implementation_statuses || []}
                     selected={filtersOptions.implementation_statuses && filtersOptions.implementation_statuses.find(imp => imp.value === implementation_statuses)}
-                    onChange={value => this.setState({ implementation_statuses: value })}
+                    onChange={value => this.setFieldValue('implementation_statuses', value)}
                   />
                 </div>
 
@@ -229,7 +253,7 @@ export default class SubmitPage extends React.Component {
                     ref={n => this.benefit_details = n}
                     name="benefit_details"
                     type="text"
-                    onBlur={e => this.setState({ benefit_details: e.currentTarget.value })}
+                    onBlur={e => this.setFieldValue('benefit_details', e.currentTarget.value)}
                   />
                 </div>
 
@@ -240,7 +264,7 @@ export default class SubmitPage extends React.Component {
                     ref={n => this.summary = n}
                     name="summary"
                     type="text"
-                    onBlur={e => this.setState({ summary: e.currentTarget.value })}
+                    onBlur={e => this.setFieldValue('summary', e.currentTarget.value)}
                   />
                 </div>
 
@@ -251,7 +275,7 @@ export default class SubmitPage extends React.Component {
                     ref={n => this.references_typo = n}
                     name="references_typo"
                     type="text"
-                    onBlur={e => this.setState({ references_typo: e.currentTarget.value })}
+                    onBlur={e => this.setFieldValue('references_typo', e.currentTarget.value)}
                   />
                 </div>
 
@@ -262,7 +286,12 @@ export default class SubmitPage extends React.Component {
                   >
                     Reset
                   </button>
-                  <button className="c-btn -filled -primary">Submit</button>
+                  <button
+                    className="c-btn -filled -primary"
+                    onClick={this.submit}
+                  >
+                    Submit
+                  </button>
                 </BtnGroup>
               </div>
             </Row>
