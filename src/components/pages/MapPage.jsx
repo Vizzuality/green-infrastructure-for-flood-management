@@ -272,6 +272,7 @@ export default class MapPage extends React.Component {
                   onChange={evt => this.onSearchChange(evt.target.value)}
                   onClear={() => this.props.setProjectsFilters({ name: '' })}
                   placeholder="Search project"
+                  clear
                 />
 
                 <div className="sidebar-actions">
