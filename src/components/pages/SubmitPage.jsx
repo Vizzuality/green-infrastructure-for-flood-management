@@ -7,6 +7,8 @@ import { Row } from 'components/ui/Grid';
 import { SvgIcon } from 'vizz-components';
 import BtnGroup from 'components/ui/BtnGroup';
 import RadioGroup from 'components/ui/RadioGroup';
+import InputMap from 'components/ui/InputMap';
+
 
 const defaultValues = {
   name: '',
@@ -32,7 +34,8 @@ export default class SubmitPage extends React.Component {
 
     this.state = {
       fields: Object.assign({}, defaultValues),
-      requiredOn: []
+      requiredOn: [],
+      mapSearch: ''
     };
 
     // BINDINGS
@@ -103,6 +106,17 @@ export default class SubmitPage extends React.Component {
                     type="text"
                     onBlur={e => this.setFieldValue('name', e.currentTarget.value)}
                   />
+                </div>
+
+                <div className="form-field">
+                  <h2>Location</h2>
+                  <input
+                    ref={n => this.location = n}
+                    name="location"
+                    type="text"
+                    onChange={e => this.setFieldValue('location', e.currentTarget.value)}
+                  />
+                  <InputMap />
                 </div>
 
                 {/* Scale */}
