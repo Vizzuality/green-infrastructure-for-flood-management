@@ -100,7 +100,7 @@ export default class SubmitPage extends React.Component {
     return (
       <div className="c-submit">
         {/* <img src="/images/submit_image.svg" />*/}
-        <section className="home-section">
+        <section className="submit-section">
           <div className="l-app-wrapper">
             <Row>
               <div className="column small-12 medium-8 medium-offset-2">
@@ -307,25 +307,24 @@ export default class SubmitPage extends React.Component {
                   />
                 </div>
 
-                <BtnGroup>
+                <div className="actions">
                   <button
-                    className="c-btn -transparent -primary" to="/map"
+                    className="c-btn -transparent -primary action" to="/map"
                     onClick={this.clear}
                   >
                     Reset
                   </button>
                   <button
-                    className="c-btn -filled -primary"
+                    className="c-btn -filled -primary action"
                     onClick={this.submit}
                   >
                     Submit
                   </button>
-                </BtnGroup>
+                </div>
               </div>
             </Row>
           </div>
         </section>
-
       </div>
     );
   }

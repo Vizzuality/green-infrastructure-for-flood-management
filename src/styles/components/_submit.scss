@@ -1,4 +1,20 @@
 .c-submit {
   display: flex;
   justify-content: center;
+  padding: 116px 0;
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 160px;
+
+    .action {
+      margin-left: 20px;
+      padding: 5px 30px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 }
