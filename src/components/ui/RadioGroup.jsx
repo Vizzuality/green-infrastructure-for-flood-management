@@ -1,5 +1,6 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
+import upperFirst from 'lodash/upperFirst';
 
 export default class RadioGroup extends React.Component {
 
@@ -53,7 +54,7 @@ export default class RadioGroup extends React.Component {
           {/* <span className="radio-icon">
             <SvgIcon name="icon-radio" />
           </span> */}
-          <span className="item-title">{option.label}</span>
+          <span className="item-title">{upperFirst(option.label)}</span>
         </label>
       </div>
       ));

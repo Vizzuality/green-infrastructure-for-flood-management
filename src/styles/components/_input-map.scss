@@ -7,8 +7,9 @@
     top: 0;
     right: 0;
     height: 32.98px;
-    background: red;
+    background: white;
     z-index: 5;
+    padding: 5px 25px;
   }
 
   .gmnoprint,
@@ -34,6 +35,7 @@
       left: 0 !important;
       font-size: $font-size-big;
       line-height: 30px;
+      padding-right: 80px;
       border: 0;
       border-bottom: 1px solid rgba(palette(black), .3);
     }

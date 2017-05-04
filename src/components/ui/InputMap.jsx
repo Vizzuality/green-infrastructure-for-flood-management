@@ -31,7 +31,7 @@ const SearchBoxGoogleMap = withGoogleMap(props => (
       inputStyle={INPUT_STYLE}
       inputProps={props.inputProps}
     />
-    <button className="add-location" onClick={props.onAddLocation}>Add</button>
+    <button className="c-btn -transparent -primary add-location" onClick={props.onAddLocation}>Add</button>
     {props.markers.map((marker, index) => (
       <Marker
         position={marker.position}
