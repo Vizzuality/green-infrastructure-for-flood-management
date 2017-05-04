@@ -19,28 +19,33 @@ const INPUT_STYLE = {
   // textOverflow: 'ellipses'
 };
 
-const SearchBoxGoogleMap = withGoogleMap(props => {
-  return (
-    <GoogleMap
-      ref={props.onMapMounted}
-      defaultZoom={15}
-      center={props.center}
-      onBoundsChanged={props.onBoundsChanged}
-    >
-      <SearchBox
-        ref={props.onSearchBoxMounted}
-        bounds={props.bounds}
-        controlPosition={google.maps.ControlPosition.TOP_LEFT}
-        onPlacesChanged={props.onPlacesChanged}
-        inputPlaceholder="Type a location"
-        inputStyle={INPUT_STYLE}
-        inputProps={props.inputProps}
+const SearchBoxGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+    ref={props.onMapMounted}
+    defaultZoom={15}
+    center={props.center}
+    onBoundsChanged={props.onBoundsChanged}
+    onCenterChanged={props.onCenterChanged}
+    onDragEnd={props.onDragEnd}
+  >
+    <SearchBox
+      ref={props.onSearchBoxMounted}
+      bounds={props.bounds}
+      controlPosition={google.maps.ControlPosition.TOP_LEFT}
+      onPlacesChanged={props.onPlacesChanged}
+      inputPlaceholder="Type a location"
+      inputStyle={INPUT_STYLE}
+      inputProps={props.inputProps}
+    />
+    {props.markers.map((marker, index) => (
+      <Marker
+        position={marker.position}
+        key={index}
+        onClick={props.onMarkerClick}
       />
-      {props.markers.map((marker, index) => (
-        <Marker position={marker.position} key={index} onClick={props.onMarkerClick} clickable />
-      ))}
-    </GoogleMap>);
-});
+    ))}
+  </GoogleMap>)
+);
 
 
 export default class InputMap extends React.Component {
@@ -55,41 +60,59 @@ export default class InputMap extends React.Component {
         lng: -122.3212725
       },
       markers: [],
-      value: props.inputProps && props.inputProps.value
+      value: props.inputProps ? props.inputProps.value : ''
     };
 
     // BINDINGS
-    this.handleMapMounted = this.handleMapMounted.bind(this);
-    this.handleBoundsChanged = this.handleBoundsChanged.bind(this);
-    this.handleSearchBoxMounted = this.handleSearchBoxMounted.bind(this);
-    this.handlePlacesChanged = this.handlePlacesChanged.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    nextProps.inputProps.value !== this.state.value &&
-      this.setState({ value: nextProps.inputProps.value });
+    this.onMapMounted = this.onMapMounted.bind(this);
+    this.onBoundsChanged = this.onBoundsChanged.bind(this);
+    this.onSearchBoxMounted = this.onSearchBoxMounted.bind(this);
+    this.onPlacesChanged = this.onPlacesChanged.bind(this);
+    this.onCenterChanged = this.onCenterChanged.bind(this);
+    this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   /**
    * UI EVENTS
    * - onChange
   */
-  handleMapMounted(map) {
+  onMapMounted(map) {
     this._map = map;
   }
 
-  handleBoundsChanged() {
+  onBoundsChanged() {
     this.setState({
       bounds: this._map.getBounds(),
       center: this._map.getCenter()
     });
   }
 
-  handleSearchBoxMounted(searchBox) {
+  onCenterChanged(e) {
+    const center = this._map.getCenter();
+    const markers = [{ position: center }];
+
+    this.setState({
+      center,
+      markers
+    });
+  }
+
+  onDragEnd() {
+    const { markers } = this.state;
+    const position = true;
+    const value = `${markers[0].position.lat()}, ${markers[0].position.lng()}`;
+
+    if (markers && markers.length) {
+      this.setState({ value });
+      this.props.onMarkerClick(markers[0], position);
+    }
+  }
+
+  onSearchBoxMounted(searchBox) {
     this._searchBox = searchBox;
   }
 
-  handlePlacesChanged() {
+  onPlacesChanged() {
     const places = this._searchBox.getPlaces();
     // Add a marker for each place returned from search bar
     const markers = places.map(place => ({
@@ -98,16 +121,16 @@ export default class InputMap extends React.Component {
 
     this.props.onPlacesChanged(places);
     // Set markers; set map center to first search result
-    const mapCenter = markers.length > 0 ? markers[0].position : this.state.center;
+    const mapMarkerCenter = markers.length > 0 ? markers[0].position : this.state.center;
 
     this.setState({
-      center: mapCenter,
+      center: mapMarkerCenter,
       markers
     });
   }
 
   render() {
-    const inputProps = Object.assign({}, this.props.inputProps, { value: this.state.value });
+    const inputProps = Object.assign({}, { value: this.state.value || '' });
 
     return (
       <div className="c-input-map">
@@ -119,14 +142,16 @@ export default class InputMap extends React.Component {
             <div style={{ height: '100%' }} />
           }
           center={this.state.center}
-          onMapMounted={this.handleMapMounted}
-          onBoundsChanged={this.handleBoundsChanged}
-          onSearchBoxMounted={this.handleSearchBoxMounted}
+          onMapMounted={this.onMapMounted}
+          onBoundsChanged={this.onBoundsChanged}
+          onSearchBoxMounted={this.onSearchBoxMounted}
           bounds={this.state.bounds}
-          onPlacesChanged={this.handlePlacesChanged}
+          onPlacesChanged={this.onPlacesChanged}
           markers={this.state.markers}
           inputProps={inputProps}
           onMarkerClick={this.props.onMarkerClick}
+          onCenterChanged={this.onCenterChanged}
+          onDragEnd={this.onDragEnd}
         />
       </div>
     );
@@ -134,10 +159,8 @@ export default class InputMap extends React.Component {
 }
 
 InputMap.propTypes = {
-  // name: React.PropTypes.string,
-  value: React.PropTypes.string
-  // label: React.PropTypes.string,
-  // className: React.PropTypes.string,
-  // checked: React.PropTypes.bool,
-  // onChange: React.PropTypes.func
+  value: React.PropTypes.string,
+  inputProps: React.PropTypes.object,
+  onMarkerClick: React.PropTypes.func,
+  onPlacesChanged: React.PropTypes.func
 };

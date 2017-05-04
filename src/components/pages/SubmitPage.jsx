@@ -36,7 +36,8 @@ export default class SubmitPage extends React.Component {
     this.state = {
       fields: Object.assign({}, defaultValues),
       requiredOn: [],
-      mapSearch: ''
+      mapSearch: '',
+      locationLabel: false
     };
 
     // BINDINGS
@@ -75,8 +76,13 @@ export default class SubmitPage extends React.Component {
 
   onPlacesChanged(places) {
     const location = places.length > 0 && places[0];
-    const latLng = location.geometry.location;
+    const latLng = location && location.geometry.location;
     location && this.setFieldValue('location', [latLng.lat(), latLng.lng()]);
+  }
+
+  onMarkerClick(marker, position) {
+    const latLng = position ? marker.position : marker.latLng;
+    this.setFieldValue('location', [latLng.lat(), latLng.lng()]);
   }
 
   setFieldValue(key, value) {
@@ -85,16 +91,11 @@ export default class SubmitPage extends React.Component {
     this.setState({ fields: newFields });
   }
 
-  onMarkerClick(e) {
-    const latLng = e.latLng;
-    this.setFieldValue('location', [latLng.lat(), latLng.lng()]);
-  }
-
   render() {
     const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];
     const { filtersOptions } = this.props;
     const { scale, organizations, primary_benefits, co_benefits, nature_based_solutions,
-      hazard_types, intervention_types, currency, implementation_statuses } = this.state.fields;
+      hazard_types, intervention_types, currency, implementation_statuses, location } = this.state.fields;
 
     return (
       <div className="c-submit">
@@ -124,6 +125,7 @@ export default class SubmitPage extends React.Component {
 
                 <div className="form-field">
                   <h2>Location</h2>
+                  <span className={this.state.locationLabel ? '-active' : ''}>{`${location[0]}, ${location[1]}`}</span>
                   <InputMap
                     inputProps={{ name: 'location' }}
                     onPlacesChanged={this.onPlacesChanged}
