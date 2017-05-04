@@ -110,11 +110,11 @@ export default class SubmitPage extends React.Component {
             </Row>
 
             <Row>
-              <div className="column small-12 medium-8 medium-offset-2">
+              <div className="c-form column small-12 medium-8 medium-offset-2">
 
                 {/* Name */}
-                <div className={`form-field ${this.isRequiredOn('name')}`}>
-                  <h2>Name</h2>
+                <div className={`form-field ${this.isRequiredOn('name')} -primary`}>
+                  <h2 className="label">Name</h2>
                   <input
                     ref={n => this.name = n}
                     name="name"
@@ -124,18 +124,18 @@ export default class SubmitPage extends React.Component {
                 </div>
 
                 <div className="form-field">
-                  <h2>Location</h2>
-                  <span className={this.state.locationLabel ? '-active' : ''}>{`${location[0]}, ${location[1]}`}</span>
-                  <InputMap
+                  <h2 className="label">Location</h2>
+                  <span className={!this.state.locationLabel ? '-hidden' : ''}>{`${location[0]}, ${location[1]}`}</span>
+                  {/* <InputMap
                     inputProps={{ name: 'location' }}
                     onPlacesChanged={this.onPlacesChanged}
                     onMarkerClick={this.onMarkerClick}
-                  />
+                  /> */}
                 </div>
 
                 {/* Scale */}
                 <div className="form-field">
-                  <h2>Scale</h2>
+                  <h2 className="label">Scale</h2>
                   <RadioGroup
                     name="scale"
                     options={filtersOptions.scales || []}
@@ -146,7 +146,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Organizations */}
                 <div className="form-field">
-                  <h2>Organizations</h2>
+                  <h2 className="label">Organizations</h2>
                   <Select
                     name="field"
                     multi
@@ -158,7 +158,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Primary benefits */}
                 <div className="form-field">
-                  <h2>Risk reduction benefits</h2>
+                  <h2 className="label">Risk reduction benefits</h2>
                   <Select
                     name="field"
                     multi
@@ -170,7 +170,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Co benefits of interventions */}
                 <div className="form-field">
-                  <h2>Co benefits of interventions</h2>
+                  <h2 className="label">Co benefits of interventions</h2>
                   <Select
                     name="field"
                     multi
@@ -182,7 +182,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Nature-based solutions */}
                 <div className="form-field">
-                  <h2>Nature-based solutions</h2>
+                  <h2 className="label">Nature-based solutions</h2>
                   <Select
                     name="field"
                     multi
@@ -194,7 +194,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Hazard */}
                 <div className="form-field">
-                  <h2>Hazard</h2>
+                  <h2 className="label">Hazard</h2>
                   <Select
                     name="field"
                     multi
@@ -206,7 +206,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Donors */}
                 {/* <div className="form-field">
-                  <h2>Donors</h2>
+                  <h2 className="label">Donors</h2>
                   <Select
                     name="field"
                     multi
@@ -218,8 +218,8 @@ export default class SubmitPage extends React.Component {
 
                 {/* Costs */}
                 <div className="form-field costs">
-                  <div>
-                    <h2>Estimated Cost</h2>
+                  <div className="cost-field">
+                    <h2 className="label">Estimated Cost</h2>
                     <input
                       ref={n => this.estimated_cost = n}
                       name="estimated_cost"
@@ -229,8 +229,8 @@ export default class SubmitPage extends React.Component {
                     />
                   </div>
 
-                  <div>
-                    <h2>Estimated monetary benefits</h2>
+                  <div className="cost-field">
+                    <h2 className="label">Estimated monetary benefits</h2>
                     <input
                       ref={n => this.monetary_benefits = n}
                       name="monetary_benefits"
@@ -240,8 +240,8 @@ export default class SubmitPage extends React.Component {
                     />
                   </div>
 
-                  <div>
-                    <h2>Original currency</h2>
+                  <div className="cost-field -currency">
+                    <h2 className="label">Original currency</h2>
                     <Select
                       name="field"
                       multi={false}
@@ -254,7 +254,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Intervention type* */}
                 <div className={`form-field ${this.isRequiredOn('intervention_types')}`}>
-                  <h2>Intervention type*</h2>
+                  <h2 className="label">Intervention type*</h2>
                   <Select
                     name="field"
                     multi
@@ -265,7 +265,7 @@ export default class SubmitPage extends React.Component {
                 </div>
 
                 <div className={`form-field ${this.isRequiredOn('implementation_statuses')}`}>
-                  <h2>Implementation status*</h2>
+                  <h2 className="label">Implementation status*</h2>
                   <RadioGroup
                     name="implementation_statuses"
                     options={filtersOptions.implementation_statuses || []}
@@ -276,7 +276,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Benefit details */}
                 <div className="form-field">
-                  <h2>Benefit details</h2>
+                  <h2 className="label">Benefit details</h2>
                   <input
                     ref={n => this.benefit_details = n}
                     name="benefit_details"
@@ -287,7 +287,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Summary */}
                 <div className="form-field">
-                  <h2>Summary</h2>
+                  <h2 className="label">Summary</h2>
                   <input
                     ref={n => this.summary = n}
                     name="summary"
@@ -298,7 +298,7 @@ export default class SubmitPage extends React.Component {
 
                 {/* Refetences-typo */}
                 <div className="form-field">
-                  <h2>References-typo</h2>
+                  <h2 className="label">References-typo</h2>
                   <input
                     ref={n => this.references_typo = n}
                     name="references_typo"
