@@ -37,19 +37,22 @@ export default class RadioGroup extends React.Component {
   getRadios() {
     return this.props.options.map((option, i) => (
       <div className="radio-item" key={i}>
-        <input
-          className="radio"
-          type="radio"
-          name={this.props.name || option.value}
-          id={`radio-${this.props.name}-${option.value}`}
-          value={option.value}
-          checked={option.checked || option.value === this.state.checked }
-          onChange={this.onChange}
-        />
-        <label htmlFor={`radio-${this.props.name}-${option.value}`}>
-          <span className="radio-icon">
-            {/*<SvgIcon name="icon-radio" />*/}
-          </span>
+        <div className="icon-group">
+          <input
+            className="radio"
+            type="radio"
+            name={this.props.name || option.value}
+            id={`radio-${option.value}`}
+            value={option.value}
+            checked={option.checked || option.value === this.state.checked }
+            onChange={this.onChange}
+          />
+          <div className="icon-replace"></div>
+        </div>
+        <label className="label-title" htmlFor={`radio-${option.value}`}>
+          {/* <span className="radio-icon">
+            <SvgIcon name="icon-radio" />
+          </span> */}
           <span className="item-title">{option.label}</span>
         </label>
       </div>
