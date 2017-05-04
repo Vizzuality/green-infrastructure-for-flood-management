@@ -37,7 +37,7 @@ const SearchBoxGoogleMap = withGoogleMap(props => {
         inputProps={props.inputProps}
       />
       {props.markers.map((marker, index) => (
-        <Marker position={marker.position} key={index} />
+        <Marker position={marker.position} key={index} onClick={props.onMarkerClick} clickable />
       ))}
     </GoogleMap>);
 });
@@ -91,12 +91,12 @@ export default class InputMap extends React.Component {
 
   handlePlacesChanged() {
     const places = this._searchBox.getPlaces();
-
     // Add a marker for each place returned from search bar
     const markers = places.map(place => ({
       position: place.geometry.location
     }));
 
+    this.props.onPlacesChanged(places);
     // Set markers; set map center to first search result
     const mapCenter = markers.length > 0 ? markers[0].position : this.state.center;
 
@@ -126,6 +126,7 @@ export default class InputMap extends React.Component {
           onPlacesChanged={this.handlePlacesChanged}
           markers={this.state.markers}
           inputProps={inputProps}
+          onMarkerClick={this.props.onMarkerClick}
         />
       </div>
     );

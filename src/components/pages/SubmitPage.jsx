@@ -40,6 +40,8 @@ export default class SubmitPage extends React.Component {
     };
 
     // BINDINGS
+    this.onPlacesChanged = this.onPlacesChanged.bind(this);
+    this.onMarkerClick = this.onMarkerClick.bind(this);
     this.clear = this.clear.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -71,10 +73,21 @@ export default class SubmitPage extends React.Component {
     return this.state.requiredOn.includes(name) ? 'required-error' : '';
   }
 
+  onPlacesChanged(places) {
+    const location = places.length > 0 && places[0];
+    const latLng = location.geometry.location;
+    location && this.setFieldValue('location', [latLng.lat(), latLng.lng()]);
+  }
+
   setFieldValue(key, value) {
     const newFields = Object.assign({}, this.state.fields);
     newFields[key] = value;
     this.setState({ fields: newFields });
+  }
+
+  onMarkerClick(e) {
+    const latLng = e.latLng;
+    this.setFieldValue('location', [latLng.lat(), latLng.lng()]);
   }
 
   render() {
@@ -111,13 +124,11 @@ export default class SubmitPage extends React.Component {
 
                 <div className="form-field">
                   <h2>Location</h2>
-                  <input
-                    ref={n => this.location = n}
-                    name="location"
-                    type="text"
-                    onChange={e => this.setState({ mapSearch: e.currentTarget.value })}
+                  <InputMap
+                    inputProps={{ name: 'location' }}
+                    onPlacesChanged={this.onPlacesChanged}
+                    onMarkerClick={this.onMarkerClick}
                   />
-                  <InputMap inputProps={{ name: 'pepe' }} />
                 </div>
 
                 {/* Scale */}
