@@ -41,8 +41,7 @@ export default class SubmitPage extends React.Component {
     };
 
     // BINDINGS
-    this.onPlacesChanged = this.onPlacesChanged.bind(this);
-    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.onAddLocation = this.onAddLocation.bind(this);
     this.clear = this.clear.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -74,15 +73,8 @@ export default class SubmitPage extends React.Component {
     return this.state.requiredOn.includes(name) ? 'required-error' : '';
   }
 
-  onPlacesChanged(places) {
-    const location = places.length > 0 && places[0];
-    const latLng = location && location.geometry.location;
-    location && this.setFieldValue('location', [latLng.lat(), latLng.lng()]);
-  }
-
-  onMarkerClick(marker, position) {
-    const latLng = position ? marker.position : marker.latLng;
-    this.setFieldValue('location', [latLng.lat(), latLng.lng()]);
+  onAddLocation(latLng) {
+    latLng && this.setFieldValue('location', [latLng.lat(), latLng.lng()])
   }
 
   setFieldValue(key, value) {
@@ -99,7 +91,6 @@ export default class SubmitPage extends React.Component {
 
     return (
       <div className="c-submit">
-        {/* <img src="/images/submit_image.svg" />*/}
         <section className="submit-section">
           <div className="l-app-wrapper">
             <Row>
@@ -126,11 +117,10 @@ export default class SubmitPage extends React.Component {
                 <div className="form-field">
                   <h2 className="label">Location</h2>
                   <span className={!this.state.locationLabel ? '-hidden' : ''}>{`${location[0]}, ${location[1]}`}</span>
-                  {/* <InputMap
+                  <InputMap
                     inputProps={{ name: 'location' }}
-                    onPlacesChanged={this.onPlacesChanged}
-                    onMarkerClick={this.onMarkerClick}
-                  /> */}
+                    onAddLocation={this.onAddLocation}
+                  />
                 </div>
 
                 {/* Scale */}

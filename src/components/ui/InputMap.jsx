@@ -5,18 +5,12 @@ import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps/lib';
 import SearchBox from 'react-google-maps/lib/places/SearchBox';
 
 const INPUT_STYLE = {
-  boxSizing: 'border-box'
-  // MozBoxSizing: 'border-box',
-  // border: '1px solid transparent',
-  // width: '240px',
-  // height: '32px',
-  // marginTop: '27px',
-  // padding: '0 12px',
-  // borderRadius: '1px',
-  // boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
-  // fontSize: '14px',
-  // outline: 'none',
-  // textOverflow: 'ellipses'
+  boxSizing: 'border-box',
+  border: '0',
+  borderBottom: '1px solid rgba(0, 0, 0, .3)',
+  top: '0',
+  left: '0 !important',
+  zIndex: '3'
 };
 
 const SearchBoxGoogleMap = withGoogleMap(props => (
@@ -33,10 +27,11 @@ const SearchBoxGoogleMap = withGoogleMap(props => (
       bounds={props.bounds}
       controlPosition={google.maps.ControlPosition.TOP_LEFT}
       onPlacesChanged={props.onPlacesChanged}
-      inputPlaceholder="Type a location"
+      inputPlaceholder=""
       inputStyle={INPUT_STYLE}
       inputProps={props.inputProps}
     />
+    <button className="add-location" onClick={props.onAddLocation}>Add</button>
     {props.markers.map((marker, index) => (
       <Marker
         position={marker.position}
@@ -70,6 +65,7 @@ export default class InputMap extends React.Component {
     this.onPlacesChanged = this.onPlacesChanged.bind(this);
     this.onCenterChanged = this.onCenterChanged.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
+    this.onAddLocation = this.onAddLocation.bind(this);
   }
 
   /**
@@ -98,14 +94,6 @@ export default class InputMap extends React.Component {
   }
 
   onDragEnd() {
-    const { markers } = this.state;
-    const position = true;
-    const value = `${markers[0].position.lat()}, ${markers[0].position.lng()}`;
-
-    if (markers && markers.length) {
-      this.setState({ value });
-      this.props.onMarkerClick(markers[0], position);
-    }
   }
 
   onSearchBoxMounted(searchBox) {
@@ -119,7 +107,6 @@ export default class InputMap extends React.Component {
       position: place.geometry.location
     }));
 
-    this.props.onPlacesChanged(places);
     // Set markers; set map center to first search result
     const mapMarkerCenter = markers.length > 0 ? markers[0].position : this.state.center;
 
@@ -127,6 +114,13 @@ export default class InputMap extends React.Component {
       center: mapMarkerCenter,
       markers
     });
+  }
+
+  onAddLocation(e) {
+    const { markers } = this.state;
+    const marker = e.latLng || markers && markers.length && markers[0].position;
+
+    marker && this.props.onAddLocation(marker);
   }
 
   render() {
@@ -149,9 +143,10 @@ export default class InputMap extends React.Component {
           onPlacesChanged={this.onPlacesChanged}
           markers={this.state.markers}
           inputProps={inputProps}
-          onMarkerClick={this.props.onMarkerClick}
+          onMarkerClick={this.onAddLocation}
           onCenterChanged={this.onCenterChanged}
           onDragEnd={this.onDragEnd}
+          onAddLocation={this.onAddLocation}
         />
       </div>
     );
