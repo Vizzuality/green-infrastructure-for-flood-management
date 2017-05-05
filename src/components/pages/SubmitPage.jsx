@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import isUrl from 'validator/lib/isURL';
 
 import { Row } from 'components/ui/Grid';
 import { SvgIcon } from 'vizz-components';
@@ -26,7 +27,7 @@ const defaultValues = {
   original_currency: '',
   benefit_details: '',
   summary: '',
-  lear_more: '',
+  learn_more: '',
   references: ''
 };
 
@@ -37,7 +38,9 @@ export default class SubmitPage extends React.Component {
     this.state = {
       fields: Object.assign({}, defaultValues),
       requiredOn: [],
-      mapSearch: ''
+      mapSearch: '',
+      learnNotValid: false,
+      referencesNotValid: false
     };
 
     // BINDINGS
@@ -60,14 +63,23 @@ export default class SubmitPage extends React.Component {
   }
 
   submit() {
-    const { name, intervention_type, implementation_status } = this.state.fields;
+    const { name, intervention_type, implementation_status, learn_more, references } = this.state.fields;
     const requiredOn = [];
+    const learnValid = learn_more !== '' ? isUrl(learn_more) : true;
+    const referencesValid = references !== '' ? isUrl(references) : true;
 
     name === '' && requiredOn.push('name');
-    !intervention_type.length && requiredOn.push('intervention_type');
-    !implementation_status.length && requiredOn.push('implementation_status');
+    intervention_type === '' && requiredOn.push('intervention_type');
+    implementation_status === '' && requiredOn.push('implementation_status');
 
-    this.setState({ requiredOn });
+    this.setState({ requiredOn,
+      learnNotValid: !learnValid,
+      referencesNotValid: !referencesValid
+    });
+
+    if (!requiredOn.length && learnValid && referencesValid) {
+      // Send
+    }
   }
 
   isRequiredOn(name) {
@@ -120,7 +132,8 @@ export default class SubmitPage extends React.Component {
   render() {
     const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];
     const { filtersOptions } = this.props;
-    const { scale, organizations, primary_benefits_of_interventions, co_benefits_of_interventions, nature_based_solutions,
+    const { scale, organizations, primary_benefits_of_interventions,
+      co_benefits_of_interventions, nature_based_solutions,
       hazard_types, intervention_type, original_currency, implementation_status } = this.state.fields;
 
     return (
@@ -136,210 +149,211 @@ export default class SubmitPage extends React.Component {
 
             <Row>
               <div className="c-form column small-12 medium-8 medium-offset-2">
-
-                {/* Name */}
-                <div className={`form-field ${this.isRequiredOn('name')} -primary`}>
-                  <h2 className="label">Name</h2>
-                  <input
-                    ref={n => this.name = n}
-                    name="name"
-                    type="text"
-                    onBlur={e => this.setFieldValue('name', e.currentTarget.value)}
-                  />
-                </div>
-
-                <div className="form-field">
-                  <h2 className="label">Location</h2>
-                  {this.renderLocations()}
-                  <InputMap
-                    inputProps={{ name: 'locations' }}
-                    onAddLocation={this.onAddLocation}
-                  />
-                </div>
-
-                {/* Scale */}
-                <div className="form-field">
-                  <h2 className="label">Scale</h2>
-                  <RadioGroup
-                    name="scale"
-                    options={filtersOptions.scales || []}
-                    selected={filtersOptions.scales && filtersOptions.scales.find(imp => imp.value === scale)}
-                    onChange={value => this.setFieldValue('scale', value)}
-                  />
-                </div>
-
-                {/* Organizations */}
-                <div className="form-field">
-                  <h2 className="label">Organizations</h2>
-                  <Select
-                    name="field"
-                    multi
-                    options={filtersOptions.organizations}
-                    value={filtersOptions.organizations ? filtersOptions.organizations.filter(opt => organizations.includes(opt.value)) : []}
-                    onChange={opts => this.setFieldValue('organizations', opts.map(o => o.value))}
-                  />
-                </div>
-
-                {/* Primary benefits */}
-                <div className="form-field">
-                  <h2 className="label">Risk reduction benefits</h2>
-                  <Select
-                    name="field"
-                    multi
-                    options={filtersOptions.primary_benefits}
-                    value={filtersOptions.primary_benefits ? filtersOptions.primary_benefits.filter(opt => primary_benefits_of_interventions.includes(opt.value)) : []}
-                    onChange={opts => this.setFieldValue('primary_benefits_of_interventions', opts.map(o => o.value))}
-                  />
-                </div>
-
-                {/* Co benefits of interventions */}
-                <div className="form-field">
-                  <h2 className="label">Co benefits of interventions</h2>
-                  <Select
-                    name="field"
-                    multi
-                    options={filtersOptions.co_benefits}
-                    value={filtersOptions.co_benefits ? filtersOptions.co_benefits.filter(opt => co_benefits_of_interventions.includes(opt.value)) : []}
-                    onChange={opts => this.setFieldValue('co_benefits_of_interventions', opts.map(o => o.value))}
-                  />
-                </div>
-
-                {/* Nature-based solutions */}
-                <div className="form-field">
-                  <h2 className="label">Nature-based solutions</h2>
-                  <Select
-                    name="field"
-                    multi
-                    options={filtersOptions.nature_based_solutions}
-                    value={filtersOptions.nature_based_solutions ? filtersOptions.nature_based_solutions.filter(opt => nature_based_solutions.includes(opt.value)) : []}
-                    onChange={opts => this.setFieldValue('nature_based_solutions', opts.map(o => o.value))}
-                  />
-                </div>
-
-                {/* Hazard */}
-                <div className="form-field">
-                  <h2 className="label">Hazard</h2>
-                  <Select
-                    name="hazard_types"
-                    multi
-                    options={filtersOptions.hazard_types}
-                    value={filtersOptions.hazard_types ? filtersOptions.hazard_types.filter(opt => hazard_types.includes(opt.value)) : []}
-                    onChange={opts => this.setFieldValue('hazard_types', opts.map(o => o.value))}
-                  />
-                </div>
-
-                {/* Donors */}
-                {/* <div className="form-field">
-                  <h2 className="label">Donors</h2>
-                  <Select
-                    name="field"
-                    multi
-                    options={filtersOptions.hazard_types}
-                    value={filtersOptions.hazard_types ? filtersOptions.hazard_types.filter(opt => hazard_types.includes(opt.value)) : []}
-                    onChange={opts => this.setState({ hazard_types: opts.map(o => o.value) })}
-                  />
-                </div> */}
-
-                {/* Costs */}
-                <div className="form-field costs">
-                  <div className="cost-field">
-                    <h2 className="label">Estimated Cost</h2>
+                <div className="form">
+                  {/* Name */}
+                  <div className={`form-field ${this.isRequiredOn('name')}`}>
                     <input
-                      ref={n => this.estimated_cost = n}
-                      name="estimated_cost"
-                      type="number"
-                      min="0"
-                      onBlur={e => this.setFieldValue('estimated_cost', e.currentTarget.value)}
+                      ref={n => this.name = n}
+                      name="name"
+                      type="text"
+                      onBlur={e => this.setFieldValue('name', e.currentTarget.value)}
+                    />
+                    <h2 className="label">Name*</h2>
+                  </div>
+
+                  <div className="form-field">
+                    {this.renderLocations()}
+                    <InputMap
+                      inputProps={{ name: 'locations' }}
+                      onAddLocation={this.onAddLocation}
+                    />
+                    <h2 className="label">Location</h2>
+                  </div>
+
+                  {/* Scale */}
+                  <div className="form-field">
+                    <h2 className="label">Scale</h2>
+                    <RadioGroup
+                      name="scale"
+                      options={filtersOptions.scales || []}
+                      selected={filtersOptions.scales && filtersOptions.scales.find(imp => imp.value === scale)}
+                      onChange={value => this.setFieldValue('scale', value)}
                     />
                   </div>
 
-                  <div className="cost-field">
-                    <h2 className="label">Estimated monetary benefits</h2>
-                    <input
-                      ref={n => this.estimated_monetary_benefits = n}
-                      name="estimated_monetary_benefits"
-                      type="number"
-                      min="0"
-                      onBlur={e => this.setFieldValue('estimated_monetary_benefits', e.currentTarget.value)}
-                    />
-                  </div>
-
-                  <div className="cost-field -currency">
-                    <h2 className="label">Original currency</h2>
+                  {/* Organizations */}
+                  <div className="form-field">
                     <Select
-                      name="original_currency"
-                      multi={false}
-                      options={currencyOptions}
-                      value={original_currency || ''}
-                      onChange={opt => this.setFieldValue('original_currency', opt ? opt.value : '')}
+                      name="field"
+                      multi
+                      options={filtersOptions.organizations}
+                      value={filtersOptions.organizations ? filtersOptions.organizations.filter(opt => organizations.includes(opt.value)) : []}
+                      onChange={opts => this.setFieldValue('organizations', opts.map(o => o.value))}
+                    />
+                    <h2 className="label">Organizations</h2>
+                  </div>
+
+                  {/* Primary benefits */}
+                  <div className="form-field">
+                    <Select
+                      name="primary_benefits"
+                      multi
+                      options={filtersOptions.primary_benefits}
+                      value={filtersOptions.primary_benefits ? filtersOptions.primary_benefits.filter(opt => primary_benefits_of_interventions.includes(opt.value)) : []}
+                      onChange={opts => this.setFieldValue('primary_benefits_of_interventions', opts.map(o => o.value))}
+                    />
+                    <h2 className="label">Risk reduction benefits</h2>
+                  </div>
+
+                  {/* Co benefits of interventions */}
+                  <div className="form-field">
+                    <Select
+                      name="field"
+                      multi
+                      options={filtersOptions.co_benefits}
+                      value={filtersOptions.co_benefits ? filtersOptions.co_benefits.filter(opt => co_benefits_of_interventions.includes(opt.value)) : []}
+                      onChange={opts => this.setFieldValue('co_benefits_of_interventions', opts.map(o => o.value))}
+                    />
+                    <h2 className="label">Co benefits of interventions</h2>
+                  </div>
+
+                  {/* Nature-based solutions */}
+                  <div className="form-field">
+                    <Select
+                      name="field"
+                      multi
+                      options={filtersOptions.nature_based_solutions}
+                      value={filtersOptions.nature_based_solutions ? filtersOptions.nature_based_solutions.filter(opt => nature_based_solutions.includes(opt.value)) : []}
+                      onChange={opts => this.setFieldValue('nature_based_solutions', opts.map(o => o.value))}
+                    />
+                    <h2 className="label">Nature-based solutions</h2>
+                  </div>
+
+                  {/* Hazard */}
+                  <div className="form-field">
+                    <Select
+                      name="hazard_types"
+                      multi
+                      options={filtersOptions.hazard_types}
+                      value={filtersOptions.hazard_types ? filtersOptions.hazard_types.filter(opt => hazard_types.includes(opt.value)) : []}
+                      onChange={opts => this.setFieldValue('hazard_types', opts.map(o => o.value))}
+                    />
+                    <h2 className="label">Hazard</h2>
+                  </div>
+
+                  {/* Donors */}
+                  {/* <div className="form-field">
+                    <Select
+                      name="donors"
+                      multi
+                      options={filtersOptions.donors}
+                      value={filtersOptions.donors ? filtersOptions.donors.filter(opt => donors.includes(opt.value)) : []}
+                      onChange={opts => this.setState({ donors: opts.map(o => o.value) })}
+                    />
+                    <h2 className="label">Donors</h2>
+                  </div> */}
+
+                  {/* Costs */}
+                  <div className="form-field costs">
+                    <div className="cost-field">
+                      <input
+                        ref={n => this.estimated_cost = n}
+                        name="estimated_cost"
+                        type="number"
+                        min="0"
+                        onBlur={e => this.setFieldValue('estimated_cost', e.currentTarget.value)}
+                      />
+                      <h2 className="label">Estimated Cost</h2>
+                    </div>
+
+                    <div className="cost-field">
+                      <input
+                        ref={n => this.estimated_monetary_benefits = n}
+                        name="estimated_monetary_benefits"
+                        type="number"
+                        min="0"
+                        onBlur={e => this.setFieldValue('estimated_monetary_benefits', e.currentTarget.value)}
+                      />
+                      <h2 className="label">Estimated monetary benefits</h2>
+                    </div>
+
+                    <div className="cost-field -currency">
+                      <Select
+                        name="original_currency"
+                        multi={false}
+                        options={currencyOptions}
+                        value={original_currency || ''}
+                        onChange={opt => this.setFieldValue('original_currency', opt ? opt.value : '')}
+                      />
+                      <h2 className="label">Original currency</h2>
+                    </div>
+                  </div>
+
+
+                  {/* Intervention type* */}
+                  <div className="form-field">
+                    <h2 className="label">Intervention type*</h2>
+                    <RadioGroup
+                      name="intervention_type"
+                      options={filtersOptions.intervention_types || []}
+                      selected={filtersOptions.intervention_types && filtersOptions.intervention_types.find(imp => imp.value === intervention_type)}
+                      onChange={value => this.setFieldValue('intervention_type', value)}
                     />
                   </div>
-                </div>
 
+                  <div className={`form-field ${this.isRequiredOn('implementation_status')}`}>
+                    <h2 className="label">Implementation status*</h2>
+                    <RadioGroup
+                      name="implementation_status"
+                      options={filtersOptions.implementation_statuses || []}
+                      selected={filtersOptions.implementation_statuses && filtersOptions.implementation_statuses.find(imp => imp.value === implementation_status)}
+                      onChange={value => this.setFieldValue('implementation_status', value)}
+                    />
+                  </div>
 
-                {/* Intervention type* */}
-                <div className="form-field">
-                  <h2 className="label">Intervention type*</h2>
-                  <RadioGroup
-                    name="intervention_type"
-                    options={filtersOptions.intervention_types || []}
-                    selected={filtersOptions.intervention_types && filtersOptions.intervention_types.find(imp => imp.value === intervention_type)}
-                    onChange={value => this.setFieldValue('intervention_type', value)}
-                  />
-                </div>
+                  {/* Benefit details */}
+                  <div className="form-field">
+                    <input
+                      ref={n => this.benefit_details = n}
+                      name="benefit_details"
+                      type="text"
+                      onBlur={e => this.setFieldValue('benefit_details', e.currentTarget.value)}
+                    />
+                    <h2 className="label">Benefit details</h2>
+                  </div>
 
-                <div className={`form-field ${this.isRequiredOn('implementation_status')}`}>
-                  <h2 className="label">Implementation status*</h2>
-                  <RadioGroup
-                    name="implementation_status"
-                    options={filtersOptions.implementation_statuses || []}
-                    selected={filtersOptions.implementation_statuses && filtersOptions.implementation_statuses.find(imp => imp.value === implementation_status)}
-                    onChange={value => this.setFieldValue('implementation_status', value)}
-                  />
-                </div>
+                  {/* Summary */}
+                  <div className="form-field">
+                    <input
+                      ref={n => this.summary = n}
+                      name="summary"
+                      type="text"
+                      onBlur={e => this.setFieldValue('summary', e.currentTarget.value)}
+                    />
+                    <h2 className="label">Summary</h2>
+                  </div>
 
-                {/* Benefit details */}
-                <div className="form-field">
-                  <h2 className="label">Benefit details</h2>
-                  <input
-                    ref={n => this.benefit_details = n}
-                    name="benefit_details"
-                    type="text"
-                    onBlur={e => this.setFieldValue('benefit_details', e.currentTarget.value)}
-                  />
-                </div>
+                  {/* Learn more */}
+                  <div className={`form-field ${this.state.learnNotValid ? '-url-not-valid' : ''}`}>
+                    <input
+                      ref={n => this.learn_more = n}
+                      name="learn_more"
+                      type="text"
+                      onBlur={e => this.setFieldValue('learn_more', e.currentTarget.value)}
+                    />
+                    <h2 className="label">Learn more</h2>
+                  </div>
 
-                {/* Summary */}
-                <div className="form-field">
-                  <h2 className="label">Summary</h2>
-                  <input
-                    ref={n => this.summary = n}
-                    name="summary"
-                    type="text"
-                    onBlur={e => this.setFieldValue('summary', e.currentTarget.value)}
-                  />
-                </div>
-
-                {/* Learn more */}
-                <div className="form-field">
-                  <h2 className="label">Learn more</h2>
-                  <input
-                    ref={n => this.learn_more = n}
-                    name="learn_more"
-                    type="text"
-                    onBlur={e => this.setFieldValue('learn_more', e.currentTarget.value)}
-                  />
-                </div>
-
-                {/* Refetences-typo */}
-                <div className="form-field">
-                  <h2 className="label">References-typo</h2>
-                  <input
-                    ref={n => this.references_typo = n}
-                    name="references"
-                    type="text"
-                    onBlur={e => this.setFieldValue('references', e.currentTarget.value)}
-                  />
+                  {/* Refetences-typo */}
+                  <div className={`form-field ${this.state.referencesNotValid ? '-url-not-valid' : ''}`}>
+                    <input
+                      ref={n => this.references_typo = n}
+                      name="references"
+                      type="text"
+                      onBlur={e => this.setFieldValue('references', e.currentTarget.value)}
+                    />
+                    <h2 className="label">References-typo</h2>
+                  </div>
                 </div>
 
                 <div className="actions">

@@ -1,13 +1,38 @@
 .c-form {
+  .form {
+    position: relative;
+
+    &:after {
+      content: 'Required fields *';
+      position: absolute;
+      bottom: -45px;
+      right: 0;
+      font-size: 12px;
+      color: $color-text-1;
+    }
+  }
+
   .form-field {
+    display: flex;
+    flex-flow: column;
     font-size: $font-size-big;
     margin-bottom: 42px;
     color: $color-text-1;
 
-    &.-primary {
-      .label { color: $color-primary; }
-      input {
-        border-bottom: 1px solid $color-primary;
+    &.required-error {
+      .label { color: red; }
+    }
+
+    &.-url-not-valid {
+      position: relative;
+
+      &:after {
+        content: 'Url not valid';
+        position: absolute;
+        bottom: -14px;
+        right: 0;
+        color: red;
+        font-size: 10px;
       }
     }
 
@@ -20,11 +45,17 @@
 
     input[type="text"],
     input[type="number"] {
+      order: 2;
       width: 100%;
       font-size: $font-size-big;
       line-height: 30px;
       border: 0;
       border-bottom: 1px solid rgba(palette(black), .3);
+    }
+
+    input:focus {
+      border-color: $color-primary;
+      & + .label { color: $color-primary; }
     }
 
     /* Hide HTML5 Up and Down arrows. */
@@ -38,9 +69,12 @@
 
     &.costs {
       display: flex;
+      flex-flow: row;
 
        .cost-field {
         flex-grow: 1;
+        display: flex;
+        flex-flow: column;
         margin-right: 13px;
 
         &:last-child { margin-right: 0; }
@@ -69,7 +103,10 @@
       }
     }
 
+    .c-input-map { order: 3; }
+
     .location-list {
+      order: 2;
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 10px;
@@ -92,6 +129,8 @@
   }
 
   .Select {
+    order: 2;
+
     .Select-control {
       border-bottom: 1px solid rgba(palette(black), .3);
 
