@@ -1,4 +1,5 @@
 import React from 'react';
+import ReduxToastr from 'react-redux-toastr'
 import Header from 'components/header/Header';
 import Modal from 'components/ui/Modal';
 
@@ -14,6 +15,7 @@ export default class App extends React.Component {
           {this.props.main}
         </main>
         {this.props.footer}
+        <ReduxToastr />
         <Modal
           open={modal.open}
           options={modal.options}

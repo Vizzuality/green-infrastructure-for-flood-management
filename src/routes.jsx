@@ -10,6 +10,7 @@ import App from 'components/app/AppContainer';
 import HomePage from 'components/pages/HomePage';
 import SubmitPage from 'components/pages/SubmitPage';
 import MapPageContainer from 'components/pages/MapPageContainer';
+import LoginPage from 'components/pages/LoginPageContainer';
 
 const Routes = ({ history }) => (
   <Router history={history}>
@@ -21,6 +22,9 @@ const Routes = ({ history }) => (
       </Route>
       <Route path="submit">
         <IndexRoute components={{ main: SubmitPage, footer: Footer }} />
+      </Route>
+      <Route path="signin">
+        <IndexRoute components={{ main: LoginPage, footer: Footer }} />
       </Route>
     </Route>
   </Router>
