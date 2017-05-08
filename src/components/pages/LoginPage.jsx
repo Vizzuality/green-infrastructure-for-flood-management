@@ -66,31 +66,35 @@ export default class LoginPage extends React.Component {
                 <h1 className="h1 -line">Sign in</h1>
                 <p className="text">Enter your details below.</p>
 
-                <div className="c-form-login">
+                <div className="c-form">
                   <Validation.components.Form>
-                    <div className="form">
+                    <div className="form -control">
+                      <div className="filter-error">
+                        <p className="error">{this.state.error}</p>
+                      </div>
+
                       <div className="form-field">
-                        <div className="filter-error">
-                          <p className="error">{this.state.error}</p>
+                        <div className="filter-field">
+                          <h2 className="title">E-mail*</h2>
+                          <Input
+                            type="text"
+                            name="email"
+                            value=""
+                            onChange={this.onInputChange}
+                            validations={['email']}
+                          />
                         </div>
                       </div>
 
                       <div className="form-field">
                         <div className="filter-field">
-                          <h2 className="title">E-mail</h2>
-                          <Input type="text" name="email" value="" onChange={this.onInputChange} validations={['required', 'email']} />
-                        </div>
-                      </div>
-
-                      <div className="form-field">
-                        <div className="filter-field">
-                          <h2 className="title">Password</h2>
+                          <h2 className="title">Password*</h2>
                           <Input
                             type="password"
                             name="password"
                             value=""
                             onChange={this.onInputChange}
-                            validations={['required']}
+                            validations={[]}
                           />
                         </div>
                       </div>
