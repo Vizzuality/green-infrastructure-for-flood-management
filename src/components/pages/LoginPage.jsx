@@ -17,9 +17,11 @@ import { login } from 'modules/user';
 export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       error: ''
     };
+
     this.form = {};
 
     // Bindings
@@ -46,9 +48,9 @@ export default class LoginPage extends React.Component {
     e.preventDefault();
     if (this.form.email && validator.isEmail(this.form.email) &&
       this.form.password && this.form.password !== '') {
-      // Login user
+      // Login user and redirect
       dispatch(login(this.form));
-      // dispatch(replace('/submit'));
+      dispatch(replace('/submit'));
     } else {
       this.setState({ error: 'Fill in the form correctly' });
     }
