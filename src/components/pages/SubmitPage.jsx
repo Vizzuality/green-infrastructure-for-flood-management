@@ -100,8 +100,7 @@ export default class SubmitPage extends React.Component {
   }
 
   clear() {
-    Object.values(this.inputs).forEach(inp => inp.value = '')
-
+    Object.values(this.inputs).forEach(inp => inp.value = '');
     this.setState({ fields: Object.assign({}, defaultValues) });
   }
 
@@ -148,6 +147,31 @@ export default class SubmitPage extends React.Component {
     const newFields = Object.assign({}, this.state.fields);
     newFields[key] = value;
     this.setState({ fields: newFields });
+  }
+
+  controlOtherValue(key, obj) {
+    const value = obj.map(it => it.value);
+    const otherNew = obj.find(o => o.label === 'other');
+    const newOtherInput = this.inputs[`new_other_${key}`];
+
+    if (this.state[`new_other_${key}`] && !otherNew) {
+      const newState = Object.assign({}, this.state);
+      newState[`new_other_${key}`] = false;
+      this.setState(newState);
+      this.setFieldValue(`other_${key}`, '');
+      newOtherInput.value = '';
+    } else if (!this.state[`new_other_${key}`] && otherNew) {
+      const newState = Object.assign({}, this.state);
+      newState[`new_other_${key}`] = true;
+      this.setState(newState);
+      newOtherInput.focus();
+    }
+
+    this.setFieldValue(key, value);
+  }
+
+  setOtherValue(key, value) {
+    this.setFieldValue(`other_${key}`, value);
   }
 
   onRemoveLocation(location) {
@@ -289,9 +313,17 @@ export default class SubmitPage extends React.Component {
                       multi
                       options={filtersOptions.nature_based_solutions}
                       value={filtersOptions.nature_based_solutions ? filtersOptions.nature_based_solutions.filter(opt => nature_based_solutions.includes(opt.value)) : []}
-                      onChange={opts => this.setFieldValue('nature_based_solutions', opts.map(o => o.value))}
+                      onChange={opts => this.controlOtherValue('nature_based_solutions', opts)}
                     />
                     <h2 className="label">Nature-based solutions* <Info text={infoTexts.nature_based_solutions} /></h2>
+                    <input
+                      ref={n => this.inputs.new_other_nature_based_solutions = n}
+                      name="nature_based_solutions"
+                      className={this.state['new_other_nature_based_solutions'] ? '-active' : ''}
+                      placeholder="Type other"
+                      type="text"
+                      onBlur={e => this.setOtherValue('nature_based_solutions', e.currentTarget.value)}
+                    />
                   </div>
 
                   {/* Primary benefits */}
