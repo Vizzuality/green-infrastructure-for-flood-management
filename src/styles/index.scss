@@ -7,9 +7,6 @@
 @import "mixins";
 @import "layout";
 
-/* External */
-@import "~react-redux-toastr/src/styles/index";
-
 /* Lib */
 @import "lib/foundation";
 
@@ -46,3 +43,4 @@
 @import "components/plus_number";
 @import "components/modal";
 @import "components/form";
+@import "components/login";

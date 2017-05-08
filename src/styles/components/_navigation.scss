@@ -26,6 +26,7 @@
 
   .nav-item {
     margin-right: $space-1 * 4;
+    cursor: pointer;
 
     &:last-child {
       margin-right: 0;
@@ -33,13 +34,13 @@
   }
 
   .nav-link {
+    position: relative;
     display: block;
     font-size: $font-size-default;
     letter-spacing: 1px;
     padding: ($space-1 * 3) ($space-1 * 2);
     text-transform: uppercase;
     color: palette(black);
-    position: relative;
 
     &:before {
       content: '';

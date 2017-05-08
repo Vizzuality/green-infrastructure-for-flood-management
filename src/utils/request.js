@@ -47,8 +47,7 @@ function postWithHeaders({ url, body, headers, onSuccess, onError }) {
   request.open('POST', url);
 
   const _headers = { ...headers,
-    'Content-Type': 'application/json',
-    'SC-API-KEY': config['SC-API-KEY']
+    'Content-Type': 'application/json'
   };
 
   Object.keys(_headers).forEach((h) => {

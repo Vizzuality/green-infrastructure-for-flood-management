@@ -37,10 +37,10 @@ export default class Nav extends React.Component {
             })
           }
           {this.props.logged &&
-            <li>
-              <button onClick={this.onClickLogout}>
+            <li className="nav-item">
+              <a className="nav-link" onClick={this.onClickLogout}>
                 Sing out
-              </button>
+              </a>
             </li>
           }
         </ul>
@@ -54,6 +54,7 @@ Nav.propTypes = {
   className: React.PropTypes.string,
   logged: React.PropTypes.bool
 };
+
 Nav.defaultProps = {
   links: []
 };

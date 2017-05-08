@@ -32,7 +32,6 @@ export default class LoginPage extends React.Component {
   /* Lifecycle */
   componentWillReceiveProps(newProps) {
     if (newProps.user.error && !isEqual(this.props.user.error, newProps.user.error)) {
-      // toastr.error(capitalize(Object.values(newProps.user.error.error)[0][0]));
       const error = Object.values(newProps.user.error.error)[0][0];
       const errorMessage = error === 'invalid credentials' ? 'E-mail or password incorrect' : 'An error ocurred';
       this.setState({ error: errorMessage });
@@ -51,6 +50,7 @@ export default class LoginPage extends React.Component {
       this.form.password && this.form.password !== '') {
       // Login user
       dispatch(login(this.form));
+      // dispatch(replace('/submit'));
     } else {
       this.setState({ error: 'Fill in the form correctly' });
     }
@@ -62,13 +62,13 @@ export default class LoginPage extends React.Component {
         <section className="home-section">
           <div className="l-app-wrapper">
             <Row>
-              <div className="column small-12">
+              <div className="column small-12 medium-8 medium-offset-2">
                 <h1 className="h1 -line">Sign in</h1>
                 <p className="text">Enter your details below.</p>
 
                 <div className="c-form">
                   <Validation.components.Form>
-                    <div className="form -control">
+                    <div className="form">
                       <div className="filter-error">
                         <p className="error">{this.state.error}</p>
                       </div>

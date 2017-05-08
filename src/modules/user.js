@@ -93,14 +93,12 @@ function login(userData) {
     dispatch(setLoading(true));
     postWithHeaders({
       url: `${config.API_URL}/api/auth/`,
-      body: {
-        auth: userData
-      },
+      body: userData,
       onSuccess({ token }) {
         localStorage.token = token;
         dispatch(setLogged(true));
         dispatch(setLoading(false));
-        dispatch(replace('/'));
+        // dispatch(replace('/submit'));
         // dispatch(getUserData());
       },
       onError(error) {
@@ -116,7 +114,7 @@ function logout() {
     delete localStorage.token;
     dispatch(setLogged(false));
     dispatch(setUserData(null));
-    dispatch(replace('/login'));
+    dispatch(replace('/'));
   };
 }
 
