@@ -37,10 +37,14 @@
     }
 
     .label {
+      display: flex;
+      align-items: center;
       font-size: 18px;
       line-height: 30px;
       color: rgba($color-text-1, .5);
       margin-bottom: 10px;
+
+      .c-info { margin-top: 3px; }
     }
 
     input[type="text"],
