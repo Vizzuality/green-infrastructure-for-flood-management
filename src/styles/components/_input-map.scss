@@ -31,11 +31,11 @@
     }
 
     input {
-      width: 100%;
+      width: calc(100% - 100px);
       left: 0 !important;
       font-size: $font-size-big;
       line-height: 30px;
-      padding-right: 80px;
+      margin-right: 80px;
       border: 0;
       border-bottom: 1px solid rgba(palette(black), .3);
     }

@@ -10,6 +10,7 @@ import BtnGroup from 'components/ui/BtnGroup';
 import RadioGroup from 'components/ui/RadioGroup';
 import InputMap from 'components/ui/InputMap';
 import Info from 'components/ui/Info';
+import CheckboxGroup from 'components/ui/CheckboxGroup';
 
 
 const defaultValues = {
@@ -67,6 +68,12 @@ const infoTexts = {
   references: 'Provide additional sources and relevant URL links, if applicable.'
 };
 
+const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];
+const permissionOptions = [{ label: 'Name', value: 'name' },
+  { label: 'Organization', value: 'organization' },
+  { label: 'Neither (no recognition on the project page)', value: 'none' }];
+
+
 export default class SubmitPage extends React.Component {
   constructor(props) {
     super(props);
@@ -93,23 +100,16 @@ export default class SubmitPage extends React.Component {
   }
 
   clear() {
-    // const inputs = [this.name, this.estimated_cost, this.estimated_monetary_benefits,
-    //   this.benefit_details, this.summary, this.references_typo, this.learn_more];
-    // inputs.forEach(inp => inp.value = '');
     Object.values(this.inputs).forEach(inp => inp.value = '')
 
     this.setState({ fields: Object.assign({}, defaultValues) });
   }
 
   submit() {
-    const { name, intervention_type, implementation_status, learn_more, references } = this.state.fields;
+    const { learn_more, references } = this.state.fields;
     const requiredOn = [];
     const learnValid = learn_more !== '' ? isUrl(learn_more) : true;
     const referencesValid = references !== '' ? isUrl(references) : true;
-
-    // name === '' && requiredOn.push('name');
-    // intervention_type === '' && requiredOn.push('intervention_type');
-    // implementation_status === '' && requiredOn.push('implementation_status');
 
     requiredFields.forEach((field) => {
       this.state.fields[field].length === 0 && requiredOn.push(field);
@@ -173,10 +173,6 @@ export default class SubmitPage extends React.Component {
   }
 
   render() {
-    const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];
-    const permissionOptions = [{ label: 'Name', value: 'name' },
-      { label: 'Organization', value: 'organization' },
-      { label: 'Neither (no recognition on the project page)', value: 'none' }];
     const { filtersOptions } = this.props;
     const { scale, organizations, primary_benefits_of_interventions,
       co_benefits_of_interventions, nature_based_solutions,
@@ -267,14 +263,12 @@ export default class SubmitPage extends React.Component {
 
                   {/* Hazard types */}
                   <div className={`form-field ${this.isRequiredOn('hazard_types')}`}>
-                    <Select
-                      name="hazard_types"
-                      multi
-                      options={filtersOptions.hazard_types}
-                      value={filtersOptions.hazard_types ? filtersOptions.hazard_types.filter(opt => hazard_types.includes(opt.value)) : []}
-                      onChange={opts => this.setFieldValue('hazard_types', opts.map(o => o.value))}
-                    />
                     <h2 className="label">Hazard types*</h2>
+                    <CheckboxGroup
+                      options={filtersOptions.hazard_types ? filtersOptions.hazard_types : []}
+                      selected={filtersOptions.hazard_types ? filtersOptions.hazard_types.filter(opt => hazard_types.includes(opt.value)) : []}
+                      onChange={opts => this.setFieldValue('hazard_types', opts.map(o => o))}
+                    />
                   </div>
 
                   {/* Intervention type */}

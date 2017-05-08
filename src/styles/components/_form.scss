@@ -133,6 +133,29 @@
     .-hidden { display: none; }
   }
 
+  .c-checkbox-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  .c-checkbox {
+    input[type=checkbox]:checked + label {
+      .checkbox-icon {
+        background-color: transparent;
+      }
+
+      .item-title { font-weight: normal; }
+    }
+
+    label {
+      color: $color-text-1;
+      font-size: $font-size-big;
+
+      .checkbox-icon:after { border-color: $color-primary; }
+    }
+  }
+
   .Select {
     order: 2;
 
