@@ -22,15 +22,38 @@ const defaultValues = {
   nature_based_solutions: [],
   hazard_types: [],
   estimated_cost: '',
+  currency_estimated_cost: '',
   estimated_monetary_benefits: '',
+  currency_monetary_benefits: '',
   intervention_type: '',
   implementation_status: '',
-  original_currency: '',
   benefit_details: '',
   summary: '',
   learn_more: '',
-  references: ''
+  references: '',
+  contributor_name: '',
+  contributor_organization: '',
+  contact_info: '',
+  permission: ''
 };
+
+const requiredFields = [
+  'name',
+  'organizations',
+  'locations',
+  'scale',
+  'implementation_status',
+  'hazard_types',
+  'intervention_type',
+  'nature_based_solutions',
+  'primary_benefits_of_interventions',
+  'summary',
+  'learn_more',
+  'contributor_name',
+  'contributor_organization',
+  'contact_info',
+  'permission'
+];
 
 const infoTexts = {
   organizations: 'Provide the main organization(s) involved in the project, excluding donors.',
@@ -38,7 +61,10 @@ const infoTexts = {
   intervention_type: 'Green: Measures that consist of ecosystems that are naturally present in the area or that can be restored or recreated if they are degraded or have disappeared. Hybrid: Measures that utilize a combination of both green measures and man-made infrastructure measures to simultaneously establish immediate risk reduction while maintaining the valuable role of the relevant ecosystem.',
   nature_based_solutions: 'Ecosystems are central to nature-based solutions. Indicate the ecosystem(s) your project conserved, restored or created.',
   primary_benefits_of_interventions: 'Indicate the primary hazard mitigation benefits of the intervention.',
-  co_benefits_of_interventions: 'Indicate the social, environmental, and economic co-benefits.'
+  co_benefits_of_interventions: 'Indicate the social, environmental, and economic co-benefits.',
+  benefit_details: 'If available, provide any additional information relevant to the project’s monetary benefits.',
+  summary: 'Provide a short description of the project’s activities and results. Word limit: 125 words.',
+  references: 'Provide additional sources and relevant URL links, if applicable.'
 };
 
 export default class SubmitPage extends React.Component {
@@ -53,6 +79,8 @@ export default class SubmitPage extends React.Component {
       referencesNotValid: false
     };
 
+    this.inputs = {};
+
     // BINDINGS
     this.onAddLocation = this.onAddLocation.bind(this);
     this.onRemoveLocation = this.onRemoveLocation.bind(this);
@@ -65,9 +93,10 @@ export default class SubmitPage extends React.Component {
   }
 
   clear() {
-    const inputs = [this.name, this.estimated_cost, this.estimated_monetary_benefits,
-      this.benefit_details, this.summary, this.references_typo, this.learn_more];
-    inputs.forEach(inp => inp.value = '');
+    // const inputs = [this.name, this.estimated_cost, this.estimated_monetary_benefits,
+    //   this.benefit_details, this.summary, this.references_typo, this.learn_more];
+    // inputs.forEach(inp => inp.value = '');
+    Object.values(this.inputs).forEach(inp => inp.value = '')
 
     this.setState({ fields: Object.assign({}, defaultValues) });
   }
@@ -78,9 +107,13 @@ export default class SubmitPage extends React.Component {
     const learnValid = learn_more !== '' ? isUrl(learn_more) : true;
     const referencesValid = references !== '' ? isUrl(references) : true;
 
-    name === '' && requiredOn.push('name');
-    intervention_type === '' && requiredOn.push('intervention_type');
-    implementation_status === '' && requiredOn.push('implementation_status');
+    // name === '' && requiredOn.push('name');
+    // intervention_type === '' && requiredOn.push('intervention_type');
+    // implementation_status === '' && requiredOn.push('implementation_status');
+
+    requiredFields.forEach((field) => {
+      this.state.fields[field].length === 0 && requiredOn.push(field);
+    });
 
     this.setState({ requiredOn,
       learnNotValid: !learnValid,
@@ -141,10 +174,15 @@ export default class SubmitPage extends React.Component {
 
   render() {
     const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];
+    const permissionOptions = [{ label: 'Name', value: 'name' },
+      { label: 'Organization', value: 'organization' },
+      { label: 'Neither (no recognition on the project page)', value: 'none' }];
     const { filtersOptions } = this.props;
     const { scale, organizations, primary_benefits_of_interventions,
       co_benefits_of_interventions, nature_based_solutions,
-      hazard_types, intervention_type, original_currency, implementation_status } = this.state.fields;
+      hazard_types, intervention_type, currency_monetary_benefits,
+      currency_estimated_cost, implementation_status, permission
+    } = this.state.fields;
 
     return (
       <div className="c-submit">
@@ -163,7 +201,7 @@ export default class SubmitPage extends React.Component {
                   {/* Project Name */}
                   <div className={`form-field ${this.isRequiredOn('name')}`}>
                     <input
-                      ref={n => this.name = n}
+                      ref={n => this.inputs.name = n}
                       name="name"
                       type="text"
                       onBlur={e => this.setFieldValue('name', e.currentTarget.value)}
@@ -172,7 +210,7 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Organizations */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('organizations')}`}>
                     <Select
                       name="organizations"
                       multi
@@ -192,11 +230,11 @@ export default class SubmitPage extends React.Component {
                       value={filtersOptions.donors ? filtersOptions.donors.filter(opt => donors.includes(opt.value)) : []}
                       onChange={opts => this.setState({ donors: opts.map(o => o.value) })}
                     />
-                    <h2 className="label">Donors<Info text={infoTexts.donors} /></h2>
+                    <h2 className="label">Donors <Info text={infoTexts.donors} /></h2>
                   </div> */}
 
                   {/* Locations */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('locations')}`}>
                     {this.renderLocations()}
                     <InputMap
                       inputProps={{ name: 'locations' }}
@@ -206,7 +244,7 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Scale */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('scale')}`}>
                     <h2 className="label">Scale*</h2>
                     <RadioGroup
                       name="scale"
@@ -228,7 +266,7 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Hazard types */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('hazard_types')}`}>
                     <Select
                       name="hazard_types"
                       multi
@@ -240,7 +278,7 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Intervention type */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('intervention_type')}`}>
                     <h2 className="label">Intervention type* <Info text={infoTexts.intervention_type} /></h2>
                     <RadioGroup
                       name="intervention_type"
@@ -251,7 +289,7 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Nature-based solutions */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('nature_based_solutions')}`}>
                     <Select
                       name="nature_based_solutions"
                       multi
@@ -263,7 +301,7 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Primary benefits */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('primary_benefits_of_interventions')}`}>
                     <Select
                       name="primary_benefits"
                       multi
@@ -277,7 +315,7 @@ export default class SubmitPage extends React.Component {
                   {/* Co benefits of interventions */}
                   <div className="form-field">
                     <Select
-                      name="field"
+                      name="co_benefits"
                       multi
                       options={filtersOptions.co_benefits}
                       value={filtersOptions.co_benefits ? filtersOptions.co_benefits.filter(opt => co_benefits_of_interventions.includes(opt.value)) : []}
@@ -290,7 +328,7 @@ export default class SubmitPage extends React.Component {
                   <div className="form-field costs">
                     <div className="cost-field">
                       <input
-                        ref={n => this.estimated_cost = n}
+                        ref={n => this.inputs.estimated_cost = n}
                         name="estimated_cost"
                         type="number"
                         min="0"
@@ -301,18 +339,18 @@ export default class SubmitPage extends React.Component {
 
                     <div className="cost-field -currency">
                       <Select
-                        name="original_currency"
+                        name="currency_estimated_cost"
                         multi={false}
                         options={currencyOptions}
-                        value={original_currency || ''}
-                        onChange={opt => this.setFieldValue('original_currency', opt ? opt.value : '')}
+                        value={currency_estimated_cost || ''}
+                        onChange={opt => this.setFieldValue('currency_estimated_cost', opt ? opt.value : '')}
                       />
                       <h2 className="label">Currency of estimated cost</h2>
                     </div>
 
                     <div className="cost-field">
                       <input
-                        ref={n => this.estimated_monetary_benefits = n}
+                        ref={n => this.inputs.estimated_monetary_benefits = n}
                         name="estimated_monetary_benefits"
                         type="number"
                         min="0"
@@ -323,58 +361,100 @@ export default class SubmitPage extends React.Component {
 
                     <div className="cost-field -currency">
                       <Select
-                        name="original_currency"
+                        name="currency_monetary_benefits"
                         multi={false}
                         options={currencyOptions}
-                        value={original_currency || ''}
-                        onChange={opt => this.setFieldValue('original_currency', opt ? opt.value : '')}
+                        value={currency_monetary_benefits || ''}
+                        onChange={opt => this.setFieldValue('currency_monetary_benefits', opt ? opt.value : '')}
                       />
-                      <h2 className="label">Original currency</h2>
+                      <h2 className="label">Currency of estimated monetary benefits</h2>
                     </div>
                   </div>
 
                   {/* Benefit details */}
                   <div className="form-field">
                     <input
-                      ref={n => this.benefit_details = n}
+                      ref={n => this.inputs.benefit_details = n}
                       name="benefit_details"
                       type="text"
                       onBlur={e => this.setFieldValue('benefit_details', e.currentTarget.value)}
                     />
-                    <h2 className="label">Benefit details</h2>
+                    <h2 className="label">Benefit details <Info text={infoTexts.benefit_details} /></h2>
                   </div>
 
                   {/* Summary */}
-                  <div className="form-field">
+                  <div className={`form-field ${this.isRequiredOn('summary')}`}>
                     <input
-                      ref={n => this.summary = n}
+                      ref={n => this.inputs.summary = n}
                       name="summary"
                       type="text"
                       onBlur={e => this.setFieldValue('summary', e.currentTarget.value)}
                     />
-                    <h2 className="label">Summary</h2>
+                    <h2 className="label">Project Summary*</h2>
                   </div>
 
                   {/* Learn more */}
-                  <div className={`form-field ${this.state.learnNotValid ? '-url-not-valid' : ''}`}>
+                  <div className={`form-field ${this.state.learnNotValid ? '-url-not-valid' : ''} ${this.isRequiredOn('learn_more')}`}>
                     <input
-                      ref={n => this.learn_more = n}
+                      ref={n => this.inputs.learn_more = n}
                       name="learn_more"
                       type="text"
                       onBlur={e => this.setFieldValue('learn_more', e.currentTarget.value)}
                     />
-                    <h2 className="label">Learn more</h2>
+                    <h2 className="label">Project website*</h2>
                   </div>
 
                   {/* Refetences-typo */}
                   <div className={`form-field ${this.state.referencesNotValid ? '-url-not-valid' : ''}`}>
                     <input
-                      ref={n => this.references_typo = n}
+                      ref={n => this.inputs.references_typo = n}
                       name="references"
                       type="text"
                       onBlur={e => this.setFieldValue('references', e.currentTarget.value)}
                     />
-                    <h2 className="label">References-typo</h2>
+                    <h2 className="label">Aditional references <Info text={infoTexts.references} /></h2>
+                  </div>
+
+                  {/* Contributor name */}
+                  <div className={`form-field ${this.isRequiredOn('contributor_name')}`}>
+                    <input
+                      ref={n => this.inputs.contributor_name = n}
+                      name="contributor_name"
+                      type="text"
+                      onBlur={e => this.setFieldValue('contributor_name', e.currentTarget.value)}
+                    />
+                    <h2 className="label">Contributor name*</h2>
+                  </div>
+
+                  <div className={`form-field ${this.isRequiredOn('contributor_organization')}`}>
+                    <input
+                      ref={n => this.inputs.contributor_organization = n}
+                      name="contributor_organization"
+                      type="text"
+                      onBlur={e => this.setFieldValue('contributor_organization', e.currentTarget.value)}
+                    />
+                    <h2 className="label">Contributor organization*</h2>
+                  </div>
+
+                  {/* Permission */}
+                  <div className={`form-field ${this.isRequiredOn('permission')}`}>
+                    <h2 className="label">Would you like your name and/or organization to appear on the project page as the contributor of the project?*</h2>
+                    <RadioGroup
+                      name="permission"
+                      options={permissionOptions || []}
+                      selected={permissionOptions && permissionOptions.find(imp => imp.value === permission)}
+                      onChange={value => this.setFieldValue('permission', value)}
+                    />
+                  </div>
+
+                  <div className={`form-field ${this.isRequiredOn('contact_info')}`}>
+                    <input
+                      ref={n => this.inputs.contact_info = n}
+                      name="contact_info"
+                      type="text"
+                      onBlur={e => this.setFieldValue('contact_info', e.currentTarget.value)}
+                    />
+                    <h2 className="label">Contact information*</h2>
                   </div>
                 </div>
 
