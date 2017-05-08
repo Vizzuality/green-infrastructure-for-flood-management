@@ -1,5 +1,4 @@
 import React from 'react';
-import { toastr } from 'react-redux-toastr';
 import isEqual from 'lodash/isEqual';
 import validator from 'validator';
 import capitalize from 'lodash/capitalize';
