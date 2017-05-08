@@ -1,5 +1,5 @@
 const publicRoutes = [
-  '/signin'
+  '/submit'
 ];
 
 export { publicRoutes };

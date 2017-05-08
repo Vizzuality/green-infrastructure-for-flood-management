@@ -1,13 +1,16 @@
 import React from 'react';
 import { toastr } from 'react-redux-toastr';
 import isEqual from 'lodash/isEqual';
+import validator from 'validator';
 import capitalize from 'lodash/capitalize';
 import { SvgIcon } from 'vizz-components';
 import { validation } from 'utils/validation';
+import { replace } from 'react-router-redux';
 import Validation from 'react-validation';
 
 import { Row } from 'components/ui/Grid';
 import Spinner from 'components/ui/Spinner';
+import { Input } from 'components/form/From';
 
 import { dispatch } from 'main';
 import { login } from 'modules/user';
@@ -16,7 +19,9 @@ import { login } from 'modules/user';
 export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      error: ''
+    };
     this.form = {};
 
     // Bindings
@@ -27,7 +32,12 @@ export default class LoginPage extends React.Component {
   /* Lifecycle */
   componentWillReceiveProps(newProps) {
     if (newProps.user.error && !isEqual(this.props.user.error, newProps.user.error)) {
-      toastr.error(capitalize(Object.values(newProps.user.error.error)[0][0]));
+      // toastr.error(capitalize(Object.values(newProps.user.error.error)[0][0]));
+      const error = Object.values(newProps.user.error.error)[0][0];
+      const errorMessage = error === 'invalid credentials' ? 'E-mail or password incorrect' : 'An error ocurred';
+      this.setState({ error: errorMessage });
+    } else if (!newProps.user.error && newProps.user.logged) {
+      dispatch(replace('/submit'));
     }
   }
 
@@ -37,8 +47,13 @@ export default class LoginPage extends React.Component {
 
   onLogin(e) {
     e.preventDefault();
-    // Login user
-    dispatch(login(this.form));
+    if (this.form.email && validator.isEmail(this.form.email) &&
+      this.form.password && this.form.password !== '') {
+      // Login user
+      dispatch(login(this.form));
+    } else {
+      this.setState({ error: 'Fill in the form correctly' });
+    }
   }
 
   render() {
@@ -51,28 +66,42 @@ export default class LoginPage extends React.Component {
                 <h1 className="h1 -line">Sign in</h1>
                 <p className="text">Enter your details below.</p>
 
-                <div className="c-form">
-                  <div className="form">
-                    <div className="form-field">
-                      <div className="filter-field">
-                        <h2 className="title">E-mail</h2>
-                        <input type="email" name="email" onChange={this.onInputChange} required />
+                <div className="c-form-login">
+                  <Validation.components.Form>
+                    <div className="form">
+                      <div className="form-field">
+                        <div className="filter-error">
+                          <p className="error">{this.state.error}</p>
+                        </div>
+                      </div>
+
+                      <div className="form-field">
+                        <div className="filter-field">
+                          <h2 className="title">E-mail</h2>
+                          <Input type="text" name="email" value="" onChange={this.onInputChange} validations={['required', 'email']} />
+                        </div>
+                      </div>
+
+                      <div className="form-field">
+                        <div className="filter-field">
+                          <h2 className="title">Password</h2>
+                          <Input
+                            type="password"
+                            name="password"
+                            value=""
+                            onChange={this.onInputChange}
+                            validations={['required']}
+                          />
+                        </div>
                       </div>
                     </div>
 
-                    <div className="form-field">
-                      <div className="filter-field">
-                        <h2 className="title">Password</h2>
-                        <input type="password" name="password" onChange={this.onInputChange} required />
-                      </div>
+                    <div className="actions">
+                      <button className="c-btn -filled -primary action" onClick={this.onLogin}>
+                        Sing in
+                      </button>
                     </div>
-                  </div>
-
-                  <div className="actions">
-                    <button className="c-btn -filled -primary action" onClick={this.onLogin}>
-                      Sing in
-                    </button>
-                  </div>
+                  </Validation.components.Form>
                   <Spinner isLoading={this.props.user.loading} />
                 </div>
               </div>

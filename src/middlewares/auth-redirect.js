@@ -4,8 +4,8 @@ import { publicRoutes } from 'constants/routes';
 const authRedirectMiddleware = store => next => (action) => {
   const { logged } = store.getState().user;
 
-  if (action.type === '@@router/LOCATION_CHANGE' && !logged && !publicRoutes.includes(action.payload.pathname)) {
-    store.dispatch(replace('/login'));
+  if (action.type === '@@router/LOCATION_CHANGE' && !logged && publicRoutes.includes(action.payload.pathname)) {
+    store.dispatch(replace('/signin'));
   } else {
     next(action);
   }

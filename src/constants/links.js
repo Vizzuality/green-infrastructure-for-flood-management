@@ -14,10 +14,6 @@ const links = [
   {
     text: 'About',
     href: '/about'
-  },
-  {
-    text: 'Sign in',
-    href: '/signin'
   }
 ];
 
