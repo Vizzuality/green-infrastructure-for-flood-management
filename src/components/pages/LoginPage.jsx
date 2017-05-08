@@ -1,8 +1,7 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 import validator from 'validator';
-import capitalize from 'lodash/capitalize';
-import { SvgIcon } from 'vizz-components';
+// This import the validation rules, do not remove
 import { validation } from 'utils/validation';
 import { replace } from 'react-router-redux';
 import Validation from 'react-validation';
