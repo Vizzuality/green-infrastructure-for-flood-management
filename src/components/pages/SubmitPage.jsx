@@ -149,22 +149,31 @@ export default class SubmitPage extends React.Component {
   }
 
   controlOtherValue(key, obj) {
+    const newState = Object.assign({}, this.state);
     const value = obj.map(it => it.value);
     const otherNew = obj.find(o => o.label === 'other');
     const newOtherInput = this.inputs[`new_${key}`];
-    const newState = Object.assign({}, this.state);
 
+    // Remove other option
     if (this.state[`new_${key}`] && !otherNew) {
+      const newFields = Object.assign({}, this.state.fields);
+      newFields[`new_${key}`] = '';
+      newState.fields = newFields;
       newState[`new_${key}`] = false;
-      this.setState(newState);
-      this.setFieldValue(`new_${key}`, '');
+
+      this.setState(newState, () => { this.setFieldValue(key, value); });
+      newOtherInput.value = '';
+
+    // Add other option
     } else if (!this.state[`new_${key}`] && otherNew) {
       newState[`new_${key}`] = true;
-      this.setState(newState);
-      newOtherInput.focus();
+      this.setState(newState, () => {
+        this.setFieldValue(key, value);
+        newOtherInput.focus();
+      });
+    } else {
+      this.setFieldValue(key, value);
     }
-
-    this.setFieldValue(key, value);
   }
 
   setOtherValue(key, value) {
@@ -177,6 +186,7 @@ export default class SubmitPage extends React.Component {
 
     if (!currentInput.classList.contains('-active')) {
       currentInput.value = '';
+      this.setFieldValue(key, '');
       return;
     }
 
@@ -340,7 +350,7 @@ export default class SubmitPage extends React.Component {
                       placeholder="Type other"
                       type="text"
                       onChange={e => this.setOtherValue('nature_based_solutions', e.currentTarget.value)}
-                      onBlur={this.onBlurOther}
+                      // onBlur={this.state['new_nature_based_solutions'] && this.onBlurOther}
                     />
                   </div>
 
@@ -363,7 +373,7 @@ export default class SubmitPage extends React.Component {
                       placeholder="Type other"
                       type="text"
                       onChange={e => this.setOtherValue('primary_benefits_of_interventions', e.currentTarget.value)}
-                      onBlur={this.onBlurOther}
+                      onBlur={this.state['primary_benefits_of_interventions'] && this.onBlurOther}
                     />
                   </div>
 
@@ -386,7 +396,7 @@ export default class SubmitPage extends React.Component {
                       placeholder="Type other"
                       type="text"
                       onChange={e => this.setOtherValue('co_benefits_of_interventions', e.currentTarget.value)}
-                      onBlur={this.onBlurOther}
+                      onBlur={this.state['co_benefits_of_interventions'] && this.onBlurOther}
                     />
                   </div>
 
