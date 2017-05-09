@@ -137,6 +137,10 @@ export default class MapPage extends React.Component {
             tms: true
           }
         }
+        // {
+        //   url: config.BASEMAP_LABELS_URL,
+        //   zIndex: 1
+        // }
       ]
     };
 
