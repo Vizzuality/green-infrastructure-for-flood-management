@@ -86,8 +86,7 @@ export default class MapPage extends React.Component {
     this.props.setProjectsFilters({ name: val });
   }
 
-  getProjects(filters) {
-    // TODO: pagination
+  getQuery(filters) {
     const paramsArray = [];
 
     Object.keys(filters).forEach((key) => {
@@ -97,7 +96,8 @@ export default class MapPage extends React.Component {
         }, '');
         arrayValues !== '' && paramsArray.push(arrayValues);
       } else {
-        filters[key] && filters[key] !== '' && paramsArray.push(`${key}=${filters[key]}`);
+        const keyFilter = key === 'name' ? 'q' : key;
+        filters[key] && filters[key] !== '' && paramsArray.push(`${keyFilter}=${filters[key]}`);
       }
     });
 
@@ -105,6 +105,12 @@ export default class MapPage extends React.Component {
       return i === 0 ? `${val}` : `${total}&${val}`;
     }, '');
 
+    return query;
+  }
+
+  getProjects(filters) {
+    // TODO: pagination
+    const query = this.getQuery(filters);
     this.props.getProjects(query);
   }
 
@@ -236,6 +242,7 @@ export default class MapPage extends React.Component {
       .filter(obj => obj.value && obj.value.length || typeof obj.value === 'number');
 
     const filtersTags = this.setFiltersTags(intoArrayFilters);
+    const filtersQuery = this.getQuery(this.props.filters);
 
     return (
       <div className="c-map-page l-map-page">
@@ -267,7 +274,7 @@ export default class MapPage extends React.Component {
                 title="filters"
                 closed={this.props.filtersUi.closed}
                 onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
-                downloadUrl="http://nature-of-risk-reduction.vizzuality.com/downloads/projects"
+                downloadUrl={`http://nature-of-risk-reduction.vizzuality.com//api/projects.csv?${filtersQuery}`}
                 download
               >
                 <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
@@ -279,6 +286,7 @@ export default class MapPage extends React.Component {
                   onChange={evt => this.onSearchChange(evt.target.value)}
                   onClear={() => this.props.setProjectsFilters({ name: '' })}
                   placeholder="Search project"
+                  clear
                 />
 
                 <div className="sidebar-actions">
