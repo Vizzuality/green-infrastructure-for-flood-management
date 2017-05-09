@@ -8,7 +8,7 @@ import Validation from 'react-validation';
 
 import { Row } from 'components/ui/Grid';
 import Spinner from 'components/ui/Spinner';
-import { Input } from 'components/form/From';
+import { Input, Form } from 'components/form/From';
 
 import { dispatch } from 'main';
 import { login } from 'modules/user';
@@ -67,7 +67,7 @@ export default class LoginPage extends React.Component {
                 <p className="text">Enter your details below.</p>
 
                 <div className="c-form">
-                  <Validation.components.Form>
+                  <Form>
                     <div className="form">
                       <div className="filter-error">
                         <p className="error">{this.state.error}</p>
@@ -105,7 +105,7 @@ export default class LoginPage extends React.Component {
                         Sing in
                       </button>
                     </div>
-                  </Validation.components.Form>
+                  </Form>
                   <Spinner isLoading={this.props.user.loading} />
                 </div>
               </div>
