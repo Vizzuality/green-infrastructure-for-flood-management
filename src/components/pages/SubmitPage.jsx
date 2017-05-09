@@ -91,6 +91,7 @@ export default class SubmitPage extends React.Component {
     // BINDINGS
     this.onAddLocation = this.onAddLocation.bind(this);
     this.onRemoveLocation = this.onRemoveLocation.bind(this);
+    this.onBlurOther = this.onBlurOther.bind(this);
     this.clear = this.clear.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -172,6 +173,18 @@ export default class SubmitPage extends React.Component {
 
   setOtherValue(key, value) {
     this.setFieldValue(`other_${key}`, value);
+  }
+
+  onBlurOther(e) {
+    const key = e.currentTarget.name;
+    const currentInput = this.inputs[`new_other_${key}`];
+
+    if (currentInput.value === '') {
+      currentInput.focus();
+      currentInput.classList.add('-required');
+    } else {
+      currentInput.classList.remove('-required');
+    }
   }
 
   onRemoveLocation(location) {
@@ -316,13 +329,16 @@ export default class SubmitPage extends React.Component {
                       onChange={opts => this.controlOtherValue('nature_based_solutions', opts)}
                     />
                     <h2 className="label">Nature-based solutions* <Info text={infoTexts.nature_based_solutions} /></h2>
+
+                    {/* Additional input to add new value */}
                     <input
                       ref={n => this.inputs.new_other_nature_based_solutions = n}
                       name="nature_based_solutions"
-                      className={this.state['new_other_nature_based_solutions'] ? '-active' : ''}
+                      className={`field-other -additional ${this.state['new_other_nature_based_solutions'] ? '-active' : ''}`}
                       placeholder="Type other"
                       type="text"
-                      onBlur={e => this.setOtherValue('nature_based_solutions', e.currentTarget.value)}
+                      onChange={e => this.setOtherValue('nature_based_solutions', e.currentTarget.value)}
+                      onBlur={this.onBlurOther}
                     />
                   </div>
 
