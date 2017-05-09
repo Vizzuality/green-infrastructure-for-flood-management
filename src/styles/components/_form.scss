@@ -72,26 +72,6 @@
       -moz-appearance: textfield;
     }
 
-    .field-other {
-      opacity: 0;
-      height: 0;
-
-      &.-additional {
-        margin-top: 15px;
-        width: 50%;
-
-        &.-required {
-          position: relative;
-          border-color: red;
-        }
-      }
-
-      &.-active {
-        opacity: 1;
-        height: auto;
-      }
-    }
-
     &.costs {
       display: flex;
       flex-flow: row;
@@ -131,15 +111,69 @@
 
     .c-input-map { order: 3; }
 
-    .location-list {
+    /* Add new value option */
+    .new-value {
+      order: 3;
+
+      &.-active {
+        .others-list { height: auto; }
+        .add-value {
+          display: inline-block;
+        }
+      }
+
+      .others-list {
+        margin-bottom: 0;
+        margin-top: 15px;
+        height: 0;
+      }
+
+      .add-value {
+        display: none;
+        padding: 5px 25px;
+      }
+    }
+
+    .field-other {
+      opacity: 0;
+      height: 0;
+      margin-right: 20px;
+
+      &.-additional {
+        margin-top: 15px;
+        width: 50%;
+
+        &.-required {
+          position: relative;
+          border-color: red;
+        }
+      }
+
+      &.-active {
+        opacity: 1;
+        height: auto;
+      }
+    }
+
+    .location-list,
+    .others-list {
       order: 2;
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 10px;
     }
 
-    .location {
+    .list-title {
       display: flex;
+      align-items: center;
+      margin-bottom: 3px;
+      margin-right: 8px;
+    }
+
+    .location,
+    .other {
+      display: flex;
+      align-items: center;
       margin-right: 5px;
       margin-bottom: 5px;
       padding: 3px 8px;
@@ -180,6 +214,7 @@
   .Select {
     order: 2;
 
+    .Select-menu-outer { z-index: 8; }
     .Select-control {
       border-bottom: 1px solid rgba(palette(black), .3);
 

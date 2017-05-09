@@ -16,6 +16,7 @@ const defaultValues = {
   locations: [],
   scale: '',
   organizations: [],
+  donors: [],
   primary_benefits_of_interventions: [],
   co_benefits_of_interventions: [],
   nature_based_solutions: [],
@@ -33,7 +34,10 @@ const defaultValues = {
   contributor_name: '',
   contributor_organization: '',
   contact_info: '',
-  permission: ''
+  permission: '',
+  new_nature_based_solutions: [],
+  new_primary_benefits_of_interventions: [],
+  new_co_benefits_of_interventions: []
 };
 
 const requiredFields = [
@@ -88,7 +92,7 @@ export default class SubmitPage extends React.Component {
 
     // BINDINGS
     this.onAddLocation = this.onAddLocation.bind(this);
-    this.onRemoveLocation = this.onRemoveLocation.bind(this);
+    this.onRemoveOption = this.onRemoveOption.bind(this);
     this.onBlurOther = this.onBlurOther.bind(this);
     this.clear = this.clear.bind(this);
     this.submit = this.submit.bind(this);
@@ -157,7 +161,7 @@ export default class SubmitPage extends React.Component {
     // Remove other option
     if (this.state[`new_${key}`] && !otherNew) {
       const newFields = Object.assign({}, this.state.fields);
-      newFields[`new_${key}`] = '';
+      newFields[`new_${key}`] = [];
       newState.fields = newFields;
       newState[`new_${key}`] = false;
 
@@ -190,7 +194,7 @@ export default class SubmitPage extends React.Component {
       return;
     }
 
-    if (currentInput.value === '') {
+    if (!this.state.fields[key].length) {
       currentInput.focus();
       currentInput.classList.add('-required');
     } else {
@@ -198,10 +202,38 @@ export default class SubmitPage extends React.Component {
     }
   }
 
-  onRemoveLocation(location) {
-    const locations = this.state.fields.locations;
-    const newLocations = locations.filter(l => l.idProv !== location.idProv);
-    this.setFieldValue('locations', newLocations);
+  onAddOther(key) {
+    const input = this.inputs[key];
+    const value = input.value.trim();
+    const newValue = this.state.fields[key] || [];
+
+    newValue.push({ idProv: Math.random(), value });
+    this.setFieldValue(key, newValue);
+    input.value = '';
+  }
+
+  onRemoveOption(key, value) {
+    const values = this.state.fields[key];
+    const newValues = values.filter(v => v.idProv !== value.idProv);
+    this.setFieldValue(key, newValues);
+  }
+
+  renderOtherValues(key) {
+    const others = this.state.fields[key];
+
+    return (
+      <ul className="others-list">
+        {others.length > 0 && <li className="list-title">Others: </li>}
+        {others.map((other, i) => (
+          <li key={i} className="other">
+            {other.value}
+            <button className="" onClick={() => this.onRemoveOption(key, other)}>
+              <SvgIcon name="icon-cross" className="-smaller" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   renderLocations() {
@@ -211,7 +243,7 @@ export default class SubmitPage extends React.Component {
         {locations.map((loc, i) => (
           <li key={i} className="location">
             {`${loc.lat}, ${loc.lng}`}
-            <button className="" onClick={() => this.onRemoveLocation(loc)}>
+            <button className="" onClick={() => this.onRemoveOption('locations', loc)}>
               <SvgIcon name="icon-cross" className="-smaller" />
             </button>
           </li>
@@ -220,10 +252,42 @@ export default class SubmitPage extends React.Component {
     );
   }
 
+  getCustomSelect(key, filtersKey, required, values, title, hasInfo) {
+    const { filtersOptions } = this.props;
+
+    return (
+      <div className={`form-field ${required && this.isRequiredOn(key)}`}>
+        <Select
+          name={key}
+          multi
+          options={filtersOptions[filtersKey]}
+          value={filtersOptions[filtersKey] ? filtersOptions[filtersKey].filter(opt => values.includes(opt.value)) : []}
+          onChange={opts => this.controlOtherValue(key, opts)}
+        />
+        <h2 className="label">{title} {hasInfo && <Info text={infoTexts[key]} />}</h2>
+
+        {/* Additional input to add new value */}
+        <div className={`new-value ${this.state[`new_${key}`] ? '-active' : ''}`}>
+          {this.renderOtherValues(`new_${key}`)}
+          <input
+            ref={n => this.inputs[`new_${key}`] = n}
+            name={`new_${key}`}
+            className={`field-other -additional ${this.state[`new_${key}`] ? '-active' : ''}`}
+            placeholder="Type other name"
+            type="text"
+            // onChange={e => this.setOtherValue('nature_based_solutions', e.currentTarget.value)}
+            onBlur={this.state[`new_${key}`] && this.onBlurOther}
+          />
+          <button className="c-btn -transparent -primary add-value" onClick={() => this.onAddOther(`new_${key}`)}>Add</button>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { filtersOptions } = this.props;
     const { scale, organizations, primary_benefits_of_interventions,
-      co_benefits_of_interventions, nature_based_solutions,
+      co_benefits_of_interventions, donors, nature_based_solutions,
       hazard_types, intervention_type, currency_monetary_benefits,
       currency_estimated_cost, implementation_status, permission
     } = this.state.fields;
@@ -267,16 +331,16 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Donors */}
-                  {/* <div className="form-field">
+                  <div className="form-field">
                     <Select
                       name="donors"
                       multi
                       options={filtersOptions.donors}
                       value={filtersOptions.donors ? filtersOptions.donors.filter(opt => donors.includes(opt.value)) : []}
-                      onChange={opts => this.setState({ donors: opts.map(o => o.value) })}
+                      onChange={opts => this.setFieldValue('donors', opts.map(o => o.value))}
                     />
                     <h2 className="label">Donors <Info text={infoTexts.donors} /></h2>
-                  </div> */}
+                  </div>
 
                   {/* Locations */}
                   <div className={`form-field ${this.isRequiredOn('locations')}`}>
@@ -332,73 +396,13 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Nature-based solutions */}
-                  <div className={`form-field ${this.isRequiredOn('nature_based_solutions')}`}>
-                    <Select
-                      name="nature_based_solutions"
-                      multi
-                      options={filtersOptions.nature_based_solutions}
-                      value={filtersOptions.nature_based_solutions ? filtersOptions.nature_based_solutions.filter(opt => nature_based_solutions.includes(opt.value)) : []}
-                      onChange={opts => this.controlOtherValue('nature_based_solutions', opts)}
-                    />
-                    <h2 className="label">Nature-based solutions* <Info text={infoTexts.nature_based_solutions} /></h2>
-
-                    {/* Additional input to add new value */}
-                    <input
-                      ref={n => this.inputs.new_nature_based_solutions = n}
-                      name="new_nature_based_solutions"
-                      className={`field-other -additional ${this.state['new_nature_based_solutions'] ? '-active' : ''}`}
-                      placeholder="Type other"
-                      type="text"
-                      onChange={e => this.setOtherValue('nature_based_solutions', e.currentTarget.value)}
-                      // onBlur={this.state['new_nature_based_solutions'] && this.onBlurOther}
-                    />
-                  </div>
+                  {this.getCustomSelect('nature_based_solutions', 'nature_based_solutions', true, nature_based_solutions, 'Nature-based solutions*', true)}
 
                   {/* Primary benefits */}
-                  <div className={`form-field ${this.isRequiredOn('primary_benefits_of_interventions')}`}>
-                    <Select
-                      name="primary_benefits_of_interventions"
-                      multi
-                      options={filtersOptions.primary_benefits}
-                      value={filtersOptions.primary_benefits ? filtersOptions.primary_benefits.filter(opt => primary_benefits_of_interventions.includes(opt.value)) : []}
-                      onChange={opts => this.controlOtherValue('primary_benefits_of_interventions', opts)}
-                    />
-                    <h2 className="label">Risk reduction benefits* <Info text={infoTexts.primary_benefits_of_interventions} /></h2>
-
-                    {/* Additional input to add new value */}
-                    <input
-                      ref={n => this.inputs.new_primary_benefits_of_interventions = n}
-                      name="new_primary_benefits_of_interventions"
-                      className={`field-other -additional ${this.state['new_primary_benefits_of_interventions'] ? '-active' : ''}`}
-                      placeholder="Type other"
-                      type="text"
-                      onChange={e => this.setOtherValue('primary_benefits_of_interventions', e.currentTarget.value)}
-                      onBlur={this.state['primary_benefits_of_interventions'] && this.onBlurOther}
-                    />
-                  </div>
+                  {this.getCustomSelect('primary_benefits_of_interventions', 'primary_benefits', true, primary_benefits_of_interventions, 'Risk reduction benefits*', true)}
 
                   {/* Co benefits of interventions */}
-                  <div className="form-field">
-                    <Select
-                      name="co_benefits_of_interventions"
-                      multi
-                      options={filtersOptions.co_benefits}
-                      value={filtersOptions.co_benefits ? filtersOptions.co_benefits.filter(opt => co_benefits_of_interventions.includes(opt.value)) : []}
-                      onChange={opts => this.controlOtherValue('co_benefits_of_interventions', opts)}
-                    />
-                    <h2 className="label">Full range of benefits of intervention <Info text={infoTexts.co_benefits_of_interventions} /></h2>
-
-                    {/* Additional input to add new value */}
-                    <input
-                      ref={n => this.inputs.new_co_benefits_of_interventions = n}
-                      name="new_co_benefits_of_interventions"
-                      className={`field-other -additional ${this.state['new_co_benefits_of_interventions'] ? '-active' : ''}`}
-                      placeholder="Type other"
-                      type="text"
-                      onChange={e => this.setOtherValue('co_benefits_of_interventions', e.currentTarget.value)}
-                      onBlur={this.state['co_benefits_of_interventions'] && this.onBlurOther}
-                    />
-                  </div>
+                  {this.getCustomSelect('co_benefits_of_interventions', 'co_benefits', false, co_benefits_of_interventions, 'Full range of benefits of intervention', false)}
 
                   {/* Costs */}
                   <div className="form-field costs">
