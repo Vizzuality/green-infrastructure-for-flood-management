@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import isUrl from 'validator/lib/isURL';
 
 import { Row } from 'components/ui/Grid';
 import { SvgIcon } from 'vizz-components';
-import BtnGroup from 'components/ui/BtnGroup';
 import RadioGroup from 'components/ui/RadioGroup';
 import InputMap from 'components/ui/InputMap';
 import Info from 'components/ui/Info';
@@ -153,15 +151,15 @@ export default class SubmitPage extends React.Component {
   controlOtherValue(key, obj) {
     const value = obj.map(it => it.value);
     const otherNew = obj.find(o => o.label === 'other');
-    const newOtherInput = this.inputs[`new_other_${key}`];
+    const newOtherInput = this.inputs[`new_${key}`];
     const newState = Object.assign({}, this.state);
 
-    if (this.state[`new_other_${key}`] && !otherNew) {
-      newState[`new_other_${key}`] = false;
+    if (this.state[`new_${key}`] && !otherNew) {
+      newState[`new_${key}`] = false;
       this.setState(newState);
-      this.setFieldValue(`other_${key}`, '');
-    } else if (!this.state[`new_other_${key}`] && otherNew) {
-      newState[`new_other_${key}`] = true;
+      this.setFieldValue(`new_${key}`, '');
+    } else if (!this.state[`new_${key}`] && otherNew) {
+      newState[`new_${key}`] = true;
       this.setState(newState);
       newOtherInput.focus();
     }
@@ -170,12 +168,12 @@ export default class SubmitPage extends React.Component {
   }
 
   setOtherValue(key, value) {
-    this.setFieldValue(`other_${key}`, value);
+    this.setFieldValue(`new_${key}`, value);
   }
 
   onBlurOther(e) {
     const key = e.currentTarget.name;
-    const currentInput = this.inputs[`new_other_${key}`];
+    const currentInput = this.inputs[key];
 
     if (!currentInput.classList.contains('-active')) {
       currentInput.value = '';
@@ -234,6 +232,7 @@ export default class SubmitPage extends React.Component {
             <Row>
               <div className="c-form column small-12 medium-8 medium-offset-2">
                 <div className="form">
+
                   {/* Project Name */}
                   <div className={`form-field ${this.isRequiredOn('name')}`}>
                     <input
@@ -335,9 +334,9 @@ export default class SubmitPage extends React.Component {
 
                     {/* Additional input to add new value */}
                     <input
-                      ref={n => this.inputs.new_other_nature_based_solutions = n}
-                      name="nature_based_solutions"
-                      className={`field-other -additional ${this.state['new_other_nature_based_solutions'] ? '-active' : ''}`}
+                      ref={n => this.inputs.new_nature_based_solutions = n}
+                      name="new_nature_based_solutions"
+                      className={`field-other -additional ${this.state['new_nature_based_solutions'] ? '-active' : ''}`}
                       placeholder="Type other"
                       type="text"
                       onChange={e => this.setOtherValue('nature_based_solutions', e.currentTarget.value)}
@@ -348,25 +347,47 @@ export default class SubmitPage extends React.Component {
                   {/* Primary benefits */}
                   <div className={`form-field ${this.isRequiredOn('primary_benefits_of_interventions')}`}>
                     <Select
-                      name="primary_benefits"
+                      name="primary_benefits_of_interventions"
                       multi
                       options={filtersOptions.primary_benefits}
                       value={filtersOptions.primary_benefits ? filtersOptions.primary_benefits.filter(opt => primary_benefits_of_interventions.includes(opt.value)) : []}
-                      onChange={opts => this.setFieldValue('primary_benefits_of_interventions', opts.map(o => o.value))}
+                      onChange={opts => this.controlOtherValue('primary_benefits_of_interventions', opts)}
                     />
                     <h2 className="label">Risk reduction benefits* <Info text={infoTexts.primary_benefits_of_interventions} /></h2>
+
+                    {/* Additional input to add new value */}
+                    <input
+                      ref={n => this.inputs.new_primary_benefits_of_interventions = n}
+                      name="new_primary_benefits_of_interventions"
+                      className={`field-other -additional ${this.state['new_primary_benefits_of_interventions'] ? '-active' : ''}`}
+                      placeholder="Type other"
+                      type="text"
+                      onChange={e => this.setOtherValue('primary_benefits_of_interventions', e.currentTarget.value)}
+                      onBlur={this.onBlurOther}
+                    />
                   </div>
 
                   {/* Co benefits of interventions */}
                   <div className="form-field">
                     <Select
-                      name="co_benefits"
+                      name="co_benefits_of_interventions"
                       multi
                       options={filtersOptions.co_benefits}
                       value={filtersOptions.co_benefits ? filtersOptions.co_benefits.filter(opt => co_benefits_of_interventions.includes(opt.value)) : []}
-                      onChange={opts => this.setFieldValue('co_benefits_of_interventions', opts.map(o => o.value))}
+                      onChange={opts => this.controlOtherValue('co_benefits_of_interventions', opts)}
                     />
                     <h2 className="label">Full range of benefits of intervention <Info text={infoTexts.co_benefits_of_interventions} /></h2>
+
+                    {/* Additional input to add new value */}
+                    <input
+                      ref={n => this.inputs.new_co_benefits_of_interventions = n}
+                      name="new_co_benefits_of_interventions"
+                      className={`field-other -additional ${this.state['new_co_benefits_of_interventions'] ? '-active' : ''}`}
+                      placeholder="Type other"
+                      type="text"
+                      onChange={e => this.setOtherValue('co_benefits_of_interventions', e.currentTarget.value)}
+                      onBlur={this.onBlurOther}
+                    />
                   </div>
 
                   {/* Costs */}
