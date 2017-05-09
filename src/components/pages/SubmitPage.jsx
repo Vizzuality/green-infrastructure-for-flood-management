@@ -154,15 +154,13 @@ export default class SubmitPage extends React.Component {
     const value = obj.map(it => it.value);
     const otherNew = obj.find(o => o.label === 'other');
     const newOtherInput = this.inputs[`new_other_${key}`];
+    const newState = Object.assign({}, this.state);
 
     if (this.state[`new_other_${key}`] && !otherNew) {
-      const newState = Object.assign({}, this.state);
       newState[`new_other_${key}`] = false;
       this.setState(newState);
       this.setFieldValue(`other_${key}`, '');
-      newOtherInput.value = '';
     } else if (!this.state[`new_other_${key}`] && otherNew) {
-      const newState = Object.assign({}, this.state);
       newState[`new_other_${key}`] = true;
       this.setState(newState);
       newOtherInput.focus();
@@ -178,6 +176,11 @@ export default class SubmitPage extends React.Component {
   onBlurOther(e) {
     const key = e.currentTarget.name;
     const currentInput = this.inputs[`new_other_${key}`];
+
+    if (!currentInput.classList.contains('-active')) {
+      currentInput.value = '';
+      return;
+    }
 
     if (currentInput.value === '') {
       currentInput.focus();
