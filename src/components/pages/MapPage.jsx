@@ -1,5 +1,15 @@
 import L from 'leaflet/dist/leaflet';
 import React from 'react';
+import isEqual from 'lodash/isEqual';
+import upperFirst from 'lodash/upperFirst';
+import debounce from 'lodash/debounce';
+import { SvgIcon } from 'vizz-components';
+import { sortByOptions } from 'constants/filters';
+import { mapDefaultOptions } from 'constants/map';
+import { saveAsFile } from 'utils/general';
+import { getMarkers } from 'utils/cluster';
+import { setNumberFormat } from 'utils/general';
+// Components
 import Map from 'components/map/Map';
 import Sidebar from 'components/ui/Sidebar';
 import Filters from 'components/filters/FiltersContainer';
@@ -11,15 +21,7 @@ import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
 import ShareModal from 'components/modal/ShareModal';
 import Search from 'components/ui/Search';
-import isEqual from 'lodash/isEqual';
-import upperFirst from 'lodash/upperFirst';
-import debounce from 'lodash/debounce';
-import { SvgIcon } from 'vizz-components';
-import { sortByOptions } from 'constants/filters';
-import { mapDefaultOptions } from 'constants/map';
-import { saveAsFile } from 'utils/general';
-import { getMarkers } from 'utils/cluster';
-import { setNumberFormat } from 'utils/general';
+import Legend from 'components/ui/Legend';
 
 const million = 1000000;
 
@@ -61,6 +63,10 @@ export default class MapPage extends React.Component {
     if (!isEqual(this.props.projects, newProps.projects) || !isEqual(this.props.projectDetail, newProps.projectDetail)) {
       this.setState({
         markers: getMarkers(newProps),
+        mapMethods: this.getMapMethods(newProps)
+      });
+    } else if (!isEqual(this.props.mapState, newProps.mapState)) {
+      this.setState({
         mapMethods: this.getMapMethods(newProps)
       });
     }
@@ -128,26 +134,31 @@ export default class MapPage extends React.Component {
   }
 
   getMapMethods(props) {
+    const tileLayers = [
+      {
+        id: 'basemapBase',
+        url: config.BASEMAP_TILE_URL,
+        zIndex: 0
+      },
+      {
+        id: 'layer1',
+        url: 'https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png',
+        zIndex: props.mapState.layersActive.includes('layer1') ? 1 : -1,
+        options: {
+          tms: true
+        }
+      },
+      {
+        id: 'basemapLabels',
+        url: config.BASEMAP_LABELS_URL,
+        zIndex: 2
+      }
+    ];
+
     /* Map methods */
     const methods = {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-      tileLayers: [
-        {
-          url: config.BASEMAP_TILE_URL,
-          zIndex: 0
-        },
-        {
-          url: config.LAYER_URL,
-          zIndex: 1,
-          options: {
-            tms: true
-          }
-        },
-        {
-          url: config.BASEMAP_LABELS_URL,
-          zIndex: 1
-        }
-      ]
+      tileLayers
     };
 
     let points = [];
@@ -186,17 +197,6 @@ export default class MapPage extends React.Component {
     };
   }
 
-  toggleDataDropdown(e, specificDropdown, to) {
-    const { downloadOpen } = this.state;
-
-    this.setState({ downloadOpen: to ? false : !downloadOpen });
-
-    requestAnimationFrame(() => {
-      window[!this.state[specificDropdown] ?
-        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
-    });
-  }
-
   setFiltersTags(currentFilters) {
     const excludedFilters = ['order', 'direction'];
     const { filtersOptions } = this.props;
@@ -218,6 +218,17 @@ export default class MapPage extends React.Component {
       });
     }
     return [];
+  }
+
+  toggleDataDropdown(e, specificDropdown, to) {
+    const { downloadOpen } = this.state;
+
+    this.setState({ downloadOpen: to ? false : !downloadOpen });
+
+    requestAnimationFrame(() => {
+      window[!this.state[specificDropdown] ?
+        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
+    });
   }
 
   toggleModal() {
@@ -313,6 +324,7 @@ export default class MapPage extends React.Component {
           minZoom={mapDefaultOptions.minZoom}
         />
         <Map {...mapParams} />
+        <Legend layersActive={this.props.mapState.layersActive} />
       </div>
     );
   }
