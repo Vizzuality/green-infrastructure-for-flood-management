@@ -65,6 +65,10 @@ export default class MapPage extends React.Component {
         markers: getMarkers(newProps),
         mapMethods: this.getMapMethods(newProps)
       });
+    } else if (!isEqual(this.props.mapState, newProps.mapState)) {
+      this.setState({
+        mapMethods: this.getMapMethods(newProps)
+      });
     }
   }
 
@@ -130,26 +134,31 @@ export default class MapPage extends React.Component {
   }
 
   getMapMethods(props) {
+    const tileLayers = [
+      {
+        name: 'basemapBase',
+        url: config.BASEMAP_TILE_URL,
+        zIndex: 0
+      },
+      {
+        name: 'layer',
+        url: 'https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png',
+        zIndex: props.mapState.layerActive ? 1 : -1,
+        options: {
+          tms: true
+        }
+      },
+      {
+        name: 'basemapLabels',
+        url: config.BASEMAP_LABELS_URL,
+        zIndex: 2
+      }
+    ];
+
     /* Map methods */
     const methods = {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-      tileLayers: [
-        {
-          url: config.BASEMAP_TILE_URL,
-          zIndex: 0
-        },
-        {
-          url: 'https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png',
-          zIndex: 1,
-          options: {
-            tms: true
-          }
-        },
-        {
-          url: config.BASEMAP_LABELS_URL,
-          zIndex: 1
-        }
-      ]
+      tileLayers
     };
 
     let points = [];
@@ -188,17 +197,6 @@ export default class MapPage extends React.Component {
     };
   }
 
-  toggleDataDropdown(e, specificDropdown, to) {
-    const { downloadOpen } = this.state;
-
-    this.setState({ downloadOpen: to ? false : !downloadOpen });
-
-    requestAnimationFrame(() => {
-      window[!this.state[specificDropdown] ?
-        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
-    });
-  }
-
   setFiltersTags(currentFilters) {
     const excludedFilters = ['order', 'direction'];
     const { filtersOptions } = this.props;
@@ -220,6 +218,17 @@ export default class MapPage extends React.Component {
       });
     }
     return [];
+  }
+
+  toggleDataDropdown(e, specificDropdown, to) {
+    const { downloadOpen } = this.state;
+
+    this.setState({ downloadOpen: to ? false : !downloadOpen });
+
+    requestAnimationFrame(() => {
+      window[!this.state[specificDropdown] ?
+        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
+    });
   }
 
   toggleModal() {
@@ -315,7 +324,7 @@ export default class MapPage extends React.Component {
           minZoom={mapDefaultOptions.minZoom}
         />
         <Map {...mapParams} />
-        <Legend />
+        <Legend layerActive={this.props.mapState.layerActive} />
       </div>
     );
   }

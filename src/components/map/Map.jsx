@@ -4,8 +4,8 @@
 import React from 'react';
 import L from 'leaflet/dist/leaflet';
 import isEqual from 'lodash/isEqual';
-import LayerManager from './LayerManager';
 import { mapDefaultOptions } from 'constants/map';
+import LayerManager from './LayerManager';
 
 function addOrRemove(oldItems, newItems, addCb, removeCb) {
   // TODO: improve performace uning sets instead of looping over arrays
@@ -48,6 +48,11 @@ export default class Map extends React.Component {
       this.map.fitBounds(nextProps.mapMethods.fitBounds.bounds, nextProps.mapMethods.fitBounds.options);
     }
 
+    // Layers z-index
+    if (!isEqual(this.props.mapMethods.tileLayers, nextProps.mapMethods.tileLayers)) {
+      this.setZIndex(nextProps.mapMethods.tileLayers);
+    }
+
     // Layers
     if (!isEqual(this.props.layers, nextProps.layers)) {
       addOrRemove(this.props.layers, nextProps.layers, layer => this.addLayer(layer), layer => this.removeLayer(layer.id));
@@ -78,29 +83,7 @@ export default class Map extends React.Component {
     window.__map__ = null;
   }
 
-  /* LayerManager initialization */
-  initLayerManager() {
-    const stopLoading = () => {
-      this._mounted && this.setState({
-        loading: false
-      });
-    };
-
-    this.layerManager = new LayerManager(this.map, {
-      onLayerAddedSuccess: stopLoading,
-      onLayerAddedError: stopLoading
-    });
-  }
-
   /* MapMethods methods */
-  execMethods() {
-    Object.keys(this.props.mapMethods).forEach((name) => {
-      const methodName = name.charAt(0).toUpperCase() + name.slice(1);
-      const fnName = `set${methodName}`;
-      typeof this[fnName] === 'function' && this[fnName].call(this);
-    });
-  }
-
   setAttribution() {
     this.map.attributionControl.addAttribution(this.props.mapMethods.attribution);
   }
@@ -111,8 +94,16 @@ export default class Map extends React.Component {
 
   setTileLayers() {
     const { tileLayers } = this.props.mapMethods;
+    this.tileLayers = {};
+
     tileLayers.forEach((tile) => {
-      L.tileLayer(tile.url, tile.options || {}).addTo(this.map).setZIndex(tile.zIndex);
+      this.tileLayers[tile.name] = L.tileLayer(tile.url, tile.options || {}).addTo(this.map).setZIndex(tile.zIndex);
+    });
+  }
+
+  setZIndex(tiles) {
+    tiles.forEach((t) => {
+      this.tileLayers[t.name].setZIndex(t.zIndex);
     });
   }
 
@@ -128,6 +119,28 @@ export default class Map extends React.Component {
     const { listeners } = this.props;
     const eventNames = Object.keys[listeners];
     eventNames && eventNames.forEach(eventName => this.map.off(eventName));
+  }
+
+  execMethods() {
+    Object.keys(this.props.mapMethods).forEach((name) => {
+      const methodName = name.charAt(0).toUpperCase() + name.slice(1);
+      const fnName = `set${methodName}`;
+      typeof this[fnName] === 'function' && this[fnName].call(this);
+    });
+  }
+
+  /* LayerManager initialization */
+  initLayerManager() {
+    const stopLoading = () => {
+      this._mounted && this.setState({
+        loading: false
+      });
+    };
+
+    this.layerManager = new LayerManager(this.map, {
+      onLayerAddedSuccess: stopLoading,
+      onLayerAddedError: stopLoading
+    });
   }
 
   /* Layer methods */

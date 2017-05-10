@@ -1,7 +1,11 @@
 import React from 'react';
 import Switch from 'react-toggle-switch';
 import 'react-toggle-switch/dist/css/switch.min.css';
+import classnames from 'classnames';
 import { SvgIcon } from 'vizz-components';
+
+import { dispatch } from 'main';
+import { toggleLayer } from 'modules/map';
 
 const legendConfig = [
   { color: '#d9e6f9', value: '0.1' },
@@ -24,10 +28,8 @@ export default class Legend extends React.Component {
     };
     // BINDINGS
     this.onClickOpen = this.onClickOpen.bind(this);
+    this.onShowLayer = this.onShowLayer.bind(this);
   }
-
-  // componentWillReceiveProps(nextProps) {
-  // }
 
   /**
    * UI EVENTS
@@ -38,8 +40,16 @@ export default class Legend extends React.Component {
     this.setState({ open: !this.state.open });
   }
 
+  onShowLayer() {
+    dispatch(toggleLayer());
+  }
+
   render() {
-    const classNames = `c-legend ${this.props.className ? this.props.className : ''}${!this.state.open ? ' -hidden' : ''}`;
+    const classNames = classnames(
+      'c-legend',
+      { [this.props.className]: !!this.props.className },
+      { '-hidden': !this.state.open }
+    );
 
     return (
       <div className={classNames}>
@@ -79,8 +89,8 @@ export default class Legend extends React.Component {
           <div className={`layers ${this.props.layerActive ? '-active' : ''}`}>
             <div className="layers-header">
               <Switch
-                // onClick={this.onChangeCostSwitch}
-                // on={!this.state.cost.disabled}
+                onClick={this.onShowLayer}
+                on={this.props.layerActive}
                 className="c-switch"
               />
               Potential river and coastal flood inundation
