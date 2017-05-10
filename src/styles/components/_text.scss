@@ -22,6 +22,21 @@
       background-color: palette(yellow);
       margin-top: $space-1 * 5;
     }
+
+    &.-center {
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: $space-1 * 5;
+        width: 60px;
+        height: 4px;
+        background-color: palette(yellow);
+        transform: translateX(-50%);
+      }
+    }
   }
 }
 

@@ -35,4 +35,27 @@
       margin-bottom: 28px;
     }
   }
+
+  .contact {
+    .intro {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .intro-text {
+      line-height: 28px;
+      color: $color-text-1;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 55px;
+
+      .action {
+        padding: 8px 50px;
+      }
+    }
+  }
+
 }

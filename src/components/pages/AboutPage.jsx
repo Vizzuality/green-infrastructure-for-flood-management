@@ -1,10 +1,61 @@
 import React from 'react';
 import { Link } from 'react-router';
+import isEqual from 'lodash/isEqual';
+import validator from 'validator';
+// This import the validation rules, do not remove
+import { validation } from 'utils/validation';
+import { replace } from 'react-router-redux';
+import Validation from 'react-validation';
+
 import { Row } from 'components/ui/Grid';
-import { SvgIcon } from 'vizz-components';
-import BtnGroup from 'components/ui/BtnGroup';
+import Spinner from 'components/ui/Spinner';
+import { Form, Input } from 'components/form/Form';
+
+import { dispatch } from 'main';
+import { contact } from 'modules/user';
 
 export default class AboutPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      error: ''
+    };
+
+    this.form = {};
+
+    // Bindings
+    this.onContact = this.onContact.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+  }
+
+  /* Lifecycle */
+  componentWillReceiveProps(newProps) {
+    if (newProps.user.error && !isEqual(this.props.user.error, newProps.user.error)) {
+      const error = Object.values(newProps.user.error.error)[0][0];
+      const errorMessage = error === 'invalid credentials' ? 'E-mail or password incorrect' : 'An error ocurred';
+      this.setState({ error: errorMessage });
+    } else if (!newProps.user.error && newProps.user.logged) {
+      dispatch(replace('/submit'));
+    }
+  }
+
+  onInputChange(e) {
+    this.form[e.target.name] = e.target.value;
+  }
+
+  onContact(e) {
+    e.preventDefault();
+    if (this.form.email && validator.isEmail(this.form.email) &&
+      this.form.name && this.form.name !== '' &&
+      this.form.subject && this.form.subject !== '') {
+      // Contact
+      // dispatch(contact(this.form));
+    } else {
+      this.setState({ error: 'Fill in the form correctly' });
+    }
+  }
+
   render() {
     return (
       <div className="c-about">
@@ -84,6 +135,77 @@ export default class AboutPage extends React.Component {
               <div className="column small-12 medium-6">
                 <p className="text -secondary">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
                 <Link to="/submit" className="c-btn -primary">Submit a project</Link>
+              </div>
+            </Row>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section className="home-section contact">
+          <div className="l-app-wrapper">
+            <Row className="intro">
+              <div className="column small-12 medium-6 medium-offset-3">
+                <h1 className="h1 -line -center">Contact us</h1>
+                <p className="intro-text">We welcome your feedback and value your input as we work to continually improve and update The Nature of Risk Reduction database. Please do not hesitate to send us your comments and questions here.</p>
+              </div>
+            </Row>
+            <Row>
+              <div className="c-form column small-12 medium-8 medium-offset-2">
+                <Form>
+                  <div className="form">
+                    <div className="filter-error">
+                      <p className="error">{this.state.error}</p>
+                    </div>
+
+                    <div className="form-field">
+                      <div className="filter-field">
+                        <h2 className="title">Name*</h2>
+                        <Input
+                          type="text"
+                          name="name"
+                          value=""
+                          onChange={this.onInputChange}
+                          validations={[]}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-field">
+                      <div className="filter-field">
+                        <h2 className="title">E-mail*</h2>
+                        <Input
+                          type="text"
+                          name="email"
+                          value=""
+                          onChange={this.onInputChange}
+                          validations={['email']}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-field">
+                      <div className="filter-field">
+                        <h2 className="title">Subject*</h2>
+                        <Input
+                          type="text"
+                          name="subject"
+                          value=""
+                          onChange={this.onInputChange}
+                          validations={[]}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="actions">
+                    <button
+                      className="c-btn -filled -primary action"
+                      onClick={this.onContact}
+                    >
+                      Send
+                    </button>
+                  </div>
+                </Form>
               </div>
             </Row>
           </div>
