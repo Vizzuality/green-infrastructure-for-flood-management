@@ -12,7 +12,7 @@ const initialState = {
     lng: -40
   },
   zoom: 3,
-  layerActive: true
+  layersActive: ['layer1']
 };
 
 /* Reducer */
@@ -22,8 +22,13 @@ function mapReducer(state = initialState, action) {
       return Object.assign({}, state, action.payload);
     case RESET_MAP_STATE:
       return initialState;
-    case TOGGLE_LAYER:
-      return Object.assign({}, state, { layerActive: !state.layerActive });
+    case TOGGLE_LAYER: {
+      const newLayersActive = state.layersActive.includes(action.payload) ?
+        state.layersActive.slice().filter(l => l !== action.payload) :
+        state.layersActive.slice().concat(action.payload);
+
+      return Object.assign({}, state, { layersActive: newLayersActive });
+    }
     default:
       return state;
   }
@@ -43,9 +48,10 @@ function resetMapState() {
   };
 }
 
-function toggleLayer() {
+function toggleLayer(id) {
   return {
-    type: TOGGLE_LAYER
+    type: TOGGLE_LAYER,
+    payload: id
   };
 }
 

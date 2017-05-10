@@ -97,13 +97,13 @@ export default class Map extends React.Component {
     this.tileLayers = {};
 
     tileLayers.forEach((tile) => {
-      this.tileLayers[tile.name] = L.tileLayer(tile.url, tile.options || {}).addTo(this.map).setZIndex(tile.zIndex);
+      this.tileLayers[tile.id] = L.tileLayer(tile.url, tile.options || {}).addTo(this.map).setZIndex(tile.zIndex);
     });
   }
 
   setZIndex(tiles) {
     tiles.forEach((t) => {
-      this.tileLayers[t.name].setZIndex(t.zIndex);
+      this.tileLayers[t.id].setZIndex(t.zIndex);
     });
   }
 

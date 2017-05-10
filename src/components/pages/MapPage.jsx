@@ -136,20 +136,20 @@ export default class MapPage extends React.Component {
   getMapMethods(props) {
     const tileLayers = [
       {
-        name: 'basemapBase',
+        id: 'basemapBase',
         url: config.BASEMAP_TILE_URL,
         zIndex: 0
       },
       {
-        name: 'layer',
+        id: 'layer1',
         url: 'https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png',
-        zIndex: props.mapState.layerActive ? 1 : -1,
+        zIndex: props.mapState.layersActive.includes('layer1') ? 1 : -1,
         options: {
           tms: true
         }
       },
       {
-        name: 'basemapLabels',
+        id: 'basemapLabels',
         url: config.BASEMAP_LABELS_URL,
         zIndex: 2
       }
@@ -324,7 +324,7 @@ export default class MapPage extends React.Component {
           minZoom={mapDefaultOptions.minZoom}
         />
         <Map {...mapParams} />
-        <Legend layerActive={this.props.mapState.layerActive} />
+        <Legend layersActive={this.props.mapState.layersActive} />
       </div>
     );
   }

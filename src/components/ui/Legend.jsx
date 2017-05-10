@@ -28,20 +28,20 @@ export default class Legend extends React.Component {
     };
     // BINDINGS
     this.onClickOpen = this.onClickOpen.bind(this);
-    this.onShowLayer = this.onShowLayer.bind(this);
   }
 
   /**
    * UI EVENTS
    * - onClickOpen
+   * - onShowLayer
   */
 
   onClickOpen() {
     this.setState({ open: !this.state.open });
   }
 
-  onShowLayer() {
-    dispatch(toggleLayer());
+  onShowLayer(id) {
+    dispatch(toggleLayer(id));
   }
 
   render() {
@@ -86,15 +86,16 @@ export default class Legend extends React.Component {
             </ul>
           </div>
 
-          <div className={`layers ${this.props.layerActive ? '-active' : ''}`}>
+          <div className={`layers ${this.props.layersActive.includes('layer1') ? '-active' : ''}`}>
             <div className="layers-header">
               <Switch
-                onClick={this.onShowLayer}
-                on={this.props.layerActive}
+                onClick={() => this.onShowLayer('layer1')}
+                on={this.props.layersActive.includes('layer1')}
                 className="c-switch"
               />
               Potential river and coastal flood inundation
             </div>
+
             <div className="layer-spec">
               <div className="legend-colors">
                 {legendConfig.map((l, i) => (
@@ -115,5 +116,5 @@ export default class Legend extends React.Component {
 
 Legend.propTypes = {
   className: React.PropTypes.bool,
-  layerActive: React.PropTypes.bool
+  layersActive: React.PropTypes.array
 };
