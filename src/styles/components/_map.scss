@@ -26,3 +26,11 @@ $zoom-size: 40px;
 .leaflet-overlay-pane, .leaflet-popup-pane {
   z-index: 999 !important;
 }
+
+.leaflet-control-attribution {
+  color: rgba(black, .3);
+  
+  a {
+    color: rgba(black, .3);
+  }
+}
