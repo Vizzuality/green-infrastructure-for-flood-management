@@ -137,16 +137,16 @@ export default class MapPage extends React.Component {
           zIndex: 0
         },
         {
-          url: 'https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png',
+          url: config.LAYER_URL,
           zIndex: 1,
           options: {
             tms: true
           }
+        },
+        {
+          url: config.BASEMAP_LABELS_URL,
+          zIndex: 1
         }
-        // {
-        //   url: config.BASEMAP_LABELS_URL,
-        //   zIndex: 1
-        // }
       ]
     };
 
@@ -169,7 +169,7 @@ export default class MapPage extends React.Component {
         options: {
           paddingTopLeft: [props.sidebarWidth, 0],
           paddingBottomRight: [0, 0],
-          maxZoom: 6
+          maxZoom: 9
         }
       };
     }
