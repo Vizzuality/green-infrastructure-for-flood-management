@@ -1,5 +1,15 @@
 import L from 'leaflet/dist/leaflet';
 import React from 'react';
+import isEqual from 'lodash/isEqual';
+import upperFirst from 'lodash/upperFirst';
+import debounce from 'lodash/debounce';
+import { SvgIcon } from 'vizz-components';
+import { sortByOptions } from 'constants/filters';
+import { mapDefaultOptions } from 'constants/map';
+import { saveAsFile } from 'utils/general';
+import { getMarkers } from 'utils/cluster';
+import { setNumberFormat } from 'utils/general';
+// Components
 import Map from 'components/map/Map';
 import Sidebar from 'components/ui/Sidebar';
 import Filters from 'components/filters/FiltersContainer';
@@ -11,15 +21,7 @@ import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
 import ShareModal from 'components/modal/ShareModal';
 import Search from 'components/ui/Search';
-import isEqual from 'lodash/isEqual';
-import upperFirst from 'lodash/upperFirst';
-import debounce from 'lodash/debounce';
-import { SvgIcon } from 'vizz-components';
-import { sortByOptions } from 'constants/filters';
-import { mapDefaultOptions } from 'constants/map';
-import { saveAsFile } from 'utils/general';
-import { getMarkers } from 'utils/cluster';
-import { setNumberFormat } from 'utils/general';
+import Legend from 'components/ui/Legend';
 
 const million = 1000000;
 
@@ -142,11 +144,11 @@ export default class MapPage extends React.Component {
           options: {
             tms: true
           }
+        },
+        {
+          url: config.BASEMAP_LABELS_URL,
+          zIndex: 1
         }
-        // {
-        //   url: config.BASEMAP_LABELS_URL,
-        //   zIndex: 1
-        // }
       ]
     };
 
@@ -313,6 +315,7 @@ export default class MapPage extends React.Component {
           minZoom={mapDefaultOptions.minZoom}
         />
         <Map {...mapParams} />
+        <Legend />
       </div>
     );
   }
