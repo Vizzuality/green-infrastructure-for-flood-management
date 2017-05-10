@@ -4,9 +4,26 @@
   right: 0;
   z-index: 999;
   max-width: 200px;
-  // max-height: 270px;
   background-color: palette(white);
   padding-bottom: 20px;
+
+  &.-hidden {
+    .header {
+      padding-top: 5px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(palette(black), .2);
+
+      .title svg {
+        transition: all $animation-time $ease-in-cubic;
+        transform: rotate(-180deg);
+      }
+    }
+    .content {
+      height: 0;
+      overflow: hidden;
+      transition: all $animation-time $ease-in-cubic;
+    }
+  }
 
   .header {
     color: $color-primary;
@@ -17,6 +34,7 @@
     .title {
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     .c-icon {
@@ -29,10 +47,6 @@
   .clusters {
     padding: 10px;
     border-bottom: 1px solid rgba(palette(black), .2);
-
-    .list {
-
-    }
 
     .legend-item {
       display: flex;
