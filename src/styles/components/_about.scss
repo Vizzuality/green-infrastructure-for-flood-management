@@ -1,0 +1,38 @@
+.c-about {
+  font-family: $font-family-default;
+
+  .header {
+    background-image: url('/images/header.jpg');
+    color: palette(white);
+    padding-top: 95px;
+
+    .intro-text {
+      font-size: $font-size-big;
+      line-height: 28px;
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .partners {
+    .h1 {
+      margin-bottom: 88px;
+    }
+
+    .partner {
+      display: flex;
+      flex-flow: column;
+      font-size: $font-size-big;
+      line-height: 28px;
+      color: $color-text-1;
+    }
+
+    .logo {
+      height: 62px;
+      margin-bottom: 28px;
+    }
+  }
+}
