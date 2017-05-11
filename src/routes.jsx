@@ -11,6 +11,7 @@ import HomePage from 'components/pages/HomePage';
 import SubmitPage from 'components/pages/SubmitPage';
 import MapPageContainer from 'components/pages/MapPageContainer';
 import LoginPage from 'components/pages/LoginPageContainer';
+import GuidancePage from 'components/pages/GuidancePage';
 
 const Routes = ({ history }) => (
   <Router history={history}>
@@ -19,6 +20,9 @@ const Routes = ({ history }) => (
       <Route path="map">
         <IndexRoute components={{ main: MapPageContainer }} onEnter={onEnterMapPage} />
         <Route path="project/:id" components={{ main: MapPageContainer }} onEnter={onEnterProjectDetail} />
+      </Route>
+      <Route path="guidance">
+        <IndexRoute components={{ main: GuidancePage, footer: Footer }} />
       </Route>
       <Route path="submit">
         <IndexRoute components={{ main: SubmitPage, footer: Footer }} />
