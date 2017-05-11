@@ -3,7 +3,9 @@ import SubmitPage from './SubmitPage';
 import { getFiltersOptions } from 'modules/filters_options';
 
 const mapStateToProps = state => ({
-  filtersOptions: state.filtersOptions.options
+  filtersOptions: state.filtersOptions.options,
+  loadingFilters: state.filtersOptions.loading,
+  submit: state.submit
 });
 
 const mapDispatchToProps = dispatch => ({

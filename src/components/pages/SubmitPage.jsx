@@ -11,6 +11,7 @@ import RadioGroup from 'components/ui/RadioGroup';
 import InputMap from 'components/ui/InputMap';
 import Info from 'components/ui/Info';
 import CheckboxGroup from 'components/ui/CheckboxGroup';
+import Spinner from 'components/ui/Spinner';
 
 
 export default class SubmitPage extends React.Component {
@@ -271,6 +272,7 @@ export default class SubmitPage extends React.Component {
 
     return (
       <div className="c-submit">
+        <Spinner isLoading={this.props.loadingFilters} />
         <section className="submit-section">
           <div className="l-app-wrapper">
             <Row>
@@ -564,6 +566,7 @@ export default class SubmitPage extends React.Component {
 
 SubmitPage.propTypes = {
   filtersOptions: React.PropTypes.object,
+  loadingFilters: React.PropTypes.bool,
   // Actions
   getFiltersOptions: React.PropTypes.func
 };
