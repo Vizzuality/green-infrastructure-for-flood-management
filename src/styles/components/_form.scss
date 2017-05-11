@@ -10,6 +10,8 @@
       font-size: 12px;
       color: $color-text-1;
     }
+
+    &.-control:after { bottom: -30px; }
   }
 
   .form-field {
@@ -49,6 +51,7 @@
     }
 
     input[type="text"],
+    input[type="password"],
     input[type="number"] {
       order: 2;
       width: 100%;
@@ -212,6 +215,22 @@
       font-size: $font-size-big;
 
       .checkbox-icon:after { border-color: $color-primary; }
+    }
+
+    .form-error {
+      position: absolute;
+      bottom: -16px;
+      right: 0;
+      font-size: 11px;
+      color: red;
+    }
+  }
+
+  .filter-error {
+    margin-bottom: 22px;
+    .error {
+      color: red;
+      font-size: 14px;
     }
   }
 

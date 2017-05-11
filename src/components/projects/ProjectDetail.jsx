@@ -275,11 +275,6 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{data.benefit_details}</span>
           </div>}
 
-          {data.learn_more && data.learn_more !== '' && <div className="project-info-item">
-            <span className="label">Learn more</span>
-            <span className="value">{isUrl(data.learn_more) ? <a className="link" href={data.learn_more}>{data.learn_more}</a> : data.learn_more}</span>
-          </div>}
-
           {data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
@@ -289,7 +284,7 @@ export default class ProjectDetail extends React.Component {
         {this.props.relatedProjects && this.props.relatedProjects.length > 0 &&
           <div className="project-detail-related">
             <header className="header">
-              <h2 className="title">Realted Projects</h2>
+              <h2 className="title">Related Projects</h2>
             </header>
             <div className="related-projects">
               <ProjectList projects={this.props.relatedProjects} />
