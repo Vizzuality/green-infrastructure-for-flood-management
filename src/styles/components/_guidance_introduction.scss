@@ -1,4 +1,23 @@
 .c-guidance-introduction {
+  .section {
+    padding: 50px 0 10px;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 42px;
+    color: rgba($color-text-1, .9);
+  }
+
+  .tag {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    color: rgba($color-text-1, .9);
+  }
+
 
   .intro-graph {
     position: relative;
@@ -57,5 +76,16 @@
         line-height: 26px;
       }
     }
+  }
+
+  .text {
+    &:last-child { margin-bottom: 0; }
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 37px;
+    color: $color-text-1;
+    font-weight: bold;
   }
 }

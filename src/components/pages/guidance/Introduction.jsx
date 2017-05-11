@@ -6,11 +6,11 @@ export default class Introduction extends React.Component {
   render() {
     return (
       <div className="c-guidance-introduction">
-        <section className="">
+        <section className="section">
           <Row>
             <div className="column small-12 medium-8 medium-offset-2">
               <h3 className="tag">Guidance</h3>
-              <h1>Introduction</h1>
+              <h1 className="title">Introduction</h1>
               <div className="intro-graph">
                 <div className="water-viel"></div>
                 <div className="graph-title">
@@ -47,7 +47,7 @@ export default class Introduction extends React.Component {
             </div>
           </Row>
         </section>
-        <section className="">
+        <section className="section">
           <Row>
             <div className="column small-12 medium-8 medium-offset-2">
               <h2>Nature-based or other risk reduction measures?</h2>
