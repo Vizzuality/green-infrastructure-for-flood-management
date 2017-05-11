@@ -1,7 +1,9 @@
 $image-size: 100px;
 
 .c-image-upload {
-  display: flex;
+  .upload {
+    display: flex;
+  }
 
   .dropzone {
     display: flex;
@@ -81,5 +83,11 @@ $image-size: 100px;
         fill: palette(white);
       }
     }
+  }
+
+  .upload-error {
+    font-size: 12px;
+    color: red;
+    margin-top: 13px;
   }
 }
