@@ -72,20 +72,24 @@
       -moz-appearance: textfield;
     }
 
-    &.costs {
+    &.-in-row {
       display: flex;
       flex-flow: row;
 
-       .cost-field {
+       .row-field {
         flex-grow: 1;
         display: flex;
         flex-flow: column;
         margin-right: 13px;
         justify-content: space-between;
 
+        &.required-error {
+          .label { color: red; }
+        }
+
         &:last-child { margin-right: 0; }
 
-        &.-currency {
+        &.-mono {
           .label { margin-bottom: 7px; }
 
           .Select .Select-multi-value-wrapper {

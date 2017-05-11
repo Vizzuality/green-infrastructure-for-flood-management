@@ -2,6 +2,8 @@ import React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import isUrl from 'validator/lib/isURL';
+import { defaultValues, requiredFields, infoTexts, currencyOptions,
+  permissionOptions, yearsOptions } from 'constants/submit';
 
 import { Row } from 'components/ui/Grid';
 import { SvgIcon } from 'vizz-components';
@@ -9,71 +11,6 @@ import RadioGroup from 'components/ui/RadioGroup';
 import InputMap from 'components/ui/InputMap';
 import Info from 'components/ui/Info';
 import CheckboxGroup from 'components/ui/CheckboxGroup';
-
-
-const defaultValues = {
-  name: '',
-  locations: [],
-  scale: '',
-  organizations: [],
-  donors: [],
-  primary_benefits_of_interventions: [],
-  co_benefits_of_interventions: [],
-  nature_based_solutions: [],
-  hazard_types: [],
-  estimated_cost: '',
-  currency_estimated_cost: '',
-  estimated_monetary_benefits: '',
-  currency_monetary_benefits: '',
-  intervention_type: '',
-  implementation_status: '',
-  benefit_details: '',
-  summary: '',
-  learn_more: '',
-  references: '',
-  contributor_name: '',
-  contributor_organization: '',
-  contact_info: '',
-  permission: '',
-  new_nature_based_solutions: [],
-  new_primary_benefits_of_interventions: [],
-  new_co_benefits_of_interventions: []
-};
-
-const requiredFields = [
-  'name',
-  'organizations',
-  'locations',
-  'scale',
-  'implementation_status',
-  'hazard_types',
-  'intervention_type',
-  'nature_based_solutions',
-  'primary_benefits_of_interventions',
-  'summary',
-  'learn_more',
-  'contributor_name',
-  'contributor_organization',
-  'contact_info',
-  'permission'
-];
-
-const infoTexts = {
-  organizations: 'Provide the main organization(s) involved in the project, excluding donors.',
-  donors: 'Provide the main donor organization(s).',
-  intervention_type: 'Green: Measures that consist of ecosystems that are naturally present in the area or that can be restored or recreated if they are degraded or have disappeared. Hybrid: Measures that utilize a combination of both green measures and man-made infrastructure measures to simultaneously establish immediate risk reduction while maintaining the valuable role of the relevant ecosystem.',
-  nature_based_solutions: 'Ecosystems are central to nature-based solutions. Indicate the ecosystem(s) your project conserved, restored or created.',
-  primary_benefits_of_interventions: 'Indicate the primary hazard mitigation benefits of the intervention.',
-  co_benefits_of_interventions: 'Indicate the social, environmental, and economic co-benefits.',
-  benefit_details: 'If available, provide any additional information relevant to the project’s monetary benefits.',
-  summary: 'Provide a short description of the project’s activities and results. Word limit: 125 words.',
-  references: 'Provide additional sources and relevant URL links, if applicable.'
-};
-
-const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];
-const permissionOptions = [{ label: 'Name', value: 'name' },
-  { label: 'Organization', value: 'organization' },
-  { label: 'Neither (no recognition on the project page)', value: 'none' }];
 
 
 export default class SubmitPage extends React.Component {
@@ -107,6 +44,44 @@ export default class SubmitPage extends React.Component {
     this.setState({ fields: Object.assign({}, defaultValues) });
   }
 
+  removeIdProvFromNewOptions() {
+    const { new_nature_based_solutions, new_co_benefits_of_interventions,
+      new_primary_benefits_of_interventions } = this.state.fields;
+    const newOptions = { new_nature_based_solutions, new_primary_benefits_of_interventions,
+      new_co_benefits_of_interventions };
+
+    return Object.keys(newOptions).map(key => (
+      {
+        key,
+        value: newOptions[key].map(v => v.value)
+      }
+    ));
+  }
+
+  removeIdProvFromLocations() {
+    const { locations } = this.state.fields;
+
+    return locations.map(l => ({ lat: l.lat, lng: l.lng }));
+  }
+
+  parsedFieldsToSend() {
+    const allFields = Object.assign({}, this.state.fields);
+    const filteredFields = {};
+
+    // Remove those idProv from values
+    this.removeIdProvFromNewOptions().forEach(f => allFields[f.key] = f.value);
+    allFields.locations = this.removeIdProvFromLocations();
+
+
+    Object.keys(allFields).forEach((key) => {
+      if (allFields[key].length) {
+        filteredFields[key] = allFields[key];
+      }
+    });
+
+    return filteredFields;
+  }
+
   submit() {
     const { learn_more, references } = this.state.fields;
     const requiredOn = [];
@@ -123,7 +98,8 @@ export default class SubmitPage extends React.Component {
     });
 
     if (!requiredOn.length && learnValid && referencesValid) {
-      // Send
+      const fields = this.parsedFieldsToSend();
+      // Send fields
     }
   }
 
@@ -289,7 +265,8 @@ export default class SubmitPage extends React.Component {
     const { scale, organizations, primary_benefits_of_interventions,
       co_benefits_of_interventions, donors, nature_based_solutions,
       hazard_types, intervention_type, currency_monetary_benefits,
-      currency_estimated_cost, implementation_status, permission
+      currency_estimated_cost, implementation_status, permission, start_year,
+      completion_year
     } = this.state.fields;
 
     return (
@@ -363,6 +340,30 @@ export default class SubmitPage extends React.Component {
                     />
                   </div>
 
+                  <div className="form-field -in-row">
+                    <div className={`row-field ${this.isRequiredOn('start_year')} -mono`}>
+                      <Select
+                        name="start_year"
+                        multi={false}
+                        options={yearsOptions()}
+                        value={start_year || ''}
+                        onChange={opt => this.setFieldValue('start_year', opt ? opt.value : '')}
+                      />
+                      <h2 className="label">Start year*</h2>
+                    </div>
+
+                    <div className="row-field -mono">
+                      <Select
+                        name="completion_year"
+                        multi={false}
+                        options={yearsOptions()}
+                        value={completion_year || ''}
+                        onChange={opt => this.setFieldValue('completion_year', opt ? opt.value : '')}
+                      />
+                      <h2 className="label">Completion year, if applicable</h2>
+                    </div>
+                  </div>
+
                   {/* Implementation status */}
                   <div className={`form-field ${this.isRequiredOn('implementation_status')}`}>
                     <h2 className="label">Implementation status*</h2>
@@ -405,8 +406,8 @@ export default class SubmitPage extends React.Component {
                   {this.getCustomSelect('co_benefits_of_interventions', 'co_benefits', false, co_benefits_of_interventions, 'Full range of benefits of intervention', false)}
 
                   {/* Costs */}
-                  <div className="form-field costs">
-                    <div className="cost-field">
+                  <div className="form-field -in-row">
+                    <div className="row-field">
                       <input
                         ref={n => this.inputs.estimated_cost = n}
                         name="estimated_cost"
@@ -417,7 +418,7 @@ export default class SubmitPage extends React.Component {
                       <h2 className="label">Estimated Cost</h2>
                     </div>
 
-                    <div className="cost-field -currency">
+                    <div className="row-field -mono">
                       <Select
                         name="currency_estimated_cost"
                         multi={false}
@@ -428,7 +429,7 @@ export default class SubmitPage extends React.Component {
                       <h2 className="label">Currency of estimated cost</h2>
                     </div>
 
-                    <div className="cost-field">
+                    <div className="row-field">
                       <input
                         ref={n => this.inputs.estimated_monetary_benefits = n}
                         name="estimated_monetary_benefits"
@@ -439,7 +440,7 @@ export default class SubmitPage extends React.Component {
                       <h2 className="label">Estimated monetary benefits</h2>
                     </div>
 
-                    <div className="cost-field -currency">
+                    <div className="row-field -mono">
                       <Select
                         name="currency_monetary_benefits"
                         multi={false}
