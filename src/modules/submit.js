@@ -1,3 +1,5 @@
+import { postWithHeaders, getWithHeaders } from 'utils/request';
+
 /* Constants */
 const SET_SUBMIT_LOADING = 'SET_SUBMIT_LOADING';
 const SET_SUBMIT_SUCCESS = 'SET_SUBMIT_SUCCESS';
@@ -41,10 +43,10 @@ function setSubmitLoading(width) {
   };
 }
 
-function setSubmitSuccess(params) {
+function setSubmitSuccess(submitted) {
   return {
     type: SET_SUBMIT_SUCCESS,
-    payload: params
+    payload: submitted
   };
 }
 
@@ -54,4 +56,23 @@ function setSubmitError() {
   };
 }
 
-export { submitReducer, setSubmitLoading, setSubmitSuccess, setSubmitError };
+function submit(projectData) {
+  return (dispatch) => {
+    dispatch(setSubmitError(null));
+    dispatch(setSubmitLoading(true));
+    postWithHeaders({
+      url: `${config.API_URL}/api/submit/`,
+      body: projectData,
+      onSuccess(data) {
+        dispatch(setSubmitSuccess(true));
+        dispatch(setSubmitLoading(false));
+      },
+      onError(error) {
+        dispatch(setSubmitLoading(false));
+        dispatch(setSubmitError(error));
+      }
+    });
+  };
+}
+
+export { submitReducer, submit };

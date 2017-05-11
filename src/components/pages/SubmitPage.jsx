@@ -99,8 +99,9 @@ export default class SubmitPage extends React.Component {
     });
 
     if (!requiredOn.length && learnValid && referencesValid) {
-      const fields = this.parsedFieldsToSend();
+      const projectData = this.parsedFieldsToSend();
       // Send fields
+      // this.props.submit(projectData);
     }
   }
 
@@ -568,6 +569,7 @@ SubmitPage.propTypes = {
   filtersOptions: React.PropTypes.object,
   loadingFilters: React.PropTypes.bool,
   // Actions
-  getFiltersOptions: React.PropTypes.func
+  getFiltersOptions: React.PropTypes.func,
+  submit: React.PropTypes.func
 };
 SubmitPage.defaultProps = {};
