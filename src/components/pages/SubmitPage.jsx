@@ -4,6 +4,7 @@ import 'react-select/dist/react-select.css';
 import isUrl from 'validator/lib/isURL';
 import { defaultValues, requiredFields, infoTexts, currencyOptions,
   permissionOptions, yearsOptions } from 'constants/submit';
+import { toBase64 } from 'utils/general';
 
 import { Row } from 'components/ui/Grid';
 import { SvgIcon } from 'vizz-components';
@@ -24,7 +25,11 @@ export default class SubmitPage extends React.Component {
       requiredOn: [],
       mapSearch: '',
       learnNotValid: false,
-      referencesNotValid: false
+      referencesNotValid: false,
+      imageOptions: {
+        accepted: null,
+        rejected: null
+      }
     };
 
     this.inputs = {};
@@ -33,6 +38,8 @@ export default class SubmitPage extends React.Component {
     this.onAddLocation = this.onAddLocation.bind(this);
     this.onRemoveOption = this.onRemoveOption.bind(this);
     this.onBlurOther = this.onBlurOther.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.onRemoveFile = this.onRemoveFile.bind(this);
     this.clear = this.clear.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -261,6 +268,29 @@ export default class SubmitPage extends React.Component {
         </div>
       </div>
     );
+  }
+
+  /* Upload image methods */
+  onDrop(acc, rej) {
+    acc.length ?
+      toBase64(acc[0], (parsedFile) => {
+        const parsedPhoto = {
+          name: acc[0].name,
+          size: acc[0].size,
+          attachment: parsedFile
+        };
+
+        this.setState({
+          imageOptions: { accepted: parsedPhoto, rejected: null }
+        }, () => this.setFieldValue('image', parsedPhoto.attachment));
+      }) :
+      this.setState({
+        imageOptions: { accepted: null, rejected: rej.length ? rej[0] : null }
+      });
+  }
+
+  onRemoveFile() {
+    this.setState({ imageOptions: { accepted: null, rejected: null } });
   }
 
   render() {
@@ -545,7 +575,14 @@ export default class SubmitPage extends React.Component {
 
                   <div className="form-field">
                     <h2 className="label">Upload photo <Info text={infoTexts.image} /></h2>
-                    <ImageUpload />
+                    <p className="subtitle">Only *.jpeg and *.png images will be accepted</p>
+                    <ImageUpload
+                      accept="image/jpeg, image/png"
+                      accepted={this.state.imageOptions.accepted}
+                      rejected={this.state.imageOptions.rejected}
+                      onDrop={this.onDrop}
+                      onRemoveFile={this.onRemoveFile}
+                    />
                   </div>
                 </div>
 
