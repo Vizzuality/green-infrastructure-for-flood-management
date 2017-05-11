@@ -57,7 +57,8 @@ const infoTexts = {
   co_benefits_of_interventions: 'Indicate the social, environmental, and economic co-benefits.',
   benefit_details: 'If available, provide any additional information relevant to the project’s monetary benefits.',
   summary: 'Provide a short description of the project’s activities and results. Word limit: 125 words.',
-  references: 'Provide additional sources and relevant URL links, if applicable.'
+  references: 'Provide additional sources and relevant URL links, if applicable.',
+  image: 'Resolution requirements: ?? x ??'
 };
 
 const currencyOptions = [{ label: 'EUR', value: 'eur' }, { label: 'USD', value: 'usd' }];

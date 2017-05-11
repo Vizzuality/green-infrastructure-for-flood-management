@@ -11,6 +11,7 @@ import RadioGroup from 'components/ui/RadioGroup';
 import InputMap from 'components/ui/InputMap';
 import Info from 'components/ui/Info';
 import CheckboxGroup from 'components/ui/CheckboxGroup';
+import ImageUpload from 'components/ui/ImageUpload';
 import Spinner from 'components/ui/Spinner';
 
 
@@ -539,6 +540,12 @@ export default class SubmitPage extends React.Component {
                       onBlur={e => this.setFieldValue('contact_info', e.currentTarget.value)}
                     />
                     <h2 className="label">Contact information*</h2>
+                    <span className="subtitle">Your contact information will not be published</span>
+                  </div>
+
+                  <div className="form-field">
+                    <h2 className="label">Upload photo <Info text={infoTexts.image} /></h2>
+                    <ImageUpload />
                   </div>
                 </div>
 
