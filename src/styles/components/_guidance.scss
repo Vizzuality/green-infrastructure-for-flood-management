@@ -1,4 +1,26 @@
 
 .c-guidance {
-  
+  .guidance-section {
+    padding: 116px 170px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    &.-header {
+      background-image: url("/images/header.jpg");
+      padding-top: 160px;
+      padding-bottom: 60px;
+      position: relative;
+
+      .intro {
+        color: palette(white);
+        font-size: 26px;
+        line-height: 33px;
+      }
+    }
+
+    &.-tabs-header {
+      padding: 0 170px;
+    }
+  }
 }

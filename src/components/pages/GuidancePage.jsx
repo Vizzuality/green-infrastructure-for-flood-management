@@ -14,16 +14,16 @@ export default class GuidancePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <section className="home-section -header">
+      <div className="c-guidance">
+        <section className="guidance-section -header">
           <div className="l-app-wrapper">
             <div className="section-wrapper">
               <h1 className="h1 -secondary -big">Guidance</h1>
-              <h2 className="h2">Implementing nature-based flood protection</h2>
+              <p className="intro">Implementing nature-based flood protection</p>
             </div>
           </div>
         </section>
-        <section className="home-section">
+        <section className="guidance-section -tabs-header">
           <div className="l-app-wrapper">
             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
               <TabList className="c-tabs-fixed">
