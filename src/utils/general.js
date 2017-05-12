@@ -18,4 +18,9 @@ function saveAsFile(fileUrl, fileName) {
   document.body.removeChild(a);
 }
 
-export { setNumberFormat, saveAsFile };
+function isDevice() {
+  const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return mobileRegex.test(navigator.userAgent);
+}
+
+export { setNumberFormat, saveAsFile, isDevice };

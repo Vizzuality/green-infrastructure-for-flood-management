@@ -1,12 +1,13 @@
 import React from 'react';
 import { SvgIcon } from 'vizz-components';
+import { isDevice } from 'utils/general';
 import { Row } from 'components/ui/Grid';
 
 export default class Introduction extends React.Component {
   render() {
     return (
       <div className="c-guidance-introduction">
-        <section className="section">
+        <section className="section wrapper">
           <Row>
             <div className="column small-12 medium-8 medium-offset-2">
               <h3 className="tag">Guidance</h3>
@@ -47,14 +48,14 @@ export default class Introduction extends React.Component {
             </div>
           </Row>
         </section>
-        <section className="section">
+        {!isDevice() && <section className="section wrapper">
           <Row>
             <div className="column small-12 medium-8 medium-offset-2">
               <h2>Nature-based or other risk reduction measures?</h2>
               <img src="" alt="Scheme" />
             </div>
           </Row>
-        </section>
+        </section>}
       </div>
     );
   }

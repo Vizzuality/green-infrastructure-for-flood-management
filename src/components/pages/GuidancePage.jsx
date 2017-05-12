@@ -15,7 +15,7 @@ export default class GuidancePage extends React.Component {
   render() {
     return (
       <div className="c-guidance">
-        <section className="guidance-section -header">
+        <section className="guidance-section -header wrapper">
           <div className="l-app-wrapper">
             <div className="section-wrapper">
               <h1 className="h1 -secondary -big">Guidance</h1>
@@ -26,7 +26,7 @@ export default class GuidancePage extends React.Component {
         <section className="guidance-section -tabs-header">
           <div className="l-app-wrapper">
             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
-              <TabList className="c-tabs-fixed">
+              <TabList className="c-tabs-fixed wrapper">
                 <Tab className="tab">Introduction</Tab>
                 <Tab className="tab">Principles</Tab>
                 <Tab className="tab">Implementation</Tab>

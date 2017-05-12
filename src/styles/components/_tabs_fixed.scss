@@ -2,6 +2,7 @@
 .c-tabs-fixed {
   display: flex;
   border-bottom: 1px solid rgba(palette(black), .5);
+  overflow-x: auto;
 
   &.-fixed {
     position: fixed;
@@ -14,7 +15,7 @@
   }
 
   .tab {
-    padding: 22px 0;
+    padding: 20px 0;
     margin: 0 18px;
     color: rgba($color-text-1, .9);
     font-size: 13px;

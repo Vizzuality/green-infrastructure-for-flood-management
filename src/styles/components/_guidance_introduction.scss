@@ -1,6 +1,12 @@
 .c-guidance-introduction {
   .section {
-    padding: 50px 0 10px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+
+    @media #{$mq-medium} {
+      padding-top: 50px;
+      padding-bottom: 10px;
+    }
   }
 
   .title {
@@ -23,11 +29,15 @@
     position: relative;
     display: flex;
     flex-flow: column;
-    padding: 35px 24px;
+    padding: 16px 10px 40px;
     height: 190px;
     background-color: rgba(black, .03);
     justify-content: space-between;
     margin-bottom: 45px;
+
+    @media #{$mq-medium} {
+      padding: 35px 24px;
+    }
 
     .water-viel {
       position: absolute;
@@ -49,6 +59,11 @@
       line-height: 20px;
       font-size: 13px;
       font-weight: bold;
+      margin-bottom: 33px;
+
+      @media #{$mq-medium} {
+        margin-bottom: 0;
+      }
     }
 
     .stats {
@@ -64,16 +79,25 @@
 
       .label {
         display: flex;
-        margin-bottom: 14px;
         font-size: 13px;
         text-transform: uppercase;
+        align-items: center;
+
+        @media #{$mq-medium} {
+          margin-bottom: 14px;
+        }
 
         svg { margin-right: 5px; }
       }
 
       .number {
-        font-size: 36px;
-        line-height: 26px;
+        font-size: 30px;
+        line-height: 36px;
+
+        @media #{$mq-medium} {
+          font-size: 36px;
+          line-height: 26px;
+        }
       }
     }
   }

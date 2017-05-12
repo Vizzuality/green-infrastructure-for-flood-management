@@ -9,7 +9,7 @@ export default class App extends React.Component {
 
     return (
       <div className="l-app">
-        <Header logged={logged} />
+        {/* <Header logged={logged} /> */}
         <main role="main" className="l-main">
           {this.props.main}
         </main>

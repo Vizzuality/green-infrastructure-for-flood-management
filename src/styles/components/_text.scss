@@ -2,10 +2,20 @@
   font-size: $font-size-monster;
   line-height: 1.25;
   font-weight: bold;
-  margin-bottom: $space-1 * 3;
+  margin-bottom: $space-1;
+
+  @media #{$mq-medium} {
+    margin-bottom: $space-1 * 3;
+  }
 
   &.-big {
-    font-size: $font-size-extra-monster;
+    font-size: 32px;
+    line-height: 43px;
+
+    @media #{$mq-medium} {
+      font-size: $font-size-extra-monster;
+      line-height: 75px;
+    }
   }
 
   &.-secondary {

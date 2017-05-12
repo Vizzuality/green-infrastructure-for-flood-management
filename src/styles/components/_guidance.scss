@@ -1,26 +1,43 @@
 
 .c-guidance {
   .guidance-section {
-    padding: 116px 170px;
+    padding-top: 42px;
+    padding-bottom: 42px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 
+    @media #{$mq-medium} {
+      padding-top: 116px;
+      padding-bottom: 116px;
+    }
+
     &.-header {
-      background-image: url("/images/header.jpg");
-      padding-top: 160px;
-      padding-bottom: 60px;
       position: relative;
+      background-image: url("/images/header.jpg");
+      padding-top: 80px;
+      padding-bottom: 28px;
+
+      @media #{$mq-medium} {
+        padding-top: 160px;
+        padding-bottom: 60px;
+      }
 
       .intro {
         color: palette(white);
         font-size: 26px;
         line-height: 33px;
+
+        @media #{$mq-medium} {
+          font-size: 18px;
+          line-height: 33px;
+        }
       }
     }
 
     &.-tabs-header {
-      padding: 0 170px;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 }
