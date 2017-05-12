@@ -7,7 +7,7 @@ export default class Introduction extends React.Component {
   render() {
     return (
       <div className="c-guidance-introduction">
-        <section className="section wrapper">
+        <section className="tab-section wrapper">
           <Row>
             <div className="column small-12 medium-8 medium-offset-2">
               <h3 className="tag">Guidance</h3>
@@ -48,7 +48,7 @@ export default class Introduction extends React.Component {
             </div>
           </Row>
         </section>
-        {!isDevice() && <section className="section wrapper">
+        {!isDevice() && <section className="tab-section wrapper">
           <Row>
             <div className="column small-12 medium-8 medium-offset-2">
               <h2>Nature-based or other risk reduction measures?</h2>

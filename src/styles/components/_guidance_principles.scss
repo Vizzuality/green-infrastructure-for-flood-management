@@ -1,0 +1,60 @@
+.c-guidance-principles {
+
+  .tab-section {
+    .line {
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px solid rgba(palette(black), .5);
+    }
+
+    &.-principles { padding-top: 50px; }
+  }
+
+  .c-accordion {
+    .pp-title {
+      position: relative;
+      color: rgba($color-text-1, .9);
+      font-size: $font-size-default;
+      font-family: $font-family-default;
+      text-transform: uppercase;
+    }
+
+    .show-more {
+      position: absolute;
+      left: -33px;
+      top: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 29px;
+      height: 27px;
+      border: 2px solid $color-primary;
+      border-radius: 2px;
+
+      .more {
+        fill: $color-primary;
+        stroke: $color-primary;
+        stroke-width: 3px;
+        margin-top: 1px;
+        margin-right: 1px;
+      }
+    }
+
+    .pp-number {
+      margin-right: 9px;
+      font-size: $font-size-extrabig;
+      font-weight: bold;
+    }
+
+    & > .rc-collapse-item {
+
+      &.-active {
+        .show-more {
+          background-color: $color-primary;
+
+          .more { fill: palette(white); }
+        }
+      }
+    }
+  }
+}
