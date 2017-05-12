@@ -2,26 +2,34 @@
 
   .tab-section {
     .line {
-      display: inline-block;
+      display: none;
       width: 100%;
       border-bottom: 1px solid rgba(palette(black), .5);
+
+      @media #{$mq-medium} {
+        display: inline-block;
+      }
     }
 
-    &.-principles { padding-top: 50px; }
+    &.-principles {
+      padding-top: 0;
+
+      @media #{$mq-medium} {
+        padding-top: 50px;
+      }
+    }
   }
 
   .c-accordion {
-    .pp-title {
+    .pp-header {
       position: relative;
-      color: rgba($color-text-1, .9);
-      font-size: $font-size-default;
-      font-family: $font-family-default;
-      text-transform: uppercase;
+      display: flex;
+      text-indent: 0;
+      margin-bottom: 24px;
     }
 
     .show-more {
-      position: absolute;
-      left: -33px;
+      position: relative;
       top: 5px;
       display: flex;
       align-items: center;
@@ -30,6 +38,14 @@
       height: 27px;
       border: 2px solid $color-primary;
       border-radius: 2px;
+      margin-right: 12px;
+
+      @media #{$mq-medium} {
+        position: absolute;
+        top: 0;
+        left: -45px;
+        margin-right: 0;
+      }
 
       .more {
         fill: $color-primary;
@@ -40,10 +56,30 @@
       }
     }
 
+    .pp-title {
+      position: relative;
+      display: flex;
+      flex-flow: column;
+      color: rgba($color-text-1, .9);
+      font-size: 13px;
+      line-height: normal;
+      font-family: $font-family-default;
+      text-transform: uppercase;
+
+      @media #{$mq-medium} {
+        display: initial;
+        font-size: $font-size-default;
+      }
+    }
+
     .pp-number {
       margin-right: 9px;
-      font-size: $font-size-extrabig;
+      font-size: 24px;
       font-weight: bold;
+
+      @media #{$mq-medium} {
+        font-size: $font-size-extrabig;
+      }
     }
 
     & > .rc-collapse-item {

@@ -53,10 +53,14 @@
 
   .title {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 46px;
     margin-bottom: 42px;
     color: rgba($color-text-1, .9);
+
+    @media #{$mq-medium} {
+      font-size: 40px;
+    }
   }
 
   .tag {
