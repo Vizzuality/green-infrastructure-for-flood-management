@@ -2,7 +2,6 @@ import React from 'react';
 import 'rc-collapse/assets/index.css';
 import Collapse, { Panel } from 'rc-collapse';
 import { SvgIcon } from 'vizz-components';
-import { isDevice } from 'utils/general';
 import { Row } from 'components/ui/Grid';
 import { principle1, principle2, principle3, principle4, principle5 } from 'constants/guidance';
 

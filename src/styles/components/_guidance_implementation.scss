@@ -1,0 +1,26 @@
+.c-guidance-implementation {
+
+  .section-title {
+    font-size: 24px;
+    line-height: 37px;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+
+  .extra-info {
+    border-left: 4px solid $color-secondary;
+    margin-left: -20px;
+    padding-left: 22px;
+  }
+
+  .info-list {
+    li {
+      font-size: $font-size-big;
+      line-height: 32px;
+      color: $color-primary;
+      margin-bottom: 10px;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+}

@@ -69,4 +69,22 @@
     font-size: 13px;
     color: rgba($color-text-1, .9);
   }
+
+  .info-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: rgba($color-text-1, .9);
+    margin-bottom: 15px;
+    line-height: 20px;
+
+    &.-principal {
+      color: $color-primary;
+      font-weight: bold;
+    }
+
+    &.-secondary {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  }
 }
