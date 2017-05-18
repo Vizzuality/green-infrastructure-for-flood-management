@@ -1,15 +1,17 @@
 import React from 'react';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
+import { SvgIcon } from 'vizz-components';
 import upperFirst from 'lodash/upperFirst';
 import uniq from 'lodash/uniq';
-import { SvgIcon } from 'vizz-components';
 import TetherComponent from 'react-tether';
 import isUrl from 'validator/lib/isURL';
+
 import { setNumberFormat, saveAsFile } from 'utils/general';
 import ProjectList from 'components/projects/ProjectList';
 import { Row } from 'components/ui/Grid';
 import PlusNumber from 'components/ui/PlusNumber';
+import Info from 'components/ui/Info';
 
 // Modules
 import { dispatch } from 'main';
@@ -110,6 +112,7 @@ export default class ProjectDetail extends React.Component {
       </li>
     ));
     const countries = uniq(data.locations.map(l => l.adm0_name));
+    const natureBaseInfo = 'Explanation text lorem ipsum id casius nibh uricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna.';
 
     return (
       <article className="c-project-detail">
@@ -201,12 +204,7 @@ export default class ProjectDetail extends React.Component {
               <div className="column small-12">
                 <span className="label -info">
                   Nature based solutions
-                  <span className="info">
-                    <SvgIcon className="info-icon -smaller" name="icon-info" />
-                    <div className="c-dropdown -arrow-bottom">
-                      <p className="text">Explanation text lorem ipsum id casius nibh uricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna.</p>
-                    </div>
-                  </span>
+                  <Info text={natureBaseInfo} />
                 </span>
                 <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>

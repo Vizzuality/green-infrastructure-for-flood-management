@@ -8,7 +8,7 @@ import Validation from 'react-validation';
 
 import { Row } from 'components/ui/Grid';
 import Spinner from 'components/ui/Spinner';
-import { Input, Form } from 'components/form/From';
+import { Input, Form } from 'components/form/Form';
 
 import { dispatch } from 'main';
 import { login } from 'modules/user';

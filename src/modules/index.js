@@ -4,3 +4,4 @@ export { uiReducer as ui } from './ui';
 export { modalReducer as modal } from './modal';
 export { filtersOptionsReducer as filtersOptions } from './filters_options';
 export { userReducer as user } from './user';
+export { submitReducer as submit } from './submit';

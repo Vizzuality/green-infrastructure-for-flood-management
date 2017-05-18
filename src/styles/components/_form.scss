@@ -40,10 +40,21 @@
     }
 
     .label {
+      display: flex;
+      align-items: center;
       font-size: 18px;
       line-height: 30px;
       color: rgba($color-text-1, .5);
       margin-bottom: 10px;
+
+      .c-info { margin-top: 3px; }
+    }
+
+    .subtitle {
+      display: inline-block;
+      font-size: 12px;
+      margin-bottom: 14px;
+      margin-top: -7px;
     }
 
     input[type="text"],
@@ -71,19 +82,24 @@
       -moz-appearance: textfield;
     }
 
-    &.costs {
+    &.-in-row {
       display: flex;
       flex-flow: row;
 
-       .cost-field {
+       .row-field {
         flex-grow: 1;
         display: flex;
         flex-flow: column;
         margin-right: 13px;
+        justify-content: space-between;
+
+        &.required-error {
+          .label { color: red; }
+        }
 
         &:last-child { margin-right: 0; }
 
-        &.-currency {
+        &.-mono {
           .label { margin-bottom: 7px; }
 
           .Select .Select-multi-value-wrapper {
@@ -109,15 +125,69 @@
 
     .c-input-map { order: 3; }
 
-    .location-list {
+    /* Add new value option */
+    .new-value {
+      order: 3;
+
+      &.-active {
+        .others-list { height: auto; }
+        .add-value {
+          display: inline-block;
+        }
+      }
+
+      .others-list {
+        margin-bottom: 0;
+        margin-top: 15px;
+        height: 0;
+      }
+
+      .add-value {
+        display: none;
+        padding: 5px 25px;
+      }
+    }
+
+    .field-other {
+      opacity: 0;
+      height: 0;
+      margin-right: 20px;
+
+      &.-additional {
+        margin-top: 15px;
+        width: 50%;
+
+        &.-required {
+          position: relative;
+          border-color: red;
+        }
+      }
+
+      &.-active {
+        opacity: 1;
+        height: auto;
+      }
+    }
+
+    .location-list,
+    .others-list {
       order: 2;
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 10px;
     }
 
-    .location {
+    .list-title {
       display: flex;
+      align-items: center;
+      margin-bottom: 3px;
+      margin-right: 8px;
+    }
+
+    .location,
+    .other {
+      display: flex;
+      align-items: center;
       margin-right: 5px;
       margin-bottom: 5px;
       padding: 3px 8px;
@@ -130,6 +200,29 @@
     }
 
     .-hidden { display: none; }
+  }
+
+  .c-checkbox-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  .c-checkbox {
+    input[type=checkbox]:checked + label {
+      .checkbox-icon {
+        background-color: transparent;
+      }
+
+      .item-title { font-weight: normal; }
+    }
+
+    label {
+      color: $color-text-1;
+      font-size: $font-size-big;
+
+      .checkbox-icon:after { border-color: $color-primary; }
+    }
 
     .form-error {
       position: absolute;
@@ -138,7 +231,6 @@
       font-size: 11px;
       color: red;
     }
-
   }
 
   .filter-error {
@@ -152,6 +244,7 @@
   .Select {
     order: 2;
 
+    .Select-menu-outer { z-index: 8; }
     .Select-control {
       border-bottom: 1px solid rgba(palette(black), .3);
 

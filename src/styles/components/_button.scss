@@ -47,7 +47,7 @@
 
     &.-primary {
       background-color: $color-primary;
-      color: palette(white);
+      color: rgba(palette(white), .9);
 
       &:hover {
         background-color: rgba($color-primary, .9);
