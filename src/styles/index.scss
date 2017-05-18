@@ -1,3 +1,8 @@
+/* Foundation */
+@import 'foundation';
+@include foundation-grid;
+@include foundation-responsive-embed;
+
 /* Settings */
 @import "reset";
 @import "settings";
@@ -6,9 +11,6 @@
 @import "animations";
 @import "mixins";
 @import "layout";
-
-/* Lib */
-@import "lib/foundation";
 
 /* Vizz-components */
 @import "~vizz-components/dist/Spinner/style";
