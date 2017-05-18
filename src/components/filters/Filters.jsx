@@ -45,7 +45,7 @@ export default class Filters extends React.Component {
     if (this.state.cost.disabled) {
       const newCost = Object.assign({}, this.state.cost, { disabled: !this.state.cost.disabled });
       this.setState({ cost: newCost }, () => {
-        this.props.setProjectsFilters({ from_cost: this.state.cost.from || 0, to_cost: this.state.cost.to || 0 });
+        this.props.setProjectsFilters({ from_cost: this.state.cost.from / million || 0, to_cost: this.state.cost.to / million || 0 });
       });
     } else {
       this.resetCost();
@@ -207,7 +207,7 @@ export default class Filters extends React.Component {
           </label>
           <InputRange
             disabled={this.state.cost.disabled}
-            maxValue={(options.cost_max * million) || million}
+            maxValue={(options.cost_max * million) || (3 * million)}
             minValue={0}
             formatLabel={value => value === 0 ? value : `$${setNumberFormat(value)}`}
             value={{ min: this.state.cost.from, max: this.state.cost.to || 0 }}
@@ -218,8 +218,8 @@ export default class Filters extends React.Component {
         </div>
 
         <div className="actions">
-          <button className="c-btn" onClick={this.resetFilters}>Reset FILTERS</button>
-          <button className="c-btn -filled" onClick={this.props.close}>APPLY FILTERS</button>
+          <button className="c-btn -transparent" onClick={this.resetFilters}>Reset FILTERS</button>
+          <button className="c-btn -filled" onClick={this.props.close}>Done</button>
         </div>
       </div>
     );

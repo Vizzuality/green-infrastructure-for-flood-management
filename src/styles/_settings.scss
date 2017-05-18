@@ -1,6 +1,10 @@
 // Max widths
 $app-width: 1280px;
 
+// Modal sizes
+$max-width-modal: 1040px;
+$max-width-modal-medium: 900px;
+
 // Colors
 $primary-color: #248b6b;
 $color-primary: #248b6b;
@@ -23,6 +27,7 @@ $palettes: (
   ),
   gray: (
     primary: #AAAAAA,
+    medium: #4a596a,
     light: #CCCCCC,
     lighter: #EEEEEE
   ),
@@ -58,6 +63,7 @@ $font-size-default:       14px;
 $font-size-big:           16px;
 $font-size-extrabig:      18px;
 $font-size-huge:          22px;
+$font-size-huger:         40px;
 $font-size-monster:       60px;
 $font-size-extra-monster: 72px;
 
@@ -78,3 +84,6 @@ $ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 $ease-in-sine: cubic-bezier(0.470, 0.000, 0.745, 0.715);
 $ease-out-sine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
 $ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+
+// Responsive breakpoints
+$breakpoint-mobile: 640px;

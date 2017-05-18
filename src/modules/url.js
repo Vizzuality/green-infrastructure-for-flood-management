@@ -52,7 +52,7 @@ function onEnterMapPage({ location }, replaceUrl, done) {
 
 function onEnterProjectDetail({ params }, replaceUrl, done) {
   const { id } = params;
-  dispatch(setProjectsDetail(+id));
+  dispatch(setProjectsDetail(+id || id));
   done();
 }
 

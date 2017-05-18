@@ -1,0 +1,175 @@
+.c-form {
+  .form {
+    position: relative;
+
+    &:after {
+      content: 'Required fields *';
+      position: absolute;
+      bottom: -45px;
+      right: 0;
+      font-size: 12px;
+      color: $color-text-1;
+    }
+
+    &.-control:after { bottom: -30px; }
+  }
+
+  .form-field {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    font-size: $font-size-big;
+    margin-bottom: 42px;
+    color: $color-text-1;
+
+    &.required-error {
+      .label { color: red; }
+    }
+
+    &.-url-not-valid {
+      position: relative;
+
+      &:after {
+        content: 'Url not valid';
+        position: absolute;
+        bottom: -14px;
+        right: 0;
+        color: red;
+        font-size: 10px;
+      }
+    }
+
+    .label {
+      font-size: 18px;
+      line-height: 30px;
+      color: rgba($color-text-1, .5);
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"] {
+      order: 2;
+      width: 100%;
+      font-size: $font-size-big;
+      line-height: 30px;
+      border: 0;
+      border-bottom: 1px solid rgba(palette(black), .3);
+    }
+
+    input:focus {
+      border-color: $color-primary;
+      & + .label { color: $color-primary; }
+    }
+
+    /* Hide HTML5 Up and Down arrows. */
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    &.costs {
+      display: flex;
+      flex-flow: row;
+
+       .cost-field {
+        flex-grow: 1;
+        display: flex;
+        flex-flow: column;
+        margin-right: 13px;
+
+        &:last-child { margin-right: 0; }
+
+        &.-currency {
+          .label { margin-bottom: 7px; }
+
+          .Select .Select-multi-value-wrapper {
+            display: flex;
+          }
+
+          .Select-value {
+            border-radius: 0;
+            border: 0;
+            background: none;
+
+            .Select-value-label {
+              font-size: $font-size-big;
+              font-weight: normal;
+              color: $color-text-1;
+            }
+          }
+
+          .Select-clear-zone { display: none; }
+        }
+      }
+    }
+
+    .c-input-map { order: 3; }
+
+    .location-list {
+      order: 2;
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .location {
+      display: flex;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      padding: 3px 8px;
+      border-radius: 100px;
+      background-color: rgba(palette(black), .1);
+
+      &:last-child { margin-right: 0; }
+
+      svg { fill: $color-primary; }
+    }
+
+    .-hidden { display: none; }
+
+    .form-error {
+      position: absolute;
+      bottom: -16px;
+      right: 0;
+      font-size: 11px;
+      color: red;
+    }
+
+  }
+
+  .filter-error {
+    margin-bottom: 22px;
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  }
+
+  .Select {
+    order: 2;
+
+    .Select-control {
+      border-bottom: 1px solid rgba(palette(black), .3);
+
+      .Select-value {
+        background-color: rgba(palette(black), .1);
+        border: 0;
+        margin-left: 3px;
+        font-size: $font-size-big;
+
+        &.first-child { margin-left: 0; }
+
+        .Select-value-label {
+          color: $color-text-1;
+          font-weight: normal;
+        }
+
+        .Select-value-icon { color: $color-primary ; }
+      }
+    }
+  }
+}

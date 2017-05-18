@@ -44,6 +44,16 @@
       background-color: rgba(palette(white), .9);
       color: rgba($color-text-1, 1);
     }
+
+    &.-primary {
+      background-color: $color-primary;
+      color: palette(white);
+
+      &:hover {
+        background-color: rgba($color-primary, .9);
+        color: rgba(palette(white), 1);
+      }
+    }
   }
 
   &.-transparent {
@@ -51,8 +61,16 @@
     color: palette(white);
     border: 1px solid palette(white);
 
-    &:hover {
-      opacity: .6;
+    &:hover { opacity: .6; }
+
+    &.-primary {
+      color: $color-primary;
+      border: 1px solid $color-primary;
+
+      &:hover {
+        opacity: .6;
+        background-color: transparent;
+      }
     }
   }
 

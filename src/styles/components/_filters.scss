@@ -1,31 +1,34 @@
 .c-filters {
-  padding: $space-1 * 5;
-  background-color: $primary-color;
+  padding: 10px ($space-1 * 5) ($space-1 * 5);
+  background-color: #217b60;
   max-height: 500px;
   overflow-y: auto;
+  // box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
 
   .filter-field {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 
     label.title {
       display: flex;
       color: white;
       line-height: 30px;
-      font-size: $font-size-extrabig;
-      margin-bottom: 12px;
+      font-size: 13px;
+      margin-bottom: 2px;
       align-items: center;
+      text-transform: uppercase;
+      font-weight: bold;
 
       .c-switch {
         margin-left: 12px;
         width: 26px;
         height: 14px;
-        background-color: rgba(palette(black, secondary), .5);
+        background-color: rgba(palette(black, secondary), .2);
 
         &.switch {
           border: 0;
 
           &.on {
-            background-color: rgba(palette(black, secondary), .5);
+            background-color: rgba(palette(black, secondary), .2);
 
             & .switch-toggle {
               left: 13px;
@@ -33,7 +36,7 @@
             }
           }
         }
-        
+
         .switch-toggle {
           width: 12px;
           height: 12px;
@@ -59,7 +62,7 @@
 
     // Input range override
     .input-range {
-      margin-top: 20px;
+      margin-top: 28px;
 
       &.input-range--disabled {
         opacity: .5;
@@ -74,7 +77,8 @@
       .input-range__label--max .input-range__label-container,
       .input-range__label--min .input-range__label-container  {
         font-family: $font-size-default;
-        color: rgba(palette(black), .7);
+        color: rgba(palette(white), .5);
+        font-weight: bold;
         left: 0;
         top: -8px;
       }
@@ -92,7 +96,7 @@
       }
 
       .input-range__track--active {
-        background-color: $secondary-color;
+        background-color: palette(white);
         height: 3px;
         transform: translateY(-1px);
       }
@@ -101,12 +105,13 @@
 
   .actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 100%;
     margin-top: 40px;
 
     .c-btn {
-      margin-right: 5px;
+      padding: 8px 10px;
+      width: calc(50% - 5px);
 
       &:last-child { margin: 0; }
     }

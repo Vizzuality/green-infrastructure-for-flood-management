@@ -5,12 +5,13 @@ import Footer from 'components/footer/Footer';
 import { onEnterMapPage, onEnterProjectDetail } from 'modules/url';
 
 // App
-import App from 'components/app/App';
+import App from 'components/app/AppContainer';
 // Pages
 import HomePage from 'components/pages/HomePage';
 import SubmitPage from 'components/pages/SubmitPage';
 import MapPageContainer from 'components/pages/MapPageContainer';
 import DownloadPdfContainer from 'components/pages/DownloadPdfContainer';
+import LoginPage from 'components/pages/LoginPageContainer';
 
 const Routes = ({ history }) => (
   <Router history={history}>
@@ -23,9 +24,11 @@ const Routes = ({ history }) => (
       <Route path="submit">
         <IndexRoute components={{ main: SubmitPage, footer: Footer }} />
       </Route>
-
       <Route path="download/project/:id">
         <IndexRoute components={{ main: DownloadPdfContainer }} onEnter={onEnterProjectDetail} />
+      </Route>
+      <Route path="signin">
+        <IndexRoute components={{ main: LoginPage, footer: Footer }} />
       </Route>
     </Route>
   </Router>

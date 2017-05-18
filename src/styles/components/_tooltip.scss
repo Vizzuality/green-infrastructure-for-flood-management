@@ -12,7 +12,7 @@
   display: none;
 }
 .leaflet-popup-tip {
-  background-color: palette(yellow);
+  background-color: $color-primary;
 }
 .leaflet-popup-tip-container {
   bottom: -19px;
@@ -28,23 +28,40 @@
   .project-name {
     font-size: $font-size-big;
     font-weight: bold;
-    line-height: 1.33;
-    letter-spacing: .2;
-    margin-bottom: $space-1 * 2;
+    line-height: 24px;
+    letter-spacing: .2px;
+    margin-bottom: 10px;
+    color: $color-primary;
   }
 
   .project-orgs {
     text-transform: uppercase;
     font-size: $font-size-default;
     font-weight: bold;
-    color: palette(gray);
-    margin-bottom: $space-1;
+    color: ($color-text-1, .9);
+    margin-bottom: 5px;
   }
 
-  .project-hazards {
+  .project-properties {
+    display: flex;
     font-size: $font-size-small;
-    color: palette(gray);
+    color: rgba($color-text-1, .9);
     text-transform: capitalize;
+
+    .property {
+      display: flex;
+      align-items: center;
+      margin-right: 12px;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      svg {
+        margin-right: 5px;
+        fill: rgba(palette(gray, medium), .3);
+      }
+    }
   }
 }
 
@@ -55,7 +72,7 @@
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  color: palette(black) !important;
-  background-color: palette(yellow);
+  color: palette(white) !important;
+  background-color: $color-primary;
   padding: $space-1 * 2;
 }

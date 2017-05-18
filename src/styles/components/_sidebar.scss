@@ -5,11 +5,13 @@ $_btn-height: 50px;
   transform: translate(calc(-100% + 50px),0);
   transition: all $animation-time-2 $ease-in-out-sine;
   height: 100%;
-  width: 600px;
+  width: 450px;
   position: absolute;
   left: 0;
   top: 0;
   z-index: 999;
+
+  &.-project-detail { width: 600px; }
 
   &.-opened {
     transform: translate(0,0);
@@ -35,7 +37,7 @@ $_btn-height: 50px;
       justify-content: space-between;
       align-items: center;
       flex-flow: column;
-      height: calc(100% - 50px);
+      height: 100%;
     }
 
     ul {
@@ -57,7 +59,7 @@ $_btn-height: 50px;
 
     .c-btn {
       display: flex;
-      transform: rotate(-90deg) translateX(calc(100% - 15px));
+      transform: rotate(-90deg) translateX(calc(100% - 70px));
       white-space: nowrap;
       padding: 8px 15px;
     }
@@ -71,7 +73,11 @@ $_btn-height: 50px;
     font-size: $font-size-small;
     font-weight: bold;
     text-transform: uppercase;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    padding-left: 0;
+
+    .sort-header {
+      font-weight: normal;
+    }
 
     button {
       display: flex;
@@ -114,10 +120,10 @@ $_btn-height: 50px;
   .sidebar-btn {
     position: absolute;
     top: 0;
-    left: 0;
-    width: $_btn-height;
+    right: -30px;
+    width: 30px;
     height: $_btn-height;
-    background-color: rgba(0, 0, 0, .2);
+    background-color: rgba($color-primary, .7);
     border: none;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
     cursor: pointer;
