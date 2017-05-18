@@ -18,4 +18,12 @@ function saveAsFile(fileUrl, fileName) {
   document.body.removeChild(a);
 }
 
-export { setNumberFormat, saveAsFile };
+function toBase64(file, cb) {
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    cb && cb(event.target.result);
+  };
+  reader.readAsDataURL(file);
+}
+
+export { setNumberFormat, saveAsFile, toBase64 };
