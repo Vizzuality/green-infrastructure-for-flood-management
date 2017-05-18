@@ -49,3 +49,11 @@ input[type="search"] {
     margin: 0 -0.9375rem !important;
   }
 }
+
+.is-mobile-hidden {
+  display: none;
+
+  @media (min-width: $breakpoint-desktop) {
+    display: block;
+  }
+}

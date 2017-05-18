@@ -1,8 +1,12 @@
 .home-section {
-  padding: 116px 170px;
+  padding: 40px 20px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+
+  @include breakpoint(large) {
+    padding: 116px 170px;
+  }
 
   &.-grayed {
     background-color: palette(gray, lighter);
@@ -14,8 +18,12 @@
 
   &.-header {
     background-image: url("/images/header.jpg");
-    padding-top: 220px;
+    padding-top: 120px;
     position: relative;
+
+    @include breakpoint(large) {
+      padding-top: 220px;
+    }
 
     .section-icon {
       width: 17px;
@@ -43,9 +51,12 @@
   }
 
   .section-wrapper {
-    max-width: 70%;
     margin: 0 auto;
     text-align: center;
+
+    @include breakpoint(medium) {
+      max-width: 70%;
+    }
   }
 }
 
@@ -64,6 +75,7 @@
 
     img {
       max-height: 80px;
+      max-width: 100%;
     }
   }
 }
