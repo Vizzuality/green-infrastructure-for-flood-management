@@ -594,8 +594,9 @@ export default class SubmitPage extends React.Component {
                     Reset
                   </button>
                   <button
-                    className="c-btn -filled -primary action"
+                    className="c-btn -filled -primary action -disabled"
                     onClick={this.submit}
+                    disabled
                   >
                     Submit
                   </button>

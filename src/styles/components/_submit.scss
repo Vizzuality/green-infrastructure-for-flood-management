@@ -19,6 +19,11 @@
       &:first-child {
         margin-left: 0;
       }
+
+      &.-disabled {
+        background-color: rgba(grey, .5);
+        cursor: not-allowed;
+      }
     }
   }
 }
