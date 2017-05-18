@@ -10,7 +10,7 @@ export default function ProjectItem(props) {
   const countries = uniq(data.locations.map(l => l.adm0_name));
 
   return (
-    <Link to={`/map/project/${data.id}`} className="c-project-item">
+    <Link to={`/map/project/${data.slug}`} className="c-project-item">
       <div className="project-advance">
         <ul className="project-company">
           <li>
@@ -20,7 +20,7 @@ export default function ProjectItem(props) {
         <span className="project-name">{data.name}</span>
         <div className="project-tags-container">
           <p className="project-tags">
-            <span className="title"  title="Nature Base Solutions">
+            <span className="title" title="Nature Base Solutions">
               <SvgIcon name="icon-enter" className="-small" />
             </span>
             <span>
@@ -28,7 +28,7 @@ export default function ProjectItem(props) {
             </span>
           </p>
           <p className="project-tags">
-            <span className="title"  title="Hazards">
+            <span className="title" title="Hazards">
               <SvgIcon name="icon-flag" className="-small" />
             </span>
             <span>
