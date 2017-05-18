@@ -54,6 +54,11 @@
 
       .action {
         padding: 8px 50px;
+
+        &.-disabled {
+          background-color: rgba(grey, .5);
+          cursor: not-allowed;
+        }
       }
     }
   }

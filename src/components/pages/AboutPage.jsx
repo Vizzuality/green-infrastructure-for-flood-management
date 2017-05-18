@@ -199,8 +199,9 @@ export default class AboutPage extends React.Component {
 
                   <div className="actions">
                     <button
-                      className="c-btn -filled -primary action"
+                      className="c-btn -filled -primary action -disabled"
                       onClick={this.onContact}
+                      disabled
                     >
                       Send
                     </button>
