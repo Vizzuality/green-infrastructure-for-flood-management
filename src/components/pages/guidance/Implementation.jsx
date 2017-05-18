@@ -1,7 +1,48 @@
 import React from 'react';
+import ScrollMagic from 'scrollmagic';
 import { Row } from 'components/ui/Grid';
 
 export default class Implementation extends React.Component {
+  componentDidMount() {
+    const triggers = ['implementation1', 'implementation2', 'implementation3',
+      'implementation4', 'implementation5'];
+    // const anchors = ['anc1', 'anc2', 'anc3', 'anc4', 'anc5'];
+    // const offset = (window.innerHeight / 2) - 10;
+    const controller = new ScrollMagic.Controller();
+    const controllerAnch = new ScrollMagic.Controller({ globalSceneOptions: { duration: 900 } });
+    // build scene
+
+    new ScrollMagic.Scene({ triggerElement: '#fixedMenu', triggerHook: 0 })
+      .setPin('#fixedMenu')
+      .offset(-10)
+      .addTo(controller);
+
+    triggers.forEach((tr, i) => {
+      new ScrollMagic.Scene({ triggerElement: `#${tr}`, triggerHook: 'onLeave' })
+        .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
+        .addTo(controller)
+        .on('enter', (e) => { console.log('enter'); })
+        .on('shift', (e) => { if (e.target.state() === 'AFTER') {};} });
+    });
+
+
+    //  bind scroll to anchor links
+    document.addEventListener('click', (e) => {
+  		// const id = $(this).attr('href');
+  		// if ($(id).length > 0) {
+  		// 	e.preventDefault();
+      //
+  		// 	// trigger scroll
+  		// 	controller.scrollTo(id);
+      //
+  		// 		// if supported by the browser we can even update the URL.
+  		// 	if (window.history && window.history.pushState) {
+  		// 		history.pushState("", document.title, id);
+  		// 	}
+  		// }
+	 });
+  }
+
   render() {
     return (
       <div className="c-guidance-implementation">
@@ -17,12 +58,21 @@ export default class Implementation extends React.Component {
           </Row>
         </section>
 
-        <section className="tab-section -intro wrapper">
+        <section className="tab-section wrapper">
           <Row>
             <div className="column small-12 medium-3">
+              <div id="fixedMenu" className="fixed-menu">
+                <ul className="menu-list">
+                  <li id="anc1"><a href="#implementation1">01. Conduct Ecosystem, Hazard, and Risk Assessments</a></li>
+                  <li id="anc2"><a href="#implementation2">02. Develop Nature-based Risk Management Strategy</a></li>
+                  <li id="anc3"><a href="#implementation3">03.Estimate the Cost, Benefit and Effectiveness</a></li>
+                  <li id="anc4"><a href="#implementation4">04. Select, Plan, and Design the Intervention</a></li>
+                  <li id="anc5"><a href="#implementation5">05. Financing the Project</a></li>
+                </ul>
+              </div>
             </div>
             <div className="column small-12 medium-9">
-              <section className="tab-section -intro">
+              <section id="implementation1">
                 <h2 className="section-title">Conduct Ecosystem, Hazard, and Risk Assessments</h2>
                 <p className="text">Conduct an accurate assessment of the type and intensity of the flood hazard, and its effect on population, assets, and infrastructure with specific attention to the role of the ecosystem.</p>
 
@@ -58,18 +108,44 @@ export default class Implementation extends React.Component {
                     <li>- Information on finding data for risk assessments at Open Data for Resilience Initiative (OpenDRI)</li>
                   </ul>
                 </article>
+              </section>
+
+              <section id="implementation29">
+                <h2 className="section-title">22222222</h2>
+                <p className="text">Conduct an accurate assessment of the type and intensity of the flood hazard, and its effect on population, assets, and infrastructure with specific attention to the role of the ecosystem.</p>
+
+                <h3 className="info-title -secondary">1. Identify the study area and conduct a system assessment</h3>
+                <p className="text">Outline the direct area of interest, and assess the wider natural and socioeconomic system. This should include an assessment of the ecosystem assets and services they provide as well as the main stakeholders. Identify the main flood hazard type affecting the study area and the causes. Main flood hazard types to consider are river, coastal, and urban flooding, which can be driven by a range of factors such as extreme local rainfall, high river discharge, or coastal storm surge. Broadly define the various ecosystems typologies in the area and their risk reduction potential. Note that the area relevant from an ecosystem management perspective may be much larger than the area at direct risk of flooding (see “Guiding principle 4: Large temporal and spatial scale”).</p>
+
+                <h3 className="info-title -secondary">2. Gather data</h3>
+                <p className="text">Collect data that can be used for the risk assessment. This includes data for hazard (e.g. rainfall, discharge, sea level, and elevation data), exposure (e.g. population density, infrastructure location) and vulnerability (e.g. building typology, poverty) assessment. These data can be difficult to collect, as they tend to be available in a wide range of places, including online at OpenStreetMap.org or scattered across government ministries. In data scarce regions, the analysis often needs to rely on remote sensing or other globally available data products.</p>
+
+                <h3 className="info-title -secondary">3. Assess current ecosystem extent, condition, and functioning</h3>
+                <p className="text">Analyze if there are present ecosystems that currently play a major role in flood protection, and understand how these ecosystems can further contribute to reducing flood risk. Ecosystem status should be assessed by looking at indicators, such as biodiversity, species abundance, age, density, health and biomass. Evaluate evolution of ecosystems in the past and obtain a first idea of ecosystem stability and resilience in the future through insight in abiotic boundary conditions and future trends that may influence these conditions. An assessment of tenure and management of ecosystems is also critical. Identifying the role of ecosystems in reducing risk can be done by examining their role in: reducing or regulating hazards (wave attenuation, current reduction, etc.), reducing people and assets exposed to hazards (by keeping people out of harms’ way), and reducing vulnerability (through supporting livelihoods and economies and provisioning key services). Qualitatively articulate what the potential is for expanding risk reduction potential of ecosystems by conservation or restoration efforts.</p>
+
+                <h3 className="info-title -secondary">4. Model current and future flood hazard </h3>
+                <p className="text">Conduct a probabilistic hydrological and hydraulic modelling exercise, mapping the potential intensity and location of all types of flooding. This should result in potential inundation maps for a range of return periods.</p>
+
+                <h3 className="info-title -secondary">5. Quantify current and future flood exposure and risk</h3>
+                <p className="text">Combine the flood hazard maps with exposure and vulnerability information to produce estimates of human and economic exposure and risk. Future scenarios should be developed using climate change scenarios affecting flood hazard, and socioeconomic scenarios informing expected changes in population, land-use change, and urbanization.</p>
 
 
-                <h3></h3>
-                <p className="text"></p>
+                <article className="extra-info">
+                  <h2 className="info-title -principal">Example projects</h2>
+                  <p className="text">The European Commission and UNEP led a Coastal Partners project in Port Salut, Haiti. National and community baseline assessments were undertaken in local hill, shore, and sea environments to identify exposed and vulnerable areas and select appropriate reforestation and revegetation interventions. The marine and terrestrial field surveys, remote sensing, and GIS modeling developed detailed baseline maps and modeled current and future exposure under different ecosystem management scenarios. Interviews, multi-stakeholder focus group discussions, and participatory mapping also contributed to the baseline assessments.</p>
 
-                <h3></h3>
-                <p className="text"></p>
+                  <h3 className="info-title">Read more</h3>
+                  <p className="text">UNEP (2016). Coastal Partners: Applying ecosystem-based disaster risk reduction (Eco-DRR) through a ridge-to-reef approach in Port Salut, Haiti.</p>
 
-                <h3></h3>
-                <p className="text"></p>
-
-
+                  <h3 className="info-title">More information</h3>
+                  <ul className="info-list">
+                    <li>- NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure</li>
+                    <li>- Methodologies for assessing dynamic risk</li>
+                    <li>- Open-source hazard data and screening</li>
+                    <li>- WRI Global Flood Analyzer</li>
+                    <li>- Information on finding data for risk assessments at Open Data for Resilience Initiative (OpenDRI)</li>
+                  </ul>
+                </article>
               </section>
             </div>
           </Row>
