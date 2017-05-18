@@ -10,6 +10,7 @@ import App from 'components/app/AppContainer';
 import HomePage from 'components/pages/HomePage';
 import SubmitPage from 'components/pages/SubmitPageContainer';
 import MapPageContainer from 'components/pages/MapPageContainer';
+import DownloadPdfContainer from 'components/pages/DownloadPdfContainer';
 import LoginPage from 'components/pages/LoginPageContainer';
 import AboutPage from 'components/pages/AboutPage';
 
@@ -23,6 +24,9 @@ const Routes = ({ history }) => (
       </Route>
       <Route path="submit">
         <IndexRoute components={{ main: SubmitPage, footer: Footer }} />
+      </Route>
+      <Route path="download/project/:id">
+        <IndexRoute components={{ main: DownloadPdfContainer }} onEnter={onEnterProjectDetail} />
       </Route>
       <Route path="about">
         <IndexRoute components={{ main: AboutPage, footer: Footer }} />

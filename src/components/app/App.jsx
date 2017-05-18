@@ -5,11 +5,12 @@ import Modal from 'components/ui/Modal';
 export default class App extends React.Component {
 
   render() {
+    const isDownload = this.props.location.pathname.includes('/download/project/');
     const { modal, logged } = this.props;
 
     return (
       <div className="l-app">
-        <Header logged={logged} />
+        {!isDownload && <Header logged={logged} />}
         <main role="main" className="l-main">
           {this.props.main}
         </main>
@@ -29,6 +30,7 @@ export default class App extends React.Component {
 App.propTypes = {
   main: React.PropTypes.element,
   footer: React.PropTypes.element,
+  location: React.PropTypes.object,
   modal: React.PropTypes.object,
   logged: React.PropTypes.bool,
   // Functions

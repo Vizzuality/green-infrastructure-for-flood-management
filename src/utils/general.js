@@ -7,6 +7,17 @@ function setNumberFormat(number) {
   return numeral(number).format('0.0a');
 }
 
+function saveAsPdf(id, fileName) {
+  const a = document.createElement('a');
+  a.href = `/download/project/${id}`;
+  a.style.display = 'none';
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+}
+
 function saveAsFile(fileUrl, fileName) {
   const a = document.createElement('a');
   a.href = fileUrl;

@@ -203,6 +203,10 @@ $_separation: ($space-1 * 4);
       font-size: $font-size-small;
       margin-right: $space-1 * 5;
 
+      a {
+        color: palette(white);
+      }
+
       &:last-child {
         margin-right: 0;
       }
