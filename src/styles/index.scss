@@ -18,11 +18,20 @@
 @import "~react-selectize/themes/base.css";
 
 /* Components */
-@import "components/header";
-@import "components/navigation";
-@import "components/footer";
+/* Pages */
+@import "components/home";
+@import "components/submit";
+@import "components/about";
 @import "components/map";
+@import "components/login";
+
+/* Layout */
+@import "components/header";
+@import "components/footer";
 @import "components/sidebar";
+
+/* Ui */
+@import "components/navigation";
 @import "components/select";
 @import "components/project";
 @import "components/search";
@@ -34,12 +43,10 @@
 @import "components/checkbox";
 @import "components/icon";
 @import "components/text";
-@import "components/home";
 @import "components/button";
 @import "components/sort_by";
 @import "components/dropdown";
 @import "components/tooltip";
-@import "components/submit";
 @import "components/plus_number";
 @import "components/modal";
 @import "components/form";
