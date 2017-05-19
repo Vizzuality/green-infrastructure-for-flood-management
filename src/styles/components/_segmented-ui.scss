@@ -1,0 +1,25 @@
+.c-segmented-ui {
+
+  background-color: $color-primary;
+
+  .segmented-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .segmented-item {
+    flex: 1;
+  }
+
+  .segmented-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: palette(white);
+    font-weight: bold;
+    font-size: $font-size-big;
+    text-transform: uppercase;
+    padding: ($space-1 * 2) 0;
+  }
+}
