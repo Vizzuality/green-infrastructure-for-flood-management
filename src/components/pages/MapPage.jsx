@@ -26,7 +26,11 @@ import OnlyOn from 'components/ui/Responsive';
 import SegmentedUi from 'components/ui/SegmentedUi';
 
 const million = 1000000;
-
+const mobileMenuItems = [
+  { label: 'Filters', value: 'filters' },
+  { label: 'Map', value: 'map' },
+  { label: 'List', value: 'list' }
+];
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -34,7 +38,8 @@ export default class MapPage extends React.Component {
     this.state = {
       sidebarScroll: 0,
       markers: getMarkers(props),
-      mapMethods: this.getMapMethods(props)
+      mapMethods: this.getMapMethods(props),
+      mobileMenu: 'map'
     };
 
     // Bindings
@@ -42,6 +47,7 @@ export default class MapPage extends React.Component {
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.onMobileMenuChange = this.onMobileMenuChange.bind(this);
   }
 
   /* Component lifecycle */
@@ -243,6 +249,19 @@ export default class MapPage extends React.Component {
     this.props.toggleModal(true, opts);
   }
 
+  onMobileMenuChange({ value }) {
+    if (value === 'filters') {
+      this.props.toggleModal(true, {
+        children: Filters,
+        childrenProps: {
+          options: this.props.filtersOptions
+        }
+      });
+    } else {
+      this.setState({ mobileMenu: value });
+    }
+  }
+
   /* Render */
   render() {
     /* Map params */
@@ -256,11 +275,7 @@ export default class MapPage extends React.Component {
 
     const filtersTags = this.setFiltersTags(intoArrayFilters);
     const filtersQuery = this.getQuery(this.props.filters);
-    const mobileMenuItems = [
-      { label: 'Filters', value: 'filters' },
-      { label: 'Map', value: 'map' },
-      { label: 'List', value: 'list' }
-    ];
+    const items = mobileMenuItems.filter(i => i.value !== this.state.mobileMenu);
 
     return (
       <div className="c-map-page l-map-page">
@@ -268,7 +283,7 @@ export default class MapPage extends React.Component {
           <SvgIcon name="icon-share" className="-medium" />
         </button>
         <OnlyOn device="mobile">
-          <SegmentedUi items={mobileMenuItems} />
+          <SegmentedUi items={items} onChange={this.onMobileMenuChange} />
         </OnlyOn>
         <OnlyOn device="desktop">
           <Sidebar
