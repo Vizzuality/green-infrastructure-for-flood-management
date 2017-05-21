@@ -36,6 +36,7 @@
       border-left: 4px solid rgba(palette(black), .3);
 
       li {
+        position: relative;
         font-size: 13px;
         line-height: 20px;
         text-transform: uppercase;
@@ -49,8 +50,10 @@
           &:before {
             content: '';
             position: absolute;
-            left: -15px;
-            width: 100%;
+            top: 0;
+            left: -19px;
+            width: 4px;
+            height: 100%;
             border-left: 4px solid $color-primary;
           }
         }
