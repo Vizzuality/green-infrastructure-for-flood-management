@@ -1,18 +1,39 @@
 import React from 'react';
 import ScrollMagic from 'scrollmagic';
 import MoveTo from 'moveto';
+import { isDevice } from 'utils/general';
 import { Row } from 'components/ui/Grid';
 
 export default class Implementation extends React.Component {
   componentDidMount() {
-    this.setScenes();
-  }
-
-  setScenes() {
     const triggers = ['implementation1', 'implementation2', 'implementation3',
       'implementation4', 'implementation5'];
     const controller = new ScrollMagic.Controller();
 
+    if (isDevice()) {
+      this.setStepsButtonScene(controller);
+      this.setAnchorScroll('js-scroll-steps');
+      this.setAnchorScroll('js-scroll-steps-end');
+    } else {
+      this.setFixedMenuScenes(controller, triggers);
+    }
+
+    triggers.forEach((tr, i) => this.setAnchorScroll(`js-scroll-imp${i + 1}`));
+  }
+
+  setStepsButtonScene(controller) {
+    const duration = document.querySelector('#implementations').offsetHeight - (screen.height + 90);
+
+    new ScrollMagic.Scene({
+      triggerElement: '#implementations',
+      triggerHook: 'onLeave',
+      duration
+    })
+    .setClassToggle('.js-scroll-steps', '-active')
+    .addTo(controller);
+  }
+
+  setFixedMenuScenes(controller, triggers) {
     // build fixed menu scene
     new ScrollMagic.Scene({ triggerElement: '#fixedMenu', triggerHook: 0 })
       .setPin('#fixedMenu')
@@ -28,13 +49,11 @@ export default class Implementation extends React.Component {
       })
       .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
       .addTo(controller);
-
-      this.setAnchorScroll(`js-scroll-imp${i + 1}`);
     });
   }
 
-  setAnchorScroll(triggerId) {
-    const triggerEl = document.getElementById(triggerId);
+  setAnchorScroll(triggerClass) {
+    const triggerEl = document.getElementsByClassName(triggerClass)[0];
     const moveTo = new MoveTo({
       tolerance: 0,
       duration: 800,
@@ -59,21 +78,25 @@ export default class Implementation extends React.Component {
           </Row>
         </section>
 
+        <a className="show-steps js-scroll-steps" href="#fixedMenu">Show all steps</a>
+
         <section className="tab-section wrapper">
           <Row>
             <div className="column small-12 medium-3">
               <div id="fixedMenu" className="fixed-menu">
+                {isDevice() && <h1 className="title">Implementation steps</h1>}
                 <ul className="menu-list">
-                  <li id="anc1"><a id="js-scroll-imp1" href="#implementation1">01. Conduct Ecosystem, Hazard, and Risk Assessments</a></li>
-                  <li id="anc2"><a id="js-scroll-imp2" href="#implementation2">02. Develop Nature-based Risk Management Strategy</a></li>
-                  <li id="anc3"><a id="js-scroll-imp3" href="#implementation3">03.Estimate the Cost, Benefit and Effectiveness</a></li>
-                  <li id="anc4"><a id="js-scroll-imp4" href="#implementation4">04. Select, Plan, and Design the Intervention</a></li>
-                  <li id="anc5"><a id="js-scroll-imp5" href="#implementation5">05. Financing the Project</a></li>
+                  <li id="anc1"><a className="js-scroll-imp1" href="#implementation1">01. Conduct Ecosystem, Hazard, and Risk Assessments</a></li>
+                  <li id="anc2"><a className="js-scroll-imp2" href="#implementation2">02. Develop Nature-based Risk Management Strategy</a></li>
+                  <li id="anc3"><a className="js-scroll-imp3" href="#implementation3">03.Estimate the Cost, Benefit and Effectiveness</a></li>
+                  <li id="anc4"><a className="js-scroll-imp4" href="#implementation4">04. Select, Plan, and Design the Intervention</a></li>
+                  <li id="anc5"><a className="js-scroll-imp5" href="#implementation5">05. Financing the Project</a></li>
                 </ul>
               </div>
             </div>
-            <div className="column small-12 medium-9">
+            <div id="implementations" className="column small-12 medium-9">
               <section id="implementation1">
+                {isDevice() && <h3 className="tag">Step 1</h3>}
                 <h2 className="section-title">Conduct Ecosystem, Hazard, and Risk Assessments</h2>
                 <p className="text">Conduct an accurate assessment of the type and intensity of the flood hazard, and its effect on population, assets, and infrastructure with specific attention to the role of the ecosystem.</p>
 
@@ -112,6 +135,7 @@ export default class Implementation extends React.Component {
               </section>
 
               <section id="implementation2">
+                {isDevice() && <h3 className="tag">Step 2</h3>}
                 <h2 className="section-title">Implementation 2</h2>
                 <p className="text">Conduct an accurate assessment of the type and intensity of the flood hazard, and its effect on population, assets, and infrastructure with specific attention to the role of the ecosystem.</p>
 
@@ -151,6 +175,8 @@ export default class Implementation extends React.Component {
             </div>
           </Row>
         </section>
+
+        <a id="showStepsEnd" className="show-steps -relative js-scroll-steps-end" href="#fixedMenu">Show all steps</a>
       </div>
     );
   }
