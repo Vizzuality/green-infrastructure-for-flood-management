@@ -1,27 +1,47 @@
 import React from 'react';
 import ScrollMagic from 'scrollmagic';
+import MoveTo from 'moveto';
 import { Row } from 'components/ui/Grid';
 
 export default class Implementation extends React.Component {
   componentDidMount() {
+    this.setScenes();
+  }
+
+  setScenes() {
     const triggers = ['implementation1', 'implementation2', 'implementation3',
       'implementation4', 'implementation5'];
     const controller = new ScrollMagic.Controller();
-    // build scene
+
+    // build fixed menu scene
     new ScrollMagic.Scene({ triggerElement: '#fixedMenu', triggerHook: 0 })
       .setPin('#fixedMenu')
       .offset(-10)
       .addTo(controller);
 
+    // build sections scene
     triggers.forEach((tr, i) => {
       new ScrollMagic.Scene({
         triggerElement: `#${tr}`,
         triggerHook: 'onLeave',
         duration: document.querySelector(`#${tr}`).offsetHeight
       })
-        .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
-        .addTo(controller);
+      .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
+      .addTo(controller);
+
+      this.setAnchorScroll(`js-scroll-imp${i + 1}`);
     });
+  }
+
+  setAnchorScroll(triggerId) {
+    const triggerEl = document.getElementById(triggerId);
+    const moveTo = new MoveTo({
+      tolerance: 0,
+      duration: 800,
+      easing: 'easeOutQuart'
+    });
+
+    moveTo.registerTrigger(triggerEl);
   }
 
   render() {
@@ -44,11 +64,11 @@ export default class Implementation extends React.Component {
             <div className="column small-12 medium-3">
               <div id="fixedMenu" className="fixed-menu">
                 <ul className="menu-list">
-                  <li id="anc1"><a href="#implementation1">01. Conduct Ecosystem, Hazard, and Risk Assessments</a></li>
-                  <li id="anc2"><a href="#implementation2">02. Develop Nature-based Risk Management Strategy</a></li>
-                  <li id="anc3"><a href="#implementation3">03.Estimate the Cost, Benefit and Effectiveness</a></li>
-                  <li id="anc4"><a href="#implementation4">04. Select, Plan, and Design the Intervention</a></li>
-                  <li id="anc5"><a href="#implementation5">05. Financing the Project</a></li>
+                  <li id="anc1"><a id="js-scroll-imp1" href="#implementation1">01. Conduct Ecosystem, Hazard, and Risk Assessments</a></li>
+                  <li id="anc2"><a id="js-scroll-imp2" href="#implementation2">02. Develop Nature-based Risk Management Strategy</a></li>
+                  <li id="anc3"><a id="js-scroll-imp3" href="#implementation3">03.Estimate the Cost, Benefit and Effectiveness</a></li>
+                  <li id="anc4"><a id="js-scroll-imp4" href="#implementation4">04. Select, Plan, and Design the Intervention</a></li>
+                  <li id="anc5"><a id="js-scroll-imp5" href="#implementation5">05. Financing the Project</a></li>
                 </ul>
               </div>
             </div>
