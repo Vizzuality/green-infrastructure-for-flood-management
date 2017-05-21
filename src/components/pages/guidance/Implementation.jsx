@@ -6,41 +6,22 @@ export default class Implementation extends React.Component {
   componentDidMount() {
     const triggers = ['implementation1', 'implementation2', 'implementation3',
       'implementation4', 'implementation5'];
-    // const anchors = ['anc1', 'anc2', 'anc3', 'anc4', 'anc5'];
-    // const offset = (window.innerHeight / 2) - 10;
     const controller = new ScrollMagic.Controller();
-    const controllerAnch = new ScrollMagic.Controller({ globalSceneOptions: { duration: 900 } });
     // build scene
-
     new ScrollMagic.Scene({ triggerElement: '#fixedMenu', triggerHook: 0 })
       .setPin('#fixedMenu')
       .offset(-10)
       .addTo(controller);
 
     triggers.forEach((tr, i) => {
-      new ScrollMagic.Scene({ triggerElement: `#${tr}`, triggerHook: 'onLeave' })
+      new ScrollMagic.Scene({
+        triggerElement: `#${tr}`,
+        triggerHook: 'onLeave',
+        duration: document.querySelector(`#${tr}`).offsetHeight
+      })
         .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
-        .addTo(controller)
-        .on('enter', (e) => { console.log('enter'); })
-        .on('shift', (e) => { if (e.target.state() === 'AFTER') {};} });
+        .addTo(controller);
     });
-
-
-    //  bind scroll to anchor links
-    document.addEventListener('click', (e) => {
-  		// const id = $(this).attr('href');
-  		// if ($(id).length > 0) {
-  		// 	e.preventDefault();
-      //
-  		// 	// trigger scroll
-  		// 	controller.scrollTo(id);
-      //
-  		// 		// if supported by the browser we can even update the URL.
-  		// 	if (window.history && window.history.pushState) {
-  		// 		history.pushState("", document.title, id);
-  		// 	}
-  		// }
-	 });
   }
 
   render() {
@@ -110,8 +91,8 @@ export default class Implementation extends React.Component {
                 </article>
               </section>
 
-              <section id="implementation29">
-                <h2 className="section-title">22222222</h2>
+              <section id="implementation2">
+                <h2 className="section-title">Implementation 2</h2>
                 <p className="text">Conduct an accurate assessment of the type and intensity of the flood hazard, and its effect on population, assets, and infrastructure with specific attention to the role of the ecosystem.</p>
 
                 <h3 className="info-title -secondary">1. Identify the study area and conduct a system assessment</h3>
