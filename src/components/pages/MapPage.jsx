@@ -296,7 +296,7 @@ export default class MapPage extends React.Component {
           <SvgIcon name="icon-share" className="-medium" />
         </button>
         <button className="legend-btn" onClick={this.showMobileLegend}>
-          <SvgIcon name="icon-share" className="-medium" />
+          <SvgIcon name="icon-legend" className="-medium" />
         </button>
         <OnlyOn device="mobile">
           {!this.props.projectDetail && <SegmentedUi items={items} onChange={this.onMobileMenuChange} />}
