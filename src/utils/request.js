@@ -1,7 +1,4 @@
 
-import { dispatch } from 'main';
-import { logout } from 'modules/user';
-
 function post({ url, body, onSuccess, onError }) {
   const request = new XMLHttpRequest();
   request.open('POST', url);

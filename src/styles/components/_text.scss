@@ -1,18 +1,21 @@
 .h1 {
-  font-size: $font-size-monster;
-  line-height: 1.25;
+  font-size: $font-size-medium-huge;
+  line-height: 1.56;
   font-weight: bold;
   margin-bottom: $space-1;
+  color: $color-text-1;
 
-  @media #{$mq-medium} {
+  @include breakpoint(large) {
     margin-bottom: $space-1 * 3;
+    font-size: $font-size-monster;
+    line-height: 1.25;
   }
 
   &.-big {
     font-size: 32px;
     line-height: 43px;
 
-    @media #{$mq-medium} {
+    @include breakpoint(large) {
       font-size: $font-size-extra-monster;
       line-height: 75px;
     }
@@ -30,6 +33,21 @@
       height: 4px;
       background-color: palette(yellow);
       margin-top: $space-1 * 5;
+    }
+
+    &.-center {
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: $space-1 * 5;
+        width: 60px;
+        height: 4px;
+        background-color: palette(yellow);
+        transform: translateX(-50%);
+      }
     }
   }
 }

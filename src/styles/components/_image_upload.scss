@@ -1,0 +1,93 @@
+$image-size: 100px;
+
+.c-image-upload {
+  .upload {
+    display: flex;
+  }
+
+  .dropzone {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: $image-size;
+    height: $image-size;
+    border: 3px dashed rgba(palette(black), .5);
+    padding: 10px;
+    margin-right: 20px;
+    font-size: $font-size-small;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-primary;
+
+      .add { fill: $color-primary; }
+    }
+
+    .add {
+      margin-bottom: 5px;
+      fill: rgba(palette(black), .5);
+    }
+
+    .notice {
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: rgba(palette(black), .5);
+    }
+  }
+
+  .image-uploaded {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: $image-size;
+    height: $image-size;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5px;
+
+    &:hover {
+      .viel { display: inherit; }
+      .remove {
+        display: flex;;
+      }
+    }
+
+    .viel {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      background-color: rgba($color-primary, .8);
+    }
+
+    .remove {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      bottom: 0;
+      padding: 0;
+      border-radius: 50%;
+      cursor: pointer;
+
+      svg {
+        fill: palette(white);
+      }
+    }
+  }
+
+  .upload-error {
+    font-size: 12px;
+    color: red;
+    margin-top: 13px;
+  }
+}

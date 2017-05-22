@@ -9,6 +9,7 @@ const SET_LOGGED = 'SET_LOGGED';
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_LOADING = 'SET_LOADING';
 const SET_ERROR = 'SET_ERROR';
+const SET_CONTACT = 'SET_CONTACT';
 
 /* Initial state */
 const initialState = {
@@ -41,6 +42,11 @@ function userReducer(state = initialState, action) {
         ...state,
         error: action.payload
       };
+    case SET_CONTACT:
+      return {
+        ...state,
+        logged: action.payload
+      };
     default:
       return state;
   }
@@ -72,6 +78,13 @@ function setError(error) {
   return {
     type: SET_ERROR,
     payload: error
+  };
+}
+
+function setContact(contacted) {
+  return {
+    type: SET_CONTACT,
+    payload: contacted
   };
 }
 
@@ -146,4 +159,24 @@ function register({ email, nickname, password, password_confirmation, name }, lo
   };
 }
 
-export { userReducer, login, logout, getUserData, register };
+function contact(userData) {
+  return (dispatch) => {
+    dispatch(setError(null));
+    dispatch(setLoading(true));
+    postWithHeaders({
+      url: `${config.API_URL}/api/contact/`,
+      body: userData,
+      onSuccess({ token }) {
+        localStorage.token = token;
+        dispatch(setContact(true));
+        dispatch(setLoading(false));
+      },
+      onError(error) {
+        dispatch(setLoading(false));
+        dispatch(setError(error));
+      }
+    });
+  };
+}
+
+export { userReducer, login, logout, getUserData, register, contact };

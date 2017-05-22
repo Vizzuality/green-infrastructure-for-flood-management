@@ -1,12 +1,18 @@
 .c-btn {
   cursor: pointer;
   display: inline-block;
+  width: 100%;
   padding: ($space-1 * 2) ($space-1 * 4);
   text-transform: uppercase;
+  text-align: center;
   font-size: $font-size-default;
   font-weight: bold;
   border-radius: 2px;
   transition: background-color $animation-time linear;
+
+  @include breakpoint(medium) {
+    width: auto;
+  }
 
   &.-primary {
     background-color: palette(white);
@@ -47,7 +53,7 @@
 
     &.-primary {
       background-color: $color-primary;
-      color: palette(white);
+      color: rgba(palette(white), .9);
 
       &:hover {
         background-color: rgba($color-primary, .9);
@@ -75,7 +81,9 @@
   }
 
   &.-fixed {
-    width: 180px;
+    @include breakpoint(medium) {
+      width: 180px;
+    }
   }
 }
 
@@ -85,9 +93,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  @include breakpoint(medium) {
+    width: auto;
+    flex-direction: row;
+  }
 
   .btn-group-item {
-    margin-right: $space-1 * 3;
+    width: 100%;
+    margin-bottom: $space-1 * 3;
+
+    @include breakpoint(medium) {
+      width: auto;
+      margin-right: $space-1 * 3;
+      margin-bottom: 0;
+    }
 
     &:last-child {
       margin-right: 0;
