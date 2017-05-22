@@ -52,7 +52,7 @@ export default class Introduction extends React.Component {
           <Row>
             <div className="column small-12 medium-8 medium-offset-2">
               <h2>Nature-based or other risk reduction measures?</h2>
-              <img src="" alt="Scheme" />
+              <img src="/images/decision_tree.svg" alt="Scheme" />
             </div>
           </Row>
         </section>}
