@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from 'components/header/Header';
 import Modal from 'components/ui/Modal';
+import OffCanvas from 'components/ui/OffCanvas';
 
 export default class App extends React.Component {
 
@@ -14,6 +15,9 @@ export default class App extends React.Component {
         <main role="main" className="l-main">
           {this.props.main}
         </main>
+        <OffCanvas>
+          <h1>Hello, I'm an off-canvas menu!</h1>
+        </OffCanvas>
         {this.props.footer}
         <Modal
           open={modal.open}
