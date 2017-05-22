@@ -253,6 +253,7 @@ export default class MapPage extends React.Component {
     if (value === 'filters') {
       this.props.toggleModal(true, {
         children: Filters,
+        className: '-fs',
         childrenProps: {
           options: this.props.filtersOptions
         }

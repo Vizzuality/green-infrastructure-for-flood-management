@@ -10,6 +10,25 @@
 
   .segmented-item {
     flex: 1;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      height: 80%;
+      opacity: .7;
+      border-right: 2px solid palette(white);
+      margin: auto;
+    }
+
+    &:last-child {
+      &:before {
+        display: none;
+      }
+    }
   }
 
   .segmented-btn {
