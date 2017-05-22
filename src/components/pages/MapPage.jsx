@@ -49,6 +49,7 @@ export default class MapPage extends React.Component {
     this.onScreenClick = this.onScreenClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.onMobileMenuChange = this.onMobileMenuChange.bind(this);
+    this.showMobileLegend = this.showMobileLegend.bind(this);
   }
 
   /* Component lifecycle */
@@ -250,6 +251,16 @@ export default class MapPage extends React.Component {
     this.props.toggleModal(true, opts);
   }
 
+  showMobileLegend() {
+    this.props.toggleModal(true, {
+      children: Legend,
+      className: '-collapsed',
+      childrenProps: {
+        layersActive: this.props.mapState.layersActive
+      }
+    });
+  }
+
   onMobileMenuChange({ value }) {
     if (value === 'filters') {
       this.props.toggleModal(true, {
@@ -284,8 +295,11 @@ export default class MapPage extends React.Component {
         <button className="share-btn" onClick={this.toggleModal}>
           <SvgIcon name="icon-share" className="-medium" />
         </button>
+        <button className="legend-btn" onClick={this.showMobileLegend}>
+          <SvgIcon name="icon-share" className="-medium" />
+        </button>
         <OnlyOn device="mobile">
-          <SegmentedUi items={items} onChange={this.onMobileMenuChange} />
+          {!this.props.projectDetail && <SegmentedUi items={items} onChange={this.onMobileMenuChange} />}
         </OnlyOn>
         <OnlyOn device="desktop">
           <Sidebar

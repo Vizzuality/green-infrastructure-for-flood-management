@@ -38,6 +38,12 @@ $padding: $space-1 * 9;
     }
   }
 
+  &.-collapsed {
+    .modal-content {
+      padding: 0;
+    }
+  }
+
   // Active styles
   &.-hidden {
     opacity: 0;

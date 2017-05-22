@@ -1,9 +1,13 @@
 .c-legend {
-  position: absolute;
+
+  @include breakpoint(medium) {
+    position: absolute;
+    max-width: 200px;
+  }
+
   bottom: 0;
   right: 0;
   z-index: 999;
-  max-width: 200px;
   background-color: palette(white);
   padding-bottom: 20px;
 
@@ -26,6 +30,11 @@
   }
 
   .header {
+
+    @include breakpoint(small only) {
+      display: none;
+    }
+
     color: $color-primary;
     text-transform: uppercase;
     font-weight: bold;
@@ -91,7 +100,10 @@
 
   .layers {
     padding: 10px;
-    border-bottom: 1px solid rgba(palette(black), .2);
+
+    @include breakpoint(medium only) {
+      border-bottom: 1px solid rgba(palette(black), .2);
+    }
 
     .layers-header {
       color: rgba($color-text-1, .9);
