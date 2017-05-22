@@ -10,7 +10,7 @@ $zoom-size: 40px;
   right: 16px;
   width: $zoom-size;
   height: $zoom-size;
-  z-index: 1000;
+  z-index: 999;
   padding: 0;
   background-color: palette(white);
   border-radius: 2px;

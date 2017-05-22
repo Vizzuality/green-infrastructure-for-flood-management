@@ -24,12 +24,13 @@ import Search from 'components/ui/Search';
 import Legend from 'components/ui/Legend';
 import OnlyOn from 'components/ui/Responsive';
 import SegmentedUi from 'components/ui/SegmentedUi';
+import OffCanvas from 'components/ui/OffCanvas';
 
 const million = 1000000;
 const mobileMenuItems = [
   { label: 'Filters', value: 'filters' },
   { label: 'Map', value: 'map' },
-  { label: 'List', value: 'list' }
+  { label: 'Project list', value: 'list' }
 ];
 
 export default class MapPage extends React.Component {
@@ -345,6 +346,7 @@ export default class MapPage extends React.Component {
           </Sidebar>
         </OnlyOn>
         <div className="relative-container">
+          {/* Map and zoom control */}
           <ZoomControl
             zoom={this.props.mapState.zoom}
             onZoomChange={zoom => this.props.setMapLocation({ zoom })}
@@ -352,6 +354,20 @@ export default class MapPage extends React.Component {
             minZoom={mapDefaultOptions.minZoom}
           />
           <Map {...mapParams} />
+          {/* Mobile map and project list */}
+          <OnlyOn device="mobile">
+            <OffCanvas opened={this.state.mobileMenu === 'list'}>
+              {this.props.projectDetail ?
+                <ProjectDetail
+                  data={this.props.projectDetail}
+                  relatedProjects={this.props.relatedProjects || []}
+                  relatedLoading={this.props.relatedLoading}
+                /> :
+                <ProjectList projects={this.props.projects} />
+              }
+            </OffCanvas>
+          </OnlyOn>
+          {/* Desktop legend */}
           <OnlyOn device="desktop">
             <Legend layersActive={this.props.mapState.layersActive} />
           </OnlyOn>

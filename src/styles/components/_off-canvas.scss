@@ -1,0 +1,11 @@
+.c-off-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  z-index: 1000;
+  background-color: palette(white);
+
+  &.-closed {
+    display: none;
+  }
+}
