@@ -6,6 +6,7 @@ import links from 'constants/links';
 import OnlyOn from 'components/ui/Responsive';
 import { toggleMobileMenu } from 'modules/ui';
 import { connect } from 'react-redux';
+import Hamburger from 'react-hamburgers';
 
 function Header(props) {
   const cNames = {
@@ -22,11 +23,11 @@ function Header(props) {
         <OnlyOn device="desktop">
           <Nav className={cNames.nav} links={links} logged={props.logged} />
         </OnlyOn>
-        <button onClick={() => props.dispatch(toggleMobileMenu(!props.mobileMenu.opened))} className={cNames.hamburger} type="button">
-          <span className="hamburger-box">
-            <span className="hamburger-inner" />
-          </span>
-        </button>
+        <Hamburger
+          type="collapse"
+          onClick={() => props.dispatch(toggleMobileMenu(!props.mobileMenu.opened))}
+          active={props.mobileMenu.opened}
+        />
       </div>
     </header>
   );
