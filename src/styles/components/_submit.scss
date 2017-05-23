@@ -1,4 +1,37 @@
 .c-submit {
   display: flex;
   justify-content: center;
+  padding: 50px;
+
+  @include breakpoint(medium) {
+    padding: 116px 0;
+  }
+
+  .c-image-upload {
+    margin-top: 15px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+
+    @include breakpoint(medium) {
+      margin-top: 160px;
+    }
+
+    .action {
+      margin-left: 20px;
+      padding: 5px 30px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.-disabled {
+        background-color: rgba(grey, .5);
+        cursor: not-allowed;
+      }
+    }
+  }
 }

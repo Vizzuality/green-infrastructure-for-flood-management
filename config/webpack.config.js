@@ -62,6 +62,10 @@ const config = {
     extensions: ['', '.js', '.jsx', '.json', '.css', '.scss']
   },
 
+  sassLoader: {
+    includePaths: [path.resolve('node_modules/foundation-sites/scss/')]
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -77,7 +81,9 @@ const config = {
       },
       config: {
         API_URL: JSON.stringify(process.env.API_URL),
-        BASEMAP_TILE_URL: JSON.stringify(process.env.BASEMAP_TILE_URL)
+        BASEMAP_TILE_URL: JSON.stringify(process.env.BASEMAP_TILE_URL),
+        BASEMAP_LABELS_URL: JSON.stringify(process.env.BASEMAP_LABELS_URL),
+        LAYER_URL: JSON.stringify(process.env.LAYER_URL)
       }
     })
   ]

@@ -1,15 +1,17 @@
 import React from 'react';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
+import { SvgIcon } from 'vizz-components';
 import upperFirst from 'lodash/upperFirst';
 import uniq from 'lodash/uniq';
-import { SvgIcon } from 'vizz-components';
 import TetherComponent from 'react-tether';
 import isUrl from 'validator/lib/isURL';
+
 import { setNumberFormat, saveAsFile } from 'utils/general';
 import ProjectList from 'components/projects/ProjectList';
 import { Row } from 'components/ui/Grid';
 import PlusNumber from 'components/ui/PlusNumber';
+import Info from 'components/ui/Info';
 
 // Modules
 import { dispatch } from 'main';
@@ -110,6 +112,7 @@ export default class ProjectDetail extends React.Component {
       </li>
     ));
     const countries = uniq(data.locations.map(l => l.adm0_name));
+    const natureBaseInfo = 'Explanation text lorem ipsum id casius nibh uricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna.';
 
     return (
       <article className="c-project-detail">
@@ -118,13 +121,13 @@ export default class ProjectDetail extends React.Component {
             <SvgIcon className="project-back-icon" name="icon-arrow-left-2" />
             Project list
           </Link>
+
           <div className="project-actions">
-            <button
-              className="c-btn -transparent action"
-              type="button"
-              onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
-            >
-              Download PDF
+            <button className="c-btn -transparent action">
+              <Link to={`/download/project/${data.id}`} className="action">
+                <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
+                Download PDF
+              </Link>
             </button>
           </div>
         </div>
@@ -160,7 +163,6 @@ export default class ProjectDetail extends React.Component {
               }
             </TetherComponent>
           }
-
           <div className="pair-data">
             <span className="project-data">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
             <span className="project-data">{data.country}</span>
@@ -202,12 +204,7 @@ export default class ProjectDetail extends React.Component {
               <div className="column small-12">
                 <span className="label -info">
                   Nature based solutions
-                  <span className="info">
-                    <SvgIcon className="info-icon -smaller" name="icon-info" />
-                    <div className="c-dropdown -arrow-bottom">
-                      <p className="text">Explanation text lorem ipsum id casius nibh uricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna.</p>
-                    </div>
-                  </span>
+                  <Info text={natureBaseInfo} />
                 </span>
                 <ul className="value -big">{setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
@@ -277,11 +274,6 @@ export default class ProjectDetail extends React.Component {
             <span className="value">{data.benefit_details}</span>
           </div>}
 
-          {data.learn_more && data.learn_more !== '' && <div className="project-info-item">
-            <span className="label">Learn more</span>
-            <span className="value">{isUrl(data.learn_more) ? <a className="link" href={data.learn_more}>{data.learn_more}</a> : data.learn_more}</span>
-          </div>}
-
           {data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
             <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
@@ -291,7 +283,7 @@ export default class ProjectDetail extends React.Component {
         {this.props.relatedProjects && this.props.relatedProjects.length > 0 &&
           <div className="project-detail-related">
             <header className="header">
-              <h2 className="title">Realted Projects</h2>
+              <h2 className="title">Related Projects</h2>
             </header>
             <div className="related-projects">
               <ProjectList projects={this.props.relatedProjects} />

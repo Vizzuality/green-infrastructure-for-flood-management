@@ -16,7 +16,7 @@ export default class Search extends React.Component {
 
   /* Render */
   render() {
-    const { focus, placeholder, onClear, ...props } = this.props;
+    const { focus, clear, placeholder, onClear, ...props } = this.props;
     return (
       <div className="c-search">
         <SvgIcon className="search-icon" name="icon-search" />
@@ -27,7 +27,7 @@ export default class Search extends React.Component {
           placeholder={placeholder || 'Search'}
           {...props}
         />
-        {props.close && <button onClick={() => this.clear()} className="clear-btn">
+        {clear && <button onClick={() => this.clear()} className="clear-btn">
           <SvgIcon className="clear-icon" name="icon-cross" />
         </button>}
       </div>
@@ -37,6 +37,7 @@ export default class Search extends React.Component {
 
 Search.propTypes = {
   focus: React.PropTypes.bool,
+  clear: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
   onClear: React.PropTypes.func
 };
