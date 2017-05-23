@@ -5,7 +5,6 @@ export default class ZoomControl extends React.Component {
 
   constructor(props) {
     super(props);
-
     // Bindings
     this.increaseZoom = this.increaseZoom.bind(this);
     this.decreaseZoom = this.decreaseZoom.bind(this);
@@ -61,6 +60,6 @@ ZoomControl.propTypes = {
 
 ZoomControl.defaultProps = {
   zoom: 3,
-  maxZoom: 7,
-  minZoom: 2
+  maxZoom: 18,
+  minZoom: 0
 };

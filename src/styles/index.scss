@@ -1,7 +1,7 @@
 /* Settings */
+@import "reset";
 @import "settings";
 @import "functions";
-@import "reset";
 @import "base";
 @import "animations";
 @import "mixins";
@@ -32,7 +32,6 @@
 @import "components/marker";
 @import "components/spinner";
 @import "components/checkbox";
-@import "components/btn";
 @import "components/icon";
 @import "components/text";
 @import "components/home";
@@ -40,3 +39,6 @@
 @import "components/sort_by";
 @import "components/dropdown";
 @import "components/tooltip";
+@import "components/submit";
+@import "components/plus_number";
+@import "components/modal";

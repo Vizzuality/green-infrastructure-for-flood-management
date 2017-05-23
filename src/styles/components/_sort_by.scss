@@ -4,6 +4,7 @@
 
   label {
     margin-right: 3px;
+    cursor: pointer;
   }
 
   .type {
@@ -42,4 +43,8 @@
       }
     }
   }
+}
+
+.c-dropdown.-sortby {
+  width: 160px;
 }

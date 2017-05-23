@@ -1,14 +1,14 @@
 const links = [
   {
-    text: 'Map of global projects',
+    text: 'Map of projects',
     href: '/map'
   },
   {
-    text: 'Resources',
+    text: 'Guidance',
     href: '/resources'
   },
   {
-    text: 'Submit',
+    text: 'Submit a project',
     href: '/submit'
   },
   {

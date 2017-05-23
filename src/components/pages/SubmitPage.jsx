@@ -7,8 +7,8 @@ import BtnGroup from 'components/ui/BtnGroup';
 export default class HomePage extends React.Component {
   render() {
     return (
-      <div>
-        <img src="/images/sumbit_image.svg" />
+      <div className="c-submit">
+        <img src="/images/submit_image.svg" />
       </div>
     );
   }

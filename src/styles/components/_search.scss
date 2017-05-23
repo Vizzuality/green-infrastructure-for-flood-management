@@ -5,7 +5,7 @@ $_separation: ($space-1 * 4);
   display: flex;
   align-items: center;
   padding: 18px $_separation;
-  background-color: rgba(palette(black), .04);
+  // background-color: rgba(palette(black), .04);
 
   .search-input {
     display: block;
@@ -14,7 +14,6 @@ $_separation: ($space-1 * 4);
     border: none;
     color: $color-text-1;
     font-size: $font-size-big;
-    margin-right: 20px;
 
     &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
       text-transform: uppercase;
@@ -43,8 +42,19 @@ $_separation: ($space-1 * 4);
   }
 
   .search-icon {
-    fill: $primary-color;
+    fill: rgba(palette(gray, medium), .3);
     width: 18px;
     height: 18px;
+    margin-right: 5px;
+  }
+
+  .clear-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .clear-icon {
+      fill: rgba(palette(gray, medium), .5);
+    }
   }
 }

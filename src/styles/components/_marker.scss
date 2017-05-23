@@ -1,7 +1,8 @@
 .leaflet-marker-icon {
   /* !important for overriding Leaflet inline styles */
   border-radius: 50% !important;
-	background-color: palette(yellow);
+	background-color: $primary-color;
+  color: palette(white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,4 +10,20 @@
   font-size: $font-size-default;
   font-weight: 600;
   box-shadow: 0 0 8px 0 rgba(black, 0.16);
+
+  &.-current {
+    cursor: auto !important;
+    background-color: palette(yellow);
+    box-shadow: none;
+    // TODO: set zIndex using Leaflet
+    z-index: 999 !important;
+  }
+
+  &.-centroid {
+    border: 2px solid palette(white);
+    background-color: palette(yellow);
+    box-shadow: none;
+    // TODO: set zIndex using Leaflet
+    z-index: 999 !important;
+  }
 }

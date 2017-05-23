@@ -1,27 +1,38 @@
 import { connect } from 'react-redux';
 import MapPage from './MapPage';
-import { getProjects, setProjectsDetail, setProjectsFilters } from 'modules/projects';
+import { getProjects, setProjectsDetail, setProjectsFilters, resetProjectFilters } from 'modules/projects';
 import getProjectDetails from 'selectors/project_detail';
 import { updateUrl } from 'modules/url';
-import { setMapLocation } from 'modules/map';
-import { setSidebarWidth } from 'modules/ui'
+import { setMapLocation, resetMapState } from 'modules/map';
+import { setSidebarWidth, setFiltersUi, resetFiltersUi } from 'modules/ui';
+import { toggleModal } from 'modules/modal';
+import { getFiltersOptions } from 'modules/filters_options';
 
 const mapStateToProps = state => ({
   filters: state.projects.filters,
   mapState: state.map,
   projects: state.projects.list,
   loading: state.projects.loading,
+  relatedProjects: state.projects.relatedProjects,
+  relatedLoading: state.projects.relatedLoading,
   projectDetail: getProjectDetails(state),
-  sidebarWidth: state.ui.sidebar.width
+  sidebarWidth: state.ui.sidebar.width,
+  filtersUi: state.ui.filters,
+  filtersOptions: state.filtersOptions.options
 });
 
 const mapDispatchToProps = dispatch => ({
+  setFiltersUi(params) {
+    dispatch(setFiltersUi(params));
+  },
   setSidebarWidth(width) {
     dispatch(setSidebarWidth(width));
   },
-  setProjectsDetail(projectId) {
-    dispatch(setProjectsDetail(projectId));
-    dispatch(updateUrl());
+  resetMapState() {
+    dispatch(resetMapState());
+    dispatch(resetProjectFilters());
+    dispatch(resetFiltersUi());
+    dispatch(setProjectsDetail(null));
   },
   setMapLocation(params) {
     dispatch(setMapLocation(params));
@@ -32,6 +43,12 @@ const mapDispatchToProps = dispatch => ({
   },
   getProjects(query) {
     dispatch(getProjects(query));
+  },
+  toggleModal(open, opts) {
+    dispatch(toggleModal(open, opts));
+  },
+  getFiltersOptions() {
+    dispatch(getFiltersOptions());
   },
   setProjectsFilters: (filters) => {
     dispatch(setProjectsFilters(filters));
