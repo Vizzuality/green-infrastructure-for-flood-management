@@ -289,6 +289,14 @@ export default class MapPage extends React.Component {
     const filtersTags = this.setFiltersTags(intoArrayFilters);
     const filtersQuery = this.getQuery(this.props.filters);
     const items = mobileMenuItems.filter(i => i.value !== this.state.mobileMenu);
+    const searchComponent = <Search
+      focus={this.props.filtersUi.searchFocus}
+      defaultValue={this.props.filters.name}
+      onChange={evt => this.onSearchChange(evt.target.value)}
+      onClear={() => this.props.setProjectsFilters({ name: '' })}
+      placeholder="Search project"
+      clear
+    />;
 
     return (
       <div className="c-map-page l-map-page">
@@ -332,15 +340,7 @@ export default class MapPage extends React.Component {
                   <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
                 </SlidingMenu>
                 <div className="list-actions">
-                  <Search
-                    focus={this.props.filtersUi.searchFocus}
-                    defaultValue={this.props.filters.name}
-                    onChange={evt => this.onSearchChange(evt.target.value)}
-                    onClear={() => this.props.setProjectsFilters({ name: '' })}
-                    placeholder="Search project"
-                    clear
-                  />
-
+                  {searchComponent}
                   <div className="sidebar-actions">
                     <SortBy
                       order={this.props.filters.order}
@@ -371,6 +371,7 @@ export default class MapPage extends React.Component {
           {/* Mobile map and project list */}
           <OnlyOn device="mobile">
             <OffCanvas className="-projects" opened={this.state.mobileMenu === 'list'}>
+              {searchComponent}
               {this.props.projectDetail ?
                 <ProjectDetail
                   data={this.props.projectDetail}
