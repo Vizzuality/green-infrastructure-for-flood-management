@@ -1,8 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export default function OffCanvas({ children, opened }) {
+export default function OffCanvas({ children, opened, className }) {
   const cNames = classnames('c-off-canvas', {
+    [className]: !!className,
     '-closed': !opened
   });
 
@@ -14,5 +15,6 @@ export default function OffCanvas({ children, opened }) {
 }
 
 OffCanvas.propTypes = {
+  className: React.PropTypes.string,
   opened: React.PropTypes.bool
 };

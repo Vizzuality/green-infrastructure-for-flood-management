@@ -370,7 +370,7 @@ export default class MapPage extends React.Component {
           <Map {...mapParams} />
           {/* Mobile map and project list */}
           <OnlyOn device="mobile">
-            <OffCanvas opened={this.state.mobileMenu === 'list'}>
+            <OffCanvas className="-projects" opened={this.state.mobileMenu === 'list'}>
               {this.props.projectDetail ?
                 <ProjectDetail
                   data={this.props.projectDetail}

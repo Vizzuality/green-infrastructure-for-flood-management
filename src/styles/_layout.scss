@@ -3,11 +3,24 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: transform $animation-time $ease-out-cubic;
+
+  @include breakpoint(small only) {
+    &.-pushed {
+      transform: translateX(-300px);
+    }
+  }
 }
 
 /* Main content */
 .l-main {
   flex: 1;
+  position: relative;
+}
+
+.main-content {
+  height: 100%;
+  transform: translateX(0);
 }
 
 /* Wrappers */
@@ -26,4 +39,3 @@
     flex-direction: column;
   }
 }
-

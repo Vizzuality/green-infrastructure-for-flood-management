@@ -9,10 +9,11 @@ import { connect } from 'react-redux';
 import Hamburger from 'react-hamburgers';
 
 function Header(props) {
+
   const cNames = {
-    header: classnames('c-header', { '-home': window.location.pathname === '/' }),
-    nav: classnames('header-nav', { '-home': window.location.pathname === '/' }),
-    headerContent: classnames('header-content', { 'l-app-wrapper': !window.location.pathname.startsWith('/map') }),
+    header: classnames('c-header', { '-home': props.path === '/' }),
+    nav: classnames('header-nav', { '-home': props.path === '/' }),
+    headerContent: classnames('header-content', { 'l-app-wrapper': !props.path.startsWith('/map') }),
     hamburger: classnames('hamburger', 'hamburger--collapse', { 'is-active': props.mobileMenu.opened })
   };
 
@@ -36,7 +37,8 @@ function Header(props) {
 Header.propTypes = {
   logged: React.PropTypes.bool,
   mobileMenu: React.PropTypes.object,
-  dispatch: React.PropTypes.func
+  dispatch: React.PropTypes.func,
+  path: React.PropTypes.string
 };
 
 const mapStateToProps = ({ ui }) => ({

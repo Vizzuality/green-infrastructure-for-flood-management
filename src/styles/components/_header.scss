@@ -17,6 +17,14 @@
     .logo {
       color: palette(white);
     }
+
+    .hamburger {
+      .hamburger-inner {
+        &, &:before, &:after {
+          background-color: palette(white);
+        }
+      }
+    }
   }
 
   .header-content {
