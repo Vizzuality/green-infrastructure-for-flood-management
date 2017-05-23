@@ -83,10 +83,19 @@
     }
 
     &.-in-row {
-      display: flex;
-      flex-flow: row;
+
+      @include breakpoint(medium) {
+        display: flex;
+        flex-flow: row;
+      }
 
        .row-field {
+        margin-bottom: 40px;
+
+        @include breakpoint(medium) {
+          margin-bottom: 0;
+        }
+
         flex-grow: 1;
         display: flex;
         flex-flow: column;
@@ -203,12 +212,24 @@
   }
 
   .c-checkbox-box {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
+    @include breakpoint(large) {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+    }
   }
 
   .c-checkbox {
+    width: 50%;
+    float: left;
+    margin: 20px 0;
+
+    @include breakpoint(large) {
+      float: none;
+      width: auto;
+      margin-bottom: 10px;
+    }
+
     input[type=checkbox]:checked + label {
       .checkbox-icon {
         background-color: transparent;
