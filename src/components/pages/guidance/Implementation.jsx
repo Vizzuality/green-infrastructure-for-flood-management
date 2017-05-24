@@ -40,6 +40,7 @@ export default class Implementation extends React.Component {
       .offset(-10)
       .addTo(controller);
 
+
     // build sections scene
     triggers.forEach((tr, i) => {
       new ScrollMagic.Scene({
