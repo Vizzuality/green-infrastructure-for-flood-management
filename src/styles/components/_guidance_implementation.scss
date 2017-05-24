@@ -11,10 +11,12 @@
     border-left: 4px solid $color-secondary;
     margin-left: -10px;
     padding-left: 14px;
+    margin-left: 20px;
 
     @media #{$mq-medium} {
       margin-left: -18px;
       padding-left: 22px;
+      margin-left: 0;
     }
   }
 
@@ -27,6 +29,10 @@
 
       &:last-child { margin-bottom: 0; }
     }
+  }
+
+  section {
+    margin-bottom: 40px;
   }
 
   .show-steps {
@@ -57,9 +63,14 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      width: 45%;
+      left: 50%;
+      transform: translatex(-50%);
+      width: 90%;
       border-top: 1px solid $color-secondary;
+
+      @media #{$mq-medium} {
+        width: 70%;
+      }
     }
 
     &:hover { opacity: .7; }

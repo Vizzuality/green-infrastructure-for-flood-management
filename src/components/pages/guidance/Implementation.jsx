@@ -11,11 +11,12 @@ export default class Implementation extends React.Component {
     const controller = new ScrollMagic.Controller();
 
     if (isDevice()) {
+      //This fn seems not to be working. It goes to the else in mobile.
       this.setStepsButtonScene(controller);
       this.setAnchorScroll('js-scroll-steps');
       this.setAnchorScroll('js-scroll-steps-end');
     } else {
-      this.setFixedMenuScenes(controller, triggers);
+      // this.setFixedMenuScenes(controller, triggers);
     }
 
     triggers.forEach((tr, i) => this.setAnchorScroll(`js-scroll-imp${i + 1}`));
@@ -40,12 +41,12 @@ export default class Implementation extends React.Component {
       .offset(-10)
       .addTo(controller);
 
-
     // build sections scene
     triggers.forEach((tr, i) => {
       new ScrollMagic.Scene({
         triggerElement: `#${tr}`,
         triggerHook: 'onLeave',
+        //For some reason, not all of the items are present so we have a problem to get the offsetHeight. I think this is due to the "see all steps" thing.
         duration: document.querySelector(`#${tr}`).offsetHeight
       })
       .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
