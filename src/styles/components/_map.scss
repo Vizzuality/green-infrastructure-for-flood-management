@@ -6,11 +6,38 @@ $zoom-size: 40px;
 
 .share-btn {
   position: absolute;
-  top: 100px;
+  top: 155px;
   right: 16px;
   width: $zoom-size;
   height: $zoom-size;
-  z-index: 1000;
+  z-index: 999;
+  padding: 0;
+  background-color: palette(white);
+  border-radius: 2px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+
+  @include breakpoint(medium) {
+    top: 100px;
+  }
+
+  svg {
+    fill: $color-primary;
+    margin-top: 3px;
+  }
+}
+
+.legend-btn {
+
+  @include breakpoint(medium) {
+    display: none;
+  }
+
+  position: absolute;
+  top: 200px;
+  right: 16px;
+  width: $zoom-size;
+  height: $zoom-size;
+  z-index: 999;
   padding: 0;
   background-color: palette(white);
   border-radius: 2px;
@@ -29,7 +56,7 @@ $zoom-size: 40px;
 
 .leaflet-control-attribution {
   color: rgba(black, .3);
-  
+
   a {
     color: rgba(black, .3);
   }

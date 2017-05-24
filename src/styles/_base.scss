@@ -57,3 +57,19 @@ input[type="search"] {
     display: block;
   }
 }
+
+.relative-container {
+  height: 100%;
+  position: relative;
+
+  @include breakpoint(small only) {
+    // flex: 1;
+    overflow-y: auto;
+    // height: calc(100% - 54px);
+  }
+
+  // > div {
+  //   height: 100%;
+  //   position: relative;
+  // }
+}
