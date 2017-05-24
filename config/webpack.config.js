@@ -63,7 +63,10 @@ const config = {
   },
 
   sassLoader: {
-    includePaths: [path.resolve('node_modules/foundation-sites/scss/')]
+    includePaths: [
+      path.resolve('node_modules/foundation-sites/scss/'),
+      path.resolve('node_modules/hamburgers/_sass/hamburgers/')
+    ]
   },
 
   plugins: [

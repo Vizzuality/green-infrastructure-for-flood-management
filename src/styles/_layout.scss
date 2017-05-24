@@ -1,13 +1,27 @@
 /* app */
 .l-app {
   height: 100vh;
+  min-width: $app-min-width;
   display: flex;
   flex-direction: column;
+  transition: transform $animation-time $ease-out-cubic;
+
+  @include breakpoint(small only) {
+    &.-pushed {
+      transform: translateX(-300px);
+    }
+  }
 }
 
 /* Main content */
 .l-main {
   flex: 1;
+  position: relative;
+}
+
+.main-content {
+  height: 100%;
+  transform: translateX(0);
 }
 
 /* Wrappers */
@@ -30,4 +44,9 @@
 .l-map-page {
   position: relative;
   height: 100%;
+
+  @include breakpoint(small only) {
+    display: flex;
+    flex-direction: column;
+  }
 }

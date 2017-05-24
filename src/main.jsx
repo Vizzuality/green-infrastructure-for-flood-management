@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import authRedirectMiddleware from 'middlewares/auth-redirect';
+import mobileMenuMiddleware from 'middlewares/mobile-menu';
 
 import * as reducers from './modules';
 import Routes from './routes';
@@ -33,7 +34,7 @@ const store = createStore(
   compose(
     /* The router middleware MUST be before thunk otherwise the URL changes
     * inside a thunk function won't work properly */
-    applyMiddleware(middlewareRouter, authRedirectMiddleware, thunk),
+    applyMiddleware(middlewareRouter, mobileMenuMiddleware, authRedirectMiddleware, thunk),
     /* Redux dev tool, install chrome extension in
      * https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en */
     typeof window === 'object' &&

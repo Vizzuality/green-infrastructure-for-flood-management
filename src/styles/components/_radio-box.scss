@@ -1,13 +1,23 @@
 .c-radio-box {
-  display: flex;
-  flex-wrap: wrap;
+  @include breakpoint(medium) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   .radio-item {
     display: flex;
     align-items: center;
-    margin-right: 35px;
-    margin-bottom: 10px;
-    cursor: pointer;
+    width: 50%;
+    float: left;
+    margin: 20px 0;
+
+    @include breakpoint(medium) {
+      width: auto;
+      margin-right: 35px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
 
     &:last-child {
       margin-left: 0;

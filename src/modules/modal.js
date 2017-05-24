@@ -5,7 +5,7 @@ const MODAL_LOADING = 'MODAL_LOADING';
 
 // ACTIONS
 export function closeModal() {
-  return dispatch => dispatch({ type: MODAL_TOGGLE });
+  return { type: MODAL_TOGGLE };
 }
 
 export function toggleModal(open, opts = {}) {
@@ -18,32 +18,42 @@ export function toggleModal(open, opts = {}) {
 }
 
 export function modalLoading(loading) {
-  return dispatch => dispatch({ type: MODAL_LOADING, payload: loading });
+  return { type: MODAL_LOADING, payload: loading };
 }
 
 export function setModalOptions(opts) {
-  return dispatch => dispatch({ type: MODAL_SET_OPTIONS, payload: opts });
+  return { type: MODAL_SET_OPTIONS, payload: opts };
 }
 
 // REDUCER
 const initialState = {
   open: false,
+  loading: false,
   options: {
+    className: '',
     children: null,
     childrenProps: null,
     size: ''
-  },
-  loading: false
+  }
 };
 
 export function modalReducer(state = initialState, action) {
   switch (action.type) {
     case MODAL_TOGGLE:
-      return Object.assign({}, state, { open: action.payload });
+      return {
+        ...state,
+        open: action.payload
+      };
     case MODAL_SET_OPTIONS:
-      return Object.assign({}, state, { options: action.payload });
+      return {
+        ...state,
+        options: action.payload
+      };
     case MODAL_LOADING:
-      return Object.assign({}, state, { loading: action.payload });
+      return {
+        ...state,
+        loading: action.payload
+      };
     default:
       return state;
   }

@@ -2,9 +2,13 @@
 const SET_SIDEBAR_WIDTH = 'SET_SIDEBAR_WIDTH';
 const SET_FILTERS_UI = 'SET_FILTERS_UI';
 const RESET_FILTERS_UI = 'RESET_FILTERS_UI';
+const MOBILE_MENU_TOGGLE = 'MOBILE_MENU_TOGGLE';
 
 /* Initial state */
 const initialState = {
+  mobileMenu: {
+    opened: false
+  },
   sidebar: {
     width: 0
   },
@@ -17,6 +21,11 @@ const initialState = {
 /* Reducer */
 function uiReducer(state = initialState, action) {
   switch (action.type) {
+    case MOBILE_MENU_TOGGLE:
+      return {
+        ...state,
+        mobileMenu: { opened: action.payload }
+      };
     case SET_SIDEBAR_WIDTH:
       return {
         ...state,
@@ -41,6 +50,13 @@ function uiReducer(state = initialState, action) {
 }
 
 /* Action creators */
+function toggleMobileMenu(opened) {
+  return {
+    type: MOBILE_MENU_TOGGLE,
+    payload: opened
+  };
+}
+
 function setSidebarWidth(width) {
   return {
     type: SET_SIDEBAR_WIDTH,
@@ -61,4 +77,4 @@ function resetFiltersUi() {
   };
 }
 
-export { uiReducer, setSidebarWidth, setFiltersUi, resetFiltersUi };
+export { uiReducer, setSidebarWidth, setFiltersUi, resetFiltersUi, toggleMobileMenu };

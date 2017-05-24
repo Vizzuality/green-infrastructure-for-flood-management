@@ -1,28 +1,43 @@
 import React from 'react';
 import Header from 'components/header/Header';
 import Modal from 'components/ui/Modal';
+import OffCanvas from 'components/ui/OffCanvas';
+import OnlyOn from 'components/ui/Responsive';
+import classnames from 'classnames';
+import links from 'constants/links';
+import Nav from 'components/ui/Nav';
+
 
 export default class App extends React.Component {
 
   render() {
+    const cNames = classnames('l-app', { '-pushed': this.props.mobileMenu.opened });
     const isDownload = this.props.location.pathname.includes('/download/project/');
     const { modal, logged } = this.props;
 
     return (
-      <div className="l-app">
-        {!isDownload && <Header logged={logged} />}
-
-        <main role="main" className="l-main">
-          {this.props.main}
-        </main>
-        {this.props.footer}
-        <Modal
-          open={modal.open}
-          options={modal.options}
-          loading={modal.loading}
-          toggleModal={this.props.toggleModal}
-          setModalOptions={this.props.setModalOptions}
-        />
+      <div>
+        <div className={cNames}>
+          {!isDownload && <Header path={this.props.location.pathname} logged={logged} />}
+          <main role="main" className="l-main">
+            <div className="main-content">
+              {this.props.main}
+            </div>
+          </main>
+          {this.props.footer}
+          <Modal
+            open={modal.open}
+            options={modal.options}
+            loading={modal.loading}
+            toggleModal={this.props.toggleModal}
+            setModalOptions={this.props.setModalOptions}
+          />
+        </div>
+        <OnlyOn device="mobile">
+          <OffCanvas opened={this.props.mobileMenu.opened} className="-mobile-menu">
+            <Nav className="-stacked" links={links} logged={logged} />
+          </OffCanvas>
+        </OnlyOn>
       </div>
     );
   }
@@ -32,6 +47,7 @@ App.propTypes = {
   main: React.PropTypes.element,
   footer: React.PropTypes.element,
   location: React.PropTypes.object,
+  mobileMenu: React.PropTypes.object,
   modal: React.PropTypes.object,
   logged: React.PropTypes.bool,
   // Functions
