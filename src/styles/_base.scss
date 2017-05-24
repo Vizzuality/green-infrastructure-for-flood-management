@@ -58,6 +58,12 @@ input[type="search"] {
   }
 }
 
+.is-desktop-hidden {
+  @media (min-width: $breakpoint-desktop) {
+    display: none;
+  }
+}
+
 .relative-container {
   height: 100%;
   position: relative;
