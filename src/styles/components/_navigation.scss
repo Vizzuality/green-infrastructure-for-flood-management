@@ -11,8 +11,13 @@
   }
 
   &.-footer {
+    .nav-list {
+      align-items: center;
+    }
+
     .nav-link {
       font-weight: normal;
+      text-align: center;
 
       &:hover:before {
         display: none;
