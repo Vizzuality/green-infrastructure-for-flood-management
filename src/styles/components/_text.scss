@@ -52,6 +52,7 @@
   }
 }
 
+
 .h2 {
   font-size: $font-size-big;
   line-height: 2.06;
@@ -66,6 +67,12 @@
   margin-bottom: $space-1 * 5;
 
   &.-secondary {
+    color: palette(white);
+  }
+
+  &.-panel-header {
+    font-size: $font-size-medium-huge;
+    line-height: 1.47;
     color: palette(white);
   }
 }

@@ -77,6 +77,7 @@ export default class Filters extends React.Component {
     const { options } = this.props;
     return (
       <div className="c-filters">
+        <h3 className="text -panel-header is-desktop-hidden">Filters</h3>
         <div className="fields-wrapper">
           {/* Organizations */}
           <div className="filter-field">
