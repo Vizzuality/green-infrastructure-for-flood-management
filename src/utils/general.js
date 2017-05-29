@@ -29,6 +29,11 @@ function saveAsFile(fileUrl, fileName) {
   document.body.removeChild(a);
 }
 
+function isDevice() {
+  const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return mobileRegex.test(navigator.userAgent);
+}
+
 function toBase64(file, cb) {
   const reader = new FileReader();
   reader.onload = (event) => {
@@ -37,4 +42,4 @@ function toBase64(file, cb) {
   reader.readAsDataURL(file);
 }
 
-export { setNumberFormat, saveAsFile, toBase64 };
+export { setNumberFormat, saveAsFile, toBase64, isDevice };

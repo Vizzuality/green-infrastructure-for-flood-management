@@ -34,6 +34,16 @@
   margin: 0 auto;
 }
 
+.wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media #{$mq-medium} {
+    padding-left: 170px;
+    padding-right: 170px;
+  }
+}
+
 /* Pages */
 .l-map-page {
   position: relative;

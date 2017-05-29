@@ -1,0 +1,91 @@
+
+.c-guidance {
+  .guidance-section {
+    padding-top: 42px;
+    padding-bottom: 42px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    @media #{$mq-medium} {
+      padding-top: 116px;
+      padding-bottom: 116px;
+    }
+
+    &.-header {
+      position: relative;
+      background-image: url("/images/header.jpg");
+      padding-top: 80px;
+      padding-bottom: 28px;
+
+      @media #{$mq-medium} {
+        padding-top: 160px;
+        padding-bottom: 60px;
+      }
+
+      .intro {
+        color: palette(white);
+        font-size: 26px;
+        line-height: 33px;
+
+        @media #{$mq-medium} {
+          font-size: 18px;
+          line-height: 33px;
+        }
+      }
+    }
+
+    &.-tabs-header {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .tab-section {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+
+    @media #{$mq-medium} {
+      padding-top: 50px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 46px;
+    margin-bottom: 42px;
+    color: rgba($color-text-1, .9);
+
+    @media #{$mq-medium} {
+      font-size: 40px;
+    }
+  }
+
+  .tag {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    color: rgba($color-text-1, .9);
+  }
+
+  .info-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: rgba($color-text-1, .9);
+    margin-bottom: 15px;
+    line-height: 20px;
+
+    &.-principal {
+      color: $color-primary;
+      font-weight: bold;
+    }
+
+    &.-secondary {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  }
+}

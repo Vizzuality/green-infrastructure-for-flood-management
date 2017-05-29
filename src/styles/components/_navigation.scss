@@ -11,8 +11,28 @@
   }
 
   &.-footer {
+    @include breakpoint(small only) {
+      .nav-list {
+        margin: 0 10px;
+      }
+
+      .nav-item {
+        margin-right: 20px;
+      }
+
+      .nav-link {
+        font-size: 12px;
+        padding: 20px 5px;
+      }
+    }
+
+    .nav-list {
+      align-items: center;
+    }
+
     .nav-link {
       font-weight: normal;
+      text-align: center;
 
       &:hover:before {
         display: none;
