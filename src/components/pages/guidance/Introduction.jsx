@@ -9,7 +9,7 @@ export default class Introduction extends React.Component {
       <div className="c-guidance-introduction">
         <section className="tab-section wrapper">
           <Row>
-            <div className="column small-12 medium-8 medium-offset-2">
+            <div className="column small-12 large-8 large-offset-2">
               <h3 className="tag">Guidance</h3>
               <h1 className="title">Introduction</h1>
               <div className="intro-graph">

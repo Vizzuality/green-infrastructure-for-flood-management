@@ -60,7 +60,7 @@ export default class Principles extends React.Component {
         {/* Heading section */}
         <section className="tab-section -intro wrapper">
           <Row>
-            <div className="column small-12 medium-8 medium-offset-2">
+            <div className="column small-12 large-8 large-offset-2">
               <h3 className="tag">Guidance</h3>
               <h1 className="title">Guiding principles</h1>
               <p className="text">Recent years have yielded numerous pilot projects and technical reports on the implementation of nature-based solutions for flood risk management. The following basic principles can be used to guide project development in the field. The main purpose of these principles is to build on best practices and prevent common pitfalls in the use of nature-based solutions. As such, these principles are meant as guidance for project development and initiation and not as a specific design manual. For more detailed information on design we refer to existing technical guidelines (including NOAA and Ecoshape[]) and guidelines under development (USACE).</p>
@@ -72,7 +72,7 @@ export default class Principles extends React.Component {
         {/* Principles accordion */}
         <section className="tab-section -principles wrapper">
           <Row>
-            <div className="column small-12 medium-8 medium-offset-2">
+            <div className="column small-12 large-8 large-offset-2">
               {this.renderPanels()}
             </div>
           </Row>
