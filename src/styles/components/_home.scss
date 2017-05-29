@@ -66,8 +66,16 @@
   display: flex;
   align-items: center;
 
+  a {
+    display: inline-block;
+  }
+
   li {
-    margin-right: $space-1 * 9;
+    margin-right: $space-1 * 4;
+
+    @include breakpoint(medium) {
+      margin-right: $space-1 * 9;
+    }
 
     &:last-child {
       margin-right: 0;
