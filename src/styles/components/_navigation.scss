@@ -11,11 +11,52 @@
   }
 
   &.-footer {
+    @include breakpoint(small only) {
+      .nav-list {
+        margin: 0 10px;
+      }
+
+      .nav-item {
+        margin-right: 20px;
+      }
+
+      .nav-link {
+        font-size: 12px;
+        padding: 20px 5px;
+      }
+    }
+
+    .nav-list {
+      align-items: center;
+    }
+
     .nav-link {
       font-weight: normal;
+      text-align: center;
 
       &:hover:before {
         display: none;
+      }
+    }
+  }
+
+  &.-stacked {
+    .nav-list {
+      display: block;
+    }
+
+    .nav-item {
+      margin-right: 0;
+    }
+
+    .nav-link {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: $font-size-big;
+      color: palette(white);
+
+      &.-active {
+        color: $color-secondary;
       }
     }
   }

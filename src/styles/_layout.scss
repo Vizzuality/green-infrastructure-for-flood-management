@@ -1,13 +1,31 @@
 /* app */
 .l-app {
   height: 100vh;
+  min-width: $app-min-width;
   display: flex;
   flex-direction: column;
+  transition: transform $animation-time $ease-out-cubic;
+
+  &.-pushed {
+    transform: translateX(-300px);
+  }
+
+  @include breakpoint(large) {
+    &.-pushed {
+      transform: translateX(0);
+    }
+  }
 }
 
 /* Main content */
 .l-main {
   flex: 1;
+  position: relative;
+}
+
+.main-content {
+  height: 100%;
+  transform: translateX(0);
 }
 
 /* Wrappers */
@@ -16,9 +34,23 @@
   margin: 0 auto;
 }
 
+.wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media #{$mq-medium} {
+    padding-left: 170px;
+    padding-right: 170px;
+  }
+}
+
 /* Pages */
 .l-map-page {
   position: relative;
   height: 100%;
-}
 
+  @include breakpoint(small only) {
+    display: flex;
+    flex-direction: column;
+  }
+}

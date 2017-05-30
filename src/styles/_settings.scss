@@ -1,5 +1,6 @@
 // Max widths
 $app-width: 1280px;
+$app-min-width: 320px;
 
 // Modal sizes
 $max-width-modal: 1040px;
@@ -86,10 +87,28 @@ $ease-in-sine: cubic-bezier(0.470, 0.000, 0.745, 0.715);
 $ease-out-sine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
 $ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
 
+
+// Breakpoints
+$bp-medium: 40em;
+
+// Media queries
+$mq-medium: 'screen and (min-width: #{$bp-medium})';
+
+
 // Responsive breakpoints
 $breakpoint-mobile: 640px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
+
+// hamburger
+$hamburger-padding-x: 0;
+$hamburger-padding-y: 0;
+$hamburger-layer-width: 23px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-spacing: 5px;
+
+// Mobile off-canvas menu
+$off-canvas-width: 300px;
 
 // Foundation breakpoints
 // $breakpoints: (

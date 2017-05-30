@@ -12,6 +12,7 @@ import SubmitPage from 'components/pages/SubmitPageContainer';
 import MapPageContainer from 'components/pages/MapPageContainer';
 import DownloadPdfContainer from 'components/pages/DownloadPdfContainer';
 import LoginPage from 'components/pages/LoginPageContainer';
+import GuidancePage from 'components/pages/GuidancePage';
 import AboutPage from 'components/pages/AboutPage';
 
 const Routes = ({ history }) => (
@@ -21,6 +22,9 @@ const Routes = ({ history }) => (
       <Route path="map">
         <IndexRoute components={{ main: MapPageContainer }} onEnter={onEnterMapPage} />
         <Route path="project/:id" components={{ main: MapPageContainer }} onEnter={onEnterProjectDetail} />
+      </Route>
+      <Route path="guidance">
+        <IndexRoute components={{ main: GuidancePage, footer: Footer }} />
       </Route>
       <Route path="submit">
         <IndexRoute components={{ main: SubmitPage, footer: Footer }} />
