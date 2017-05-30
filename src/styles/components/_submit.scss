@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 50px;
+  overflow-x: hidden;
 
   @include breakpoint(medium) {
     padding: 116px 0;
