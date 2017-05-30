@@ -66,7 +66,7 @@
   display: flex;
   align-items: center;
 
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     margin-bottom: 0;
   }
 

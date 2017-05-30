@@ -26,7 +26,7 @@ export default class HomePage extends React.Component {
         <section className="home-section -grayed">
           <div className="l-app-wrapper">
             <Row>
-              <div className="column large-6 small-12">
+              <div className="column large-5 small-12">
                 <h1 className="h1 -line">Learn about nature-based projects</h1>
                 <p className="text">The project map provides a list of nature-based projects that are sortable by implementing organization, targeted hazard, type of nature-based solution, geographic location, cost, benefits, and more.</p>
                 <Link className="c-btn -secondary" to="/map">See all projects</Link>
