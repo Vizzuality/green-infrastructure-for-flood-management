@@ -45,8 +45,6 @@ module.exports = merge(sharedConfig, {
       minimize: true,
       debug: false
     })
-  ],
-
-  cache: true
+  ]
 
 });
