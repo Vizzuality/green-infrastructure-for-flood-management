@@ -14,6 +14,7 @@ import Info from 'components/ui/Info';
 import CheckboxGroup from 'components/ui/CheckboxGroup';
 import ImageUpload from 'components/ui/ImageUpload';
 import Spinner from 'components/ui/Spinner';
+import Message from 'components/ui/Message';
 
 
 export default class SubmitPage extends React.Component {
@@ -299,14 +300,30 @@ export default class SubmitPage extends React.Component {
     this.setState({ imageOptions: { accepted: null, rejected: null } });
   }
 
+  getSubmitMessage() {
+    const { success, error } = this.props;
+    let message = '';
+
+    if (success) {
+      message = `The project ${success.name} has been correctly submitted`;
+    } else if (error) {
+      message = 'An error ocurred';
+    }
+    return message;
+  }
+
   render() {
-    const { filtersOptions } = this.props;
+    const { filtersOptions, success, error } = this.props;
+    const { learnNotValid, referencesNotValid } = this.state;
     const { scale, organizations, primary_benefits_of_interventions,
       co_benefits_of_interventions, donors, nature_based_solutions,
       hazard_types, intervention_type, currency_monetary_benefits,
       currency_estimated_cost, implementation_status, permission, start_year,
       completion_year
     } = this.state.fields;
+
+    const filledFormMessage = this.state.requiredOn.length > 0 || learnNotValid ||
+      referencesNotValid ? 'Some required fields are not filled or are incorrect' : '';
 
     return (
       <div className="c-submit">
@@ -319,6 +336,23 @@ export default class SubmitPage extends React.Component {
                 <p className="text">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors using nature-based approaches to reduce disaster risk.</p>
               </div>
             </Row>
+
+            {(this.state.requiredOn.length > 0 || learnNotValid ||
+              referencesNotValid) &&
+              <Row>
+                <div className="column small-12 medium-8 medium-offset-2">
+                  <Message message={filledFormMessage} type="error" />
+                </div>
+              </Row>
+            }
+
+            {(success || error) &&
+              <Row>
+                <div className="column small-12 medium-8 medium-offset-2">
+                  <Message message={this.getSubmitMessage()} type={success ? 'success' : 'error'} />
+                </div>
+              </Row>
+            }
 
             <Row>
               <div className="c-form column small-12 medium-8 medium-offset-2">
@@ -618,6 +652,8 @@ export default class SubmitPage extends React.Component {
 SubmitPage.propTypes = {
   filtersOptions: React.PropTypes.object,
   loadingFilters: React.PropTypes.bool,
+  success: React.PropTypes.object,
+  error: React.PropTypes.any,
   // Actions
   getFiltersOptions: React.PropTypes.func,
   submit: React.PropTypes.func
