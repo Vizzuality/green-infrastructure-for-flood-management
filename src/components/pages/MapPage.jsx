@@ -152,7 +152,7 @@ export default class MapPage extends React.Component {
       },
       {
         id: 'layer1',
-        url: 'https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png',
+        url: config.LAYER_URL,
         zIndex: props.mapState.layersActive.includes('layer1') ? 1 : -1,
         options: {
           tms: true
@@ -220,6 +220,12 @@ export default class MapPage extends React.Component {
             const itemFound = filtersOptions[key].find(it => v === it.value);
             return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
           });
+        }
+        // No results message
+        if (fil.filter === 'name' && !this.props.projects.length) {
+          return (
+            <li>Your search did not match any documents.</li>
+          );
         }
         return (
           <li key={fil.filter} className="filter-tag">{typeof fil.value !== 'number' ?
