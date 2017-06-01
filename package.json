@@ -42,7 +42,7 @@
     "leaflet.polyline.snakeanim": "^0.1.1",
     "lodash": "^4.17.2",
     "morgan": "^1.7.0",
-    "moveto": "^1.6.1",
+    "moveto": "1.6.0",
     "node-gyp": "^3.4.0",
     "node-sass": "^4.5.3",
     "normalize.css": "^5.0.0",

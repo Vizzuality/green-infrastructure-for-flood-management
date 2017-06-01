@@ -16,7 +16,7 @@ export default class HomePage extends React.Component {
               <h2 className="h2">Learn about nature-based projects for disaster risk reduction, and explore implementation and guiding principles to make your next project a success</h2>
               <BtnGroup>
                 <Link className="c-btn -fixed -tertiary" to="/map">Go to the map</Link>
-                <Link className="c-btn -fixed -transparent">Guidance</Link>
+                <Link className="c-btn -fixed -transparent" to="/guidance">Guidance</Link>
               </BtnGroup>
               <SvgIcon className="section-icon is-mobile-hidden" name="icon-arrow-down-2" />
             </div>
@@ -46,7 +46,7 @@ export default class HomePage extends React.Component {
               </div>
               <div className="column large-6 small-12">
                 <p className="text -secondary">Nature-based measures necessitate a distinct set of considerations different than those used in traditional infrastructure projects. These guidelines are intended to help practitioners succeed in designing and implementing nature-based solutions successfully.</p>
-                <Link className="c-btn -tertiary">Explore project guidance</Link>
+                <Link className="c-btn -tertiary" to="/guidance">Explore project guidance</Link>
               </div>
             </Row>
           </div>
