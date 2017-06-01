@@ -46,7 +46,7 @@ export default class HomePage extends React.Component {
               </div>
               <div className="column large-6 small-12">
                 <p className="text -secondary">Nature-based measures necessitate a distinct set of considerations different than those used in traditional infrastructure projects. These guidelines are intended to help practitioners succeed in designing and implementing nature-based solutions successfully.</p>
-                <Link className="c-btn -tertiary">Explore project guidance</Link>
+                <Link className="c-btn -tertiary" to="/guidance">Explore project guidance</Link>
               </div>
             </Row>
           </div>
