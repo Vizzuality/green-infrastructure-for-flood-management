@@ -16,7 +16,7 @@ export default class HomePage extends React.Component {
               <h2 className="h2">Learn about nature-based projects for disaster risk reduction, and explore implementation and guiding principles to make your next project a success</h2>
               <BtnGroup>
                 <Link className="c-btn -fixed -tertiary" to="/map">Go to the map</Link>
-                <Link className="c-btn -fixed -transparent">Guidance</Link>
+                <Link className="c-btn -fixed -transparent" to="/guidance">Guidance</Link>
               </BtnGroup>
               <SvgIcon className="section-icon is-mobile-hidden" name="icon-arrow-down-2" />
             </div>
