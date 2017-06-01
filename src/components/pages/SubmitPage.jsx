@@ -143,6 +143,7 @@ export default class SubmitPage extends React.Component {
   clear() {
     Object.values(this.inputs).forEach(inp => inp.value = '');
     this.setState({ fields: Object.assign({}, defaultValues) });
+    // TODO: scroll top
   }
 
   removeIdProvFromNewOptions() {
@@ -204,10 +205,13 @@ export default class SubmitPage extends React.Component {
       referencesNotValid: !referencesValid
     });
 
+    // TODO: scroll top
+
     if (!requiredOn.length && learnValid && referencesValid) {
       const projectData = this.parsedFieldsToSend();
       // Send fields
       this.props.submit(projectData);
+      this.clear();
     }
   }
 
@@ -312,9 +316,28 @@ export default class SubmitPage extends React.Component {
     return message;
   }
 
+  setMessageOptions() {
+    const { success, error } = this.props;
+    const { requiredOn, learnNotValid, referencesNotValid } = this.state;
+    const filledFormMessage = 'Some required fields are not filled or are incorrect';
+
+    let message = '';
+    let type = 'info';
+
+    if (requiredOn.length > 0 || learnNotValid || referencesNotValid) {
+      message = filledFormMessage;
+      type = 'error';
+    } else if (success || error) {
+      message = this.getSubmitMessage();
+      type = success ? 'success' : 'error';
+    }
+
+    return { message, type };
+  }
+
   render() {
     const { filtersOptions, success, error } = this.props;
-    const { learnNotValid, referencesNotValid } = this.state;
+    const { requiredOn, learnNotValid, referencesNotValid } = this.state;
     const { scale, organizations, primary_benefits_of_interventions,
       co_benefits_of_interventions, donors, nature_based_solutions,
       hazard_types, intervention_type, currency_monetary_benefits,
@@ -322,8 +345,10 @@ export default class SubmitPage extends React.Component {
       completion_year
     } = this.state.fields;
 
-    const filledFormMessage = this.state.requiredOn.length > 0 || learnNotValid ||
-      referencesNotValid ? 'Some required fields are not filled or are incorrect' : '';
+    const messageCondition = ((requiredOn.length > 0 || learnNotValid || referencesNotValid) ||
+      (success || error));
+
+    const message = this.setMessageOptions();
 
     return (
       <div className="c-submit">
@@ -337,19 +362,10 @@ export default class SubmitPage extends React.Component {
               </div>
             </Row>
 
-            {(this.state.requiredOn.length > 0 || learnNotValid ||
-              referencesNotValid) &&
+            {messageCondition &&
               <Row>
                 <div className="column small-12 medium-8 medium-offset-2">
-                  <Message message={filledFormMessage} type="error" />
-                </div>
-              </Row>
-            }
-
-            {(success || error) &&
-              <Row>
-                <div className="column small-12 medium-8 medium-offset-2">
-                  <Message message={this.getSubmitMessage()} type={success ? 'success' : 'error'} />
+                  <Message message={message.message} type={message.type} />
                 </div>
               </Row>
             }
