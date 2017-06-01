@@ -4,7 +4,7 @@
   "description": "TODO: write a description",
   "main": "server.js",
   "scripts": {
-    "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack.config.js",
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack/production.js",
     "postinstall": "npm run build",
     "test": "./node_modules/.bin/eslint ."
   },
@@ -36,11 +36,13 @@
     "dotenv": "^2.0.0",
     "esri-leaflet": "^2.0.7",
     "express": "^4.13.4",
+    "extract-text-webpack-plugin": "^2.1.0",
     "fetch-jsonp": "^1.0.5",
     "file-loader": "^0.9.0",
     "foundation-sites": "^6.3.1",
     "hamburgers": "^0.8.1",
-    "html-webpack-plugin": "^2.24.1",
+    "html-webpack-plugin": "^2.28.0",
+    "image-webpack-loader": "^3.3.1",
     "install": "^0.8.7",
     "json-loader": "^0.5.4",
     "leaflet": "^1.0.2",
@@ -88,8 +90,9 @@
     "url-loader": "^0.5.7",
     "validator": "^7.0.0",
     "vizz-components": "^0.2.1",
-    "webpack": "^1.13.3",
-    "webpack-dev-middleware": "^1.8.4",
+    "webpack": "^2.6.1",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-merge": "^4.1.0",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
