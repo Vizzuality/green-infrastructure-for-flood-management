@@ -1,7 +1,9 @@
+const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-
 const sharedConfig = require('./shared.js');
+
+const rootPath = process.cwd();
 
 module.exports = merge(sharedConfig, {
 
@@ -30,6 +32,10 @@ module.exports = merge(sharedConfig, {
             }
           }
         }
+      ],
+      include: [
+        path.resolve(rootPath, 'node_modules', 'leaflet'),
+        path.resolve(rootPath, 'src')
       ]
     }]
   },
@@ -39,6 +45,8 @@ module.exports = merge(sharedConfig, {
       minimize: true,
       debug: false
     })
-  ]
+  ],
+
+  cache: true
 
 });
