@@ -1,4 +1,4 @@
-import { postWithHeaders, getWithHeaders } from 'utils/request';
+import { postWithHeaders } from 'utils/request';
 
 /* Constants */
 const SET_SUBMIT_LOADING = 'SET_SUBMIT_LOADING';
@@ -7,9 +7,9 @@ const SET_SUBMIT_ERROR = 'SET_SUBMIT_ERROR';
 
 /* Initial state */
 const initialState = {
-  success: false,
+  success: null,
   loading: false,
-  error: {}
+  error: null
 };
 
 /* Reducer */
@@ -58,17 +58,22 @@ function setSubmitError() {
 
 function submit(projectData) {
   return (dispatch) => {
-    dispatch(setSubmitError(null));
     dispatch(setSubmitLoading(true));
     postWithHeaders({
-      url: `${config.API_URL}/api/submit/`,
+      url: `${config.API_URL}/api/projects/`,
       body: projectData,
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+        Accept: 'application/json'
+      },
       onSuccess(data) {
-        dispatch(setSubmitSuccess(true));
+        dispatch(setSubmitSuccess(data));
         dispatch(setSubmitLoading(false));
+        dispatch(setSubmitError(null));
       },
       onError(error) {
         dispatch(setSubmitLoading(false));
+        dispatch(setSubmitSuccess(null));
         dispatch(setSubmitError(error));
       }
     });

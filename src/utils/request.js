@@ -46,7 +46,7 @@ function postWithHeaders({ url, body, headers, onSuccess, onError }) {
   const _headers = { ...headers,
     'Content-Type': 'application/json'
   };
-
+  debugger;
   Object.keys(_headers).forEach((h) => {
     request.setRequestHeader(h, _headers[h]);
   });

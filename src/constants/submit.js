@@ -24,7 +24,8 @@ const defaultValues = {
   contributor_organization: '',
   contact_info: '',
   permission: '',
-  image: '',
+  image_base: '',
+  picture_name: '',
   new_nature_based_solutions: [],
   new_primary_benefits_of_interventions: [],
   new_co_benefits_of_interventions: []
