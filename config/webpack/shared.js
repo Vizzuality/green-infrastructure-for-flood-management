@@ -24,13 +24,29 @@ const config = {
     rules: [{
       test: /\.jsx?$/,
       exclude: /(node_modules|lib)/,
-      use: ['babel-loader']
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: process.env.NODE_ENV === 'production'
+        }
+      }],
+      include: [
+        path.resolve(rootPath, 'src')
+      ]
     }, {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: 'css-loader'
-      })
+      }),
+      include: [
+        path.resolve(rootPath, 'node_modules', 'leaflet'),
+        path.resolve(rootPath, 'node_modules', 'rc-collapse'),
+        path.resolve(rootPath, 'node_modules', 'react-toggle-switch'),
+        path.resolve(rootPath, 'node_modules', 'react-input-range'),
+        path.resolve(rootPath, 'node_modules', 'react-select'),
+        path.resolve(rootPath, 'src')
+      ]
     }, {
       test: /\.(scss|sass)$/,
       use: ExtractTextPlugin.extract({
@@ -47,7 +63,17 @@ const config = {
           },
           'postcss-loader'
         ]
-      })
+      }),
+      include: [
+        path.resolve(rootPath, 'node_modules', 'react-tabs'),
+        path.resolve(rootPath, 'src')
+      ]
+    }, {
+      test: /\.(eot|ttf|woff2|woff)$/,
+      use: ['file-loader'],
+      include: [
+        path.resolve(rootPath, 'src')
+      ]
     }]
   },
 
@@ -55,9 +81,9 @@ const config = {
     extensions: ['.js', '.jsx'],
     modules: [
       path.join(rootPath, 'src'),
-      path.resolve('src'),
       path.join(rootPath, 'node_modules')
-    ]
+    ],
+    unsafeCache: true
   },
 
   resolveLoader: {

@@ -1,7 +1,9 @@
+const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-
 const sharedConfig = require('./shared.js');
+
+const rootPath = process.cwd();
 
 module.exports = merge(sharedConfig, {
 
@@ -16,14 +18,13 @@ module.exports = merge(sharedConfig, {
   },
 
   module: {
-    rules: [
-      {
-        test: /\.(eot|ttf|woff2|woff)$/,
-        use: ['file-loader']
-      },
-      {
+    rules: [{
         test: /\.(jpe?g|png|gif|svg)$/i,
-        use: ['file-loader']
+        use: ['file-loader'],
+        include: [
+          path.resolve(rootPath, 'node_modules', 'leaflet'),
+          path.resolve(rootPath, 'src')
+        ]
       }
     ]
   },
