@@ -107,8 +107,8 @@ function login(userData) {
     postWithHeaders({
       url: `${config.API_URL}/api/auth/`,
       body: userData,
-      onSuccess({ token }) {
-        localStorage.token = token;
+      onSuccess({ auth_token }) {
+        localStorage.setItem('token', auth_token);
         dispatch(setLogged(true));
         dispatch(setLoading(false));
         // dispatch(replace('/submit'));
