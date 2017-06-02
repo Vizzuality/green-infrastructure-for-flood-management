@@ -14,6 +14,7 @@ import Info from 'components/ui/Info';
 import CheckboxGroup from 'components/ui/CheckboxGroup';
 import ImageUpload from 'components/ui/ImageUpload';
 import Spinner from 'components/ui/Spinner';
+import Message from 'components/ui/Message';
 
 
 export default class SubmitPage extends React.Component {
@@ -48,75 +49,6 @@ export default class SubmitPage extends React.Component {
     this.props.getFiltersOptions();
   }
 
-  clear() {
-    Object.values(this.inputs).forEach(inp => inp.value = '');
-    this.setState({ fields: Object.assign({}, defaultValues) });
-  }
-
-  removeIdProvFromNewOptions() {
-    const { new_nature_based_solutions, new_co_benefits_of_interventions,
-      new_primary_benefits_of_interventions } = this.state.fields;
-    const newOptions = { new_nature_based_solutions, new_primary_benefits_of_interventions,
-      new_co_benefits_of_interventions };
-
-    return Object.keys(newOptions).map(key => (
-      {
-        key,
-        value: newOptions[key].map(v => v.value)
-      }
-    ));
-  }
-
-  removeIdProvFromLocations() {
-    const { locations } = this.state.fields;
-
-    return locations.map(l => ({ lat: l.lat, lng: l.lng }));
-  }
-
-  parsedFieldsToSend() {
-    const allFields = Object.assign({}, this.state.fields);
-    const filteredFields = {};
-
-    // Remove those idProv from values
-    this.removeIdProvFromNewOptions().forEach(f => allFields[f.key] = f.value);
-    allFields.locations = this.removeIdProvFromLocations();
-
-
-    Object.keys(allFields).forEach((key) => {
-      if (allFields[key].length) {
-        filteredFields[key] = allFields[key];
-      }
-    });
-
-    return filteredFields;
-  }
-
-  submit() {
-    const { learn_more, references } = this.state.fields;
-    const requiredOn = [];
-    const learnValid = learn_more !== '' ? isUrl(learn_more) : true;
-    const referencesValid = references !== '' ? isUrl(references) : true;
-
-    requiredFields.forEach((field) => {
-      this.state.fields[field].length === 0 && requiredOn.push(field);
-    });
-
-    this.setState({ requiredOn,
-      learnNotValid: !learnValid,
-      referencesNotValid: !referencesValid
-    });
-
-    if (!requiredOn.length && learnValid && referencesValid) {
-      const projectData = this.parsedFieldsToSend();
-      // Send fields
-      // this.props.submit(projectData);
-    }
-  }
-
-  isRequiredOn(name) {
-    return this.state.requiredOn.includes(name) ? 'required-error' : '';
-  }
-
   onAddLocation(latLng) {
     const locations = this.state.fields.locations;
 
@@ -130,44 +62,6 @@ export default class SubmitPage extends React.Component {
 
       this.setFieldValue('locations', newLocations);
     }
-  }
-
-  setFieldValue(key, value) {
-    const newFields = Object.assign({}, this.state.fields);
-    newFields[key] = value;
-    this.setState({ fields: newFields });
-  }
-
-  controlOtherValue(key, obj) {
-    const newState = Object.assign({}, this.state);
-    const value = obj.map(it => it.value);
-    const otherNew = obj.find(o => o.label === 'other');
-    const newOtherInput = this.inputs[`new_${key}`];
-
-    // Remove other option
-    if (this.state[`new_${key}`] && !otherNew) {
-      const newFields = Object.assign({}, this.state.fields);
-      newFields[`new_${key}`] = [];
-      newState.fields = newFields;
-      newState[`new_${key}`] = false;
-
-      this.setState(newState, () => { this.setFieldValue(key, value); });
-      newOtherInput.value = '';
-
-    // Add other option
-    } else if (!this.state[`new_${key}`] && otherNew) {
-      newState[`new_${key}`] = true;
-      this.setState(newState, () => {
-        this.setFieldValue(key, value);
-        newOtherInput.focus();
-      });
-    } else {
-      this.setFieldValue(key, value);
-    }
-  }
-
-  setOtherValue(key, value) {
-    this.setFieldValue(`new_${key}`, value);
   }
 
   onBlurOther(e) {
@@ -204,38 +98,8 @@ export default class SubmitPage extends React.Component {
     this.setFieldValue(key, newValues);
   }
 
-  renderOtherValues(key) {
-    const others = this.state.fields[key];
-
-    return (
-      <ul className="others-list">
-        {others.length > 0 && <li className="list-title">Others: </li>}
-        {others.map((other, i) => (
-          <li key={i} className="other">
-            {other.value}
-            <button className="" onClick={() => this.onRemoveOption(key, other)}>
-              <SvgIcon name="icon-cross" className="-smaller" />
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  renderLocations() {
-    const locations = this.state.fields.locations;
-    return (
-      <ul className="location-list">
-        {locations.map((loc, i) => (
-          <li key={i} className="location">
-            {`${loc.lat}, ${loc.lng}`}
-            <button className="" onClick={() => this.onRemoveOption('locations', loc)}>
-              <SvgIcon name="icon-cross" className="-smaller" />
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
+  setOtherValue(key, value) {
+    this.setFieldValue(`new_${key}`, value);
   }
 
   getCustomSelect(key, filtersKey, required, values, title, hasInfo) {
@@ -270,6 +134,153 @@ export default class SubmitPage extends React.Component {
     );
   }
 
+  setFieldValue(key, value) {
+    const newFields = Object.assign({}, this.state.fields);
+    newFields[key] = value;
+    this.setState({ fields: newFields });
+  }
+
+  clear() {
+    Object.values(this.inputs).forEach(inp => inp.value = '');
+    this.setState({ fields: Object.assign({}, defaultValues) });
+    // TODO: scroll top
+  }
+
+  removeIdProvFromNewOptions() {
+    const { new_nature_based_solutions, new_co_benefits_of_interventions,
+      new_primary_benefits_of_interventions } = this.state.fields;
+    const newOptions = {
+      new_nature_based_solutions,
+      new_primary_benefits_of_interventions,
+      new_co_benefits_of_interventions };
+
+    return Object.keys(newOptions).map(key => (
+      {
+        key,
+        value: newOptions[key].map(v => v.value)
+      }
+    ));
+  }
+
+  removeIdProvFromLocations() {
+    const { locations } = this.state.fields;
+
+    return locations.map(l => ({ lat: l.lat, lng: l.lng }));
+  }
+
+  parsedFieldsToSend() {
+    const allFields = Object.assign({}, this.state.fields);
+    const filteredFields = {};
+
+    // Remove those idProv from values
+    this.removeIdProvFromNewOptions().forEach(f => allFields[f.key] = f.value);
+    allFields.locations = this.removeIdProvFromLocations();
+
+
+    Object.keys(allFields).forEach((key) => {
+      if (allFields[key].length) {
+        filteredFields[key] = allFields[key];
+      }
+    });
+
+    if (filteredFields.image_base !== '' && !!this.state.imageOptions.accepted) {
+      filteredFields.picture_name = this.state.imageOptions.accepted.name;
+    }
+
+    return filteredFields;
+  }
+
+  submit() {
+    const { learn_more, references } = this.state.fields;
+    const requiredOn = [];
+    const learnValid = learn_more !== '' ? isUrl(learn_more) : true;
+    const referencesValid = references !== '' ? isUrl(references) : true;
+
+    requiredFields.forEach((field) => {
+      this.state.fields[field].length === 0 && requiredOn.push(field);
+    });
+
+    this.setState({ requiredOn,
+      learnNotValid: !learnValid,
+      referencesNotValid: !referencesValid
+    });
+
+    // TODO: scroll top
+
+    if (!requiredOn.length && learnValid && referencesValid) {
+      const projectData = this.parsedFieldsToSend();
+      // Send fields
+      this.props.submit(projectData);
+      this.clear();
+    }
+  }
+
+  isRequiredOn(name) {
+    return this.state.requiredOn.includes(name) ? 'required-error' : '';
+  }
+
+  controlOtherValue(key, obj) {
+    const newState = Object.assign({}, this.state);
+    const value = obj.map(it => it.value);
+    const otherNew = obj.find(o => o.label === 'other');
+    const newOtherInput = this.inputs[`new_${key}`];
+
+    // Remove other option
+    if (this.state[`new_${key}`] && !otherNew) {
+      const newFields = Object.assign({}, this.state.fields);
+      newFields[`new_${key}`] = [];
+      newState.fields = newFields;
+      newState[`new_${key}`] = false;
+
+      this.setState(newState, () => { this.setFieldValue(key, value); });
+      newOtherInput.value = '';
+
+    // Add other option
+    } else if (!this.state[`new_${key}`] && otherNew) {
+      newState[`new_${key}`] = true;
+      this.setState(newState, () => {
+        this.setFieldValue(key, value);
+        newOtherInput.focus();
+      });
+    } else {
+      this.setFieldValue(key, value);
+    }
+  }
+
+  renderOtherValues(key) {
+    const others = this.state.fields[key];
+
+    return (
+      <ul className="others-list">
+        {others.length > 0 && <li className="list-title">Others: </li>}
+        {others.map((other, i) => (
+          <li key={i} className="other">
+            {other.value}
+            <button className="" onClick={() => this.onRemoveOption(key, other)}>
+              <SvgIcon name="icon-cross" className="-smaller" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  renderLocations() {
+    const locations = this.state.fields.locations;
+    return (
+      <ul className="location-list">
+        {locations.map((loc, i) => (
+          <li key={i} className="location">
+            {`${loc.lat}, ${loc.lng}`}
+            <button className="" onClick={() => this.onRemoveOption('locations', loc)}>
+              <SvgIcon name="icon-cross" className="-smaller" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   /* Upload image methods */
   onDrop(acc, rej) {
     acc.length ?
@@ -282,7 +293,7 @@ export default class SubmitPage extends React.Component {
 
         this.setState({
           imageOptions: { accepted: parsedPhoto, rejected: null }
-        }, () => this.setFieldValue('image', parsedPhoto.attachment));
+        }, () => this.setFieldValue('image_base', parsedPhoto.attachment));
       }) :
       this.setState({
         imageOptions: { accepted: null, rejected: rej.length ? rej[0] : null }
@@ -293,14 +304,51 @@ export default class SubmitPage extends React.Component {
     this.setState({ imageOptions: { accepted: null, rejected: null } });
   }
 
+  getSubmitMessage() {
+    const { success, error } = this.props;
+    let message = '';
+
+    if (success) {
+      message = `The project ${success.name} has been correctly submitted`;
+    } else if (error) {
+      message = 'An error ocurred';
+    }
+    return message;
+  }
+
+  setMessageOptions() {
+    const { success, error } = this.props;
+    const { requiredOn, learnNotValid, referencesNotValid } = this.state;
+    const filledFormMessage = 'Some required fields are not filled or are incorrect';
+
+    let message = '';
+    let type = 'info';
+
+    if (requiredOn.length > 0 || learnNotValid || referencesNotValid) {
+      message = filledFormMessage;
+      type = 'error';
+    } else if (success || error) {
+      message = this.getSubmitMessage();
+      type = success ? 'success' : 'error';
+    }
+
+    return { message, type };
+  }
+
   render() {
-    const { filtersOptions } = this.props;
+    const { filtersOptions, success, error } = this.props;
+    const { requiredOn, learnNotValid, referencesNotValid } = this.state;
     const { scale, organizations, primary_benefits_of_interventions,
       co_benefits_of_interventions, donors, nature_based_solutions,
       hazard_types, intervention_type, currency_monetary_benefits,
       currency_estimated_cost, implementation_status, permission, start_year,
       completion_year
     } = this.state.fields;
+
+    const messageCondition = ((requiredOn.length > 0 || learnNotValid || referencesNotValid) ||
+      (success || error));
+
+    const message = this.setMessageOptions();
 
     return (
       <div className="c-submit">
@@ -313,6 +361,14 @@ export default class SubmitPage extends React.Component {
                 <p className="text">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors using nature-based approaches to reduce disaster risk.</p>
               </div>
             </Row>
+
+            {messageCondition &&
+              <Row>
+                <div className="column small-12 medium-8 medium-offset-2">
+                  <Message message={message.message} type={message.type} />
+                </div>
+              </Row>
+            }
 
             <Row>
               <div className="c-form column small-12 medium-8 medium-offset-2">
@@ -594,9 +650,8 @@ export default class SubmitPage extends React.Component {
                     Reset
                   </button>
                   <button
-                    className="c-btn -filled -primary action -disabled"
+                    className="c-btn -filled -primary action"
                     onClick={this.submit}
-                    disabled
                   >
                     Submit
                   </button>
@@ -613,6 +668,8 @@ export default class SubmitPage extends React.Component {
 SubmitPage.propTypes = {
   filtersOptions: React.PropTypes.object,
   loadingFilters: React.PropTypes.bool,
+  success: React.PropTypes.object,
+  error: React.PropTypes.any,
   // Actions
   getFiltersOptions: React.PropTypes.func,
   submit: React.PropTypes.func

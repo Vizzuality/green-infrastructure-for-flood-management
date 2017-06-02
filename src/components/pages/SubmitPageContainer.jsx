@@ -6,7 +6,9 @@ import { submit } from 'modules/submit';
 const mapStateToProps = state => ({
   filtersOptions: state.filtersOptions.options,
   loadingFilters: state.filtersOptions.loading,
-  submit: state.submit
+  success: state.submit.success,
+  loading: state.submit.loading,
+  error: state.submit.error
 });
 
 const mapDispatchToProps = dispatch => ({
