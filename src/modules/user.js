@@ -9,14 +9,15 @@ const SET_LOGGED = 'SET_LOGGED';
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_LOADING = 'SET_LOADING';
 const SET_ERROR = 'SET_ERROR';
-const SET_CONTACT = 'SET_CONTACT';
+const SET_CONTACT_SUCCSESS = 'SET_CONTACT_SUCCSESS';
 
 /* Initial state */
 const initialState = {
   data: null,
   logged: isLogged(),
   loading: false,
-  error: null
+  error: null,
+  succses: false
 };
 
 /* Reducer */
@@ -42,10 +43,10 @@ function userReducer(state = initialState, action) {
         ...state,
         error: action.payload
       };
-    case SET_CONTACT:
+    case SET_CONTACT_SUCCSESS:
       return {
         ...state,
-        logged: action.payload
+        success: action.payload
       };
     default:
       return state;
@@ -81,10 +82,10 @@ function setError(error) {
   };
 }
 
-function setContact(contacted) {
+function setContactSuccsess(success) {
   return {
-    type: SET_CONTACT,
-    payload: contacted
+    type: SET_CONTACT_SUCCSESS,
+    payload: success
   };
 }
 
@@ -165,15 +166,25 @@ function contact(userData) {
     dispatch(setLoading(true));
     postWithHeaders({
       url: `${config.API_URL}/api/contact/`,
+      headers: {
+        Accept: 'application/json'
+      },
       body: userData,
-      onSuccess({ token }) {
-        localStorage.token = token;
-        dispatch(setContact(true));
+      onSuccess() {
+        dispatch(setContactSuccsess(true));
         dispatch(setLoading(false));
+        dispatch(setError(null));
       },
       onError(error) {
-        dispatch(setLoading(false));
-        dispatch(setError(error));
+        if (error.status_code === '202') {
+          dispatch(setContactSuccsess(true));
+          dispatch(setLoading(false));
+          dispatch(setError(null));
+        } else {
+          dispatch(setContactSuccsess(false));
+          dispatch(setLoading(false));
+          dispatch(setError(error));
+        }
       }
     });
   };
