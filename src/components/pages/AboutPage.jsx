@@ -9,17 +9,15 @@ import Validation from 'react-validation';
 
 import { Row } from 'components/ui/Grid';
 import Spinner from 'components/ui/Spinner';
+import Message from 'components/ui/Message';
 import { Form, Input } from 'components/form/Form';
-
-import { dispatch } from 'main';
-import { contact } from 'modules/user';
 
 export default class AboutPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      error: ''
+      error: null
     };
 
     this.form = {};
@@ -27,17 +25,6 @@ export default class AboutPage extends React.Component {
     // Bindings
     this.onContact = this.onContact.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
-  }
-
-  /* Lifecycle */
-  componentWillReceiveProps(newProps) {
-    if (newProps.user.error && !isEqual(this.props.user.error, newProps.user.error)) {
-      const error = Object.values(newProps.user.error.error)[0][0];
-      const errorMessage = error === 'invalid credentials' ? 'E-mail or password incorrect' : 'An error ocurred';
-      this.setState({ error: errorMessage });
-    } else if (!newProps.user.error && newProps.user.logged) {
-      dispatch(replace('/submit'));
-    }
   }
 
   onInputChange(e) {
@@ -48,15 +35,36 @@ export default class AboutPage extends React.Component {
     e.preventDefault();
     if (this.form.email && validator.isEmail(this.form.email) &&
       this.form.name && this.form.name !== '' &&
-      this.form.subject && this.form.subject !== '') {
+      this.form.message && this.form.message !== '') {
       // Contact
-      // dispatch(contact(this.form));
+      this.props.contact(this.form);
+      this.setState({ error: null });
+    } else if (!validator.isEmail(this.form.email)) {
+      this.setState({ error: 'The email is not correct' });
     } else {
-      this.setState({ error: 'Fill in the form correctly' });
+      this.setState({ error: 'Some required fields are missing' });
     }
   }
 
+  setMessageText() {
+    const { success } = this.props;
+    let message = '';
+    let type = '';
+
+    if (this.state.error) {
+      message = this.state.error;
+      type = 'error';
+    } else {
+      message = success ? 'Your message has been sent successfully' : 'The message could not be sent. Try again';
+      type = success ? 'success' : 'error';
+    }
+    return { message, type };
+  }
+
   render() {
+    const { success, error } = this.props;
+    const message = this.setMessageText();
+
     return (
       <div className="c-about">
         {/* Heading section */}
@@ -143,23 +151,27 @@ export default class AboutPage extends React.Component {
         {/* Contact */}
         <section className="home-section contact">
           <div className="l-app-wrapper">
+            <Spinner isLoading={this.props.loading} />
             <Row className="intro">
               <div className="column small-12 medium-6 medium-offset-3">
                 <h1 className="h1 -line -center">Contact us</h1>
                 <p className="intro-text">We welcome your feedback and value your input as we work to continually improve and update The Nature of Risk Reduction database. Please do not hesitate to send us your comments and questions here.</p>
               </div>
             </Row>
+            {(this.state.error || success || error) &&
+              <Row className="intro">
+                <div className="c-form column small-12 medium-8 medium-offset-2">
+                  <Message message={message.message} type={message.type} />
+                </div>
+              </Row>
+            }
             <Row>
               <div className="c-form column small-12 medium-8 medium-offset-2">
                 <Form>
                   <div className="form">
-                    <div className="filter-error">
-                      <p className="error">{this.state.error}</p>
-                    </div>
-
                     <div className="form-field">
                       <div className="filter-field">
-                        <h2 className="title">Name*</h2>
+                        <h2 className="label">Name*</h2>
                         <Input
                           type="text"
                           name="name"
@@ -172,7 +184,7 @@ export default class AboutPage extends React.Component {
 
                     <div className="form-field">
                       <div className="filter-field">
-                        <h2 className="title">E-mail*</h2>
+                        <h2 className="label">E-mail*</h2>
                         <Input
                           type="text"
                           name="email"
@@ -185,11 +197,21 @@ export default class AboutPage extends React.Component {
 
                     <div className="form-field">
                       <div className="filter-field">
-                        <h2 className="title">Subject*</h2>
+                        <h2 className="label">Message*</h2>
+                        <Input
+                          type="text"
+                          name="message"
+                          value=""
+                          onChange={this.onInputChange}
+                          validations={[]}
+                        />
+
+                        {/* Hidden */}
                         <Input
                           type="text"
                           name="subject"
                           value=""
+                          className="-hidden"
                           onChange={this.onInputChange}
                           validations={[]}
                         />
@@ -199,9 +221,8 @@ export default class AboutPage extends React.Component {
 
                   <div className="actions">
                     <button
-                      className="c-btn -filled -primary action -disabled"
+                      className="c-btn -filled -primary action"
                       onClick={this.onContact}
-                      disabled
                     >
                       Send
                     </button>
@@ -216,5 +237,11 @@ export default class AboutPage extends React.Component {
   }
 }
 
-AboutPage.propTypes = {};
+AboutPage.propTypes = {
+  success: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  loading: React.PropTypes.bool,
+  // Fucntions
+  contact: React.PropTypes.func
+};
 AboutPage.defaultProps = {};
