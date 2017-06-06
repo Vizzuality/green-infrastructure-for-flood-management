@@ -13,7 +13,7 @@ import MapPageContainer from 'components/pages/MapPageContainer';
 import DownloadPdfContainer from 'components/pages/DownloadPdfContainer';
 import LoginPage from 'components/pages/LoginPageContainer';
 import GuidancePage from 'components/pages/GuidancePage';
-import AboutPage from 'components/pages/AboutPage';
+import AboutPageContainer from 'components/pages/AboutPageContainer';
 
 const Routes = ({ history }) => (
   <Router history={history}>
@@ -33,7 +33,7 @@ const Routes = ({ history }) => (
         <IndexRoute components={{ main: DownloadPdfContainer }} onEnter={onEnterProjectDetail} />
       </Route>
       <Route path="about">
-        <IndexRoute components={{ main: AboutPage, footer: Footer }} />
+        <IndexRoute components={{ main: AboutPageContainer, footer: Footer }} />
       </Route>
       <Route path="signin">
         <IndexRoute components={{ main: LoginPage, footer: Footer }} />

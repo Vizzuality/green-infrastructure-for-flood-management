@@ -61,6 +61,24 @@
         }
       }
     }
+
+    .form-error {
+      font-size: 11px;
+      display: inline-block;
+      text-align: right;
+      width: 100%;
+      color: red;
+    }
+  }
+
+  .home-section.contact {
+    position: relative;
+  }
+
+  .c-message {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding: 15px 20px;
   }
 
 }
