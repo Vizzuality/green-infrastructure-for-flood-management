@@ -35991,7 +35991,7 @@ function getMarkers(props) {
     var className = 'c-marker';
     var iconSize = [20, 20];
 
-    var markerData = Object.assign({}, data, { currentDetail: projectDetail.id === data.id });
+    var markerData = Object.assign({}, data, { currentDetail: projectDetail && projectDetail.id === data.id });
 
     if (markerData.current) {
       className += ' -current';
