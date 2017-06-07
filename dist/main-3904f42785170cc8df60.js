@@ -4478,7 +4478,7 @@ function getWithHeaders(_ref4) {
 
   var _headers = _extends({}, headers, {
     'Content-Type': 'application/json',
-    'SC-API-KEY': __webpack_require__.i({"API_URL":"http://nature-of-risk-reduction.vizzuality.com","BASEMAP_TILE_URL":"https://api.mapbox.com/styles/v1/gif-maps/cj2u8r1y7002b2slqjyszz7mq/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2lmLW1hcHMiLCJhIjoiY2oydThtN2gwMDA4ODMwbWY5cnM1dmVnYyJ9.MOiRenyfBEIg5JeCUXK5Ng","BASEMAP_LABELS_URL":"https://api.mapbox.com/styles/v1/gif-maps/cj2u8oqp6000q2rp4kpnjmkxo/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2lmLW1hcHMiLCJhIjoiY2oydThtN2gwMDA4ODMwbWY5cnM1dmVnYyJ9.MOiRenyfBEIg5JeCUXK5Ng","LAYER_URL":undefined})['SC-API-KEY'],
+    'SC-API-KEY': __webpack_require__.i({"API_URL":"http://nature-of-risk-reduction.vizzuality.com","BASEMAP_TILE_URL":"https://api.mapbox.com/styles/v1/gif-maps/cj2u8r1y7002b2slqjyszz7mq/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2lmLW1hcHMiLCJhIjoiY2oydThtN2gwMDA4ODMwbWY5cnM1dmVnYyJ9.MOiRenyfBEIg5JeCUXK5Ng","BASEMAP_LABELS_URL":"https://api.mapbox.com/styles/v1/gif-maps/cj2u8oqp6000q2rp4kpnjmkxo/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2lmLW1hcHMiLCJhIjoiY2oydThtN2gwMDA4ODMwbWY5cnM1dmVnYyJ9.MOiRenyfBEIg5JeCUXK5Ng","LAYER_URL":"https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png"})['SC-API-KEY'],
     Authorization: 'Bearer ' + localStorage.token
   });
 
@@ -29906,7 +29906,7 @@ var MapPage = function (_React$Component) {
         zIndex: 0
       }, {
         id: 'layer1',
-        url: undefined,
+        url: "https://s3.amazonaws.com/gif-layers/{z}/{x}/{y}.png",
         zIndex: props.mapState.layersActive.indexOf('layer1') !== -1 ? 1 : -1,
         options: {
           tms: true
