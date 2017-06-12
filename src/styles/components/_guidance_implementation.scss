@@ -1,0 +1,153 @@
+.c-guidance-implementation {
+
+  .section-title {
+    font-size: 24px;
+    line-height: 37px;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+
+  .extra-info {
+    border-left: 4px solid $color-secondary;
+    margin-left: -10px;
+    padding-left: 14px;
+    margin-left: 20px;
+
+    @media #{$mq-medium} {
+      margin-left: -18px;
+      padding-left: 22px;
+      margin-left: 0;
+    }
+  }
+
+  .info-list {
+    li {
+      font-size: $font-size-big;
+      line-height: 32px;
+      color: $color-primary;
+      margin-bottom: 10px;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .show-steps {
+    position: fixed;
+    display: none;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    color: rgba($color-primary, .9);
+    text-transform: uppercase;
+    font-size: $font-size-big;
+    font-weight: bold;
+    background-color: palette(white);
+
+    &.-relative {
+      position: relative;
+      display: flex;
+    }
+
+    &.-active {
+      display: flex;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translatex(-50%);
+      width: 90%;
+      border-top: 1px solid $color-secondary;
+
+      @media #{$mq-medium} {
+        width: 70%;
+      }
+    }
+  }
+
+  .fixed-menu {
+    position: relative;
+
+    .menu-list {
+      position: relative;
+      padding: 0 15px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        bottom: 13px;
+        left: 0;
+        border-left: 1px solid $color-primary;
+      }
+
+      @media #{$mq-medium} {
+        border-left: 4px solid rgba(palette(black), .3);
+
+        &:before {
+          content: none;
+        }
+      }
+
+      li {
+        position: relative;
+        font-size: 13px;
+        line-height: 20px;
+        text-transform: uppercase;
+        margin-bottom: 26px;
+
+        &.-active {
+          a {
+            color: $color-primary;
+          }
+
+          @media #{$mq-medium} {
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: -19px;
+              width: 4px;
+              height: 100%;
+              border-left: 4px solid $color-primary;
+            }
+          }
+        }
+
+        a {
+          width: 100%;
+          height: 100%;
+          color: $color-primary;
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: -18px;
+            width: 7px;
+            height: 7px;
+            background-color: $color-primary;
+            border-radius: 50%;
+          }
+
+          @media #{$mq-medium} {
+            color: rgba(palette(black), .5);
+
+            &:before {
+              content: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

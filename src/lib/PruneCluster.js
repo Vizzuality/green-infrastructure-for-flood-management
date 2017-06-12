@@ -925,7 +925,8 @@ var PruneClusterLeafletSpiderfier = (L.Layer ? L.Layer : L.Class).extend({
         var markers = this._currentMarkers;
         window.setTimeout(function () {
             for (i = 0, l = markers.length; i < l; ++i) {
-                _this._map.removeLayer(markers[i]);
+              // NOTE: PruneCluster bug
+              window.__map__.removeLayer(markers[i]);
             }
         }, 300);
         this._currentMarkers = [];

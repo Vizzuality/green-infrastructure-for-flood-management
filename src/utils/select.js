@@ -12,7 +12,8 @@ function setIdOption(arr) {
 }
 
 function setFiltersOptions(options) {
-  const arrayItems = ['co_benefits', 'hazard_types', 'nature_based_solutions', 'primary_benefits', 'organizations', 'countries'];
+  const arrayItems = ['co_benefits', 'hazard_types', 'nature_based_solutions',
+    'primary_benefits', 'organizations', 'countries', 'donors'];
   const keys = Object.keys(options);
   let result = {};
 

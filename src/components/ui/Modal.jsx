@@ -1,13 +1,14 @@
 import React from 'react';
 import { SvgIcon } from 'vizz-components';
 import Spinner from 'components/ui/Spinner';
+import classnames from 'classnames';
 
 export default class Modal extends React.Component {
 
   componentDidMount() {
     this.el.addEventListener('transitionend', () => {
       if (!this.props.open) {
-        this.props.setModalOptions({ children: null });
+        this.props.setModalOptions({ children: null, className: '' });
       }
     });
   }
@@ -30,8 +31,13 @@ export default class Modal extends React.Component {
   }
 
   render() {
+    const cNames = classnames('c-modal', {
+      '-hidden': !this.props.open,
+      [this.props.options.className]: !!this.props.options.className
+    });
+
     return (
-      <section ref={(node) => { this.el = node; }} className={`c-modal ${this.props.open ? '' : '-hidden'} ${this.props.options.size || ''}`}>
+      <section ref={node => this.el = node} className={cNames}>
         <div className="modal-container">
           <button className="modal-close" onClick={() => this.props.toggleModal(false)}>
             <SvgIcon name="icon-cross" className="-big" />
@@ -51,6 +57,7 @@ Modal.propTypes = {
   open: React.PropTypes.bool,
   options: React.PropTypes.object,
   loading: React.PropTypes.bool,
+  className: React.PropTypes.string,
   // ACTIONS
   toggleModal: React.PropTypes.func,
   setModalOptions: React.PropTypes.func

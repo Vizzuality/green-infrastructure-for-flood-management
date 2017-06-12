@@ -1,0 +1,14 @@
+.c-accordion {
+  background-color: transparent;
+  border: 0;
+
+  & > .rc-collapse-item {
+    border: 0;
+
+    & > .rc-collapse-header {
+      height: auto;
+      
+      .arrow { display: none; }
+    }
+  }
+}

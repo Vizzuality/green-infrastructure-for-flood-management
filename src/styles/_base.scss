@@ -49,3 +49,33 @@ input[type="search"] {
     margin: 0 -0.9375rem !important;
   }
 }
+
+.is-mobile-hidden {
+  display: none;
+
+  @media (min-width: $breakpoint-desktop) {
+    display: block;
+  }
+}
+
+.is-desktop-hidden {
+  @media (min-width: $breakpoint-desktop) {
+    display: none;
+  }
+}
+
+.relative-container {
+  height: 100%;
+  position: relative;
+
+  @include breakpoint(small only) {
+    // flex: 1;
+    overflow-y: auto;
+    // height: calc(100% - 54px);
+  }
+
+  // > div {
+  //   height: 100%;
+  //   position: relative;
+  // }
+}

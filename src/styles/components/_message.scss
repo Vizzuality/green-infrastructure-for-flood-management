@@ -1,0 +1,28 @@
+.c-message {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(palette(gray, primary), .1);
+  border-left: 5px solid palette(gray, primary);
+  margin-bottom: 50px;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &.-success {
+    border-color: $color-primary;
+    background-color: rgba($color-primary, .1);
+  }
+
+  &.-error {
+    border-color: red;
+    background-color: rgba(red, .1);
+  }
+
+  &.-info {
+    border-color: palette(gray, primary);
+    background-color: rgba(palette(gray, primary), .1);
+  }
+}

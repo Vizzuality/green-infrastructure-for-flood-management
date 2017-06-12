@@ -11,6 +11,7 @@
 
 /*
   Responsive
+  You should be using Foundation mediaqueries, but we are keeping this just in case we used them previously.
 */
 @mixin only-mobile() {
   @media (max-width: $breakpoint-mobile) {
@@ -20,6 +21,18 @@
 
 @mixin only-desktop() {
   @media (min-width: $breakpoint-mobile + 1) {
+    @content;
+  }
+}
+
+@mixin from-tablet() {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin from-desktop() {
+  @media (min-width: $breakpoint-desktop) {
     @content;
   }
 }

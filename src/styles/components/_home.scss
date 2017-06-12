@@ -1,8 +1,12 @@
 .home-section {
-  padding: 116px 170px;
+  padding: 40px 20px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+
+  @include breakpoint(large) {
+    padding: 116px 170px;
+  }
 
   &.-grayed {
     background-color: palette(gray, lighter);
@@ -14,8 +18,12 @@
 
   &.-header {
     background-image: url("/images/header.jpg");
-    padding-top: 220px;
+    padding-top: 120px;
     position: relative;
+
+    @include breakpoint(large) {
+      padding-top: 220px;
+    }
 
     .section-icon {
       width: 17px;
@@ -35,6 +43,7 @@
     position: absolute;
     top: 20px;
     left: 30px;
+    max-height: 650px;
     box-shadow: 0px 6px 18px rgba(palette(black), .4);
   }
 
@@ -43,20 +52,35 @@
   }
 
   .section-wrapper {
-    max-width: 70%;
     margin: 0 auto;
     text-align: center;
+
+    @include breakpoint(medium) {
+      max-width: 70%;
+    }
   }
 }
 
 .c-partners {
-  margin-top: 60px;
+  margin: 60px 0;
   list-style-type: none;
   display: flex;
   align-items: center;
 
+  @include breakpoint(large) {
+    margin-bottom: 0;
+  }
+
+  a {
+    display: inline-block;
+  }
+
   li {
-    margin-right: $space-1 * 9;
+    margin-right: $space-1 * 4;
+
+    @include breakpoint(medium) {
+      margin-right: $space-1 * 9;
+    }
 
     &:last-child {
       margin-right: 0;
@@ -64,6 +88,7 @@
 
     img {
       max-height: 80px;
+      max-width: 100%;
     }
   }
 }

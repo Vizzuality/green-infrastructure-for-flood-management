@@ -1,0 +1,43 @@
+.c-input-map {
+  position: relative;
+  height: 300px;
+
+  .add-location {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 32.98px;
+    background: white;
+    z-index: 5;
+    padding: 5px 25px;
+  }
+
+  .gmnoprint,
+  .gm-svpc,
+  .gm-style-cc {
+    display: none;
+  }
+
+  .gm-style {
+    &:before {
+      content: attr(data-content);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 65px;
+      background: white;
+      z-index: 2;
+    }
+
+    input {
+      width: calc(100% - 100px);
+      left: 0 !important;
+      font-size: $font-size-big;
+      line-height: 30px;
+      margin-right: 80px;
+      border: 0;
+      border-bottom: 1px solid rgba(palette(black), .3);
+    }
+  }
+}

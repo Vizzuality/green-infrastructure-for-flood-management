@@ -1,0 +1,84 @@
+.c-about {
+  font-family: $font-family-default;
+
+  .header {
+    background-image: url('/images/header.jpg');
+    color: palette(white);
+    padding-top: 95px;
+
+    .intro-text {
+      font-size: $font-size-big;
+      line-height: 28px;
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .partners {
+    .h1 {
+      margin-bottom: 88px;
+    }
+
+    .partner {
+      display: flex;
+      flex-flow: column;
+      font-size: $font-size-big;
+      line-height: 28px;
+      color: $color-text-1;
+    }
+
+    .logo {
+      height: 62px;
+      margin-bottom: 28px;
+    }
+  }
+
+  .contact {
+    .intro {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .intro-text {
+      line-height: 28px;
+      color: $color-text-1;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 55px;
+
+      .action {
+        padding: 8px 50px;
+
+        &.-disabled {
+          background-color: rgba(grey, .5);
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .form-error {
+      font-size: 11px;
+      display: inline-block;
+      text-align: right;
+      width: 100%;
+      color: red;
+    }
+  }
+
+  .home-section.contact {
+    position: relative;
+  }
+
+  .c-message {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding: 15px 20px;
+  }
+
+}

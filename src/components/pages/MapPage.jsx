@@ -1,5 +1,15 @@
 import L from 'leaflet/dist/leaflet';
 import React from 'react';
+import isEqual from 'lodash/isEqual';
+import upperFirst from 'lodash/upperFirst';
+import debounce from 'lodash/debounce';
+import { SvgIcon } from 'vizz-components';
+import { sortByOptions } from 'constants/filters';
+import { mapDefaultOptions } from 'constants/map';
+import { saveAsFile } from 'utils/general';
+import { getMarkers } from 'utils/cluster';
+import { setNumberFormat } from 'utils/general';
+// Components
 import Map from 'components/map/Map';
 import Sidebar from 'components/ui/Sidebar';
 import Filters from 'components/filters/FiltersContainer';
@@ -11,18 +21,17 @@ import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
 import ShareModal from 'components/modal/ShareModal';
 import Search from 'components/ui/Search';
-import isEqual from 'lodash/isEqual';
-import upperFirst from 'lodash/upperFirst';
-import debounce from 'lodash/debounce';
-import { SvgIcon } from 'vizz-components';
-import { sortByOptions } from 'constants/filters';
-import { mapDefaultOptions } from 'constants/map';
-import { saveAsFile } from 'utils/general';
-import { getMarkers } from 'utils/cluster';
-import { setNumberFormat } from 'utils/general';
+import Legend from 'components/ui/Legend';
+import OnlyOn from 'components/ui/Responsive';
+import SegmentedUi from 'components/ui/SegmentedUi';
+import OffCanvas from 'components/ui/OffCanvas';
 
 const million = 1000000;
-
+const mobileMenuItems = [
+  { label: 'Filters', value: 'filters' },
+  { label: 'Map', value: 'map' },
+  { label: 'Project list', value: 'list' }
+];
 
 export default class MapPage extends React.Component {
   constructor(props) {
@@ -30,7 +39,8 @@ export default class MapPage extends React.Component {
     this.state = {
       sidebarScroll: 0,
       markers: getMarkers(props),
-      mapMethods: this.getMapMethods(props)
+      mapMethods: this.getMapMethods(props),
+      mobileMenu: 'map'
     };
 
     // Bindings
@@ -38,6 +48,8 @@ export default class MapPage extends React.Component {
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
     this.onScreenClick = this.onScreenClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.onMobileMenuChange = this.onMobileMenuChange.bind(this);
+    this.showMobileLegend = this.showMobileLegend.bind(this);
   }
 
   /* Component lifecycle */
@@ -61,6 +73,10 @@ export default class MapPage extends React.Component {
     if (!isEqual(this.props.projects, newProps.projects) || !isEqual(this.props.projectDetail, newProps.projectDetail)) {
       this.setState({
         markers: getMarkers(newProps),
+        mapMethods: this.getMapMethods(newProps)
+      });
+    } else if (!isEqual(this.props.mapState, newProps.mapState)) {
+      this.setState({
         mapMethods: this.getMapMethods(newProps)
       });
     }
@@ -92,7 +108,7 @@ export default class MapPage extends React.Component {
     Object.keys(filters).forEach((key) => {
       if (filters[key] instanceof Array) {
         const arrayValues = filters[key].reduce((sum, val, i) => {
-          return i === 0 ? `${key}[]=${val}` : `${sum}&${key}[]=${val}`;
+          return i === 0 ? `${key}[]=${val.replace(/&/g, '%26')}` : `${sum}&${key}[]=${val.replace(/&/g, '%26')}`;
         }, '');
         arrayValues !== '' && paramsArray.push(arrayValues);
       } else {
@@ -128,12 +144,31 @@ export default class MapPage extends React.Component {
   }
 
   getMapMethods(props) {
+    const tileLayers = [
+      {
+        id: 'basemapBase',
+        url: config.BASEMAP_TILE_URL,
+        zIndex: 0
+      },
+      {
+        id: 'layer1',
+        url: config.LAYER_URL,
+        zIndex: props.mapState.layersActive.includes('layer1') ? 1 : -1,
+        options: {
+          tms: true
+        }
+      },
+      {
+        id: 'basemapLabels',
+        url: config.BASEMAP_LABELS_URL,
+        zIndex: 2
+      }
+    ];
+
     /* Map methods */
     const methods = {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-      tileLayers: [
-        { url: config.BASEMAP_TILE_URL, zIndex: 0 }
-      ]
+      tileLayers
     };
 
     let points = [];
@@ -155,7 +190,7 @@ export default class MapPage extends React.Component {
         options: {
           paddingTopLeft: [props.sidebarWidth, 0],
           paddingBottomRight: [0, 0],
-          maxZoom: 6
+          maxZoom: 8
         }
       };
     }
@@ -172,17 +207,6 @@ export default class MapPage extends React.Component {
     };
   }
 
-  toggleDataDropdown(e, specificDropdown, to) {
-    const { downloadOpen } = this.state;
-
-    this.setState({ downloadOpen: to ? false : !downloadOpen });
-
-    requestAnimationFrame(() => {
-      window[!this.state[specificDropdown] ?
-        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
-    });
-  }
-
   setFiltersTags(currentFilters) {
     const excludedFilters = ['order', 'direction'];
     const { filtersOptions } = this.props;
@@ -197,6 +221,12 @@ export default class MapPage extends React.Component {
             return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
           });
         }
+        // No results message
+        if (fil.filter === 'name' && !this.props.projects.length) {
+          return (
+            <li>Your search did not match any documents.</li>
+          );
+        }
         return (
           <li key={fil.filter} className="filter-tag">{typeof fil.value !== 'number' ?
             upperFirst(fil.value) : `$${setNumberFormat((fil.value * million))}`}</li>
@@ -204,6 +234,17 @@ export default class MapPage extends React.Component {
       });
     }
     return [];
+  }
+
+  toggleDataDropdown(e, specificDropdown, to) {
+    const { downloadOpen } = this.state;
+
+    this.setState({ downloadOpen: to ? false : !downloadOpen });
+
+    requestAnimationFrame(() => {
+      window[!this.state[specificDropdown] ?
+        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
+    });
   }
 
   toggleModal() {
@@ -214,6 +255,30 @@ export default class MapPage extends React.Component {
       }
     };
     this.props.toggleModal(true, opts);
+  }
+
+  showMobileLegend() {
+    this.props.toggleModal(true, {
+      children: Legend,
+      className: '-collapsed',
+      childrenProps: {
+        layersActive: this.props.mapState.layersActive
+      }
+    });
+  }
+
+  onMobileMenuChange({ value }) {
+    if (value === 'filters') {
+      this.props.toggleModal(true, {
+        children: Filters,
+        className: '-fs',
+        childrenProps: {
+          options: this.props.filtersOptions
+        }
+      });
+    } else {
+      this.setState({ mobileMenu: value });
+    }
   }
 
   /* Render */
@@ -229,75 +294,105 @@ export default class MapPage extends React.Component {
 
     const filtersTags = this.setFiltersTags(intoArrayFilters);
     const filtersQuery = this.getQuery(this.props.filters);
+    const items = mobileMenuItems.filter(i => i.value !== this.state.mobileMenu);
+    const searchComponent = <Search
+      focus={this.props.filtersUi.searchFocus}
+      defaultValue={this.props.filters.name}
+      onChange={evt => this.onSearchChange(evt.target.value)}
+      onClear={() => this.props.setProjectsFilters({ name: '' })}
+      placeholder="Search project"
+      clear
+    />;
 
     return (
       <div className="c-map-page l-map-page">
         <button className="share-btn" onClick={this.toggleModal}>
           <SvgIcon name="icon-share" className="-medium" />
         </button>
-
-        <Sidebar
-          filtersOpened={!this.props.filtersUi.closed}
-          onToggle={this.props.setSidebarWidth}
-          scroll={this.state.sidebarScroll}
-          showBtn
-          onDetail={!!this.props.projectDetail}
-          actions={{
-            focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),
-            openFilters: () => this.props.setFiltersUi({ closed: false })
-          }}
-          className={this.props.projectDetail ? '-project-detail' : ''}
-        >
-          <Spinner isLoading={this.props.loading} />
-          {this.props.projectDetail ?
-            <ProjectDetail
-              data={this.props.projectDetail}
-              relatedProjects={this.props.relatedProjects || []}
-              relatedLoading={this.props.relatedLoading}
-            /> :
-            <div className="project-list-wrapper">
-              <SlidingMenu
-                title="filters"
-                closed={this.props.filtersUi.closed}
-                onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
-                downloadUrl={`http://nature-of-risk-reduction.vizzuality.com//api/projects.csv?${filtersQuery}`}
-                download
-              >
-                <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
-              </SlidingMenu>
-              <div className="list-actions">
-                <Search
-                  focus={this.props.filtersUi.searchFocus}
-                  defaultValue={this.props.filters.name}
-                  onChange={evt => this.onSearchChange(evt.target.value)}
-                  onClear={() => this.props.setProjectsFilters({ name: '' })}
-                  placeholder="Search project"
-                />
-
-                <div className="sidebar-actions">
-                  <SortBy
-                    order={this.props.filters.order}
-                    direction={this.props.filters.direction}
-                    list={sortByOptions}
-                    setProjectsFilters={this.props.setProjectsFilters}
-                  />
+        <button className="legend-btn" onClick={this.showMobileLegend}>
+          <SvgIcon name="icon-legend" className="-medium" />
+        </button>
+        <OnlyOn device="mobile">
+          {!this.props.projectDetail && <SegmentedUi items={items} onChange={this.onMobileMenuChange} />}
+        </OnlyOn>
+        <OnlyOn device="desktop">
+          <Sidebar
+            filtersOpened={!this.props.filtersUi.closed}
+            onToggle={this.props.setSidebarWidth}
+            scroll={this.state.sidebarScroll}
+            showBtn
+            onDetail={!!this.props.projectDetail}
+            actions={{
+              focusSearch: () => this.props.setFiltersUi({ closed: true, searchFocus: true }),
+              openFilters: () => this.props.setFiltersUi({ closed: false })
+            }}
+            className={this.props.projectDetail ? '-project-detail' : ''}
+          >
+            <Spinner isLoading={this.props.loading} />
+            {this.props.projectDetail ?
+              <ProjectDetail
+                data={this.props.projectDetail}
+                relatedProjects={this.props.relatedProjects || []}
+                relatedLoading={this.props.relatedLoading}
+              /> :
+              <div className="project-list-wrapper">
+                <SlidingMenu
+                  title="filters"
+                  closed={this.props.filtersUi.closed}
+                  onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
+                  downloadUrl={`http://nature-of-risk-reduction.vizzuality.com//api/projects.csv?${filtersQuery}`}
+                  download
+                >
+                  <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
+                </SlidingMenu>
+                <div className="list-actions">
+                  {searchComponent}
+                  <div className="sidebar-actions">
+                    <SortBy
+                      order={this.props.filters.order}
+                      direction={this.props.filters.direction}
+                      list={sortByOptions}
+                      setProjectsFilters={this.props.setProjectsFilters}
+                    />
+                  </div>
                 </div>
+                {filtersTags.length > 0 &&
+                  <div className="current-filters">
+                    <ul className="filters-list">{filtersTags}</ul>
+                  </div>}
+                <ProjectList projects={this.props.projects} />
               </div>
-              {filtersTags.length > 0 &&
-                <div className="current-filters">
-                  <ul className="filters-list">{filtersTags}</ul>
-                </div>}
-              <ProjectList projects={this.props.projects} />
-            </div>
-          }
-        </Sidebar>
-        <ZoomControl
-          zoom={this.props.mapState.zoom}
-          onZoomChange={zoom => this.props.setMapLocation({ zoom })}
-          maxZoom={mapDefaultOptions.maxZoom}
-          minZoom={mapDefaultOptions.minZoom}
-        />
-        <Map {...mapParams} />
+            }
+          </Sidebar>
+        </OnlyOn>
+        <div className="relative-container">
+          {/* Map and zoom control */}
+          <ZoomControl
+            zoom={this.props.mapState.zoom}
+            onZoomChange={zoom => this.props.setMapLocation({ zoom })}
+            maxZoom={mapDefaultOptions.maxZoom}
+            minZoom={mapDefaultOptions.minZoom}
+          />
+          <Map {...mapParams} />
+          {/* Mobile map and project list */}
+          <OnlyOn device="mobile">
+            <OffCanvas className="-projects" opened={this.state.mobileMenu === 'list'}>
+              {searchComponent}
+              {this.props.projectDetail ?
+                <ProjectDetail
+                  data={this.props.projectDetail}
+                  relatedProjects={this.props.relatedProjects || []}
+                  relatedLoading={this.props.relatedLoading}
+                /> :
+                <ProjectList projects={this.props.projects} />
+              }
+            </OffCanvas>
+          </OnlyOn>
+          {/* Desktop legend */}
+          <OnlyOn device="desktop">
+            <Legend layersActive={this.props.mapState.layersActive} />
+          </OnlyOn>
+        </div>
       </div>
     );
   }

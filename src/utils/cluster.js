@@ -37,11 +37,15 @@ function getPopupMarkup(data) {
           </li>
         </ul>
       </div>
-      <a class="tooltip-link">More info</a>
+      ${ data.currentDetail ? '' : '<a class="tooltip-link">More info</a>' }
     </div>
   `;
 
-  myPopup.querySelector('a').addEventListener('click', () => dispatch(push(url)));
+  const moreInfoButton = myPopup.querySelector('a');
+
+  if (moreInfoButton) {
+    moreInfoButton.addEventListener('click', () => dispatch(push(url)));
+  }
 
   return myPopup;
 }
@@ -55,11 +59,13 @@ function getMarkers(props) {
     let className = 'c-marker';
     let iconSize = [20, 20];
 
-    if (data.current) {
+    const markerData = Object.assign({}, data, { currentDetail: projectDetail && (projectDetail.id === data.id) });
+
+    if (markerData.current) {
       className += ' -current';
       iconSize = [6, 6];
     }
-    if (data.centroid) {
+    if (markerData.centroid) {
       className += ' -centroid';
     }
 
@@ -69,9 +75,9 @@ function getMarkers(props) {
       html: '<div class="marker-inner"></div>'
     }));
 
-    if (!data.current) {
+    if (!markerData.current) {
       // Bind Popup
-      leafletMarker.bindPopup(getPopupMarkup(data));
+      leafletMarker.bindPopup(getPopupMarkup(markerData));
       // Set listeners
       leafletMarker.off('click').on('click', function mouseover() {
         this.openPopup();
