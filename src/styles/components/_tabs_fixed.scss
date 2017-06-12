@@ -3,6 +3,7 @@
   display: flex;
   border-bottom: 1px solid rgba(palette(black), .5);
   overflow-x: auto;
+  overflow-y: hidden;
 
   &.-fixed {
     position: fixed;
