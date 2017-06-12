@@ -21,6 +21,8 @@ function getPopupMarkup(data) {
   const url = `/map/project/${data.id}`;
 
   const myPopup = L.DomUtil.create('div', 'infoWindow');
+  const isDetailPage = window.location.pathname.includes('/map/project/');
+
   myPopup.innerHTML = `
     <div class="c-tooltip">
       <div class="tooltip-content">
@@ -37,7 +39,7 @@ function getPopupMarkup(data) {
           </li>
         </ul>
       </div>
-      ${ data.currentDetail ? '' : '<a class="tooltip-link">More info</a>' }
+      ${ isDetailPage ? '' : '<a class="tooltip-link">More info</a>' }
     </div>
   `;
 
