@@ -17900,7 +17900,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var mapDefaultOptions = {
   zoom: 2,
-  maxZoom: 6,
+  maxZoom: 8,
   minZoom: 3,
   center: [30, -40],
   zoomControl: true,
@@ -29946,7 +29946,7 @@ var MapPage = function (_React$Component) {
           options: {
             paddingTopLeft: [props.sidebarWidth, 0],
             paddingBottomRight: [0, 0],
-            maxZoom: 6
+            maxZoom: 8
           }
         };
       }
@@ -35402,7 +35402,7 @@ ZoomControl.propTypes = {
 
 ZoomControl.defaultProps = {
   zoom: 3,
-  maxZoom: 6,
+  maxZoom: 8,
   minZoom: 0
 };
 
