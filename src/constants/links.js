@@ -4,8 +4,8 @@ const links = [
     href: '/map'
   },
   {
-    text: 'Resources',
-    href: '/resources'
+    text: 'Guidance',
+    href: '/guidance'
   },
   {
     text: 'Submit a project',
