@@ -84,6 +84,19 @@ export default class HomePage extends React.Component {
                 </a>
               </li>
             </div>
+
+            <div className="c-partners -contributors">
+              <li>
+                <a href="https://www.wetlands.org/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/wetlands.png" alt="wetlands" />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ecoshape.org/en/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/ecoshape.png" alt="ecoshape" />
+                </a>
+              </li>
+            </div>
           </div>
         </section>
       </div>
