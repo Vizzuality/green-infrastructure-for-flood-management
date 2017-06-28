@@ -5,6 +5,7 @@ import { Row } from 'components/ui/Grid';
 import TetherComponent from 'react-tether';
 import { Link } from 'react-router';
 import isUrl from 'validator/lib/isURL';
+import uniq from 'lodash/uniq';
 import { setProjectsFilters } from 'modules/projects';
 import { dispatch } from 'main';
 import { push } from 'react-router-redux';
@@ -20,8 +21,8 @@ export default class DownloadPdf extends React.Component {
 
   componentDidUpdate(nextProps) {
     if (Object.keys(this.props.data).length) {
-      window.print();
-      window.history.back();
+      // window.print();
+      // window.history.back();
     }
   }
 
@@ -47,13 +48,18 @@ export default class DownloadPdf extends React.Component {
         {upperFirst(pboi.name)}
       </li>
     ));
+    const countries = data.locations ? uniq(data.locations.map(l => l.adm0_name)) : [];
 
+console.log(data);
     return (
       <article className="c-project-detail">
-        <div className="project-detail-section">
-          <ul className="project-company">{data.organizations && data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
-          <span className="project-date">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
+        <div className="project-detail-section -print">
           <h1 className="project-name">{data.name}</h1>
+          <span className="project-date">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
+          <div className="project-info-print">
+            <ul className="project-company">{data.organizations && data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
+            <ul className="project-country">{countries.map((c, i) => <li key={i}>{c && c}</li>)}</ul>
+          </div>
         </div>
         <div className="project-resumme">
           <div className="project-cost">
@@ -66,7 +72,7 @@ export default class DownloadPdf extends React.Component {
           </div>
 
           <span className="label">Project summary</span>
-          <p className="project-text">{data.summary}</p>
+          <p className="project-text -print">{data.summary}</p>
           <p className="project-link">{data.learn_more}</p>
         </div>
         <div className="project-info">
@@ -93,7 +99,7 @@ export default class DownloadPdf extends React.Component {
           </div>}
 
           {data.co_benefits_of_interventions && data.co_benefits_of_interventions.length > 0 && <div className="project-info-item">
-            <span className="label">Co-benefits of intervention</span>
+            <span className="label">Other benefits</span>
             <ul className="value">{data.co_benefits_of_interventions && setArrayValues(data.co_benefits_of_interventions)}</ul>
           </div>}
 
@@ -106,8 +112,7 @@ export default class DownloadPdf extends React.Component {
             <Row>
               <div className="property column small-6">
                 <span className="label">
-                  <span>Est. Monetary Cost</span>
-                  <span className="sublabel">(Today's US$)</span>
+                  <span className="-sublabel">Est. Monetary Cost</span>
                 </span>
                 <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
               </div>
