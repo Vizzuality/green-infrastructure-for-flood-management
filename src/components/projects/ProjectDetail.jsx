@@ -244,7 +244,7 @@ export default class ProjectDetail extends React.Component {
           </div>}
 
           {data.co_benefits_of_interventions.length > 0 && <div className="project-info-item">
-            <span className="label">Co-benefits of intervention</span>
+            <span className="label">Other benefits</span>
             <ul className="value">{setArrayValues(data.co_benefits_of_interventions)}</ul>
           </div>}
 
@@ -257,8 +257,7 @@ export default class ProjectDetail extends React.Component {
             <Row>
               <div className="property column small-6">
                 <span className="label">
-                  <span>Est. Monetary Cost</span>
-                  <span className="sublabel">(Today's US$)</span>
+                  <span className="-sublabel">Est. Monetary Cost</span>
                 </span>
                 <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
               </div>
@@ -276,7 +275,7 @@ export default class ProjectDetail extends React.Component {
 
           {data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
-            <span className="value">{isUrl(data.references) ? <a className="link" href={data.references}>{data.references}</a> : data.references}</span>
+            <span className="value">{isUrl(data.references) ? <a className="link" target="_blank" href={data.references}>{data.references}</a> : data.references}</span>
           </div>}
         </div>
 

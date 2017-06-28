@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IndexRoute, Router, Route } from 'react-router';
+import { IndexRoute, Router, Route, applyRouterMiddleware } from 'react-router';
+import useScroll from 'react-router-scroll/lib/useScroll'; // https://github.com/taion/react-router-scroll#minimizing-bundle-size
 import Footer from 'components/footer/Footer';
-import { onEnterMapPage, onEnterProjectDetail } from 'modules/url';
+import { onEnterMapPage, onEnterProjectDetail, shouldUpdateScroll } from 'modules/url';
 
 // App
 import App from 'components/app/AppContainer';
@@ -16,7 +17,10 @@ import GuidancePage from 'components/pages/GuidancePage';
 import AboutPageContainer from 'components/pages/AboutPageContainer';
 
 const Routes = ({ history }) => (
-  <Router history={history}>
+  <Router
+    history={history}
+    render={applyRouterMiddleware(useScroll(shouldUpdateScroll))}
+  >
     <Route path="/" component={App}>
       <IndexRoute components={{ main: HomePage, footer: Footer }} />
       <Route path="map">
