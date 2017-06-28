@@ -21,8 +21,8 @@ export default class DownloadPdf extends React.Component {
 
   componentDidUpdate(nextProps) {
     if (Object.keys(this.props.data).length) {
-      // window.print();
-      // window.history.back();
+      window.print();
+      window.history.back();
     }
   }
 
@@ -66,7 +66,7 @@ console.log(data);
             <Row>
               <div className="column small-12">
                 <span className="label">Nature based solutions</span>
-                <ul className="value -big">{data.nature_based_solutions && setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
+                <ul className="value -medium">{data.nature_based_solutions && setArrayValues(data.nature_based_solutions, 'nature_based_solutions')}</ul>
               </div>
             </Row>
           </div>
@@ -114,11 +114,11 @@ console.log(data);
                 <span className="label">
                   <span className="-sublabel">Est. Monetary Cost</span>
                 </span>
-                <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
+                <span className="value -medium">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
               </div>
               <div className="property column small-6">
                 <span className="label">Est. Monetary benefits</span>
-                <span className="value -big">{data.estimated_monetary_benefits ? `${this.parseCost(data.estimated_monetary_benefits)} US$` : 'Unknown'}</span>
+                <span className="value -medium">{data.estimated_monetary_benefits ? `${this.parseCost(data.estimated_monetary_benefits)} US$` : 'Unknown'}</span>
               </div>
             </Row>
           </div>

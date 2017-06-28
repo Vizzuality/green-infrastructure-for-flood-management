@@ -343,6 +343,7 @@ $_separation: ($space-1 * 4);
   .project-info-print {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
     margin-top: 25px;
 
     & * {
@@ -430,6 +431,14 @@ $_separation: ($space-1 * 4);
     display: flex;
     flex-wrap: wrap;
     word-break: break-word;
+
+    &.-medium {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 30px;
+
+      .value-item { line-height: 26px; }
+    }
 
     &.-big {
       font-size: 36px;
