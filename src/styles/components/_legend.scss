@@ -44,6 +44,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      .info {
+        border: 1px solid $color-primary;
+        border-radius: 50%;
+        padding: 0px 2px;
+        margin-left: 6px;
+      }
     }
 
     .c-icon {
@@ -197,6 +204,32 @@
         width: calc(100% - 7px);
       }
     }
+  }
+}
 
+.c-dropdown {
+  &.-legend-info {
+    max-width: 320px;
+
+    .content {
+      p,
+      a {
+        font-family: $font-family-default;
+        line-height: 24px;
+        font-size: 14px;
+        color: $color-text-1;
+        word-break: break-word;
+      }
+
+      a {
+        font-size: 14px;
+        color: $color-primary;
+        margin-left: 5px;
+
+        &:hover {
+          opacity: .7;
+        }
+      }
+    }
   }
 }

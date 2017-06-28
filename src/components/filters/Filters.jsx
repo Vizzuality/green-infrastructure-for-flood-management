@@ -165,7 +165,7 @@ export default class Filters extends React.Component {
 
           {/* co benefits */}
           <div className="filter-field">
-            <label className="title">Co benefits</label>
+            <label className="title">Other benefits</label>
             <Select
               name="field"
               multi
