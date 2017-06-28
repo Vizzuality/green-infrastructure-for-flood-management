@@ -151,7 +151,6 @@ $_separation: ($space-1 * 4);
 }
 
 /* Project detail */
-
 .c-project-detail {
   .pair-data {
     display: flex;
@@ -302,6 +301,11 @@ $_separation: ($space-1 * 4);
     line-height: 28px;
     max-height: 125px;
     overflow: hidden;
+
+    &.-print {
+      max-height: inherit !important;
+      overflow: auto;
+    }
   }
 
   .project-link {
@@ -321,6 +325,34 @@ $_separation: ($space-1 * 4);
     border-bottom: solid 1px rgba(#0f6487, .2);
     background-color: palette(green);
     padding: $_separation;
+
+    &.-print {
+      background-color: transparent;
+
+      & * {
+        color: $color-text-1;
+      }
+
+      .project-date {
+        display: inline-block;
+        margin-top: 13px;
+      }
+    }
+  }
+
+  .project-info-print {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-top: 25px;
+
+    & * {
+      padding-right: 30px;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
   }
 
   .project-resumme {
@@ -399,6 +431,14 @@ $_separation: ($space-1 * 4);
     display: flex;
     flex-wrap: wrap;
     word-break: break-word;
+
+    &.-medium {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 30px;
+
+      .value-item { line-height: 26px; }
+    }
 
     &.-big {
       font-size: 36px;

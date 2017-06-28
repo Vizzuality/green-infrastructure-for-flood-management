@@ -39,6 +39,16 @@
       border-left: 6px solid transparent;
       box-shadow: 1px 1px 0px 0px rgba(palette(black), 0.1);
     }
+
+    &.-arrow-right {
+      top: -9px !important;
+      left: 15px !important;
+
+      &:before {
+        left: auto;
+        right: 20px;
+      }
+    }
   }
 
   > div > p {
