@@ -32,7 +32,7 @@ export default class HomePage extends React.Component {
                 <Link className="c-btn -secondary" to="/map">See all projects</Link>
               </div>
               <div className="column large-6 small-12 -container is-mobile-hidden">
-                <img className="screenshot" alt="screen capture" src="/images/projects-page.jpg" />
+                <img className="screenshot" alt="screen capture" src="/images/projects-page.png" />
               </div>
             </Row>
           </div>
@@ -81,6 +81,19 @@ export default class HomePage extends React.Component {
               <li>
                 <a href="https://www.gfdrr.org/" target="_blank" rel="noreferrer noopener">
                   <img src="/images/partners/gfdrr.png" alt="gfdrr" />
+                </a>
+              </li>
+            </div>
+
+            <div className="c-partners -contributors">
+              <li>
+                <a href="https://www.wetlands.org/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/wetlands.png" alt="wetlands" />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ecoshape.org/en/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/ecoshape.png" alt="ecoshape" />
                 </a>
               </li>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Switch from 'react-toggle-switch';
 import 'react-toggle-switch/dist/css/switch.min.css';
 import classnames from 'classnames';
+import TetherComponent from 'react-tether';
 import { SvgIcon } from 'vizz-components';
 
 import { dispatch } from 'main';
@@ -24,17 +25,48 @@ export default class Legend extends React.Component {
     super(props);
     // Initial state
     this.state = {
-      open: true
+      open: true,
+      legendInfoOpen: false
     };
     // BINDINGS
     this.onClickOpen = this.onClickOpen.bind(this);
+    this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
+    this.onScreenClick = this.onScreenClick.bind(this);
   }
 
-  /**
-   * UI EVENTS
-   * - onClickOpen
-   * - onShowLayer
-  */
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onScreenClick);
+  }
+
+  onScreenClick(e) {
+    const el = document.querySelector('.c-dropdown');
+    const clickOutside = el && el.contains && !el.contains(e.target);
+    const isOrganizationsBtn = this.organizationsBtn && this.organizationsBtn.contains(e.target);
+    const isCountriesBtn = this.countriesBtn && this.countriesBtn.contains(e.target);
+
+    if (clickOutside) {
+      (!isOrganizationsBtn) ? this.toggleDataDropdown(e, 'legendInfoOpen', true) : null;
+    }
+  }
+
+  toggleDataDropdown(e, specificDropdown, to) {
+    const { legendInfoOpen } = this.state;
+
+    if (specificDropdown === 'legendInfoOpen') {
+      this.setState({
+        legendInfoOpen: to ? false : !legendInfoOpen
+      });
+    } else {
+      this.setState({
+        legendInfoOpen: false
+      });
+    }
+
+    requestAnimationFrame(() => {
+      window[!this.state[specificDropdown] ?
+        'removeEventListener' : 'addEventListener']('click', this.onScreenClick, true);
+    });
+  }
 
   onClickOpen() {
     this.setState({ open: !this.state.open });
@@ -55,7 +87,38 @@ export default class Legend extends React.Component {
       <div className={classNames}>
         <div className="header">
           <h1 className="title">
-            Legend
+            <span>
+              Legend
+              <TetherComponent
+                attachment="bottom right"
+                targetAttachment="top right"
+                constraints={[{
+                  to: 'scrollParent',
+                  attachment: 'together',
+                  pin: true
+                }]}
+                classes={{
+                  element: 'c-dropdown -arrow-bottom -arrow-right -legend-info'
+                }}
+              >
+                <button className="info project-company -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'legendInfoOpen')} ref={c => this.legendInfoBtn = c}>
+                  <SvgIcon name="icon-info" className="-small" />
+                </button>
+                {
+                  this.state.legendInfoOpen &&
+                  <div className="content -info">
+                    <p>The flood hazard maps show inundation depth in case of extreme river and coastal flooding.</p>
+                    <p>
+                      River flood data is derived from the GLOFRIS model, and available through the WRI Global Flood Analyzer:
+                      <a href="http://floods.wri.org/" target="_blank">http://floods.wri.org/</a>.
+                    </p>
+                    <p>Coastal flood data is derived from the GTSR model:
+                      <a href="https://www.nature.com/articles/ncomms11969" target="_blank">https://www.nature.com/articles/ncomms11969</a>.
+                    </p>
+                  </div>
+                }
+              </TetherComponent>
+            </span>
             <button onClick={this.onClickOpen}>
               <SvgIcon name="icon-arrow-down-2" className="-medium" />
             </button>
