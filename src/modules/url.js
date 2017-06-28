@@ -56,4 +56,22 @@ function onEnterProjectDetail({ params }, replaceUrl, done) {
   done();
 }
 
-export { updateUrl, onEnterMapPage, onEnterProjectDetail };
+function shouldUpdateScroll(prevRouterProps, { location }) {
+  const noScrollSections = [];
+
+  const path = (prevRouterProps && prevRouterProps.location.pathname.split('/')[1]) || '';
+  const nextPath = location.pathname.split('/')[1];
+
+  const test = (path === nextPath && noScrollSections.indexOf(nextPath) > -1);
+
+  if (!test) {
+    const el = document.getElementsByClassName('c-header');
+    if (el.length) el[0].scrollIntoView();
+  }
+
+  return !test;
+
+}
+
+
+export { updateUrl, onEnterMapPage, onEnterProjectDetail, shouldUpdateScroll };

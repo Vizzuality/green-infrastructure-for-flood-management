@@ -151,7 +151,6 @@ $_separation: ($space-1 * 4);
 }
 
 /* Project detail */
-
 .c-project-detail {
   .pair-data {
     display: flex;
@@ -279,12 +278,12 @@ $_separation: ($space-1 * 4);
 
     .more {
       position: absolute;
-      bottom: -20px;
+      bottom: -22px;
       left: 0;
       display: flex;
       justify-content: center;
       width: 100%;
-      padding-top: 20px;
+      padding-top: 18px;
       background: linear-gradient(to top, rgba(255, 255, 255, 1) 55%, rgba(255, 255, 255, 0) 127%);
 
       &:hover .more-icon { opacity: .7; }
@@ -299,9 +298,14 @@ $_separation: ($space-1 * 4);
   .project-text {
     color: palette(black);
     font-size: $font-size-big;
-    line-height: 32px;
-    max-height: 120px;
+    line-height: 28px;
+    max-height: 125px;
     overflow: hidden;
+
+    &.-print {
+      max-height: inherit !important;
+      overflow: auto;
+    }
   }
 
   .project-link {
@@ -321,6 +325,34 @@ $_separation: ($space-1 * 4);
     border-bottom: solid 1px rgba(#0f6487, .2);
     background-color: palette(green);
     padding: $_separation;
+
+    &.-print {
+      background-color: transparent;
+
+      & * {
+        color: $color-text-1;
+      }
+
+      .project-date {
+        display: inline-block;
+        margin-top: 13px;
+      }
+    }
+  }
+
+  .project-info-print {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-top: 25px;
+
+    & * {
+      padding-right: 30px;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
   }
 
   .project-resumme {
@@ -358,6 +390,10 @@ $_separation: ($space-1 * 4);
         display: flex;
         flex-flow: column;
         justify-content: space-between;
+
+        .label {
+          margin-bottom: 24px;
+        }
       }
 
       &:last-of-type {
@@ -375,10 +411,17 @@ $_separation: ($space-1 * 4);
     color: palette(green);
     margin-bottom: $space-1;
 
-    .sublabel {
-      display: inline-block;
-      margin-top: 5px;
-      font-size: 10px;
+    .-sublabel {
+      position: relative;
+
+      &:after {
+        content: "(Today's US$)";
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        margin-top: 5px;
+        font-size: 10px;
+      }
     }
   }
 
@@ -388,6 +431,14 @@ $_separation: ($space-1 * 4);
     display: flex;
     flex-wrap: wrap;
     word-break: break-word;
+
+    &.-medium {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 30px;
+
+      .value-item { line-height: 26px; }
+    }
 
     &.-big {
       font-size: 36px;

@@ -1,5 +1,4 @@
 .c-guidance-implementation {
-
   .section-title {
     font-size: 24px;
     line-height: 37px;
@@ -17,6 +16,14 @@
       margin-left: -18px;
       padding-left: 22px;
       margin-left: 0;
+    }
+
+    a {
+      color: $color-primary;
+      text-decoration: underline;
+      word-break: break-word;
+
+      &:hover { opacity: .7; }
     }
   }
 
@@ -50,9 +57,14 @@
     font-weight: bold;
     background-color: palette(white);
 
+
     &.-relative {
       position: relative;
       display: flex;
+
+      @media #{$mq-medium} {
+        display: none;
+      }
     }
 
     &.-active {
