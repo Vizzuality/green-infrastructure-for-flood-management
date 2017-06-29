@@ -43,6 +43,8 @@ export default class MapPage extends React.Component {
       mobileMenu: 'map'
     };
 
+    this.setLocationsInUrl = false;
+
     // Bindings
     this.onSearchChange = debounce(this.onSearchChange, 300);
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
@@ -54,8 +56,6 @@ export default class MapPage extends React.Component {
 
   /* Component lifecycle */
   componentWillMount() {
-    // this.props.updateUrl();
-
     // Projects has to be fetched every time becaouse of filter is being done at server
     this.getProjects(this.props.filters);
 
@@ -135,10 +135,12 @@ export default class MapPage extends React.Component {
     /* Map listeners */
     return {
       moveend: (map) => {
-        this.props.setMapLocation({
+        this.setLocationsInUrl && this.props.setMapLocation({
           latLng: map.getCenter(),
           zoom: map.getZoom()
         });
+
+        if (!this.setLocationsInUrl) this.setLocationsInUrl = true;
       }
     };
   }
