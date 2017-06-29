@@ -10,35 +10,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-//   setFiltersUi(params) {
-//     dispatch(setFiltersUi(params));
-//   },
-//   setSidebarWidth(width) {
-//     dispatch(setSidebarWidth(width));
-//   },
-//   resetMapState() {
-//     dispatch(resetMapState());
-//     dispatch(resetProjectFilters());
-//     dispatch(resetFiltersUi());
-//     dispatch(setProjectsDetail(null));
-//   },
-//   setMapLocation(params) {
-//     dispatch(setMapLocation(params));
-//     dispatch(updateUrl());
-//   },
   setProjectsDetail(id) {
     dispatch(setProjectsDetail(id));
   },
   getProjects(query) {
     dispatch(getProjects(query));
   }
-//   getFiltersOptions() {
-//     dispatch(getFiltersOptions());
-//   },
-//   setProjectsFilters: (filters) => {
-//     dispatch(setProjectsFilters(filters));
-//     dispatch(updateUrl());
-//   }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DownloadPdf);

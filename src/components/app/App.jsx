@@ -9,6 +9,16 @@ import Nav from 'components/ui/Nav';
 
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // Bindings
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    this.props.toggleMobileMenu(false);
+  }
 
   render() {
     const cNames = classnames('l-app', { '-pushed': this.props.mobileMenu.opened });
@@ -35,7 +45,7 @@ export default class App extends React.Component {
         </div>
         <OnlyOn device="mobile">
           <OffCanvas opened={this.props.mobileMenu.opened} className="-mobile-menu">
-            <Nav className="-stacked" links={links} logged={logged} />
+            <Nav className="-stacked" links={links} logged={logged} onClick={this.onClick} />
           </OffCanvas>
         </OnlyOn>
       </div>
@@ -52,5 +62,6 @@ App.propTypes = {
   logged: React.PropTypes.bool,
   // Functions
   toggleModal: React.PropTypes.func,
+  toggleMobileMenu: React.PropTypes.func,
   setModalOptions: React.PropTypes.func
 };
