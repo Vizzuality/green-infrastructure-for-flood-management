@@ -17,7 +17,7 @@
       padding-bottom: 3px;
       border-bottom: 1px solid rgba(palette(black), .2);
 
-      .title svg {
+      .title svg.close {
         transition: all $animation-time $ease-in-cubic;
         transform: rotate(-180deg);
       }
