@@ -13,7 +13,6 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
-COPY npm-shrinkwrap.json /usr/src/app/
 RUN npm install --loglevel warn
 
 # Bundle app source
