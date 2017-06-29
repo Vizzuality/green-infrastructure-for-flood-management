@@ -31,7 +31,7 @@ function updateUrl() {
       };
     }
 
-    storeDispatch(replace(locationDescriptor));
+    dispatch(replace(locationDescriptor));
   };
 }
 
@@ -70,7 +70,6 @@ function shouldUpdateScroll(prevRouterProps, { location }) {
   }
 
   return !test;
-
 }
 
 

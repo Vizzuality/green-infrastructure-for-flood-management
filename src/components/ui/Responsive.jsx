@@ -18,6 +18,6 @@ export default function OnlyOn(props) {
 
 OnlyOn.propTypes = {
   // STORE
-  children: React.PropTypes.object,
+  children: React.PropTypes.any,
   device: React.PropTypes.string.isRequired
 };

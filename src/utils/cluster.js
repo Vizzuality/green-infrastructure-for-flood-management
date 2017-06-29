@@ -1,6 +1,6 @@
 import L from 'leaflet/dist/leaflet';
 import { PruneCluster, PruneClusterForLeaflet } from 'lib/PruneCluster';
-import { push } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 import { dispatch } from 'main';
 import * as polyneSnake from 'leaflet.polyline.snakeanim';
 
@@ -45,7 +45,7 @@ function getPopupMarkup(data) {
   const moreInfoButton = myPopup.querySelector('a');
 
   if (moreInfoButton) {
-    moreInfoButton.addEventListener('click', () => dispatch(push(url)));
+    moreInfoButton.addEventListener('click', () => dispatch(replace(url)));
   }
 
   return myPopup;

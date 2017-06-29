@@ -31,7 +31,7 @@ export default class Nav extends React.Component {
             this.props.links.map((l, i) => {
               return (
                 <li className="nav-item" key={i}>
-                  <Link activeClassName="-active" className="nav-link" to={l.href}>{l.text}</Link>
+                  <Link activeClassName="-active" className="nav-link" to={l.href} onClick={this.props.onClick}>{l.text}</Link>
                 </li>
               );
             })
@@ -52,7 +52,8 @@ export default class Nav extends React.Component {
 Nav.propTypes = {
   links: React.PropTypes.array,
   className: React.PropTypes.string,
-  logged: React.PropTypes.bool
+  logged: React.PropTypes.bool,
+  onClick: React.PropTypes.func
 };
 
 Nav.defaultProps = {
