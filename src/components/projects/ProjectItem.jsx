@@ -1,13 +1,14 @@
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import uniq from 'lodash/uniq';
+import isEmpty from 'lodash/isEmpty';
 import { SvgIcon } from 'vizz-components';
 import PlusNumber from 'components/ui/PlusNumber';
 import { Link } from 'react-router';
 
 export default function ProjectItem(props) {
   const data = props.data;
-  const countries = uniq(data.locations.map(l => l.adm0_name));
+  const countries = !isEmpty(data) && uniq(data.locations.map(l => l.adm0_name));
 
   return (
     <Link to={`/map/project/${data.slug}`} className="c-project-item">
