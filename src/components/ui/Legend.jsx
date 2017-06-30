@@ -120,7 +120,7 @@ export default class Legend extends React.Component {
               </TetherComponent>
             </span>
             <button onClick={this.onClickOpen}>
-              <SvgIcon name="icon-arrow-down-2" className="-medium" />
+              <SvgIcon name="icon-arrow-down-2" className="close -medium" />
             </button>
           </h1>
         </div>

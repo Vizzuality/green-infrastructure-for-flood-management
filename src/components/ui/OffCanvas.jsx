@@ -1,14 +1,14 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export default function OffCanvas({ children, opened, className }) {
+export default function OffCanvas({ children, opened, className, onClick }) {
   const cNames = classnames('c-off-canvas', {
     [className]: !!className,
     '-closed': !opened
   });
 
   return (
-    <div className={cNames}>
+    <div className={cNames} onClick={onClick}>
       {children}
     </div>
   );
@@ -16,5 +16,7 @@ export default function OffCanvas({ children, opened, className }) {
 
 OffCanvas.propTypes = {
   className: React.PropTypes.string,
-  opened: React.PropTypes.bool
+  children: React.PropTypes.any,
+  opened: React.PropTypes.bool,
+  onClick: React.PropTypes.func
 };

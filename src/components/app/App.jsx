@@ -21,13 +21,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    const cNames = classnames('l-app', { '-pushed': this.props.mobileMenu.opened });
     const isDownload = this.props.location.pathname.includes('/download/project/');
     const { modal, logged } = this.props;
 
     return (
       <div>
-        <div className={cNames}>
+        <div className="l-app">
           {!isDownload && <Header path={this.props.location.pathname} logged={logged} />}
           <main role="main" className="l-main">
             <div className="main-content">
@@ -44,8 +43,10 @@ export default class App extends React.Component {
           />
         </div>
         <OnlyOn device="mobile">
-          <OffCanvas opened={this.props.mobileMenu.opened} className="-mobile-menu">
-            <Nav className="-stacked" links={links} logged={logged} onClick={this.onClick} />
+          <OffCanvas opened={this.props.mobileMenu.opened} className="-mobile-menu" onClick={this.onClick}>
+            <div className="mobile-menu">
+              <Nav className="-stacked" links={links} logged={logged} onClick={this.onClick} />
+            </div>
           </OffCanvas>
         </OnlyOn>
       </div>
