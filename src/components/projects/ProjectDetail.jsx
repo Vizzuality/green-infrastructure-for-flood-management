@@ -166,8 +166,8 @@ export default class ProjectDetail extends React.Component {
           <div className="pair-data">
             <span className="project-data">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
             <span className="project-data">{data.country}</span>
-            {countries.length === 1 ?
-              <span className="project-data">{countries[0]}</span> :
+            {countries.length === 1 && <span className="project-data">{countries[0]}</span>}
+            {countries.length > 1 &&
               <TetherComponent
                 attachment="top right"
                 targetAttachment="bottom right"
@@ -181,7 +181,7 @@ export default class ProjectDetail extends React.Component {
                 }}
               >
                 { /* First child: This is what the item will be tethered to */ }
-                <p className="project-country -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'countriesOpen')} ref={c => this.countriesBtn = c}>
+                <p className="project-data -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'countriesOpen')} ref={c => this.countriesBtn = c}>
                   {countries.length} countries
                 </p>
                 { /* Second child: If present, this item will be tethered to the the first child */ }
