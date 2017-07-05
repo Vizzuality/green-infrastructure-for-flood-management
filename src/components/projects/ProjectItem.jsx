@@ -20,30 +20,30 @@ export default function ProjectItem(props) {
         </ul>
         <span className="project-name">{data.name}</span>
         <div className="project-tags-container">
-          <p className="project-tags">
+          {data.nature_based_solutions.length > 0 && <p className="project-tags">
             <span className="title" title="Nature Base Solutions">
               <SvgIcon name="icon-enter" className="-small" />
             </span>
             <span>
-              {data.nature_based_solutions.length && upperFirst(data.nature_based_solutions[0].name)} {data.nature_based_solutions.length > 1 && <PlusNumber list={data.nature_based_solutions} className="-right" />}
+              {upperFirst(data.nature_based_solutions[0].name)} {data.nature_based_solutions.length > 1 && <PlusNumber list={data.nature_based_solutions} className="-right" />}
             </span>
-          </p>
-          <p className="project-tags">
+          </p>}
+          {data.hazard_types.length > 0 && <p className="project-tags">
             <span className="title" title="Hazards">
               <SvgIcon name="icon-flag" className="-small" />
             </span>
             <span>
-              {data.hazard_types.length && upperFirst(data.hazard_types[0].name)} {data.hazard_types.length > 1 && <PlusNumber list={data.hazard_types} className="-right" />}
+              {upperFirst(data.hazard_types[0].name)} {data.hazard_types.length > 1 && <PlusNumber list={data.hazard_types} className="-right" />}
             </span>
-          </p>
-          <p className="project-tags">
+          </p>}
+          {countries.length > 0 && <p className="project-tags">
             <span className="title" title="Countries">
               <SvgIcon name="icon-location" className="-small" />
             </span>
             <span>
-              {countries.length && upperFirst(countries[0])} {countries.length > 1 && <PlusNumber list={countries} className="-right" />}
+              {upperFirst(countries[0])} {countries.length > 1 && <PlusNumber list={countries} className="-right" />}
             </span>
-          </p>
+          </p>}
         </div>
       </div>
       <button className="project-action">
