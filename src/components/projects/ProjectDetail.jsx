@@ -112,7 +112,7 @@ export default class ProjectDetail extends React.Component {
       </li>
     ));
     const countries = uniq(data.locations.map(l => l.adm0_name));
-    const natureBaseInfo = 'Explanation text lorem ipsum id casius nibh uricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna.';
+    const natureBaseInfo = 'Ecosystems are central to nature-based solutions. The following ecosystems have been conserved, restored or created in an effort to reduce disaster risk.';
 
     return (
       <article className="c-project-detail">
@@ -166,8 +166,8 @@ export default class ProjectDetail extends React.Component {
           <div className="pair-data">
             <span className="project-data">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
             <span className="project-data">{data.country}</span>
-            {countries.length === 1 ?
-              <span className="project-data">{countries[0]}</span> :
+            {countries.length === 1 && <span className="project-data">{countries[0]}</span>}
+            {countries.length > 1 &&
               <TetherComponent
                 attachment="top right"
                 targetAttachment="bottom right"
@@ -181,7 +181,7 @@ export default class ProjectDetail extends React.Component {
                 }}
               >
                 { /* First child: This is what the item will be tethered to */ }
-                <p className="project-country -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'countriesOpen')} ref={c => this.countriesBtn = c}>
+                <p className="project-data -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'countriesOpen')} ref={c => this.countriesBtn = c}>
                   {countries.length} countries
                 </p>
                 { /* Second child: If present, this item will be tethered to the the first child */ }
@@ -244,7 +244,7 @@ export default class ProjectDetail extends React.Component {
           </div>}
 
           {data.co_benefits_of_interventions.length > 0 && <div className="project-info-item">
-            <span className="label">Other benefits</span>
+            <span className="label">Additional benefits</span>
             <ul className="value">{setArrayValues(data.co_benefits_of_interventions)}</ul>
           </div>}
 
