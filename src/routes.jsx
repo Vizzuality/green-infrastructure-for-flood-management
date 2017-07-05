@@ -39,9 +39,6 @@ const Routes = ({ history }) => (
       <Route path="about">
         <IndexRoute components={{ main: AboutPageContainer, footer: Footer }} />
       </Route>
-      <Route path="signin">
-        <IndexRoute components={{ main: LoginPage, footer: Footer }} />
-      </Route>
     </Route>
   </Router>
 );

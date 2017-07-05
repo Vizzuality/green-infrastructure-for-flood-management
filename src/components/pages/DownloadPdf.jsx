@@ -14,7 +14,7 @@ import { setNumberFormat, saveAsFile } from 'utils/general';
 
 export default class DownloadPdf extends React.Component {
   componentWillMount() {
-    this.props.setProjectsDetail(Number(this.props.params.id));
+    this.props.setProjectsDetail(+this.props.params.id);
     (!this.props.projects || this.props.projects.length === 0) &&
       this.props.getProjects('');
   }
@@ -50,14 +50,15 @@ export default class DownloadPdf extends React.Component {
     ));
     const countries = data.locations ? uniq(data.locations.map(l => l.adm0_name)) : [];
 
-console.log(data);
     return (
       <article className="c-project-detail">
         <div className="project-detail-section -print">
           <h1 className="project-name">{data.name}</h1>
           <span className="project-date">{`${data.start_year || 'unknown'} - ${data.completion_year || 'present'}`}</span>
           <div className="project-info-print">
-            <ul className="project-company">{data.organizations && data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}</ul>
+            <ul className="project-company">
+              {data.organizations && data.organizations.map((org, i) => <li key={i}>{org.name}</li>)}
+            </ul>
             <ul className="project-country">{countries.map((c, i) => <li key={i}>{c && c}</li>)}</ul>
           </div>
         </div>

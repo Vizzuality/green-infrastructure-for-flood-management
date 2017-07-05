@@ -106,7 +106,7 @@
   }
 
   .layers {
-    padding: 10px;
+    padding: 0 10px 10px;
 
     @include breakpoint(medium only) {
       border-bottom: 1px solid rgba(palette(black), .2);
