@@ -126,29 +126,6 @@ export default class Legend extends React.Component {
         </div>
 
         <div className="content">
-          <div className="clusters">
-            <ul className="list">
-              <li className="legend-item">
-                <div className="icon">
-                  <span className="project-icon" />
-                </div>
-                <p>Projects</p>
-              </li>
-              <li className="legend-item">
-                <div className="icon">
-                  <span className="centroid-icon" />
-                </div>
-                <p>Locations centroid</p>
-              </li>
-              <li className="legend-item">
-                <div className="icon">
-                  <span className="location-icon" />
-                </div>
-                <p>Current project location </p>
-              </li>
-            </ul>
-          </div>
-
           <div className={`layers ${this.props.layersActive.includes('layer1') ? '-active' : ''}`}>
             <div className="layers-header">
               <Switch
