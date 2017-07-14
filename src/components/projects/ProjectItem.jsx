@@ -15,7 +15,9 @@ export default function ProjectItem(props) {
       <div className="project-advance">
         <ul className="project-company">
           <li>
-            {data.organizations.length && upperFirst(data.organizations[0].name)} {data.organizations.length > 1 && <PlusNumber list={data.organizations} className="-right" />}
+            {data.organizations.length &&
+              upperFirst(data.organizations[0].name)} {data.organizations.length > 1 &&
+              <PlusNumber list={data.organizations} className="-right" />}
           </li>
         </ul>
         <span className="project-name">{data.name}</span>
@@ -25,7 +27,8 @@ export default function ProjectItem(props) {
               <SvgIcon name="icon-enter" className="-small" />
             </span>
             <span>
-              {upperFirst(data.nature_based_solutions[0].name)} {data.nature_based_solutions.length > 1 && <PlusNumber list={data.nature_based_solutions} className="-right" />}
+              {upperFirst(data.nature_based_solutions[0].name)} {data.nature_based_solutions.length > 1 &&
+                <PlusNumber list={data.nature_based_solutions} className="-right" />}
             </span>
           </p>}
           {data.hazard_types.length > 0 && <p className="project-tags">
@@ -33,7 +36,8 @@ export default function ProjectItem(props) {
               <SvgIcon name="icon-flag" className="-small" />
             </span>
             <span>
-              {upperFirst(data.hazard_types[0].name)} {data.hazard_types.length > 1 && <PlusNumber list={data.hazard_types} className="-right" />}
+              {upperFirst(data.hazard_types[0].name)} {data.hazard_types.length > 1 &&
+                <PlusNumber list={data.hazard_types} className="-right" />}
             </span>
           </p>}
           {countries.length > 0 && <p className="project-tags">
@@ -41,7 +45,8 @@ export default function ProjectItem(props) {
               <SvgIcon name="icon-location" className="-small" />
             </span>
             <span>
-              {upperFirst(countries[0])} {countries.length > 1 && <PlusNumber list={countries} className="-right" />}
+              {upperFirst(countries[0])} {countries.length > 1 &&
+                <PlusNumber list={countries} className="-right" />}
             </span>
           </p>}
         </div>
