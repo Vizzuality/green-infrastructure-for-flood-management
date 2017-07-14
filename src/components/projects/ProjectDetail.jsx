@@ -7,7 +7,7 @@ import uniq from 'lodash/uniq';
 import TetherComponent from 'react-tether';
 import isUrl from 'validator/lib/isURL';
 
-import { setNumberFormat, saveAsFile } from 'utils/general';
+import { setNumberFormat } from 'utils/general';
 import ProjectList from 'components/projects/ProjectList';
 import { Row } from 'components/ui/Grid';
 import PlusNumber from 'components/ui/PlusNumber';
@@ -213,12 +213,19 @@ export default class ProjectDetail extends React.Component {
 
           <span className="label">Project summary</span>
           <div className={`project-summary ${this.state.summaryOpen ? '-open' : ''}`}>
-            <p className="project-text">{data.summary}</p>
+            <p className="project-text" dangerouslySetInnerHTML={{ __html: data.summary }}></p>
             {!this.state.summaryOpen && <button className="more" onClick={this.onShowSummary}>
               <SvgIcon className="more-icon -medium" name="icon-arrow-down-2" />
             </button>}
           </div>
-          <a className="project-link" rel="noopener noreferrer" target="_blank" href={data.learn_more}>Project website</a>
+          <a
+            className="project-link"
+            rel="noopener noreferrer"
+            target="_blank"
+            href={data.learn_more}
+          >
+            Project website
+          </a>
         </div>
         <div className="project-info">
           <div className="project-info-item">
@@ -229,7 +236,11 @@ export default class ProjectDetail extends React.Component {
               </div>}
               {data.hazard_types.length > 0 && <div className="column small-4">
                 <span className="label">Hazard</span>
-                <ul className="value">{data.hazard_types.map((ht, i) => <li className="value-item" key={i}>{upperFirst(ht.name)}</li>)}</ul>
+                <ul className="value">
+                  {data.hazard_types.map((ht, i) => (
+                    <li className="value-item" key={i}>{upperFirst(ht.name)}</li>
+                  ))}
+                </ul>
               </div>}
               {data.scale && <div className="column small-4">
                 <span className="label">Scale</span>
@@ -275,7 +286,13 @@ export default class ProjectDetail extends React.Component {
 
           {data.references && data.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
-            <span className="value">{isUrl(data.references) ? <a className="link" target="_blank" href={data.references}>{data.references}</a> : data.references}</span>
+            <span className="value">
+              {data.references.map(r => (
+                isUrl(r) ?
+                  <a className="link" target="_blank" href={r}>{r}</a> :
+                  r
+              ))}
+            </span>
           </div>}
         </div>
 
