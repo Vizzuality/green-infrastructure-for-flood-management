@@ -15,9 +15,15 @@ function clearMapLine() {
 }
 
 function getPopupMarkup(data) {
-  const orgs = `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}`;
-  const solutions = `${data.nature_based_solutions[0].name} ${data.nature_based_solutions.length > 1 ? `<span class="c-plus-number -right"}>+${data.nature_based_solutions.length - 1}</span>` : ''}`;
-  const hazards = `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}`;
+  const orgs = data.organizations && data.organizations.length ?
+    `${data.organizations[0].name} ${data.organizations.length > 1 ? `<span class="c-plus-number -right"}>+${data.organizations.length - 1}</span>` : ''}` :
+    '';
+  const solutions = data.nature_based_solutions && data.nature_based_solutions.length ?
+    `${data.nature_based_solutions[0].name} ${data.nature_based_solutions.length > 1 ? `<span class="c-plus-number -right"}>+${data.nature_based_solutions.length - 1}</span>` : ''}` :
+    '';
+  const hazards = data.hazard_types && data.hazard_types.length ?
+    `${data.hazard_types[0].name} ${data.hazard_types.length > 1 ? `<span class="c-plus-number -right"}>+${data.hazard_types.length - 1}</span>` : ''}` :
+    '';
   const url = `/map/project/${data.id}`;
 
   const myPopup = L.DomUtil.create('div', 'infoWindow');
