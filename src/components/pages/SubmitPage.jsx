@@ -27,6 +27,7 @@ export default class SubmitPage extends React.Component {
       mapSearch: '',
       learnNotValid: false,
       referencesNotValid: false,
+      endDateNotValid: false,
       imageOptions: {
         accepted: null,
         rejected: null
@@ -172,13 +173,13 @@ export default class SubmitPage extends React.Component {
     const allFields = Object.assign({}, this.state.fields);
     const filteredFields = {};
 
-    // Remove those idProv from values
+    // Remove those idProv (Provisional ids) from values
     this.removeIdProvFromNewOptions().forEach(f => allFields[f.key] = f.value);
     allFields.locations = this.removeIdProvFromLocations();
 
 
     Object.keys(allFields).forEach((key) => {
-      if (allFields[key].length) {
+      if (allFields[key].length || (typeof allFields[key] === 'number' && `${allFields[key]}`.length)) {
         filteredFields[key] = allFields[key];
       }
     });
@@ -191,10 +192,12 @@ export default class SubmitPage extends React.Component {
   }
 
   submit() {
-    const { learn_more, references } = this.state.fields;
+    const { learn_more, references, start_year, completion_year } = this.state.fields;
     const requiredOn = [];
     const learnValid = learn_more !== '' ? isUrl(learn_more) : true;
     const referencesValid = references !== '' ? isUrl(references) : true;
+    const endDateValid = completion_year === '' ||
+      (start_year !== '' && completion_year !== '' && completion_year >= start_year);
 
     requiredFields.forEach((field) => {
       this.state.fields[field].length === 0 && requiredOn.push(field);
@@ -202,17 +205,21 @@ export default class SubmitPage extends React.Component {
 
     this.setState({ requiredOn,
       learnNotValid: !learnValid,
-      referencesNotValid: !referencesValid
+      referencesNotValid: !referencesValid,
+      endDateNotValid: !endDateValid
     });
 
-    // TODO: scroll top
-
-    if (!requiredOn.length && learnValid && referencesValid) {
+    if (!requiredOn.length && learnValid && referencesValid && endDateValid) {
       const projectData = this.parsedFieldsToSend();
+
       // Send fields
       this.props.submit(projectData);
       this.clear();
     }
+
+    // Scroll top
+    const formElement = document.getElementsByClassName('c-submit');
+    if (formElement.length) formElement[0].scrollIntoView();
   }
 
   isRequiredOn(name) {
@@ -318,13 +325,13 @@ export default class SubmitPage extends React.Component {
 
   setMessageOptions() {
     const { success, error } = this.props;
-    const { requiredOn, learnNotValid, referencesNotValid } = this.state;
+    const { requiredOn, learnNotValid, referencesNotValid, endDateNotValid } = this.state;
     const filledFormMessage = 'Some required fields are not filled or are incorrect';
 
     let message = '';
     let type = 'info';
 
-    if (requiredOn.length > 0 || learnNotValid || referencesNotValid) {
+    if (requiredOn.length > 0 || learnNotValid || referencesNotValid || endDateNotValid) {
       message = filledFormMessage;
       type = 'error';
     } else if (success || error) {
@@ -337,7 +344,7 @@ export default class SubmitPage extends React.Component {
 
   render() {
     const { filtersOptions, success, error } = this.props;
-    const { requiredOn, learnNotValid, referencesNotValid } = this.state;
+    const { requiredOn, learnNotValid, referencesNotValid, endDateNotValid } = this.state;
     const { scale, organizations, primary_benefits_of_interventions,
       co_benefits_of_interventions, donors, nature_based_solutions,
       hazard_types, intervention_type, currency_monetary_benefits,
@@ -345,7 +352,7 @@ export default class SubmitPage extends React.Component {
       completion_year
     } = this.state.fields;
 
-    const messageCondition = ((requiredOn.length > 0 || learnNotValid || referencesNotValid) ||
+    const messageCondition = ((requiredOn.length > 0 || learnNotValid || referencesNotValid || endDateNotValid) ||
       (success || error));
 
     const message = this.setMessageOptions();
@@ -442,7 +449,7 @@ export default class SubmitPage extends React.Component {
                       <h2 className="label">Start year*</h2>
                     </div>
 
-                    <div className="row-field -mono">
+                    <div className={`row-field -mono ${endDateNotValid ? '-end-date-not-valid' : ''}`}>
                       <Select
                         name="completion_year"
                         multi={false}
