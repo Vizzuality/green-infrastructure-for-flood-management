@@ -195,10 +195,9 @@ function getMarkers(props) {
 
             setTimeout(() => {
               line.addTo(window.__map__).snakeIn();
+              window.__map__.__line__ = window.__map__.__line__ || [];
+              window.__map__.__line__.push(line);
             }, delay);
-
-            window.__map__.__line__ = window.__map__.__line__ || [];
-            window.__map__.__line__.push(line);
           });
         }
       } else {

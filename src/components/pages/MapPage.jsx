@@ -36,6 +36,7 @@ const mobileMenuItems = [
 export default class MapPage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       sidebarScroll: 0,
       markers: getMarkers(props),
@@ -44,6 +45,7 @@ export default class MapPage extends React.Component {
     };
 
     this.setLocationsInUrl = false;
+    this.projectDetailExist = !!props.projectDetail;
 
     // Bindings
     this.onSearchChange = debounce(this.onSearchChange, 300);
@@ -70,7 +72,8 @@ export default class MapPage extends React.Component {
       this.getProjects(newProps.filters);
     }
 
-    if (!isEqual(this.props.projects, newProps.projects) || !isEqual(this.props.projectDetail, newProps.projectDetail)) {
+    if (!isEqual(this.props.projects, newProps.projects) || !isEqual(this.props.projectDetail, newProps.projectDetail) ||
+      this.projectDetailExist) {
       this.setState({
         markers: getMarkers(newProps),
         mapMethods: this.getMapMethods(newProps)

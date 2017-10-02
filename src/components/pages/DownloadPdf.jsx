@@ -8,7 +8,7 @@ import isUrl from 'validator/lib/isURL';
 import uniq from 'lodash/uniq';
 import { setProjectsFilters } from 'modules/projects';
 import { dispatch } from 'main';
-import { push } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
 
 import { setNumberFormat, saveAsFile } from 'utils/general';
 
@@ -21,8 +21,10 @@ export default class DownloadPdf extends React.Component {
 
   componentDidUpdate(nextProps) {
     if (Object.keys(this.props.data).length) {
+      const project = nextProps.projects.find(p => `${p.id}` === `${nextProps.params.id}`);
+      const slug = project ? project.slug : nextProps.params.id;
       window.print();
-      window.history.back();
+      dispatch(replace(`/map/project/${slug}`));
     }
   }
 
@@ -73,7 +75,7 @@ export default class DownloadPdf extends React.Component {
           </div>
 
           <span className="label">Project summary</span>
-          <p className="project-text -print">{data.summary}</p>
+          <p className="project-text -print" dangerouslySetInnerHTML={{ __html: data.summary }}></p>
           <p className="project-link">{data.learn_more}</p>
         </div>
         <div className="project-info">
