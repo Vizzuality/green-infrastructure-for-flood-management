@@ -209,8 +209,6 @@ export default class SubmitPage extends React.Component {
       endDateNotValid: !endDateValid
     });
 
-    // TODO: scroll top
-
     if (!requiredOn.length && learnValid && referencesValid && endDateValid) {
       const projectData = this.parsedFieldsToSend();
 
@@ -218,6 +216,10 @@ export default class SubmitPage extends React.Component {
       this.props.submit(projectData);
       this.clear();
     }
+
+    // Scroll top
+    const formElement = document.getElementsByClassName('c-submit');
+    if (formElement.length) formElement[0].scrollIntoView();
   }
 
   isRequiredOn(name) {
