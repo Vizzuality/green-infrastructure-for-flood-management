@@ -128,7 +128,6 @@ export default class MapPage extends React.Component {
   }
 
   getProjects(filters) {
-    // TODO: pagination
     const query = this.getQuery(filters);
     this.props.getProjects(query);
   }

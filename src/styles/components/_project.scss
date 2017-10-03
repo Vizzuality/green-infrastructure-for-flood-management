@@ -152,6 +152,27 @@ $_separation: ($space-1 * 4);
 
 /* Project detail */
 .c-project-detail {
+
+  &.-print {
+    // page-break-after: always;
+
+    .project-info {
+      // page-break-after: always;
+    }
+
+    .map-container {
+      page-break-before: always;
+      width: 100%;
+      height: 15cm;
+      padding: 30px;
+    }
+
+    .c-map {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .pair-data {
     display: flex;
     justify-content: space-between;

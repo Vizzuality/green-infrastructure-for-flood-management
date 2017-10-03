@@ -28,6 +28,7 @@ export default class Map extends React.Component {
     this._mounted = true;
     const mapOptions = Object.assign({}, mapDefaultOptions, this.props.mapOptions);
     this.map = L.map(this.mapNode, mapOptions);
+    console.log(mapOptions);
 
     // TODO: don't expose map to window
     window.__map__ = this.map;
