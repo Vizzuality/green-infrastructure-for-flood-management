@@ -8,4 +8,15 @@
     margin-top: 18mm;
     margin-bottom: 18mm;
   }
+
+  body {
+    // width: 210mm !important;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .l-app {
+    display: inherit;
+    overflow-x: initial;
+  }
 }

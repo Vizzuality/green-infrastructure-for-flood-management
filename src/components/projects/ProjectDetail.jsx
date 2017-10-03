@@ -123,12 +123,10 @@ export default class ProjectDetail extends React.Component {
           </Link>
 
           <div className="project-actions">
-            <button className="c-btn -transparent action">
-              <Link to={`/download/project/${data.id}`} className="action">
-                <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
-                Download PDF
-              </Link>
-            </button>
+            <Link to={`/download/project/${data.id}`} className="c-btn -transparent action">
+              <SvgIcon className="project-download-icon -medium" name="icon-download-white" />
+              Download PDF
+            </Link>
           </div>
         </div>
         <div className="project-detail-section">
