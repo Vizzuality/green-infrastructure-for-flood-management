@@ -22,7 +22,7 @@ export default class Introduction extends React.Component {
                 <div className="stats">
                   <div className="data">
                     <h2 className="label">
-                      <SvgIcon name="icon-flag" className="-tiny" />
+                      <SvgIcon name="icon-flood" className="-tiny" />
                       Floods
                     </h2>
                     <p className="number">40%</p>

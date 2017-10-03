@@ -6,7 +6,8 @@ import getProjectDetails from 'selectors/project_detail';
 
 const mapStateToProps = state => ({
   projects: state.projects.list,
-  data: getProjectDetails(state)
+  mapState: state.map,
+  projectDetail: getProjectDetails(state)
 });
 
 const mapDispatchToProps = dispatch => ({
