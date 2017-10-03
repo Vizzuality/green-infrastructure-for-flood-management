@@ -240,12 +240,18 @@ export default class DownloadPdf extends React.Component {
 
           {projectDetail.learn_more && projectDetail.learn_more !== '' && <div className="project-info-item">
             <span className="label">Learn more</span>
-            <span className="value">{isUrl(projectDetail.learn_more) ? <a className="link" href={projectDetail.learn_more}>{projectDetail.learn_more}</a> : projectDetail.learn_more}</span>
+            <span className="value">{projectDetail.learn_more && typeof projectDetail.learn_more === 'string' &&
+              isUrl(projectDetail.learn_more) ?
+                <a className="link" href={projectDetail.learn_more}>{projectDetail.learn_more}</a> :
+                projectDetail.learn_more}</span>
           </div>}
 
           {projectDetail.references && projectDetail.references !== '' && <div className="project-info-item">
             <span className="label">References</span>
-            <span className="value">{isUrl(projectDetail.references) ? <a className="link" href={projectDetail.references}>{projectDetail.references}</a> : projectDetail.references}</span>
+            <span className="value">{projectDetail.references && typeof projectDetail.references === 'string' &&
+              isUrl(projectDetail.references) ?
+                <a className="link" href={projectDetail.references}>{projectDetail.references}</a> :
+                projectDetail.references}</span>
           </div>}
         </div>
         <div className="map-container">
