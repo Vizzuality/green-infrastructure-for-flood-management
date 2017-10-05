@@ -1,7 +1,7 @@
 version: "2"
 services:
   app:
-    command: "npm start"
+    command: "yarn start"
     build:
       context: .
       dockerfile: Dockerfile
