@@ -91,6 +91,7 @@
 
     .Select-option {
       text-transform: capitalize;
+      line-height: 20px;
 
       &.is-focused {
         background-color: rgba($color-text-1, .07);
