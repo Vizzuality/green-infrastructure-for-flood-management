@@ -268,11 +268,21 @@ export default class ProjectDetail extends React.Component {
                 <span className="label">
                   <span className="-sublabel">Est. Monetary Cost</span>
                 </span>
-                <span className="value -big">{data.estimated_cost ? `${this.parseCost(data.estimated_cost)} US$` : 'Unknown'}</span>
+                <span className="value -big">
+                  {data.estimated_cost ?
+                    `${this.parseCost(data.costs_usd ? data.costs_usd : data.estimated_cost)} ${data.costs_usd ? 'US$' : data.original_currency}` :
+                    'Unknown'
+                  }
+                </span>
               </div>
               <div className="property column small-6">
                 <span className="label">Est. Monetary benefits</span>
-                <span className="value -big">{data.estimated_monetary_benefits ? `${this.parseCost(data.estimated_monetary_benefits)} US$` : 'Unknown'}</span>
+                <span className="value -big">
+                  {data.estimated_monetary_benefits ?
+                    `${this.parseCost(data.benefits_usd ? data.benefits_usd : data.estimated_monetary_benefits)} ${data.benefits_usd ? 'US$' : data.benefits_currency || data.original_currency}` :
+                    'Unknown'
+                  }
+                </span>
               </div>
             </Row>
           </div>

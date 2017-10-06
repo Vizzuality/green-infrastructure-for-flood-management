@@ -1,21 +1,21 @@
 function setNameOption(arr) {
-  return arr.map(c => {return { value: c, label: c };});
+  return arr.map(c => ({ value: c, label: c }));
 }
 
 function setIdOption(arr) {
-  return arr.map(c => {
-    return {
+  return arr.map(c => (
+    {
       label: c[Object.keys(c)[0]].name || c[Object.keys(c)[0]].adm0_name,
-      value: c[Object.keys(c)[0]].iso  || `${c[Object.keys(c)[0]].id}`
-    };
-  });
+      value: c[Object.keys(c)[0]].iso || `${c[Object.keys(c)[0]].id}`
+    }
+  ));
 }
 
 function setFiltersOptions(options) {
-  const arrayItems = ['co_benefits', 'hazard_types', 'nature_based_solutions',
+  const arrayItems = ['currencies', 'co_benefits', 'hazard_types', 'nature_based_solutions',
     'primary_benefits', 'organizations', 'countries', 'donors'];
   const keys = Object.keys(options);
-  let result = {};
+  const result = {};
 
   for (let i = 0; i < keys.length; i++) {
     const item = options[keys[i]];
@@ -23,6 +23,10 @@ function setFiltersOptions(options) {
     if (item instanceof Array) {
       if (arrayItems.indexOf(keys[i]) === -1) {
         result[keys[i]] = setNameOption(item);
+      } else if (keys[i] === 'currencies') {
+        result[keys[i]] = setIdOption(item.map(c => (
+          { currency: { ...c.currency, name: `${c.currency.name} (${c.currency.iso})` } }
+        )));
       } else {
         result[keys[i]] = setIdOption(item);
       }

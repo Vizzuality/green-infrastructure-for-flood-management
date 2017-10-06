@@ -519,7 +519,7 @@ export default class SubmitPage extends React.Component {
                       <Select
                         name="currency_estimated_cost"
                         multi={false}
-                        options={currencyOptions}
+                        options={filtersOptions.currencies}
                         value={currency_estimated_cost || ''}
                         onChange={opt => this.setFieldValue('currency_estimated_cost', opt ? opt.value : '')}
                       />
@@ -541,7 +541,7 @@ export default class SubmitPage extends React.Component {
                       <Select
                         name="currency_monetary_benefits"
                         multi={false}
-                        options={currencyOptions}
+                        options={filtersOptions.currencies}
                         value={currency_monetary_benefits || ''}
                         onChange={opt => this.setFieldValue('currency_monetary_benefits', opt ? opt.value : '')}
                       />
