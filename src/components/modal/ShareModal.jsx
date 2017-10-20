@@ -46,7 +46,7 @@ export default class ShareModal extends React.Component {
             <SvgIcon name="icon-facebook" className="-big" />
           </a>
           <a
-            href={`https://twitter.com/share?url=${url}&text=The Nature of Risk Reduction`}
+            href={`https://twitter.com/share?url=${url}&text=Natural Hazards – Nature-based Solutions`}
             target="_blank"
             rel="noopener noreferrer"
           >
