@@ -364,7 +364,7 @@ export default class SubmitPage extends React.Component {
           <div className="l-app-wrapper">
             <Row>
               <div className="column small-12 medium-8 medium-offset-2">
-                <h1 className="h1 -line">Sumbit your project</h1>
+                <h1 className="h1 -line">Submit your project</h1>
                 <p className="text">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors using nature-based approaches to reduce disaster risk.</p>
               </div>
             </Row>
