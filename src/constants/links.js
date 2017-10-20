@@ -1,5 +1,9 @@
 const links = [
   {
+    text: 'About',
+    href: '/about'
+  },
+  {
     text: 'Map of projects',
     href: '/map'
   },
@@ -10,10 +14,6 @@ const links = [
   {
     text: 'Submit a project',
     href: '/submit'
-  },
-  {
-    text: 'About',
-    href: '/about'
   }
 ];
 
