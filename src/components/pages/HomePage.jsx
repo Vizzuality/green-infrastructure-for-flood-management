@@ -66,9 +66,8 @@ export default class HomePage extends React.Component {
           </div>
         </section>
         {/* Partners */}
-        <section className="home-section">
+        <section className="home-section -partners">
           <div className="l-app-wrapper">
-            <h1 className="h1 -line">Partners</h1>
             <div className="c-partners">
               <li>
                 <a href="https://www.deltares.nl/en/" target="_blank" rel="noreferrer noopener">
@@ -87,6 +86,7 @@ export default class HomePage extends React.Component {
               </li>
             </div>
 
+            <h1 className="subpartners-title h1 -line">Contributing partners</h1>
             <div className="c-partners -contributors">
               <li>
                 <a href="https://www.wetlands.org/" target="_blank" rel="noreferrer noopener">
