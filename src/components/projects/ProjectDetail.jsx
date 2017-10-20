@@ -222,7 +222,7 @@ export default class ProjectDetail extends React.Component {
             target="_blank"
             href={data.learn_more}
           >
-            Project website
+            Project page
           </a>
         </div>
         <div className="project-info">

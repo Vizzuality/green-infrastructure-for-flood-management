@@ -579,7 +579,7 @@ export default class SubmitPage extends React.Component {
                       type="text"
                       onBlur={e => this.setFieldValue('learn_more', e.currentTarget.value)}
                     />
-                    <h2 className="label">Project website*</h2>
+                    <h2 className="label">Project page*</h2>
                   </div>
 
                   {/* Refetences-typo */}
