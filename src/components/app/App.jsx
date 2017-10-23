@@ -21,6 +21,10 @@ export default class App extends React.Component {
   }
 
   render() {
+    const classNames = classnames(
+      'l-main',
+      { '-map': window.location.pathname.includes('/map') }
+    );
     const isDownload = this.props.location.pathname.includes('/download/project/');
     const { modal, logged } = this.props;
 
@@ -28,7 +32,7 @@ export default class App extends React.Component {
       <div>
         <div className="l-app">
           {!isDownload && <Header path={this.props.location.pathname} logged={logged} />}
-          <main role="main" className="l-main">
+          <main role="main" className={classNames}>
             <div className="main-content">
               {this.props.main}
             </div>
