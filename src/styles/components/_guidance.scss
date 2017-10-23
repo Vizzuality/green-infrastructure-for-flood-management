@@ -23,6 +23,32 @@
         padding-bottom: 60px;
       }
 
+      .intro-container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .c-btn.-download {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $color-text-2;
+          font-size: 13px;
+          padding: 6px 18px;
+          border: 1px solid $color-text-2;
+
+          &:hover {
+            opacity: .7;
+          }
+
+          .c-icon {
+            margin-left: 7px;
+          }
+        }
+      }
+
       .intro {
         color: palette(white);
         font-size: 26px;
