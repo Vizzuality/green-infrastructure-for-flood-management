@@ -14,6 +14,12 @@
       &:last-child {
         margin-bottom: 0;
       }
+
+      &.-title {
+        font-size: $font-size-huge;
+        font-weight: bold;
+        margin-top: 5px;
+      }
     }
   }
 

@@ -12,7 +12,7 @@ export default class HomePage extends React.Component {
         <section className="home-section -header">
           <div className="l-app-wrapper">
             <div className="section-wrapper">
-              <h1 className="h1 -secondary -big">The Nature of Risk Reduction</h1>
+              <h1 className="h1 -secondary -big">Natural Hazards – Nature-based Solutions</h1>
               <h2 className="h2">Learn about nature-based projects for disaster risk reduction, and explore implementation and guiding principles to make your next project a success</h2>
               <BtnGroup>
                 <Link className="c-btn -fixed -tertiary" to="/map">Go to the map</Link>
@@ -32,7 +32,9 @@ export default class HomePage extends React.Component {
                 <Link className="c-btn -secondary" to="/map">See all projects</Link>
               </div>
               <div className="column large-6 small-12 -container is-mobile-hidden">
-                <img className="screenshot" alt="screen capture" src="/images/projects-page.png" />
+                <Link to="/map">
+                  <img className="screenshot" alt="screen capture" src="/images/projects-page.png" />
+                </Link>
               </div>
             </Row>
           </div>
@@ -57,16 +59,15 @@ export default class HomePage extends React.Component {
             <Row>
               <div className="column large-6 small-12">
                 <h1 className="h1 -secondary -line">Submit your project</h1>
-                <p className="text -secondary">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
+                <p className="text -secondary">Contribute your nature-based project and experiences to Natural Hazards – Nature-based Solutions database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
                 <Link to="/submit" className="c-btn -primary">Submit a project</Link>
               </div>
             </Row>
           </div>
         </section>
         {/* Partners */}
-        <section className="home-section">
+        <section className="home-section -partners">
           <div className="l-app-wrapper">
-            <h1 className="h1 -line">Partners</h1>
             <div className="c-partners">
               <li>
                 <a href="https://www.deltares.nl/en/" target="_blank" rel="noreferrer noopener">
@@ -85,6 +86,7 @@ export default class HomePage extends React.Component {
               </li>
             </div>
 
+            <h1 className="subpartners-title h1 -line">Contributing partners</h1>
             <div className="c-partners -contributors">
               <li>
                 <a href="https://www.wetlands.org/" target="_blank" rel="noreferrer noopener">

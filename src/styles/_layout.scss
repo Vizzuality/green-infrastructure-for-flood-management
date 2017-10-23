@@ -20,8 +20,11 @@
 
 /* Main content */
 .l-main {
-  flex: 1;
   position: relative;
+
+  &.-map {
+    flex: 1;
+  }
 }
 
 // .main-content {

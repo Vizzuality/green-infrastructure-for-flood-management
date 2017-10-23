@@ -364,8 +364,10 @@ export default class SubmitPage extends React.Component {
           <div className="l-app-wrapper">
             <Row>
               <div className="column small-12 medium-8 medium-offset-2">
-                <h1 className="h1 -line">Sumbit your project</h1>
-                <p className="text">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors using nature-based approaches to reduce disaster risk.</p>
+                <h1 className="h1 -line">Submit your project</h1>
+                <p className="text">Submit your nature-based project and experiences to the Natural hazards – nature-based solutions database, and contribute to a growing community of practice. We welcome all projects using nature-based approaches to reduce disaster risk that you and/or your organization are involved in, whether as practitioners, contractors, scientists or donors.</p>
+                <p className="text">Please fill in the details of your project below and check the box if you and/or your organization would like to appear as a contributor on the platform’s project page. We will then review the submitted information for its completeness and notify you should we need any more details. You will receive a notification once the project has been published on the platform.</p>
+                <p className="text">For any questions, please contact us!</p>
               </div>
             </Row>
 
@@ -579,7 +581,7 @@ export default class SubmitPage extends React.Component {
                       type="text"
                       onBlur={e => this.setFieldValue('learn_more', e.currentTarget.value)}
                     />
-                    <h2 className="label">Project website*</h2>
+                    <h2 className="label">Project page*</h2>
                   </div>
 
                   {/* Refetences-typo */}

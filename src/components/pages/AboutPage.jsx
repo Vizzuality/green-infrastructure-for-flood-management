@@ -77,8 +77,12 @@ export default class AboutPage extends React.Component {
             </Row>
             <Row>
               <div className="column small-12 medium-8">
-                <p className="intro-text">The Nature of Risk Reduction platform is a hub for projects, investments, guidance and studies making use of nature to reduce the risks associated with natural hazards. Our objective is to host and facilitate the exchange of knowledge, experiences and lessons learned from a range of stakeholders, to provide guidance on the planning and implementation of nature-based solutions, and to champion these solutions in the arenas of policy-making and investment for disaster risk reduction.</p>
-                <p className="intro-text">The guidance was developed and agreed upon by of leading international institutions who are engaged in designing, planning, financing and/or implementing nature-based solutions around the world. The platform was developed by the World Bank Group, the Global Facility for Disaster Reduction and Recovery (GFDRR), and Deltares.</p>
+                <p className="intro-text">The Natural Hazards – Nature-based Solutions platform is a hub for projects, investments, guidance and studies making use of nature to reduce the risks associated with natural hazards. Our objective is to host and facilitate the exchange of knowledge, experiences and lessons learned from a range of stakeholders, to provide guidance on the planning and implementation of nature-based solutions, and to champion these solutions in the arenas of policy-making and investment for disaster risk reduction.</p>
+                <p className="intro-text">The guidance was developed and agreed upon by a group of leading international institutions who are engaged in designing, planning, financing and/or implementing nature-based solutions around the world. The platform was developed by the World Bank, the Global Facility for Disaster Reduction and Recovery (GFDRR), and Deltares.</p>
+                <p className="intro-text -title">About nature-based solutions</p>
+                <p className="intro-text">Most disaster risk management involved conventional engineering measures. These measures are sometimes referred to as “hard” engineering or “gray” infrastructure. Examples include building embankments, dams, levees, and channels to control flooding. The concept of “nature-based solutions,” “ecosystem-based adaptation,” “eco-DRR” or “green infrastructure” has emerged as a good alternative or complement to traditional approaches. Nature-based solutions basically cover the full scope of using ecosystems to address hazards, making use of natural processes and ecosystem services for functional purposes, such as decreasing flood risk, erosion, and landslide risk. Nature-based solutions can be completely “green” (i.e. consisting of only ecosystem elements), or “hybrid” (i.e. a combination of ecosystem elements and hard engineering approaches).</p>
+                <p className="intro-text">For example, restoring mangrove cover along coastlines can reduce the impact of waves and storm surge on the shoreline and decrease erosion by slowing down water flow in its dense vegetation. Similarly, rehabilitated coral reefs can act as a barrier breaking waves further away from the coast – not unlike conventional concrete breakwaters, but with marvelous biodiversity to behold.</p>
+                <p className="intro-text">These “green” nature-based solutions can also synergize with gray infrastructure. The resulting hybrid solution, for example, a removable seawall and a growing mangrove forest, can draw on the strengths of both green and gray elements to become more effective. In cities, too, nature-based solutions can alleviate flooding from heavy rains and create better microclimates. Green spaces like urban wetlands or green roofs – typical “hybrid” solutions – can store water and release it slowly back into rivers and drainage systems, but also give the water more time to sink into the ground, reducing what needs to be drained.</p>
               </div>
             </Row>
           </div>
@@ -141,7 +145,7 @@ export default class AboutPage extends React.Component {
             </Row>
             <Row>
               <div className="column small-12 medium-6">
-                <p className="text -secondary">Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
+                <p className="text -secondary">Contribute your nature-based project and experiences to Natural Hazards – Nature-based Solutions database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
                 <Link to="/submit" className="c-btn -primary">Submit a project</Link>
               </div>
             </Row>
@@ -155,7 +159,7 @@ export default class AboutPage extends React.Component {
             <Row className="intro">
               <div className="column small-12 medium-6 medium-offset-3">
                 <h1 className="h1 -line -center">Contact us</h1>
-                <p className="intro-text">We welcome your feedback and value your input as we work to continually improve and update The Nature of Risk Reduction database. Please do not hesitate to send us your comments and questions here.</p>
+                <p className="intro-text">We welcome your feedback and value your input as we work to continually improve and update Natural Hazards – Nature-based Solutions database. Please do not hesitate to send us your comments and questions here.</p>
               </div>
             </Row>
             {(this.state.error || success || error) &&

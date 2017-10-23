@@ -20,7 +20,7 @@ function Header(props) {
   return (
     <header className={cNames.header} role="banner">
       <div className={cNames.headerContent}>
-        <Link className="logo" to="/">The Nature of Risk Reduction</Link>
+        <Link className="logo" to="/">Natural Hazards – Nature-based Solutions</Link>
         <OnlyOn device="desktop">
           <Nav className={cNames.nav} links={links} logged={props.logged} />
         </OnlyOn>

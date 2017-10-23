@@ -28858,7 +28858,7 @@ function Header(props) {
       _react2.default.createElement(
         _reactRouter.Link,
         { className: 'logo', to: '/' },
-        'The Nature of Risk Reduction'
+        'Natural Hazards – Nature-based Solutions'
       ),
       _react2.default.createElement(
         _Responsive2.default,
@@ -29446,7 +29446,7 @@ var ShareModal = function (_React$Component) {
           _react2.default.createElement(
             'a',
             {
-              href: 'https://twitter.com/share?url=' + url + '&text=The Nature of Risk Reduction',
+              href: 'https://twitter.com/share?url=' + url + '&text=Natural Hazards – Nature-based Solutions',
               target: '_blank',
               rel: 'noopener noreferrer'
             },
@@ -29630,7 +29630,7 @@ var AboutPage = function (_React$Component) {
                 _react2.default.createElement(
                   'p',
                   { className: 'intro-text' },
-                  'The Nature of Risk Reduction platform is a hub for projects, investments, guidance and studies making use of nature to reduce the risks associated with natural hazards. Our objective is to host and facilitate the exchange of knowledge, experiences and lessons learned from a range of stakeholders, to provide guidance on the planning and implementation of nature-based solutions, and to champion\xA0these solutions in the arenas of policy-making and investment for disaster risk reduction.'
+                  'Natural Hazards – Nature-based Solutions platform is a hub for projects, investments, guidance and studies making use of nature to reduce the risks associated with natural hazards. Our objective is to host and facilitate the exchange of knowledge, experiences and lessons learned from a range of stakeholders, to provide guidance on the planning and implementation of nature-based solutions, and to champion\xA0these solutions in the arenas of policy-making and investment for disaster risk reduction.'
                 ),
                 _react2.default.createElement(
                   'p',
@@ -29752,7 +29752,7 @@ var AboutPage = function (_React$Component) {
                 _react2.default.createElement(
                   'p',
                   { className: 'text -secondary' },
-                  'Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.'
+                  'Contribute your nature-based project and experiences to Natural Hazards – Nature-based Solutions database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.'
                 ),
                 _react2.default.createElement(
                   _reactRouter.Link,
@@ -29784,7 +29784,7 @@ var AboutPage = function (_React$Component) {
                 _react2.default.createElement(
                   'p',
                   { className: 'intro-text' },
-                  'We welcome your feedback and value your input as we work to continually improve and update The Nature of Risk Reduction database. Please do not hesitate to send us your comments and questions here.'
+                  'We welcome your feedback and value your input as we work to continually improve and update Natural Hazards – Nature-based Solutions database. Please do not hesitate to send us your comments and questions here.'
                 )
               )
             ),
@@ -30622,7 +30622,7 @@ var HomePage = function (_React$Component) {
               _react2.default.createElement(
                 'h1',
                 { className: 'h1 -secondary -big' },
-                'The Nature of Risk Reduction'
+                'Natural Hazards – Nature-based Solutions'
               ),
               _react2.default.createElement(
                 'h2',
@@ -30738,7 +30738,7 @@ var HomePage = function (_React$Component) {
                 _react2.default.createElement(
                   'p',
                   { className: 'text -secondary' },
-                  'Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.'
+                  'Contribute your nature-based project and experiences to Natural Hazards – Nature-based Solutions database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.'
                 ),
                 _react2.default.createElement(
                   _reactRouter.Link,
@@ -32333,7 +32333,7 @@ var SubmitPage = function (_React$Component) {
                 _react2.default.createElement(
                   'p',
                   { className: 'text' },
-                  'Contribute your nature-based project and experiences to The Nature of Risk Reduction database, and join a growing community of practitioners, scientists and donors using nature-based approaches to reduce disaster risk.'
+                  'Contribute your nature-based project and experiences to Natural Hazards – Nature-based Solutions database, and join a growing community of practitioners, scientists and donors using nature-based approaches to reduce disaster risk.'
                 )
               )
             ),
