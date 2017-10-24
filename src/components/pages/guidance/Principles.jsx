@@ -35,7 +35,7 @@ export default class Principles extends React.Component {
                 <button className="show-more" onClick={() => this.onClick(p.number)}>
                   {(activeKey.length && activeKey[0] !== p.number) || !activeKey.length ?
                     <SvgIcon name="icon-plus" className="more -small" /> :
-                    <SvgIcon name="icon-minus" className="more -small" />
+                    <SvgIcon name="icon-minus" className="more -medium" />
                   }
                 </button>
                 <h2 className="pp-title">
@@ -74,6 +74,12 @@ export default class Principles extends React.Component {
           <Row>
             <div className="column small-12 large-10 large-offset-1">
               {this.renderPanels()}
+            </div>
+          </Row>
+
+          <Row>
+            <div className="column small-12 large-10 large-offset-1">
+              <img src="/images/" alt="principles" />
             </div>
           </Row>
         </section>
