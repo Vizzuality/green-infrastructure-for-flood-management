@@ -13,14 +13,14 @@ export default class Acknowledgements extends React.Component {
     for (let i = 0; i < ACRONYMS.length; i += 2) {
       acronyms.push(
         <Row key={i}>
-          <div className="column small-12 medium-6">
+          <div className="column small-12 medium-6 large-5 large-offset-1">
             <div className="text-group">
               <p className="text">{ACRONYMS[i].name}</p>
               <p className="text -highlighted">{ACRONYMS[i].value}</p>
             </div>
           </div>
           {i + 1 < ACRONYMS.length &&
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">{ACRONYMS[i + 1].name}</p>
                 <p className="text -highlighted">{ACRONYMS[i + 1].value}</p>
@@ -40,7 +40,7 @@ export default class Acknowledgements extends React.Component {
         {/* Heading section */}
         <section className="tab-section -intro wrapper">
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="tag">Guidance</h3>
               <h1 className="title">Acknowledgements</h1>
               <p className="text">This guideline is a product of collective effort by Deltares, Global Facility for Disaster Reduction and Recovery (GFDRR), The World Bank, Ecoshape and United Nations Development Programme (UNDP). Furthermore, this document could not have been made without the input from all participants of the workshop on scaling up nature-based flood risk reduction, held on April 11th and 12th 2017 at Deltares (NL).</p>
@@ -49,7 +49,7 @@ export default class Acknowledgements extends React.Component {
         </section>
         <section className="tab-section -authors wrapper">
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="info-title -secondary">Authors</h3>
               <ul className="info-list">
                 <li>Deltares: Bregje K. van Wesenbeeck, Stéphanie IJff</li>
@@ -89,19 +89,19 @@ export default class Acknowledgements extends React.Component {
 
         <section className="tab-section -intro wrapper">
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <p className="text">This document is drafted based upon comments and remarks from the following workshop participants</p>
             </div>
           </Row>
 
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Abdi Yusuf</p>
                 <p className="text -highlighted">United Nations Development Programme (UNDP)</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Ap van Dongeren</p>
                 <p className="text -highlighted">Deltares</p>
@@ -109,13 +109,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Armando Guzman</p>
                 <p className="text -highlighted">The World Bank</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Bastiaan Lammers</p>
                 <p className="text -highlighted">The World Bank</p>
@@ -123,13 +123,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Boris van Zanten</p>
                 <p className="text -highlighted">Wolfs Company</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Carrie de Wilde</p>
                 <p className="text -highlighted">Ecoshape</p>
@@ -137,13 +137,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Cees van de Guchte</p>
                 <p className="text -highlighted">Deltares</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Christophe Briere</p>
                 <p className="text -highlighted">Deltares</p>
@@ -151,13 +151,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Claire Jeuken</p>
                 <p className="text -highlighted">Deltares</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Ellis Penning</p>
                 <p className="text -highlighted">Deltares</p>
@@ -165,13 +165,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Els van Lavieren</p>
                 <p className="text -highlighted">Conservation International</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Femke Schasfoort</p>
                 <p className="text -highlighted">Ecoshape</p>
@@ -179,13 +179,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Fokko van der Goot</p>
                 <p className="text -highlighted">Ecoshape</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Hans Pietersen</p>
                 <p className="text -highlighted">Rijkswaterstaat</p>
@@ -193,13 +193,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Hessel Winsemius</p>
                 <p className="text -highlighted">Deltares</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Jaap Kwadijk</p>
                 <p className="text -highlighted">Deltares</p>
@@ -207,13 +207,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Jaap van Thiel de Vries</p>
                 <p className="text -highlighted">Boskalis</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Luca Sittoni</p>
                 <p className="text -highlighted">Ecoshape</p>
@@ -221,13 +221,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Madhuvi Kisoen</p>
                 <p className="text -highlighted">Ministry of Public Works Surinam</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Marcel Stive</p>
                 <p className="text -highlighted">Ministry of Public Works Surinam</p>
@@ -235,13 +235,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Marcel Stive</p>
                 <p className="text -highlighted">Delft University of Technology</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Mary Bryant</p>
                 <p className="text -highlighted">US Army Corps of Engineers</p>
@@ -249,13 +249,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Mathias Bertram</p>
                 <p className="text -highlighted">Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ)</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Mathijs van Ledden</p>
                 <p className="text -highlighted">GFDRR</p>
@@ -263,13 +263,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Melisa October</p>
                 <p className="text -highlighted">Ministry of Agriculture, Guyana</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Mindert de Vries</p>
                 <p className="text -highlighted">Deltares</p>
@@ -277,13 +277,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Minke van Rees</p>
                 <p className="text -highlighted">Turing Foundation</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Monica Altamirano</p>
                 <p className="text -highlighted">Deltares</p>
@@ -291,13 +291,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Natasja van den Berg</p>
                 <p className="text -highlighted">Tertium</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Nicolas Desramaut</p>
                 <p className="text -highlighted">The World Bank</p>
@@ -305,13 +305,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Nigel Pontee</p>
                 <p className="text -highlighted">Halcrow Group Ltd</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Dionisio Perez Blanco</p>
                 <p className="text -highlighted">Fondazione Eni Enrico Mattei (FEEM)</p>
@@ -319,13 +319,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Peter Goodwin</p>
                 <p className="text -highlighted">University of Idaho</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Pieter van Eijk</p>
                 <p className="text -highlighted">Wetlands International</p>
@@ -333,13 +333,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Quirijn Lodder</p>
                 <p className="text -highlighted">Rijkswaterstaat</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Remment ter Hofstede</p>
                 <p className="text -highlighted">Van Oord</p>
@@ -347,13 +347,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Robert McCall</p>
                 <p className="text -highlighted">Deltares</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Salah Dahir</p>
                 <p className="text -highlighted">United Nations Development Programme (UNDP)</p>
@@ -361,13 +361,13 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Saskia Marijnissen</p>
                 <p className="text -highlighted">United Nations Development Programme (UNDP)</p>
               </div>
             </div>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Vincent Vuik</p>
                 <p className="text -highlighted">Delft University of Technology</p>
@@ -375,7 +375,7 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="column small-12 medium-6">
+            <div className="column small-12 medium-6 large-5 large-offset-1">
               <div className="text-group">
                 <p className="text">Wouter Gotje</p>
                 <p className="text -highlighted">Witteveen + Bos</p>
@@ -386,7 +386,7 @@ export default class Acknowledgements extends React.Component {
 
         <section className="tab-section -intro wrapper">
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="info-title -secondary">List of acronyms</h3>
             </div>
           </Row>
@@ -396,7 +396,7 @@ export default class Acknowledgements extends React.Component {
 
         <section className="tab-section -intro wrapper">
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <p className="text">©2017 The World Bank</p>
               <p className="text">The International Bank for Reconstruction and Development</p>
               <p className="text">The World Bank Group</p>
@@ -407,21 +407,21 @@ export default class Acknowledgements extends React.Component {
           </Row>
 
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <p className="text">This work, including this document and the nature-based solutions online platform, was co-financed by the Program on Forests (PROFOR), the Global Facility for Disaster Reduction and Recovery (GFDRR), and Deltares.</p>
               <p className="text">The online platform that provides up-to-date implementation guidance and a database of nature-based solutions projects can be accessed at: <a href="http://www.naturebasedsolutions.org" target="_blank" rel="noreferrer noopener">naturebasedsolutions.org</a>.</p>
             </div>
           </Row>
 
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="info-title -secondary">Attribution</h3>
               <p className="text">World Bank. 2017. Implementing nature-based flood protection: Principles and implementation guidance. Washington, DC: World Bank.</p>
             </div>
           </Row>
 
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="info-title -secondary">Disclaimer</h3>
               <p className="text">This document is the product of work performed by the World Bank and GFDRR with external contributions. The findings, interpretations and conclusions expressed in this document do not necessarily reflect the views of any individual partner organizations of the World Bank, GFDRR, the Executive Directors of the World Bank, or the governments they represent.</p>
               <p className="text">The World Bank does not guarantee the accuracy of the data included in this work. The boundaries, colors, denomination, and other information shown in any map in this work do not imply any judgment on the part of The World Bank concerning the legal status of any territory or the endorsement or acceptance of such boundaries.</p>
@@ -430,7 +430,7 @@ export default class Acknowledgements extends React.Component {
           </Row>
 
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="info-title -secondary">Rights and Permissions</h3>
               <p className="text">The material in this work is subject to copyright. Because The World Bank encourages dissemination of its knowledge, this work may be reproduced, in whole or in part, for noncommercial purposes as long as full attribution to this work is given.</p>
               <p className="text">Any queries on rights and licenses, including subsidiary rights, should be addressed to the Office of the Publisher, The World Bank, 1818 H Street NW, Washington, DC 20433, USA; fax: 202-522-2422; e-mail: <a href="mailto:pubrights@worldbank.org">pubrights@worldbank.org</a>.</p>
@@ -438,7 +438,7 @@ export default class Acknowledgements extends React.Component {
           </Row>
 
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="info-title -secondary">Photo credits</h3>
               <p className="text">Building with Nature Indonesia is a program by Ecoshape partners and the Indonesian Ministry of Marine Affairs and Fisheries.</p>
               <p className="text">(MMAF), and the Indonesian Ministry of Public Work and Human Settlement (PU), in partnership with Witteveen+Bos, Deltares, Wageningen, University & Research Centre, UNESCO-IHE, Blue Forests, and Von Lieberman, with support from the Diponegoro University, and local.</p>

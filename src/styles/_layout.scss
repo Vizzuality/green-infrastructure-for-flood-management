@@ -42,7 +42,12 @@
   padding-left: 20px;
   padding-right: 20px;
 
-  @media #{$mq-medium} {
+  @media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  @media screen and (min-width: $bp-large) {
     padding-left: 170px;
     padding-right: 170px;
   }
