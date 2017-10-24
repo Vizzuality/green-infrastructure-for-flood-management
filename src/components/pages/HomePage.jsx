@@ -76,7 +76,7 @@ export default class HomePage extends React.Component {
               </li>
               <li>
                 <a href="http://www.worldbank.org/" target="_blank" rel="noreferrer noopener">
-                  <img src="/images/partners/wbg.png" alt="wbg" />
+                  <img src="/images/partners/wb.png" alt="wbg" />
                 </a>
               </li>
               <li>

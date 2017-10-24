@@ -76,7 +76,7 @@
   align-items: center;
 
   @include breakpoint(large) {
-    margin-bottom: 0;
+    // margin-bottom: 0;
   }
 
   &.-contributors {
