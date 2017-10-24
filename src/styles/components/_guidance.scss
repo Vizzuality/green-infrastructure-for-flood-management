@@ -30,6 +30,12 @@
         align-items: center;
         width: 100%;
 
+        .download-container {
+          @media screen and (min-width: 319px) and (max-width: $breakpoint-desktop) {
+            margin-top: 12px;
+          }
+        }
+
         .c-btn.-download {
           display: flex;
           align-items: center;

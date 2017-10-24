@@ -24,10 +24,12 @@ export default class GuidancePage extends React.Component {
               <h1 className="h1 -secondary -big">Guidance</h1>
               <div className="intro-container">
                 <p className="intro">Implementing nature-based flood protection</p>
-                <a className="c-btn -download" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
+                <div className="download-container">
+                  <a className="c-btn -download" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
                   Download pdf
                   <SvgIcon name="icon-download-white" />
                 </a>
+                </div>
               </div>
             </div>
           </div>
