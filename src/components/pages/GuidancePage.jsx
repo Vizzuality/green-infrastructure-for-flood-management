@@ -6,6 +6,7 @@ import { SvgIcon } from 'vizz-components';
 import Introduction from 'components/pages/guidance/Introduction';
 import Principles from 'components/pages/guidance/Principles';
 import Implementation from 'components/pages/guidance/Implementation';
+import Acknowledgements from 'components/pages/guidance/Acknowledgements';
 
 
 export default class GuidancePage extends React.Component {
@@ -38,10 +39,12 @@ export default class GuidancePage extends React.Component {
                 <Tab className="tab">Introduction</Tab>
                 <Tab className="tab">Principles</Tab>
                 <Tab className="tab">Implementation</Tab>
+                <Tab className="tab">Acknowledgements</Tab>
               </TabList>
               <TabPanel><Introduction /></TabPanel>
               <TabPanel><Principles /></TabPanel>
               <TabPanel><Implementation /></TabPanel>
+              <TabPanel><Acknowledgements /></TabPanel>
             </Tabs>
           </div>
         </section>
