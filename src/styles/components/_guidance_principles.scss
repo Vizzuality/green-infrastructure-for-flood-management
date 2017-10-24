@@ -88,7 +88,10 @@
         .show-more {
           background-color: $color-primary;
 
-          .more { fill: palette(white); }
+          .more {
+            fill: palette(white);
+            stroke: palette(white);
+          }
         }
       }
     }
