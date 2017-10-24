@@ -54,6 +54,264 @@ export default class Acknowledgements extends React.Component {
             </div>
           </Row>
         </section>
+
+        <section className="tab-section -intro wrapper">
+          <Row>
+            <div className="column small-12 large-8 large-offset-2">
+              <p className="text">This document is drafted based upon comments and remarks from the following workshop participants</p>
+            </div>
+          </Row>
+
+          <Row>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Abdi Yusuf</p>
+                <p className="text -highlighted">United Nations Development Programme (UNDP)</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Ap van Dongeren</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Armando Guzman</p>
+                <p className="text -highlighted">The World Bank</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Bastiaan Lammers</p>
+                <p className="text -highlighted">The World Bank</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Boris van Zanten</p>
+                <p className="text -highlighted">Wolfs Company</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Carrie de Wilde</p>
+                <p className="text -highlighted">Ecoshape</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Cees van de Guchte</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Christophe Briere</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Claire Jeuken</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Ellis Penning</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Els van Lavieren</p>
+                <p className="text -highlighted">Conservation International</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Femke Schasfoort</p>
+                <p className="text -highlighted">Ecoshape</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Fokko van der Goot</p>
+                <p className="text -highlighted">Ecoshape</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Hans Pietersen</p>
+                <p className="text -highlighted">Rijkswaterstaat</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Hessel Winsemius</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Jaap Kwadijk</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Jaap van Thiel de Vries</p>
+                <p className="text -highlighted">Boskalis</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Luca Sittoni</p>
+                <p className="text -highlighted">Ecoshape</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Madhuvi Kisoen</p>
+                <p className="text -highlighted">Ministry of Public Works Surinam</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Marcel Stive</p>
+                <p className="text -highlighted">Ministry of Public Works Surinam</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Marcel Stive</p>
+                <p className="text -highlighted">Delft University of Technology</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Mary Bryant</p>
+                <p className="text -highlighted">US Army Corps of Engineers</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Mathias Bertram</p>
+                <p className="text -highlighted">Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ)</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Mathijs van Ledden</p>
+                <p className="text -highlighted">GFDRR</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Melisa October</p>
+                <p className="text -highlighted">Ministry of Agriculture, Guyana</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Mindert de Vries</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Minke van Rees</p>
+                <p className="text -highlighted">Turing Foundation</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Monica Altamirano</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Natasja van den Berg</p>
+                <p className="text -highlighted">Tertium</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Nicolas Desramaut</p>
+                <p className="text -highlighted">The World Bank</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Nigel Pontee</p>
+                <p className="text -highlighted">Halcrow Group Ltd</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Dionisio Perez Blanco</p>
+                <p className="text -highlighted">Fondazione Eni Enrico Mattei (FEEM)</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Peter Goodwin</p>
+                <p className="text -highlighted">University of Idaho</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Pieter van Eijk</p>
+                <p className="text -highlighted">Wetlands International</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Quirijn Lodder</p>
+                <p className="text -highlighted">Rijkswaterstaat</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Remment ter Hofstede</p>
+                <p className="text -highlighted">Van Oord</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Robert McCall</p>
+                <p className="text -highlighted">Deltares</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Salah Dahir</p>
+                <p className="text -highlighted">United Nations Development Programme (UNDP)</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Saskia Marijnissen</p>
+                <p className="text -highlighted">United Nations Development Programme (UNDP)</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Vincent Vuik</p>
+                <p className="text -highlighted">Delft University of Technology</p>
+              </div>
+            </div>
+            <div className="column small-12 medium-6">
+              <div className="text-group">
+                <p className="text">Wouter Gotje</p>
+                <p className="text -highlighted">Witteveen + Bos</p>
+              </div>
+            </div>
+          </Row>
+        </section>
+
         <section className="tab-section -intro wrapper">
           <Row>
             <div className="column small-12 large-8 large-offset-2">
