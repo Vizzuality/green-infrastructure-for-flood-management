@@ -73,6 +73,31 @@
     }
   }
 
+  .info-list {
+    li {
+      font-size: $font-size-big;
+      line-height: 32px;
+      color: $color-primary;
+      margin-bottom: 10px;
+
+      &:last-child { margin-bottom: 0; }
+
+      .item-list-title {
+        font-weight: bold;
+      }
+    }
+
+    &.-normal {
+      li {
+        color: $color-text-1;
+
+        .item-list-title {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+
   .tab-section {
     padding-top: 30px;
     padding-bottom: 10px;
