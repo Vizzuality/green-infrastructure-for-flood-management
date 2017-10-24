@@ -70,7 +70,7 @@ export default class Implementation extends React.Component {
         {/* Heading section */}
         <section className="tab-section -intro wrapper">
           <Row>
-            <div className="column small-12 large-8 large-offset-2">
+            <div className="column small-12 large-10 large-offset-1">
               <h3 className="tag">Guidance</h3>
               <h1 className="title">Implementation guidance</h1>
               <p className="text">Nature-based solutions projects require the consideration of biophysical processes, natural dynamics, and the interconnectivity of ecosystem services, which calls for the engagement of experts from different disciplines such as hydrology, engineering, ecology, economics, and social sciences. This section of the guidance summarizes the steps needed for the assessment, design, implementation, and monitoring and evaluation of nature-based solutions for flood risk management. It follows the general cycle of a flood risk management project and provides more information and detail on specific aspects that need further attention when implementing nature-based solutions. These guidelines build and expand upon existing guidance notes developed by other partners, including NOAA and Ecoshape[]. Whereas these existing guidelines focus on specific parts of the design (Ecoshape) or preparation (NOAA) of nature-based solutions, this document attempts to cover the entire project cycle from preparation to monitoring and evaluation.</p>
