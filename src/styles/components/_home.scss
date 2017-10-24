@@ -33,6 +33,14 @@
       margin: auto;
       left: 0; right: 0; bottom: 30px;
     }
+
+    .h1.-big {
+      @include breakpoint(large) {
+        font-size: 52px;
+        line-height: 69px;
+        letter-spacing: 2px
+      }
+    }
   }
 
   &.-submit {
