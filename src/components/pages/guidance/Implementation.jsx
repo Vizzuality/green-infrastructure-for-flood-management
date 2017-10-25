@@ -363,43 +363,37 @@ export default class Implementation extends React.Component {
 
               <section id="implementation7">
                 {isDevice() && <h3 className="tag">Step 7</h3>}
-                <h2 className="section-title">Monitor and Maintain, Inform Future Practices</h2>
-                <p className="text">Activities after the implementation of the nature-based solution are needed to maintain and further develop its effectiveness, and to record lessons learned for future use.</p>
+                <h2 className="section-title">Implementation and construction</h2>
+                <p className="text">Implement the project in consultation with stakeholders; ensure compliance with social and environmental standards.</p>
 
-                <h3 className="info-title -secondary">1. Monitor ecosystem status, species diversity, and ecosystem functioning</h3>
-                <p className="text">Carefully monitor: the development of the ecosystem in the area of implementation, as well as the larger landscape, to assess how the intervention has affected the area; how the ecosystem flood protection functions are developing; and whether ecosystem restoration is progressing according to plan. Monitor species diversity and density through time to determine whether the ecosystem goes through different successional stages.</p>
+                <h3 className="info-title -secondary">1. Revisit social and environmental impact assessment</h3>
+                <p className="text">Revisit the social and environmental impact assessment, including the standards and safeguards relevant to the project. Start planning any required involuntary resettlement of inhabitants and preparing the implementation area to limit environmental impacts.</p>
 
-                <h3 className="info-title -secondary">2. Monitor risk reduction effectiveness</h3>
-                <p className="text">Refer to your monitoring system (see step 4.4) to monitor how the gray and hybrid components of the project are implemented, and how the restoration and creation of ecosystem elements are increasingly contributing to the risk reduction effectiveness. If possible, re-run the hazard and risk model with the final interventions in place, to assess estimated effect on modeled damages.</p>
+                <h3 className="info-title -secondary">2. Consideration of ecosystem structure, species diversity, and ecosystem functioning</h3>
+                <p className="text">Implement the engineering and ecosystem aspects of the project in accordance to the Principles. Also include the ecosystem integration as assessed in the previous steps. Closely monitor ecosystem functioning and impacts during the implementation phase. Any unexpected impacts on ecosystem structure, species and functioning should be flagged. For hybrid solutions, ensure that the engineering works and ecosystem aspects are implemented in harmony as per the design plan.</p>
 
-                <h3 className="info-title -secondary">3. Policy and regulatory framework development and adjustment</h3>
-                <p className="text">Because the benefits of nature-based solutions can be realized many decades into the future, it is important to understand the regulatory environment and its changes over time. This will better allow the project to adapt to forthcoming policies before they negatively impact the solution.</p>
-
-                <h3 className="info-title -secondary">4. Continuous community involvement</h3>
-                <p className="text">The sustainability of the ecosystem elements depends strongly on the continuous involvement of the community. If the community is not involved and does not see the value of the restored or created ecosystem, they may contribute to its decline. To involve the community, conduct meetings to explain the project and its benefits; and provide practical guidance on the use and protection of the ecosystem. It is important to ensure that project representatives listen to the community and spend time understanding their concerns and answering their questions. If the community does not see that their concerns are being addressed, it is likely that the project will not be as successful or may fail. Monitor and help the creation of employment opportunities derived from the ecosystem.</p>
-
-                <h3 className="info-title -secondary">5. Review and evaluation</h3>
-                <p className="text">Monitoring and evaluation need to generate learning on what works and what doesn’t work, and why. Review all project components, with special attention to risk reduction effectiveness, community impact and environmental impacts. Publish review and share with other implementing organizations to build up global best practice. Investigate possibilities for upscaling of successful approaches to other places.</p>
-
-                <h3 className="info-title -secondary">6. Capture lessons learned</h3>
-                <p className="text">While identifying lessons learned should be done throughout the project, it is important for the success of nature-based projects to capture and report these lessons learned in a way that is accessible to others considering implementing nature-based solutions. There are a number of resources (see box) that serve as a repository of ongoing and completed projects where lessons can be captured. Moreover, these guiding and implementation principles should be re-examined and re-drafted based on experience, and we encourage you to report lessons learned to the platform. </p>
+                <h3 className="info-title -secondary">3. Continuous stakeholder and community interaction during implementation</h3>
+                <p className="text">Continuously inform and consult the key stakeholders as identified in the previous steps. Ensure stakeholder ownership and involvement. In communications, be sensitive to both the short-term impacts and expected long-term impacts, but also on the gains for communities and environment. Monitor impacts of the construction and rehabilitation work on the local stakeholders. Flexibly adjust the implementation of the project where required based on changing stakeholder needs and emerging information.</p>
 
                 <article className="extra-info">
-                  <h2 className="info-title -principal">Example project</h2>
-                  <p className="text">The management of dune ecosystems in Christchurch, New Zealand’s coastal parks has recently focused on restorative techniques focused on the use of indigenous sand-binding species. A collaborative and community-based vision for the area was established and management objectives were identified at the scale of the site. These included a specific restoration plan for the dune system at the site, together with a monitoring plan and other initiatives to promote education about the area and the dune restoration initiative. A monitoring program was developed to measure the success of the key actions and provide useful information for future management decisions. The monitoring program has clearly shown changes in the dune system in response to the new management activities.</p>
+                  <h3 className="info-title">Outputs</h3>
+                  <ul className="info-list">
+                    <li>- Agreement on lifetime of intervention</li>
+                    <li>- Regulatory frameworks to sustain and maintain intervention</li>
+                    <li>- Implemented measures</li>
+                  </ul>
+
+                  <h2 className="info-title -principal">Example projects</h2>
+                  <p className="text">A good example of a participatory design process is constituted by retrofitting the storm water management system of the city of Malmö, Sweden. The city experienced socio-economic decline and floods from overflowing drainage. A collaborative solution aimed to retrofit the area with Sustainable Urban Drainage Systems (SUDS) as part of a broader regeneration project. The objective was to create a more sustainable neighborhood and to benefit biodiversity. An extensive and iterative process of stakeholder engagement was initiated during the design and execution of this project. The process involved a series of consultations with local residents, representatives from the local school, practitioners, city staff, and many others. The idea behind these consultations was to build awareness about the SUDS retrofit, its benefits and costs, and to obtain public perspectives on the desired design. This included regular meetings, community workshops and informal gatherings. The approach became increasingly open and consultative, with approximately one fifth of the tenants in the area having participated in dialogue meetings about the project. Amongst other topics, safety issues related to open water areas (e.g. retention pools) were discussed with residents as well as the potential loss of particular recreational opportunities in the area. In many cases, comments and concerns from stakeholders were taken into account and addressed in redesigned SUDS plans.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text"><a href="https://www.iucn.org/sites/dev/files/2014-038.pdf" download="Step 7 more">https://www.iucn.org/sites/dev/files/2014-038.pdf</a></p>
+                  <p className="text"><a href="http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support">http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support</a></p>
 
                   <h3 className="info-title">More information</h3>
-                  <p className="text">Informing future practices  – There are numerous online communities that support the advancement of nature-based solutions through a variety of approaches. These resources offer an opportunity to review and evaluate projects and share your own experiences to inform the development of future projects.</p>
-
                   <ul className="info-list">
-                    <li>- European Commission’s Oppla is a new knowledge marketplace; a place where the latest thinking on ecosystem services, natural capital and nature-based solutions is brought together. Read more: <a href="http://www.oppla.eu" target="_blank">http://www.oppla.eu</a></li>
-                    <li>- The Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) and IUCN host the PANORAMA platform that is a partnership initiative to document and promote examples of inspiring, replicable solutions across a range of conservation and development topics, enabling cross-sectoral learning and inspiration. Read more: <a href="http://panorama.solutions/en" target="_blank">http://panorama.solutions/en</a></li>
-                    <li>- The Natural Infrastructure for Business platform developed by the World Business Council for Sustainable Development (WBCSD), CH2M (with support from The Nature Conservancy), and other member companies is designed to introduce business leaders and practitioners to natural infrastructure. Read more: <a href="http://www.naturalinfrastructureforbusiness.org" target="_blank">http://www.naturalinfrastructureforbusiness.org</a></li>
-                    <li>- Stockholm Environment Institute’s weADAPT is a collaborative platform on climate adaptation issues. It allows practitioners, researchers and policy-makers to access credible, high-quality information and connect with one another. Read more: <a href="https://www.weadapt.org" target="_blank">https://www.weadapt.org</a></li>
-                    <li>- The Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) hosts an Adaptation Community which offers an inventory of methods for adaptation to climate change and a platform for exchange among practitioners. Read more: <a href="http://www.adaptationcommunity.net" target="_blank">http://www.adaptationcommunity.net</a></li>
+                    <li>- The Nature of Risk Reduction platform details projects from around the world: <a href="http://nature-of-risk-reduction.vizzuality.com/">http://nature-of-risk-reduction.vizzuality.com/</a></li>
+                    <li>- NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure: <a href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf</a></li>
+                    <li>- The WWF Flood Green Guide: <a href="http://envirodm.org/flood-management">http://envirodm.org/flood-management</a></li>
                   </ul>
                 </article>
               </section>
