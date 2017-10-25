@@ -7,7 +7,7 @@ import { Row } from 'components/ui/Grid';
 export default class Implementation extends React.Component {
   componentDidMount() {
     const triggers = ['implementation1', 'implementation2', 'implementation3',
-      'implementation4', 'implementation5', 'implementation6', 'implementation7'];
+      'implementation4', 'implementation5', 'implementation6', 'implementation7, implementation8, implementation9'];
     const controller = new ScrollMagic.Controller();
 
     if (isDevice()) {
@@ -75,7 +75,9 @@ export default class Implementation extends React.Component {
               <h1 className="title">Implementation guidance</h1>
               <p className="text">The five principles outlined some general ‘rules’ for sustainable and effective nature-based solutions for flood risk management. This section of the guidance summarizes the steps needed for the planning, assessment, design, implementation, monitoring, management, and evaluation of nature-based solutions for flood risk management. It follows the general cycle of a flood risk management project and therefore are also applicable for gray measures. However, it provides more information and detail on specific aspects that need further attention when implementing nature-based solutions. These guidelines build and expand upon existing guidance developed by other organizations, including NOAA, USACE and Ecoshape. This document attempts to cover the entire project cycle from preparation to monitoring and evaluation.</p>
               <p className="text">Projects that aim to implement nature-based solutions must consider biophysical and socio-economic processes on different scales in space and time. This calls for the engagement of experts from different disciplines such as hydrology, engineering, ecology, economics and social sciences. As with other risk management projects, the design and implementation of nature-based solutions should be done in a participatory manner with full engagement of all relevant stakeholders. This is particularly important as nature-based solutions present an opportunity to address flood risks by aligning conservation, development and poverty alleviation objectives. This can create new synergies and collaborations between governments, local communities, NGOs, but also relevant private sector stakeholders.</p>
-              <img src="/images/steps.svg" alt="implementation" />
+              <div className="image-container">
+                <img src="/images/steps.svg" alt="implementation" />
+              </div>
             </div>
           </Row>
         </section>
@@ -88,13 +90,15 @@ export default class Implementation extends React.Component {
               <div id="fixedMenu" className="fixed-menu">
                 {isDevice() && <h1 className="title">Implementation steps</h1>}
                 <ul className="menu-list">
-                  <li id="anc1"><a className="js-scroll-imp1" href="#implementation1">01. Conduct Ecosystem, Hazard, and Risk Assessments</a></li>
-                  <li id="anc2"><a className="js-scroll-imp2" href="#implementation2">02. Develop Nature-based Risk Management Strategy</a></li>
-                  <li id="anc3"><a className="js-scroll-imp3" href="#implementation3">03. Estimate the Cost, Benefit and Effectiveness</a></li>
-                  <li id="anc4"><a className="js-scroll-imp4" href="#implementation4">04. Select, Plan, and Design the Intervention</a></li>
-                  <li id="anc5"><a className="js-scroll-imp5" href="#implementation5">05. Financing the Project</a></li>
-                  <li id="anc6"><a className="js-scroll-imp6" href="#implementation6">06. Implementation and Construction</a></li>
-                  <li id="anc7"><a className="js-scroll-imp7" href="#implementation7">07. Monitor and Maintain, Inform Future Practices</a></li>
+                  <li id="anc1"><a className="js-scroll-imp1" href="#implementation1">01. Define problem, project scope and objectivess</a></li>
+                  <li id="anc2"><a className="js-scroll-imp2" href="#implementation2">02. Financing strategy</a></li>
+                  <li id="anc3"><a className="js-scroll-imp3" href="#implementation3">03. Conduct ecosystem, hazard, and risk assessments</a></li>
+                  <li id="anc4"><a className="js-scroll-imp4" href="#implementation4">04. Develop nature-based risk management strategy</a></li>
+                  <li id="anc5"><a className="js-scroll-imp5" href="#implementation5">05. Estimate the costs, benefits and effectiveness</a></li>
+                  <li id="anc6"><a className="js-scroll-imp6" href="#implementation6">06. Select and design the intervention</a></li>
+                  <li id="anc7"><a className="js-scroll-imp7" href="#implementation7">07. Implementation and construction</a></li>
+                  <li id="anc8"><a className="js-scroll-imp8" href="#implementation8">08. Monitor and inform future actions</a></li>
+                  <li id="anc9"><a className="js-scroll-imp9" href="#implementation9">09. Conclusions</a></li>
                 </ul>
               </div>
             </div>
@@ -443,6 +447,13 @@ export default class Implementation extends React.Component {
                   <p className="text">Building Ecological Solutions to Coastal Community Hazards. A Guide for New Jersey Coastal Communities. National Wildlife Federation (2017). <a href="http://www.nwf.org/~/media/PDFs/Global-Warming/NWF_FINAL-WEB-VERSION_BESCCH_070517.ashx">http://www.nwf.org/~/media/PDFs/Global-Warming/NWF_FINAL-WEB-VERSION_BESCCH_070517.ashx</a></p>
                   <p className="text">The Natural Hazards – Nature-based Solutions platform, managed by the Global Facility for Disaster Reduction and Recovery (GFDRR), the World Bank, and Deltares, provides a global overview of the nature-based or hybrid solutions projects implemented by a variety of organizations. The platform also houses these Principles and Implementation Guidance that are updated with lessons learned. <a href="http://naturebasedsolutions.org/">http://naturebasedsolutions.org/</a></p>
                 </article>
+              </section>
+
+              <section id="implementation9">
+                <h2 className="section-title">Conclusions</h2>
+                <p className="text">The five principles and implementation guidance presented in this guidance make a case for a structured approach to the planning, evaluation, design, and implementation of nature-based solutions for flood risk management. They aim to support disaster risk management and climate adaptation professionals who plan flood risk management interventions, NGOs that implement nature-based solutions, as well as staff of donor and international agencies who design, review, or fund such projects. Using the growing momentum for the use of nature-based solutions as part of resilience-building strategies and disaster risk reduction, these guidelines offer a step-by-step approach for implementing successful nature-based solutions for flood risk management.</p>
+                <p className="text">This document is one building block towards a system in which nature-based solutions for flood risk management are widely accepted and implemented as an alternative or complement to conventional engineering measures. However, the document is not meant to form an all-encompassing guide. Rather, it aims to set out the framework for nature-based flood management, and forms an addition to other more specific initiatives such as detailed guidance on implementation (e.g. the WWF Flood Green Guide; and USACE design guidelines that are currently in preparation), training programs (e.g. the NOAA Green Infrastructure for Coastal Resilience course), and international networks (such as the Partnership for Environment and Disaster Risk Reduction, PEDRR). As such, we have tried to reference such specific further resources throughout the guidance. Also, we encourage others to build from this framework to provide further detailed information that is needed for successful implementation.</p>
+                <p className="text">We hope that ‘Implementing nature-based flood protection: Principles and implementation guidance’ streamlines and accelerates the process of knowledge development, evaluation, and standardization of design and testing protocols. That way, we can continue to improve and promote nature-based adaptation as a sustainable flood risk management solution.</p>
               </section>
             </div>
           </Row>
