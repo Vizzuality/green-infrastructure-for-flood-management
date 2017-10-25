@@ -40,7 +40,7 @@ export default class DownloadPdf extends React.Component {
     if (Object.keys(this.props.projectDetail).length && !this.state.loading) {
       setTimeout(() => {
         this.download(nextProps);
-      }, 1500);
+      }, 2500);
     }
   }
 
