@@ -27,6 +27,15 @@
     }
   }
 
+  .image-container {
+    margin-bottom: 40px;
+
+    img {
+      max-width: 100%;
+    }
+
+  }
+
   .info-list {
     li {
       font-size: $font-size-big;
