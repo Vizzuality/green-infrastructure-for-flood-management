@@ -397,6 +397,53 @@ export default class Implementation extends React.Component {
                   </ul>
                 </article>
               </section>
+
+              <section id="implementation8">
+                {isDevice() && <h3 className="tag">Step 8</h3>}
+                <h2 className="section-title">Monitor and inform future actions</h2>
+                <p className="text">Monitoring activities during and after the implementation of a nature-based solution are needed to maintain its effectiveness and to grow an evidence base. They are also needed to record lessons learned for future use.</p>
+
+                <p className="text">Monitor physical system, ecosystem status, species diversity, and ecosystem functioning</p>
+
+                <p className="text">Carefully monitor the development of the ecosystem in the area of implementation, as well as the larger landscape. The aim is to assess how the intervention has affected the area, how the ecosystem flood protection functions are developing and whether ecosystem restoration is progressing according to plan. Monitor species diversity and density over time to determine whether the ecosystem develops through different successional stages. Also assess if these stages are occurring on the expected timelines.</p>
+
+                <h3 className="info-title -secondary">1. Monitor risk reduction effectiveness</h3>
+                <p className="text">Refer to the monitoring system (see step 6.3) to assess how the components of the project have been implemented. The extent to which the restoration and creation of ecosystem elements are providing a growing contribution to the risk reduction effectiveness should also be assessed. If monitoring results show significant (and unexpected) physical changes, re-run the hazard and risk model with the evolved interventions in place to assess the effect on damages.</p>
+
+                <h3 className="info-title -secondary">2. Policy and regulatory framework development and adjustment</h3>
+                <p className="text">As the benefits of nature-based solutions can be realized over many decades, it is important to understand the regulatory environment. Does it change over time? This will allow the project to adapt to forthcoming policies before they negatively impact the solution.</p>
+
+                <h3 className="info-title -secondary">3. Continuous community involvement</h3>
+                <p className="text">The sustainability of a nature-based solution depends on community willingness and commitment. If the community is not involved and does not see the value of the restored or created ecosystem, they may knowingly or unknowingly contribute to its decline. It is crucial to involve all social groups in the community by conducting meetings to explain the project and its benefits. Practical guidance should be provided on the use and protection of vital ecosystems. It is important to ensure that project representatives listen to the community. Sufficient time should be spent on addressing their concerns.  Community commitment can be increased in case of new employment opportunities derived from the ecosystem. There are several documented examples of nature-based solutions that were implemented with strong community involvement that can be used as guidance.</p>
+
+                <h3 className="info-title -secondary">4. Review, evaluate, and act</h3>
+                <p className="text">Monitoring and evaluation should generate insights on what works, what doesn’t work, and why. Monitoring also strongly informs maintenance and other necessary actions. Review all project components with special attention to risk reduction effectiveness, community impact, and environmental impacts. This monitoring and review process should include developments outside the project area that may influence the effectiveness of measures. Decide if structural and functional performance meet previously set standards and project objectives. If not, decide on follow up actions, regarding maintenance or even implementation of additional interventions.</p>
+
+                <p className="text">To enable scaling-up and improvement of global best practices, publish evaluations and share insights with other implementing organizations. Investigate possibilities for scaling up successful approaches in other areas. While learning lessons should be done throughout the project, it is important for the success of other nature-based projects to capture and report these lessons in a way that is accessible more broadly. We encourage you to report your projects and lessons learned on the online platform ‘Natural Hazards – Nature-based Solutions’.</p>
+
+                <article className="extra-info">
+                  <h3 className="info-title">Outputs</h3>
+                  <ul className="info-list">
+                    <li>- Monitoring reports that discuss how the monitoring meets the target</li>
+                    <li>- Actions to change or improve the project, if needed</li>
+                    <li>- Sharing of lessons learned</li>
+                  </ul>
+
+                  <h2 className="info-title -principal">Example projects</h2>
+                  <p className="text">New Zealand’s coastal parks have recently focused on restorative techniques focused on the use of indigenous sand-binding species, for example in the management of dune ecosystems in Christchurch. A collaborative and community-based vision for the area was established and management objectives were identified. These included a specific restoration plan for the dune system at the site, together with a monitoring plan. Other initiatives included the promotion of education on the area and the dune restoration initiative. A monitoring program was developed to measure the success of the key actions and provide useful information for future management decisions. The monitoring program has clearly shown changes in the dune system in response to the new management activities.</p>
+
+                  <h3 className="info-title">More information</h3>
+                  <p className="text">There are numerous online communities that support the advancement of nature-based solutions through a variety of approaches. These resources offer an opportunity to review and evaluate projects and share your own experiences to inform the development of future projects.</p>
+                  <p className="text">The European Commission’s Oppla is a new knowledge marketplace; a place where the latest thinking on ecosystem services, natural capital and nature-based solutions is brought together. <a href="http://www.oppla.eu">http://www.oppla.eu</a></p>
+                  <p className="text">The Partnership for Environment and Disaster Risk Reduction (PEDRR) is a global alliance of UN agencies, NGOs and specialist institutes. PEDRR seeks to promote and scale-up implementation of ecosystem-based disaster risk reduction and ensure it is mainstreamed in development planning at global, national and local levels. <a href="http://pedrr.org">http://pedrr.org</a></p>
+                  <p className="text">The Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) and IUCN host the PANORAMA platform. This is a partnership initiative to document and promote inspiring, replicable solutions across a range of conservation and development topics. This enables cross-sectoral learning and inspiration. <a href="http://panorama.solutions/en">http://panorama.solutions/en</a></p>
+                  <p className="text">The Natural Infrastructure for Business platform developed by the World Business Council for Sustainable Development (WBCSD), CH2M (with support from The Nature Conservancy) and other member companies is designed to introduce business leaders and practitioners to natural infrastructure. <a href="http://www.naturalinfrastructureforbusiness.org">http://www.naturalinfrastructureforbusiness.org</a></p>
+                  <p className="text">Stockholm Environment Institute’s weADAPT is a collaborative platform on climate adaptation issues. It allows practitioners, researchers and policy-makers to access credible, high-quality information. The platform also facilitates new connections between these stakeholders. <a href="https://www.weadapt.org">https://www.weadapt.org</a></p>
+                  <p className="text">GIZ hosts an Adaptation Community which offers an inventory of methods for adaptation to climate change. It also serves as a platform for the exchange of experience among practitioners. <a href="http://www.adaptationcommunity.net">http://www.adaptationcommunity.net</a></p>
+                  <p className="text">Building Ecological Solutions to Coastal Community Hazards. A Guide for New Jersey Coastal Communities. National Wildlife Federation (2017). <a href="http://www.nwf.org/~/media/PDFs/Global-Warming/NWF_FINAL-WEB-VERSION_BESCCH_070517.ashx">http://www.nwf.org/~/media/PDFs/Global-Warming/NWF_FINAL-WEB-VERSION_BESCCH_070517.ashx</a></p>
+                  <p className="text">The Natural Hazards – Nature-based Solutions platform, managed by the Global Facility for Disaster Reduction and Recovery (GFDRR), the World Bank, and Deltares, provides a global overview of the nature-based or hybrid solutions projects implemented by a variety of organizations. The platform also houses these Principles and Implementation Guidance that are updated with lessons learned. <a href="http://naturebasedsolutions.org/">http://naturebasedsolutions.org/</a></p>
+                </article>
+              </section>
             </div>
           </Row>
         </section>
