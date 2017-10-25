@@ -322,29 +322,41 @@ export default class Implementation extends React.Component {
 
               <section id="implementation6">
                 {isDevice() && <h3 className="tag">Step 6</h3>}
-                <h2 className="section-title">Implementation and Construction</h2>
-                <p className="text">Implement the project in consultation with stakeholders and in accordance with social and environmental standards.</p>
+                <h2 className="section-title">Select and design the interventionn</h2>
+                <p className="text">Select the most effective and most appropriate option, based on the problem definition, the cost-benefit analyses and the local needs and capacity. Develop a detailed design and implementation plan.</p>
 
-                <h3 className="info-title -secondary">1. Plan social and environmental impacts</h3>
-                <p className="text">Revisit the social and environmental impact assessment and the standards and safeguards relevant to the project. Start planning and undertaking any required involuntary resettlement, and preparing the implementation area to limit environmental impacts.</p>
+                <h3 className="info-title -secondary">1. Select effective and feasible measure(s) in collaboration with stakeholders</h3>
+                <p className="text">Discuss cost-benefit and effectiveness analyses with stakeholders in (an) interactive session(s). Identify those stakeholders that should be involved to ensure the long-term commitment to plans and strategies.</p>
 
-                <h3 className="info-title -secondary">2. Consideration to ecosystem structure, species diversity, and ecosystem functioning</h3>
-                <p className="text">Implement the engineering and ecosystem aspects of the project in accordance to the Guiding Principles, and the ecosystem integration as assessed in the previous steps. Closely monitor ecosystem functioning and impact during the implementation phase, and flag any unexpected impacts on ecosystem structure, species, and functioning. For hybrid solutions, ensure that the engineering works and ecosystem aspects are implemented in harmony as per the design plan.</p>
+                <h3 className="info-title -secondary">2. Design a robust monitoring system, starting with baseline monitoring</h3>
+                <p className="text">To ensure the success of the project, conduct baseline monitoring and identify in an early stage how the project will be monitored and evaluated. There are many kinds of evaluation systems, and it is not yet clear which system is appropriate for nature-based solutions. A different type of monitoring system may be required, e.g. monitoring and evaluation (M&E), or monitoring, reporting and verification (MRV) with costs and responsibilities assigned. Logical framework and results-based management approaches are the most common frameworks. Monitoring and evaluation should be tailored to each project. Decide upon the roles and responsibilities of the organizations who will do this follow-up work after the project is implemented.</p>
 
-                <h3 className="info-title -secondary">3. Continuous stakeholder and community interaction during implementation</h3>
-                <p className="text">Continuously inform and consult the key stakeholders as identified in the previous steps. Ensure stakeholder ownership and involvement. In communications, be sensitive of both the short-term impacts and expected long-term gains on communities and environment. Monitor impact of the construction and rehabilitation work on the stakeholders and livelihoods. Flexibly adjust the implementation of the project where required based on changing stakeholder needs and emerging information.</p>
+                <h3 className="info-title -secondary">3. Draft engineering design study</h3>
+                <p className="text">Produce a draft engineering design and feasibility study of the selected measure(s), including detailed material and labor requirements. The engineering design should be informed by the risk reduction target, the required integration of the measure in the existing ecosystem and by identified ecosystem management and restoration methods. Engineering designs should be based on detailed flood hazard and effectiveness modeling. These designs should explicitly encompass both the ecosystem and engineering aspects in the case of hybrid interventions. There are various technical design guidelines for nature-based interventions available, for example through the Ecoshape consortium.</p>
+
+                <h3 className="info-title -secondary">4. Draft maintenance plan</h3>
+                <p className="text">To secure the flood risk reduction effectiveness of the measure over time, a maintenance plan should be drafted as part of the selection and design phase. Maintenance costs can play a role in the selection process, and will influence the optimal design. Furthermore, it is important to decide who will be responsible for the maintenance and how the long-term financing will be arranged. Also think about embedding maintenance and protection in local laws and regulations.</p>
 
                 <article className="extra-info">
-                  <h2 className="info-title -principal">Best Practice Examples</h2>
-                  <p className="text">The city of Mälmo, Sweden, experienced socioeconomic decline and floods from overflowing drainage. A collaborative solution aimed to retrofit the area with Sustainable Urban Drainage Systems (SuDS) as part of a broader regeneration project, thereby creating a more sustainable neighborhood and benefiting biodiversity. An extensive and iterative process of stakeholder engagement was initiated during the design and execution of this project. The process involved a ‘rolling program’ of consultation with local residents, representatives from the local school, practitioners, city staff, and many others in order to build awareness about the SuDS retrofit, its benefits and costs, and to obtain public perspectives on the desired design. This included regular meetings, community workshops, and informal gatherings at sports and cultural events. The approach became increasingly open and consultative, with approximately one fifth of the tenants in the area having participated in dialogue meetings about the project. Amongst other topics, safety issues related to open water areas (e.g. retention pools) were discussed with residents as well as the potential loss of particular recreational opportunities in the area. In many cases, comments and concerns from stakeholders were taken into account and addressed in redesigned SuDS plans.</p>
+                  <h3 className="info-title">Outputs</h3>
+                  <ul className="info-list">
+                    <li>- Design of measures</li>
+                    <li>- Environmental and social impact assessment</li>
+                    <li>- Monitoring plan containing indicators, target values, roles and responsibilities and monitoring method and duration</li>
+                    <li>- Maintenance plan</li>
+                  </ul>
+
+                  <h2 className="info-title -principal">Example projects</h2>
+                  <p className="text">As part of the Mozambique Cities and Climate Change Project, the World Bank is creating urban parks in the city of Beira. The objective is to increase the resilience of the city to floods by improving and safeguarding the natural drainage capacity of the Chiveve River. The first phase of the project included the rehabilitation of the riverbed, the construction of an outlet, the dredging of the fishing port and the planting of 2,200 mangrove trees with active flood mitigation function. The second phase, which is being implemented at the time of writing, will focus on the further development of a multi-purpose green infrastructure solution along the stretch of the Chiveve River in Beira. This solution will include the creation of a large park along the river, public spaces, cycling paths, and overall green landscape planning.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text"><a href=" http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support" target="_blank"> http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support</a></p>
+                  <p className="text"><a href="http://projects.worldbank.org/P153544?lang=en">http://projects.worldbank.org/P153544?lang=en</a></p>
 
                   <h3 className="info-title">More information</h3>
                   <ul className="info-list">
-                    <li>- NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure: <a href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download="Step 6 info">https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf</a></li>
-                    <li>- The WWF guidelines for nature-based solutions provides detailed implementation guidelines and examples (expected publication April 2017)</li>
+                    <li>- Designing nature-based solutions: Building with Nature Guidelines: <a href="https://publicwiki.deltares.nl/display/BWN1/Building+with+Nature">https://publicwiki.deltares.nl/display/BWN1/Building+with+Nature</a></li>
+                    <li>- Information on design characteristics of green solutions for flood risk management by The Nature Conservancy (2014): <a href="https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf" download>https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf</a></li>
+                    <li>- Incentives for Natural Infrastructure, report by the World Business Council for Sustainable Development (WBCSD, 2017): <a href="http://www.wbcsd.org/Clusters/Water/Natural-Infrastructure-for-Business/Resources/Incentives-for-Natural-Infrastructure">http://www.wbcsd.org/Clusters/Water/Natural-Infrastructure-for-Business/Resources/Incentives-for-Natural-Infrastructure</a></li>
                   </ul>
                 </article>
               </section>
