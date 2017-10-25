@@ -1,5 +1,4 @@
 .c-guidance-principles {
-
   .tab-section {
     .line {
       display: none;
@@ -16,6 +15,15 @@
 
       @media #{$mq-medium} {
         padding-top: 50px;
+      }
+    }
+
+    &.-intro {
+      .image-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 35px;
       }
     }
   }
