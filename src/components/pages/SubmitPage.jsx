@@ -345,10 +345,20 @@ export default class SubmitPage extends React.Component {
   render() {
     const { filtersOptions, success, error } = this.props;
     const { requiredOn, learnNotValid, referencesNotValid, endDateNotValid } = this.state;
-    const { scale, organizations, primary_benefits_of_interventions,
-      co_benefits_of_interventions, donors, nature_based_solutions,
-      hazard_types, intervention_type, currency_monetary_benefits,
-      currency_estimated_cost, implementation_status, permission, start_year,
+    const {
+      scale,
+      organizations,
+      primary_benefits_of_interventions,
+      co_benefits_of_interventions,
+      donors,
+      nature_based_solutions,
+      hazard_types,
+      intervention_type,
+      currency_monetary_benefits,
+      currency_estimated_cost,
+      implementation_status,
+      permission,
+      start_year,
       completion_year
     } = this.state.fields;
 
@@ -416,7 +426,7 @@ export default class SubmitPage extends React.Component {
                     <RadioGroup
                       name="scale"
                       options={filtersOptions.scales || []}
-                      selected={filtersOptions.scales && filtersOptions.scales.find(imp => imp.value === scale)}
+                      selected={(filtersOptions.scale || []).find(imp => imp.value === scale)}
                       onChange={value => this.setFieldValue('scale', value)}
                     />
                   </div>
