@@ -75,7 +75,7 @@ export default class SubmitPage extends React.Component {
       return;
     }
 
-    if (!this.state.fields[key].length) {
+    if (!(this.state.fields[key] || []).length) {
       currentInput.focus();
       currentInput.classList.add('-required');
     } else {
@@ -255,7 +255,7 @@ export default class SubmitPage extends React.Component {
   }
 
   renderOtherValues(key) {
-    const others = this.state.fields[key];
+    const others = this.state.fields[key] || [];
 
     return (
       <ul className="others-list">
@@ -345,10 +345,20 @@ export default class SubmitPage extends React.Component {
   render() {
     const { filtersOptions, success, error } = this.props;
     const { requiredOn, learnNotValid, referencesNotValid, endDateNotValid } = this.state;
-    const { scale, organizations, primary_benefits_of_interventions,
-      co_benefits_of_interventions, donors, nature_based_solutions,
-      hazard_types, intervention_type, currency_monetary_benefits,
-      currency_estimated_cost, implementation_status, permission, start_year,
+    const {
+      scale,
+      organizations,
+      primary_benefits_of_interventions,
+      co_benefits_of_interventions,
+      donors,
+      nature_based_solutions,
+      hazard_types,
+      intervention_type,
+      currency_monetary_benefits,
+      currency_estimated_cost,
+      implementation_status,
+      permission,
+      start_year,
       completion_year
     } = this.state.fields;
 
@@ -395,28 +405,10 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Organizations */}
-                  <div className={`form-field ${this.isRequiredOn('organizations')}`}>
-                    <Select
-                      name="organizations"
-                      multi
-                      options={filtersOptions.organizations}
-                      value={filtersOptions.organizations ? filtersOptions.organizations.filter(opt => organizations.includes(opt.value)) : []}
-                      onChange={opts => this.setFieldValue('organizations', opts.map(o => o.value))}
-                    />
-                    <h2 className="label">Organizations*<Info text={infoTexts.organizations} /></h2>
-                  </div>
+                  {this.getCustomSelect('organizations', 'organizations', true, organizations, 'Organizations*', true)}
 
                   {/* Donors */}
-                  <div className="form-field">
-                    <Select
-                      name="donors"
-                      multi
-                      options={filtersOptions.donors}
-                      value={filtersOptions.donors ? filtersOptions.donors.filter(opt => donors.includes(opt.value)) : []}
-                      onChange={opts => this.setFieldValue('donors', opts.map(o => o.value))}
-                    />
-                    <h2 className="label">Donors <Info text={infoTexts.donors} /></h2>
-                  </div>
+                  {this.getCustomSelect('donors', 'donors', true, donors, 'Donors', true)}
 
                   {/* Locations */}
                   <div className={`form-field ${this.isRequiredOn('locations')}`}>
@@ -434,7 +426,7 @@ export default class SubmitPage extends React.Component {
                     <RadioGroup
                       name="scale"
                       options={filtersOptions.scales || []}
-                      selected={filtersOptions.scales && filtersOptions.scales.find(imp => imp.value === scale)}
+                      selected={(filtersOptions.scale || []).find(imp => imp.value === scale)}
                       onChange={value => this.setFieldValue('scale', value)}
                     />
                   </div>
