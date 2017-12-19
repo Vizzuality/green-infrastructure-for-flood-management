@@ -57,15 +57,12 @@ function postWithHeaders({ url, body, headers, onSuccess, onError }) {
 
   request.onreadystatechange = () => {
     if (request.readyState === 4) {
-      const data = JSON.parse(request.responseText);
       if ([200, 201].includes(request.status)) {
-        onSuccess && onSuccess(data);
+        const data = JSON.parse(request.response);
+        if (onSuccess) onSuccess(data);
       } else {
-        if (request.status === '401') {
-          // Log out
-          // dispatch(logout());
-        }
-        onError && onError(data);
+        const { status, responseText } = request;
+        if (onError) onError({ status, responseText });
       }
     }
   };

@@ -61,9 +61,9 @@ function submit(projectData) {
     dispatch(setSubmitLoading(true));
     postWithHeaders({
       url: `${config.API_URL}/api/projects/`,
-      body: projectData,
+      body: { project: projectData },
       headers: {
-        Authorization: `Bearer ${localStorage.token}`,
+        // Authorization: `Bearer ${localStorage.token}`,
         Accept: 'application/json'
       },
       onSuccess(data) {
