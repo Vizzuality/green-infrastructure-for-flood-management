@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import isUrl from 'validator/lib/isURL';
-import { defaultValues, requiredFields, infoTexts, currencyOptions,
+import { defaultValues, requiredFields, infoTexts,
   permissionOptions, yearsOptions } from 'constants/submit';
 import { toBase64 } from 'utils/general';
 
@@ -51,14 +51,14 @@ export default class SubmitPage extends React.Component {
   }
 
   onAddLocation(latLng) {
-    const locations = this.state.fields.locations;
+    const { locations } = this.state.fields;
 
     if (latLng) {
       const newLocations = locations.slice();
       newLocations.push({
         idProv: Math.random(),
         lat: latLng.lat(),
-        lng: latLng.lng()
+        ltd: latLng.lng()
       });
 
       this.setFieldValue('locations', newLocations);
@@ -112,7 +112,7 @@ export default class SubmitPage extends React.Component {
           name={key}
           multi
           options={filtersOptions[filtersKey]}
-          value={filtersOptions[filtersKey] ? filtersOptions[filtersKey].filter(opt => values.includes(opt.value)) : []}
+          value={(filtersOptions[filtersKey] || []).filter(opt => values.includes(opt.value))}
           onChange={opts => this.controlOtherValue(key, opts)}
         />
         <h2 className="label">{title} {hasInfo && <Info text={infoTexts[key]} />}</h2>
@@ -166,7 +166,7 @@ export default class SubmitPage extends React.Component {
   removeIdProvFromLocations() {
     const { locations } = this.state.fields;
 
-    return locations.map(l => ({ lat: l.lat, lng: l.lng }));
+    return locations.map(l => ({ lat: l.lat, ltd: l.ltd }));
   }
 
   parsedFieldsToSend() {
@@ -174,7 +174,7 @@ export default class SubmitPage extends React.Component {
     const filteredFields = {};
 
     // Remove those idProv (Provisional ids) from values
-    this.removeIdProvFromNewOptions().forEach(f => allFields[f.key] = f.value);
+    this.removeIdProvFromNewOptions().forEach((f) => { allFields[f.key] = f.value; });
     allFields.locations = this.removeIdProvFromLocations();
 
 
@@ -273,12 +273,12 @@ export default class SubmitPage extends React.Component {
   }
 
   renderLocations() {
-    const locations = this.state.fields.locations;
+    const { locations } = this.state.fields;
     return (
       <ul className="location-list">
-        {locations.map((loc, i) => (
-          <li key={i} className="location">
-            {`${loc.lat}, ${loc.lng}`}
+        {locations.map(loc => (
+          <li key={loc.idProv} className="location">
+            {`${loc.lat}, ${loc.ltd}`}
             <button className="" onClick={() => this.onRemoveOption('locations', loc)}>
               <SvgIcon name="icon-cross" className="-smaller" />
             </button>
