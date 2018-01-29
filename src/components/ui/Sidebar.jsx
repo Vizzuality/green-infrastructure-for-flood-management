@@ -64,7 +64,7 @@ export default class Sidebar extends React.Component {
               </ul>
               <button
                 className="c-btn -transparent"
-                onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
+                onClick={() => saveAsFile('https://nature-of-risk-reduction.vizzuality.com/downloads/projects', 'projectsList.csv')}
               >
                 Download data
               </button>
@@ -75,7 +75,7 @@ export default class Sidebar extends React.Component {
               </ul>
               <button
                 className="c-btn -transparent"
-                onClick={() => saveAsFile('http://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
+                onClick={() => saveAsFile('https://nature-of-risk-reduction.vizzuality.com/downloads/project', 'projectDetail.pdf')}
               >
                 Download Pdf
               </button>

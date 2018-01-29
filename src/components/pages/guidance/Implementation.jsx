@@ -395,7 +395,7 @@ export default class Implementation extends React.Component {
 
                   <h3 className="info-title">More information</h3>
                   <ul className="info-list">
-                    <li>- The Nature of Risk Reduction platform details projects from around the world: <a target="_blank" rel="noreferrer noopener" href="http://nature-of-risk-reduction.vizzuality.com/">http://nature-of-risk-reduction.vizzuality.com/</a></li>
+                    <li>- The Nature of Risk Reduction platform details projects from around the world: <a target="_blank" rel="noreferrer noopener" href="https://nature-of-risk-reduction.vizzuality.com/">https://nature-of-risk-reduction.vizzuality.com/</a></li>
                     <li>- NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure: <a target="_blank" rel="noreferrer noopener" href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf</a></li>
                     <li>- The WWF Flood Green Guide: <a target="_blank" rel="noreferrer noopener" href="http://envirodm.org/flood-management">http://envirodm.org/flood-management</a></li>
                   </ul>

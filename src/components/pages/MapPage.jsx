@@ -344,7 +344,7 @@ export default class MapPage extends React.Component {
                   title="filters"
                   closed={this.props.filtersUi.closed}
                   onToggle={() => this.props.setFiltersUi({ closed: !this.props.filtersUi.closed })}
-                  downloadUrl={`http://nature-of-risk-reduction.vizzuality.com//api/projects.csv?${filtersQuery}`}
+                  downloadUrl={`https://nature-of-risk-reduction.vizzuality.com/api/projects.csv?${filtersQuery}`}
                   download
                 >
                   <Filters close={() => this.props.setFiltersUi({ closed: true })} options={this.props.filtersOptions} />
