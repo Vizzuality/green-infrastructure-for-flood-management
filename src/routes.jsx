@@ -15,6 +15,8 @@ import DownloadPdfContainer from 'components/pages/DownloadPdfContainer';
 import LoginPage from 'components/pages/LoginPageContainer';
 import GuidancePage from 'components/pages/GuidancePage';
 import AboutPageContainer from 'components/pages/AboutPageContainer';
+import PrivacyPolicyContainer from 'components/pages/PrivacyPolicyContainer';
+import TermsContainer from 'components/pages/TermsContainer';
 
 const Routes = ({ history }) => (
   <Router
@@ -38,6 +40,12 @@ const Routes = ({ history }) => (
       </Route>
       <Route path="about">
         <IndexRoute components={{ main: AboutPageContainer, footer: Footer }} />
+      </Route>
+      <Route path="privacy-policy">
+        <IndexRoute components={{ main: PrivacyPolicyContainer, footer: Footer }} />
+      </Route>
+      <Route path="terms-and-conditions">
+        <IndexRoute components={{ main: TermsContainer, footer: Footer }} />
       </Route>
     </Route>
   </Router>
