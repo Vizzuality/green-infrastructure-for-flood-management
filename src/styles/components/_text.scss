@@ -61,11 +61,50 @@
   margin-bottom: $space-1 * 4;
 }
 
+.h3 {
+  font-size: $font-size-big;
+  line-height: 1.75;
+  color: palette(black);
+  font-weight: bold;
+  margin-bottom: $space-1 * 2;
+}
+
+.list {
+  font-size: $font-size-big;
+  line-height: 1.75;
+  color: palette(black);
+  list-style: square;
+  margin-bottom: $space-1 * 2;
+  padding-left: 50px;
+
+  > li {
+    margin-bottom: $space-1;
+
+    > a {
+      color: palette(yellow);
+    }
+  }
+}
+
 .text {
   font-size: $font-size-big;
   line-height: 1.75;
   color: palette(black);
   margin-bottom: $space-1 * 5;
+
+  a {
+    color: palette(yellow);
+  }
+
+  p {
+    margin: 0 0 1rem 0;
+  }
+
+  h3 {
+    font-weight: bold;
+    line-height: 1.1;
+    margin: 1rem 0;
+  }
 
   &.-secondary {
     color: palette(white);
