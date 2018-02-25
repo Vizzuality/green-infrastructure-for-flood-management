@@ -67,90 +67,48 @@ export default class AboutPage extends React.Component {
 
     return (
       <div className="c-about">
-        {/* Heading section */}
-        <section className="home-section -header header">
-          <div className="l-app-wrapper">
-            <Row>
-              <div className="column small-12">
-                <h1 className="h1 -secondary -line">About us</h1>
-              </div>
-            </Row>
-            <Row>
-              <div className="column small-12 medium-8">
-                <p className="intro-text">The Natural Hazards – Nature-based Solutions platform is a hub for projects, investments, guidance and studies making use of nature to reduce the risks associated with natural hazards. Our objective is to host and facilitate the exchange of knowledge, experiences and lessons learned from a range of stakeholders, to provide guidance on the planning and implementation of nature-based solutions, and to champion these solutions in the arenas of policy-making and investment for disaster risk reduction.</p>
-                <p className="intro-text">The guidance was developed and agreed upon by a group of leading international institutions who are engaged in designing, planning, financing and/or implementing nature-based solutions around the world. The platform was developed by the World Bank, the Global Facility for Disaster Reduction and Recovery (GFDRR), and Deltares.</p>
-                <p className="intro-text -title">About nature-based solutions</p>
-                <p className="intro-text">Most disaster risk management involved conventional engineering measures. These measures are sometimes referred to as “hard” engineering or “gray” infrastructure. Examples include building embankments, dams, levees, and channels to control flooding. The concept of “nature-based solutions,” “ecosystem-based adaptation,” “eco-DRR” or “green infrastructure” has emerged as a good alternative or complement to traditional approaches. Nature-based solutions basically cover the full scope of using ecosystems to address hazards, making use of natural processes and ecosystem services for functional purposes, such as decreasing flood risk, erosion, and landslide risk. Nature-based solutions can be completely “green” (i.e. consisting of only ecosystem elements), or “hybrid” (i.e. a combination of ecosystem elements and hard engineering approaches).</p>
-                <p className="intro-text">For example, restoring mangrove cover along coastlines can reduce the impact of waves and storm surge on the shoreline and decrease erosion by slowing down water flow in its dense vegetation. Similarly, rehabilitated coral reefs can act as a barrier breaking waves further away from the coast – not unlike conventional concrete breakwaters, but with marvelous biodiversity to behold.</p>
-                <p className="intro-text">These “green” nature-based solutions can also synergize with gray infrastructure. The resulting hybrid solution, for example, a removable seawall and a growing mangrove forest, can draw on the strengths of both green and gray elements to become more effective. In cities, too, nature-based solutions can alleviate flooding from heavy rains and create better microclimates. Green spaces like urban wetlands or green roofs – typical “hybrid” solutions – can store water and release it slowly back into rivers and drainage systems, but also give the water more time to sink into the ground, reducing what needs to be drained.</p>
-              </div>
-            </Row>
-          </div>
-        </section>
 
-        {/* Partners */}
-        <section className="home-section -grayed partners">
-          <div className="l-app-wrapper">
-            <h1 className="h1 -line">Who we are</h1>
-            <Row>
-              <div className="column small-12 medium-4 partner">
-                <div className="logo">
-                  <a
-                    href="http://www.worldbank.org/"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    <img src="/images/partners/wbg.png" alt="wbg" />
-                  </a>
+        <div className="c-submit">
+          <section className="submit-section">
+            <div className="l-app-wrapper">
+              <Row>
+                <div className="column small-12 medium-8 medium-offset-2">
+                  <h1 className="h1 -line">Privacy and policy</h1>
+                  <p className="text">Your privacy on the Internet is of the utmost importance to us. Because we gather certain types of information about the users of the Natural Hazards – Nature-based Solutions site (http://www.naturebasedsolutions.org) and services, we want to ensure that you fully understand the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it. This privacy policy applies to all Natural Hazards – Nature-based Solutions sites - that is, all sites within the "naturebasedsolutions.org" domain name.</p>
+
+                  <h2 className="h2">What Information Does Natural Hazards – Nature-based Solutions Collect?</h2>
+                  <h3 className="h3">Personal information</h3>
+                  <p className="text">If you register as a contributor to the project database, you will be asked for personal information, such as your name, email address, and organization. The information provided is used for technical and customer administration of the site only and isn't shared with third parties.</p>
+                  <h3 className="h3">Non-personally identifiable information</h3>
+                  <p className="text">Information collected is non-personally identifiable, and only summaries of visitor's behavior are produced. Examples of this type of information include statistics on which pages are most popular and which are least popular. The information collected cannot be traced back to a particular individual.</p>
+                  <p className="text">The purpose of this data collection is so that Natural Hazards – Nature-based Solutions can better understand the preferences of its visitors and improve its site and services. This information collected is never connected with any personal information you supply to us if you register on our website.</p>
+                  <h3 className="h3">Use of cookies</h3>
+                  <p className="text">When you register for one of our services, Natural Hazards – Nature-based Solutions sets a cookie, a small bit of code stored on your computer's hard drive that enables you to manage your subscriptions and online profile. By setting this cookie,  Natural Hazards – Nature-based Solutions will remember you the next time you visit and won't have to bother you by asking questions you have already answered (like address information).</p>
+                  <p className="text">You are always free to decline our cookies if your browser permits, although in that case you may not be able to use certain features on the site and may be required to re-enter information more frequently to use certain services on the website.</p>
+                  <h3 className="h3">IP Addresses</h3>
+                  <p className="text">In addition, Natural Hazards – Nature-based Solutions also records your IP address, which is the Internet address of your computer, and information such as your browser type and operating system. This information helps us learn about the geographical distribution of our website visitors and the technology they use to access our site. This information is never connected with the personal information you supply to us if you register on our website.</p>
+
+                  <h2 className="h2">What If I Don't Want to Share My Information?</h2>
+                  <p className="text">Registering on our site is optional. If you choose not to register or provide personal information, you can still use the Natural Hazards – Nature-based Solutions web site. However, you will not be able to receive email notifications and other updates, nor will you be able to submit a project for consideration. Nature of Risk Reduction views user information that it collects as a trusted asset for which we take great care in not misusing.</p>
+
+                  <h2 className="h2">Security</h2>
+                  <p className="text">Natural Hazards – Nature-based Solutions employs a range of technologies to protect the information maintained on our systems from loss, misuse, unauthorized access or disclosure, alteration, or destruction.</p>
+
+                  <h2 className="h2">How to Contact Us</h2>
+                  <p className="text">If you have any questions or concerns about Natural Hazards – Nature-based Solutions Privacy Policy, please contact us at <a href="mailto:XXXX@worldbank.org">XXXX@worldbank.org</a></p>
+
+                  <h2 className="h2">Notification of Changes</h2>
+                  <p className="text">If there are any changes to this privacy policy, we will post them on our web site at: <a href="http://www.naturebasedsolutions.org/privacy">www.naturebasedsolutions.org/privacy</a> so that you are completely aware of how the changes will affect you.</p>
+
+                  <h2 className="h2">Access to Information</h2>
+                  <p className="text">The Natural Hazards – Nature-based Solutions platform is a collaboration of several partners and is hosted by the World Bank Group, and therefore the World Bank's policy on Access to Information applies.</p>
+                  <p className="text">The World Bank policy on Access to Information sets forth a groundbreaking change in how the World Bank makes information available to the public. Now the public can get more information than ever before—information about projects under preparation, projects under implementation, analytic and advisory activities, and Board proceedings.</p>
+                  <p className="text">Underlying the new policy is the principle that the World Bank will disclose any information in its possession that is not on a list of exceptions. More information can be found <a href="http://web.worldbank.org/WBSITE/EXTERNAL/PROJECTANDOPERATIONS/EXTINFODISCLOSURE/0,,menuPK:64864911~pagePK:4749265~piPK:4749256~theSitePK:5033734,00.html">here</a>.</p>
                 </div>
-                <p>The World Bank Group is a multilateral organization comprised of five institutions, which collectively serve as a vital source of financial and technical assistance to developing countries.</p>
-              </div>
-
-              <div className="column small-12 medium-4 partner">
-                <div className="logo">
-                  <a
-                    href="https://www.gfdrr.org/"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    <img src="/images/partners/gfdrr.png" alt="gfdrr" />
-                  </a>
-                </div>
-                <p>GFDRR is a global partnership, hosted by the World Bank Group, that helps developing countries better understand and reduce their vulnerability to natural hazards and climate change.</p>
-              </div>
-
-              <div className="column small-12 medium-4 partner">
-                <div className="logo">
-                  <a
-                    href="https://www.deltares.nl/en/"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    <img src="/images/partners/deltares.png" alt="deltares" />
-                  </a>
-                </div>
-                <p>Deltares is an independent institute for applied research in the field of water and subsurface working on smart solutions, innovations and applications for people, environment and society in deltas, coastal regions and river basins.</p>
-              </div>
-            </Row>
-          </div>
-        </section>
-
-        {/* Submit */}
-        <section className="home-section -submit">
-          <div className="l-app-wrapper">
-            <Row>
-              <div className="column small-12 medium-8">
-                <h1 className="h1 -secondary -line">Submit your project</h1>
-              </div>
-            </Row>
-            <Row>
-              <div className="column small-12 medium-6">
-                <p className="text -secondary">Contribute your nature-based project and experiences to Natural Hazards – Nature-based Solutions database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
-                <Link to="/submit" className="c-btn -primary">Submit a project</Link>
-              </div>
-            </Row>
-          </div>
-        </section>
+              </Row>
+            </div>
+          </section>
+        </div>
 
         {/* Contact */}
         <section className="home-section contact">

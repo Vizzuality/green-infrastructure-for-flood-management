@@ -4,7 +4,7 @@
   "description": "TODO: write a description",
   "main": "server.js",
   "scripts": {
-    "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack/production.js --colors --progress",
+    "build": "rm -rf dist && NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack/production.js --colors --progress",
     "test": "./node_modules/.bin/eslint --ext .js --ext .jsx ."
   },
   "repository": {
