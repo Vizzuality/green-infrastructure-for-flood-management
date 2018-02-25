@@ -43,7 +43,7 @@ app.use(helmet.contentSecurityPolicy({
     styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'data:'],
     fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'https://maps.googleapis.com'],
-    imgSrc: ["'self'", 'data:', 'https://csi.gstatic.com', 'https://api.mapbox.com', 'https://s3.amazonaws.com']
+    imgSrc: ["'self'", 'data:', 'https://csi.gstatic.com', 'https://maps.googleapis.com', 'https://api.mapbox.com', 'https://s3.amazonaws.com']
   },
   browserSniff: false
 }));
