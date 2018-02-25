@@ -7,7 +7,7 @@ const rootPath = process.cwd();
 
 module.exports = merge(sharedConfig, {
 
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
 
   stats: {
     errorDetails: true

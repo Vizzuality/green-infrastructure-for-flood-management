@@ -25,10 +25,7 @@ const config = {
       test: /\.(js|jsx)?$/,
       exclude: /(node_modules|lib)/,
       use: [{
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: process.env.NODE_ENV === 'production'
-        }
+        loader: 'babel-loader'
       }],
       include: [
         path.resolve(rootPath, 'src')
@@ -82,8 +79,7 @@ const config = {
     modules: [
       path.join(rootPath, 'src'),
       path.join(rootPath, 'node_modules')
-    ],
-    unsafeCache: true
+    ]
   },
 
   resolveLoader: {
