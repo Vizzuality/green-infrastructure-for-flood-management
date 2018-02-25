@@ -111,6 +111,7 @@ export default class MapPage extends React.Component {
     Object.keys(filters).forEach((key) => {
       if (filters[key] instanceof Array) {
         const arrayValues = filters[key].reduce((sum, val, i) => {
+          if (!val) return '';
           return i === 0 ? `${key}[]=${val.replace(/&/g, '%26')}` : `${sum}&${key}[]=${val.replace(/&/g, '%26')}`;
         }, '');
         arrayValues !== '' && paramsArray.push(arrayValues);
