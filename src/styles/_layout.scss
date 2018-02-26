@@ -2,8 +2,6 @@
 .l-app {
   height: 100vh;
   min-width: $app-min-width;
-  // display: flex;
-  // flex-direction: column;
   transition: transform $animation-time $ease-out-cubic;
   overflow-x: hidden;
 
@@ -15,6 +13,11 @@
     &.-pushed {
       transform: translateX(0);
     }
+  }
+
+  &.-map {
+    display: flex;
+    flex-direction: column;
   }
 }
 

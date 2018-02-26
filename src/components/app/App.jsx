@@ -30,7 +30,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <div className="l-app">
+        <div className={`l-app -${this.props.location.pathname.split('/')[1]}`}>
           {!isDownload && <Header path={this.props.location.pathname} logged={logged} />}
           <main role="main" className={classNames}>
             <div className="main-content">
