@@ -896,12 +896,12 @@
 	border-radius: 5px;
 	}
 .leaflet-control-layers-toggle {
-	background-image: url(/98dd9321f04cec2805c80c1b56a8258d.png);
+	background-image: url(/be63be18e72a0a62651b900774eae210.png);
 	width: 36px;
 	height: 36px;
 	}
 .leaflet-retina .leaflet-control-layers-toggle {
-	background-image: url(/3ef4f6121b308b7b330eb73358eb1f45.png);
+	background-image: url(/6323b4bfb01e298224a1bff6591049c9.png);
 	background-size: 26px 26px;
 	}
 .leaflet-touch .leaflet-control-layers-toggle {
@@ -941,7 +941,7 @@
 
 /* Default icon URLs */
 .leaflet-default-icon-path {
-	background-image: url(/b7569b2133aee67edd9eb38a1c5f3e49.png);
+	background-image: url(/488874560202398387c21dbf72780408.png);
 	}
 
 
