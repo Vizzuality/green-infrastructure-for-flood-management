@@ -117,23 +117,24 @@ export default class Implementation extends React.Component {
                 <h3 className="info-title -secondary">3. Set project objectives considering the full targeted range of benefits</h3>
                 <p className="text">Define quantitative project objectives and the main reason of your initiatives. Any general constraints on project options need to be identified. Potential barriers may include legal constraints, fund raising problems, or an uneven distribution of the benefits. Stakeholder interviews can be used to identify the full range of desired benefits that should be taken into account. Potential benefits are flood risk reduction and erosion control, but may also include other services such as enhanced ecosystem quality, positive impact on the livelihood of local communities and opportunities for recreation.</p>
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- Documentation of stakeholder needs</li>
-                    <li>- Maps of area of interest depicting main risks and root causes to these risks</li>
-                    <li>- Measurable project objectives</li>
+                  <ul className="list">
+                    <li>Documentation of stakeholder needs</li>
+                    <li>Maps of area of interest depicting main risks and root causes to these risks</li>
+                    <li>Measurable project objectives</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
                   <p className="text">The Ecoshape consortium consists of engineering companies, contractors, research institutes, and NGOs. It implements a large-scale project on restoration of eroding mangrove coasts in Central Java, Indonesia. The project is conducted in joint operation with the Ministry of Agriculture, Fisheries and Food and the Ministry of Public Works and Housing. It entails a unique combination of engineering and water management knowledge with an intensive community-based approach. The objective of the project is to halt coastal erosion through the construction of permeable bamboo dams that mitigate wave energy and increase elevation by trapping sediment. These measures create suitable conditions for mangrove recovery. The project continues to work on rehabilitation of aquaculture ponds, including the creation of alternative income sources. Clear targets are defined for different coastal stretches in the design and engineering plan. Each year, a new design and implementation process begins. This is based on community consultation and on monitoring results from previous years. Before project initiation, commitment from local communities and governmental organizations on national and local level was sought.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text">Tonneijck et al. “Building with Nature Indonesia: Securing Eroding Delta Coastlines. Design and Engineering Plan.” (2015): <a target="_blank" rel="noreferrer noopener" href="https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf" download>https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf</a>. Additional information on the Building with Nature project in Indonesia: <a target="_blank" rel="noreferrer noopener" href="http://www.indonesia.buildingwithnature.nl">www.indonesia.buildingwithnature.nl</a></p>
+                  {/*<p className="text">Tonneijck et al. “Building with Nature Indonesia: Securing Eroding Delta Coastlines. Design and Engineering Plan.” (2015): <a target="_blank" rel="noreferrer noopener" href="https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf" download>https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf</a>. Additional information on the Building with Nature project in Indonesia: <a target="_blank" rel="noreferrer noopener" href="http://www.indonesia.buildingwithnature.nl">www.indonesia.buildingwithnature.nl</a></p>*/}
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf" download>project</a> and <a target="_blank" rel="noreferrer noopener" href="http://www.indonesia.buildingwithnature.nl">additional information</a> on the Building with Nature Project in Indonesia. </p>
 
                   <h3 className="info-title">More information</h3>
-                  <p className="text">Specific guidance on how to conduct a stakeholder analysis can be found on the Ecoshape website: <a target="_blank" rel="noreferrer noopener" href="https://publicwiki.deltares.nl/display/BWN1/Tool+-+Stakeholder+analysis">https://publicwiki.deltares.nl/display/BWN1/Tool+-+Stakeholder+analysis</a>.</p>
-                  <p className="text">More information on involvement of local communities using a field school approach can be found with <a target="_blank" rel="noreferrer noopener" href="http://blue-forests.org/">Blue Forests (http://blue-forests.org/)</a>. Blue Forests is a local NGO based in Indonesia focused on empowering local communities to rehabilitate and maintain sustainable use of coastal ecosystem resources. Blue Forests provide environmental education, ecological mangrove rehabilitation, coastal field schools, and coastal business schools.</p>
+                  <p className="text">Specific guidance on how to conduct a stakeholder analysis can be found on the <a target="_blank" rel="noreferrer noopener" href="https://publicwiki.deltares.nl/display/BWN1/Tool+-+Stakeholder+analysis">Ecoshape website</a>.</p>
+                  <p className="text">More information on involvement of local communities using a field school approach can be found with <a target="_blank" rel="noreferrer noopener" href="http://blue-forests.org/">Blue Forests</a>. Blue Forests is a local NGO based in Indonesia focused on empowering local communities to rehabilitate and maintain sustainable use of coastal ecosystem resources. Blue Forests provide environmental education, ecological mangrove rehabilitation, coastal field schools, and coastal business schools.</p>
                 </article>
               </section>
 
@@ -152,23 +153,24 @@ export default class Implementation extends React.Component {
                 <p className="text">Realize that traditional financing sources may incentivize conventional solutions rather than hybrid or green measures. This relates to the better known project structures, possible shorter timelines, or larger disbursement amounts. Also be aware that financing sources for traditional infrastructure and nature-based solutions may go through different programs or institutions. For example gray solutions tend to go through the ministry of infrastructure whereas nature-based solutions may be commissioned by the ministry of environment or fisheries. Meet with all potential stakeholders. Then, consider how the social and environmental aspects can benefit each other. Results of the vulnerability and opportunity mapping may bring forward different benefits for multiple stakeholders and hence, multiple ongoing incentives. A cost-benefit analysis could be leveraged to overcome these incentives. Consider how the complexity of the project matches the transaction costs and desired project size of the funding sources. It should also be explored whether the implementation of this project can be bundled with other development interventions and programs in order to reach a ‘sizable project’ that can be part of an IFI pipeline.</p>
 
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- First budget estimate for project</li>
-                    <li>- Overview of available and possible future resources</li>
+                  <ul className="list">
+                    <li>First budget estimate for project</li>
+                    <li>Overview of available and possible future resources</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
                   <p className="text">In 2000, The Nature Conservancy in collaboration with the U.S. Agency for International Development established a water fund. This fund directs money from water users to improve protection of the Condor Biosphere Reserve in Ecuador.  In 2004 the fund managed $2.1 million, financed by the Quito Municipal Water and Sewage Agency, the Quito Electricity Company, and the Andina Beer Company. The project reports successes on both social and ecological fronts. The nearly $5 million raised for conservation action have been used to plant 3.5 million trees, hire nine new park guards that provide new jobs and increase enforcement, build local capacity for monitoring and conflict resolution, fund hydrologic modeling and monitoring, and provide environmental education to children. Financial support for conservation came from an appreciation of the role that healthy forests play in supplying and regulating the availability of clean water. A key to the success of this project may have been a long record of flow and sedimentation monitoring data collected during hydropower operations. This data provided a clear signal of a degrading ecosystem service before any catastrophic event.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text">Tallis, Heather, et al. "An ecosystem services framework to support both practical conservation and economic development." Proceedings of the National Academy of Sciences 105.28 (2008): 9457-9464. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf" download>http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf</a>. Additional information on Quito’s Water Fund: <a target="_blank" rel="noreferrer noopener" href="http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000" >http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000</a></p>
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf" download>project</a> and <a target="_blank" rel="noreferrer noopener" href="http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000">additional information</a> on Quito’s Water Fund.</p>
+                  {/*<p className="text">Tallis, Heather, et al. "An ecosystem services framework to support both practical conservation and economic development." Proceedings of the National Academy of Sciences 105.28 (2008): 9457-9464. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf" download>http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf</a>. Additional information on Quito’s Water Fund: <a target="_blank" rel="noreferrer noopener" href="http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000" >http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000</a></p>*/}
 
                   <h3 className="info-title">More information</h3>
-                  <p className="text">The Global Climate Change Alliance (GCCA+) offers a searchable repository of 47 sources of technical and financial support in Africa, Asia, Caribbean and Pacific regions in GCCA+ priority areas: <a target="_blank" rel="noreferrer noopener" href="http://www.gcca.eu/technical-and-financial-support">http://www.gcca.eu/technical-and-financial-support</a>.</p>
+                  <p className="text">The Global Climate Change Alliance (GCCA+) offers a <a target="_blank" rel="noreferrer noopener" href="http://www.gcca.eu/technical-and-financial-support">searchable repository</a> of 47 sources of technical and financial support in Africa, Asia, Caribbean and Pacific regions in GCCA+ priority areas.</p>
 
-                  <p className="text">The Global Environment Facility (GEF) provides guidance on payment schemes for ecosystem services: <a target="_blank" rel="noreferrer noopener" href="https://www.thegef.org/sites/default/files/publications/28252nomarks_0.pdf" download>https://www.thegef.org/sites/default/files/publications/28252nomarks_0.pdf</a></p>
+                  <p className="text">The Global Environment Facility (GEF) provides <a target="_blank" rel="noreferrer noopener" href="https://www.thegef.org/sites/default/files/publications/28252nomarks_0.pdf" download>guidance</a> on payment schemes for ecosystem services.</p>
                 </article>
               </section>
 
@@ -196,26 +198,27 @@ export default class Implementation extends React.Component {
                 <h3 className="info-title -secondary">6. Identify opportunities and barriers to implementation in the socio-political setting</h3>
                 <p className="text">Assess the legal, regulatory, financing, socio-economic, and political context and their effects on the feasibility of implementing various risk reduction interventions. Consider opportunities for enforcement of existing regulations or laws or possibly development of new ones. Local or national policies may affect government prioritization of ecological or engineering interventions. Assess the dependence of communities on the ecosystem and how this may be influenced by interventions.</p>
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- Maps indicating current and future hazard, exposure, and vulnerability</li>
-                    <li>- Maps and analysis showing land use, ecosystem presence and health, and importance of ecosystem for disaster risk reduction</li>
-                    <li>- Maps (with model results) indicating flood zones for different return periods</li>
+                  <ul className="list">
+                    <li>Maps indicating current and future hazard, exposure, and vulnerability</li>
+                    <li>Maps and analysis showing land use, ecosystem presence and health, and importance of ecosystem for disaster risk reduction</li>
+                    <li>Maps (with model results) indicating flood zones for different return periods</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
                   <p className="text">The European Commission and United Nations Environment Program (UNEP) led a Coastal Partners project in Port Salut, Haiti. National and community baseline assessments were undertaken in local hilly, coastal, and sea environments. The objective was to identify exposed or vulnerable areas and select appropriate reforestation interventions to reduce the risk of floods, storms and soil erosion. Through marine and terrestrial field surveys, remote sensing, and GIS modeling, detailed baseline maps were developed. Exposure under current and future ecosystem management scenarios was modeled. Interviews, multi-stakeholder focus group discussions, and participatory mapping also contributed to the baseline assessments.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text">UNEP (2016). Coastal Partners: Applying ecosystem-based disaster risk reduction (Eco-DRR) through a ridge-to-reef approach in Port Salut, Haiti. URL <a target="_blank" rel="noreferrer noopener" href="http://wedocs.unep.org/handle/20.500.11822/14211">http://wedocs.unep.org/handle/20.500.11822/14211</a></p>
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://wedocs.unep.org/handle/20.500.11822/14211">project</a>.</p>
+                  {/*<p className="text">UNEP (2016). Coastal Partners: Applying ecosystem-based disaster risk reduction (Eco-DRR) through a ridge-to-reef approach in Port Salut, Haiti. URL <a target="_blank" rel="noreferrer noopener" href="http://wedocs.unep.org/handle/20.500.11822/14211">http://wedocs.unep.org/handle/20.500.11822/14211</a></p>*/}
 
                   <h3 className="info-title">More information</h3>
-                  <ul className="info-list">
-                    <li>- NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure: <a target="_blank" rel="noreferrer noopener" href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf</a></li>
-                    <li>- Methodologies for assessing dynamic risk: <a target="_blank" rel="noreferrer noopener" href="https://www.gfdrr.org/sites/default/files/publication/Riskier%20Future.pdf" download>https://www.gfdrr.org/sites/default/files/publication/Riskier%20Future.pdf</a></li>
-                    <li>- Open-source hazard data and screening:  <a target="_blank" rel="noreferrer noopener" href="http://www.thinkhazard.org">www.thinkhazard.org</a></li>
-                    <li>- WRI Global Flood Analyzer: <a target="_blank" rel="noreferrer noopener" href="http://floods.wri.org">http://floods.wri.org</a></li>
+                  <ul className="list">
+                    <li><a target="_blank" rel="noreferrer noopener" href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructuref</a></li>
+                    <li>Methodologies for assessing dynamic risk in GFDRR’s <a target="_blank" rel="noreferrer noopener" href="https://www.gfdrr.org/sites/default/files/publication/Riskier%20Future.pdf" download><i>The Making of a Riskier Future</i></a></li>
+                    <li>Open-source hazard data and screening:  <a target="_blank" rel="noreferrer noopener" href="http://www.thinkhazard.org">ThinkHazard!</a></li>
+                    <li>World Resources Institute’s <a target="_blank" rel="noreferrer noopener" href="http://floods.wri.org">Global Flood Analyzer</a></li>
                   </ul>
                 </article>
               </section>
@@ -252,25 +255,26 @@ export default class Implementation extends React.Component {
                 <h3 className="info-title -secondary">7. Shortlist technically feasible and socially accepted interventions for further analysis</h3>
                 <p className="text">Hold stakeholder meetings to discuss possible strategies and phasing. To proceed with further analysis, select options that are technically feasible, economically viable, and desirable from a range of stakeholder perspectives. Integrate the full range of benefits produced by an intervention in the shortlisting process as well as stakeholder priorities.</p>
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- Overview of feasible measures to reduce risk, their estimated effects and implementation steps</li>
-                    <li>- Outline of different strategies and their possible phasing in time with a focus on no-regret and less costly strategies first</li>
+                  <ul className="list">
+                    <li>Overview of feasible measures to reduce risk, their estimated effects and implementation steps</li>
+                    <li>Outline of different strategies and their possible phasing in time with a focus on no-regret and less costly strategies first</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
                   <p className="text">UNEP’s project “Building Capacity for Coastal Ecosystem-based Adaptation in Small Island Developing States” is being implemented in Grenada and the Seychelles. In Grenada, social and ecological vulnerability impact assessments (VIAs) were conducted in three local sites (Lauriston Beach, Windward, and Grand Anse Bay). The VIA process focused on modelling and analyzing the impacts of climate change in terms of extreme events such as hurricanes and tropical storms. The focus was also on the impact of sea level rise on coastal communities and coastal/marine habitats, highlighting the problem of beach erosion in all three areas. Human activities such as building construction on beaches were also examined. Various coastal adaptation options were proposed based on the identified vulnerabilities. This included coral reef and mangrove restoration, locally managed marine areas, beach nourishment, breakwaters and stone revetments, among others.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text">Day et al. (2016). Building Capacity for Coastal Ecosystem-based Adaptation in Small Island Developing States (SIDS). Assessing Climate Vulnerability in Grenada and Responding with Coastal Ecosystem-based Adaptation Action. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf" download>http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf</a></p>
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf" download>project</a>.</p>
+                  {/*<p className="text">Day et al. (2016). Building Capacity for Coastal Ecosystem-based Adaptation in Small Island Developing States (SIDS). Assessing Climate Vulnerability in Grenada and Responding with Coastal Ecosystem-based Adaptation Action. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf" download>http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf</a></p>*/}
 
                   <h3 className="info-title">More information</h3>
-                  <ul className="info-list">
-                    <li>- Decision tree on whether nature-based solutions can be effective for your project: <a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org/tools/#tree">http://www.naturalinfrastructureforbusiness.org/tools/#tree</a></li>
-                    <li>- An overview of possible green measures for flood risk management by The Nature Conservancy (2014): <a target="_blank" rel="noreferrer noopener" href="https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf" download>https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf</a></li>
-                    <li>- UNEP, DHI, IUCN and The Nature Conservancy’s Green Infrastructure Guide for Water Management: <a target="_blank" rel="noreferrer noopener" href="http://www.medspring.eu/sites/default/files/Green-infrastructure-Guide-UNEP.pdf" download>http://www.medspring.eu/sites/default/files/Green-infrastructure-Guide-UNEP.pdf</a></li>
-                    <li>- For planning and strategy building including long-term uncertainty: <a target="_blank" rel="noreferrer noopener" href="https://www.deltares.nl/en/adaptive-pathways/">https://www.deltares.nl/en/adaptive-pathways/</a></li>
+                  <ul className="list">
+                    <li>A <a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org/tools/#tree">decision tree</a> on whether nature-based solutions can be effective for your project.</li>
+                    <li>An <a target="_blank" rel="noreferrer noopener" href="https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf" download>overview</a> of possible green measures for flood risk management by The Nature Conservancy.</li>
+                    <li>UNEP, DHI, IUCN and The Nature Conservancy’s <a target="_blank" rel="noreferrer noopener" href="http://www.medspring.eu/sites/default/files/Green-infrastructure-Guide-UNEP.pdf" download>Green Infrastructure Guide for Water Management</a>.</li>
+                    <li>For <a target="_blank" rel="noreferrer noopener" href="https://www.deltares.nl/en/adaptive-pathways/">planning and strategy building</a> including long-term uncertainty.</li>
                   </ul>
                 </article>
               </section>
@@ -296,30 +300,32 @@ export default class Implementation extends React.Component {
                 <h3 className="info-title -secondary">5. Perform full cost-benefit and effectiveness analysis</h3>
                 <p className="text">Perform a complete quantitative cost-benefit analysis of each possible solution, including the target risk reduction benefits as well as all other benefits. In order to make a fair comparison of costs and benefits, monetary values should be discounted and converted to net present value. Costs are paid in the early years of a project while benefits are realized year by year over a number of decades. Describe the distribution of the costs and each benefit stream.</p>
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- Cost-benefit analysis including the full range of values</li>
-                    <li>- Social and environmental impact assessments</li>
-                    <li>- Risk assessment with interventions</li>
+                  <ul className="list">
+                    <li>Cost-benefit analysis including the full range of values</li>
+                    <li>Social and environmental impact assessments</li>
+                    <li>Risk assessment with interventions</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
                   <p className="text">1. The rivers and coastlines of Lami Town in the Republic of the Fiji Islands are prone to flash and surge flooding. This town was the focus of an economic analysis of nature-based, hybrid, and conventional solutions. A comprehensive analysis of installation, maintenance, labor, and opportunity costs was conducted for each of four options. The costs of inaction were also calculated. The economic analysis was conducted using avoided damage estimates and incorporated ecosystem service benefits. Lastly, a sensitivity analysis was included based on time, discount rate, and estimated percent of damage avoidance.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text">Rao, Nalini S. An Economic Analysis of Ecosystem-based Adaptation and Engineering Options for Climate Change Adaptation in Lami Town, Republic of the Fiji Islands: Technical Report. 2013. <a target="_blank" rel="noreferrer noopener" href="http://ian.umces.edu/pdfs/ian_report_392.pdf" download>http://ian.umces.edu/pdfs/ian_report_392.pdf</a></p>
+                  {/*<p className="text">Rao, Nalini S. An Economic Analysis of Ecosystem-based Adaptation and Engineering Options for Climate Change Adaptation in Lami Town, Republic of the Fiji Islands: Technical Report. 2013. <a target="_blank" rel="noreferrer noopener" href="http://ian.umces.edu/pdfs/ian_report_392.pdf" download>http://ian.umces.edu/pdfs/ian_report_392.pdf</a></p>*/}
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://ian.umces.edu/pdfs/ian_report_392.pdf" download>project</a>.</p>
 
                   <p className="text">2. Despite a dyke that provides the primary flood protection of the area, Koh Mueng, Thailand experiences flooding. To assess green and conventional infrastructure, an evaluation of the most effective flood mitigation measures was pursued through hydrodynamic simulations and evaluation of economic viability using cost-benefit analysis. The solution options were evaluated for flood risk reduction effectiveness using assessments of flood hazards, physical and economic vulnerability, and ecosystem service values. The cost-benefit analysis evaluated direct and indirect losses through physical and economic vulnerability of the building stock, infrastructure, cultural artifacts, and tourism industry.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text">Vojinovic, Zoran, et al. "Combining Ecosystem Services with Cost-Benefit Analysis for Selection of Green and Grey Infrastructure for Flood Protection in a Cultural Setting." Environments 4.1 (2016). <a target="_blank" rel="noreferrer noopener" href="http://www.mdpi.com/2076-3298/4/1/3">http://www.mdpi.com/2076-3298/4/1/3</a></p>
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.mdpi.com/2076-3298/4/1/3">project</a>.</p>
+                  {/*<p className="text">Vojinovic, Zoran, et al. "Combining Ecosystem Services with Cost-Benefit Analysis for Selection of Green and Grey Infrastructure for Flood Protection in a Cultural Setting." Environments 4.1 (2016). <a target="_blank" rel="noreferrer noopener" href="http://www.mdpi.com/2076-3298/4/1/3">http://www.mdpi.com/2076-3298/4/1/3</a></p>*/}
 
                   <h3 className="info-title">More information</h3>
-                  <ul className="info-list">
-                    <li>- The NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure outlines methodologies for assessing the effectiveness of green solutions: <a target="_blank" rel="noreferrer noopener" href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf</a></li>
-                    <li>- The World Business Council for Sustainable Development (WBCSD) produced a report on the business case for natural infrastructure: <a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org/wp-content/uploads/2016/02/WBCSD_BusinessCase_jan2016.pdf" download>http://www.naturalinfrastructureforbusiness.org/wp-content/uploads/2016/02/WBCSD_BusinessCase_jan2016.pdf</a></li>
-                    <li>- ProjectSelect, also produced by WBCSD, is a free cost-benefit analysis that allows users to evaluate the long-term financial costs and benefits of natural and conventional solutions, as well as account for the non-financial co-benefits: <a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/">http://www.naturalinfrastructureforbusiness.org/projectselect-tm/</a></li>
+                  <ul className="list">
+                    <li>The <a target="_blank" rel="noreferrer noopener" href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure</a> outlines methodologies for assessing the effectiveness of green solutions.</li>
+                    <li>The World Business Council for Sustainable Development (WBCSD) produced a <a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org/wp-content/uploads/2016/02/WBCSD_BusinessCase_jan2016.pdf" download>report</a> on the business case for natural infrastructure.</li>
+                    <li><a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/">ProjectSelect</a>, also produced by WBCSD, is a free cost-benefit analysis that allows users to evaluate the long-term financial costs and benefits of natural and conventional solutions, as well as account for the non-financial co-benefits.</li>
                   </ul>
                 </article>
               </section>
@@ -341,26 +347,27 @@ export default class Implementation extends React.Component {
                 <h3 className="info-title -secondary">4. Draft maintenance plan</h3>
                 <p className="text">To secure the flood risk reduction effectiveness of the measure over time, a maintenance plan should be drafted as part of the selection and design phase. Maintenance costs can play a role in the selection process, and will influence the optimal design. Furthermore, it is important to decide who will be responsible for the maintenance and how the long-term financing will be arranged. Also think about embedding maintenance and protection in local laws and regulations.</p>
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- Design of measures</li>
-                    <li>- Environmental and social impact assessment</li>
-                    <li>- Monitoring plan containing indicators, target values, roles and responsibilities and monitoring method and duration</li>
-                    <li>- Maintenance plan</li>
+                  <ul className="list">
+                    <li>Design of measures</li>
+                    <li>Environmental and social impact assessment</li>
+                    <li>Monitoring plan containing indicators, target values, roles and responsibilities and monitoring method and duration</li>
+                    <li>Maintenance plan</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
                   <p className="text">As part of the Mozambique Cities and Climate Change Project, the World Bank is creating urban parks in the city of Beira. The objective is to increase the resilience of the city to floods by improving and safeguarding the natural drainage capacity of the Chiveve River. The first phase of the project included the rehabilitation of the riverbed, the construction of an outlet, the dredging of the fishing port and the planting of 2,200 mangrove trees with active flood mitigation function. The second phase, which is being implemented at the time of writing, will focus on the further development of a multi-purpose green infrastructure solution along the stretch of the Chiveve River in Beira. This solution will include the creation of a large park along the river, public spaces, cycling paths, and overall green landscape planning.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text"><a target="_blank" rel="noreferrer noopener" href="http://projects.worldbank.org/P153544?lang=en">http://projects.worldbank.org/P153544?lang=en</a></p>
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://projects.worldbank.org/P153544?lang=en">project</a>.</p>
+                  {/*<p className="text"><a target="_blank" rel="noreferrer noopener" href="http://projects.worldbank.org/P153544?lang=en">http://projects.worldbank.org/P153544?lang=en</a></p>*/}
 
                   <h3 className="info-title">More information</h3>
-                  <ul className="info-list">
-                    <li>- Designing nature-based solutions: Building with Nature Guidelines: <a target="_blank" rel="noreferrer noopener" href="https://publicwiki.deltares.nl/display/BWN1/Building+with+Nature">https://publicwiki.deltares.nl/display/BWN1/Building+with+Nature</a></li>
-                    <li>- Information on design characteristics of green solutions for flood risk management by The Nature Conservancy (2014): <a target="_blank" rel="noreferrer noopener" href="https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf" download>https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf</a></li>
-                    <li>- Incentives for Natural Infrastructure, report by the World Business Council for Sustainable Development (WBCSD, 2017): <a target="_blank" rel="noreferrer noopener" href="http://www.wbcsd.org/Clusters/Water/Natural-Infrastructure-for-Business/Resources/Incentives-for-Natural-Infrastructure">http://www.wbcsd.org/Clusters/Water/Natural-Infrastructure-for-Business/Resources/Incentives-for-Natural-Infrastructure</a></li>
+                  <ul className="list">
+                    <li>Designing nature-based solutions: <a target="_blank" rel="noreferrer noopener" href="https://publicwiki.deltares.nl/display/BWN1/Building+with+Nature">Building with Nature Guidelines</a>.</li>
+                    <li><a target="_blank" rel="noreferrer noopener" href="https://www.conservationgateway.org/ConservationPractices/Freshwater/HabitatProtectionandRestoration/Documents/A%20Flood%20of%20Benefits%20-%20J.Opperman%20-%20May%202014.pdf" download>Information</a> on design characteristics of green solutions for flood risk management by The Nature Conservancy.</li>
+                    <li><a target="_blank" rel="noreferrer noopener" href="http://www.wbcsd.org/Clusters/Water/Natural-Infrastructure-for-Business/Resources/Incentives-for-Natural-Infrastructure">Incentives for Natural Infrastructure</a>, report by the World Business Council for Sustainable Development.</li>
                   </ul>
                 </article>
               </section>
@@ -379,25 +386,26 @@ export default class Implementation extends React.Component {
                 <h3 className="info-title -secondary">3. Continuous stakeholder and community interaction during implementation</h3>
                 <p className="text">Continuously inform and consult the key stakeholders as identified in the previous steps. Ensure stakeholder ownership and involvement. In communications, be sensitive to both the short-term impacts and expected long-term impacts, but also on the gains for communities and environment. Monitor impacts of the construction and rehabilitation work on the local stakeholders. Flexibly adjust the implementation of the project where required based on changing stakeholder needs and emerging information.</p>
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- Agreement on lifetime of intervention</li>
-                    <li>- Regulatory frameworks to sustain and maintain intervention</li>
-                    <li>- Implemented measures</li>
+                  <ul className="list">
+                    <li>Agreement on lifetime of intervention</li>
+                    <li>Regulatory frameworks to sustain and maintain intervention</li>
+                    <li>Implemented measures</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
                   <p className="text">A good example of a participatory design process is constituted by retrofitting the storm water management system of the city of Malmö, Sweden. The city experienced socio-economic decline and floods from overflowing drainage. A collaborative solution aimed to retrofit the area with Sustainable Urban Drainage Systems (SUDS) as part of a broader regeneration project. The objective was to create a more sustainable neighborhood and to benefit biodiversity. An extensive and iterative process of stakeholder engagement was initiated during the design and execution of this project. The process involved a series of consultations with local residents, representatives from the local school, practitioners, city staff, and many others. The idea behind these consultations was to build awareness about the SUDS retrofit, its benefits and costs, and to obtain public perspectives on the desired design. This included regular meetings, community workshops and informal gatherings. The approach became increasingly open and consultative, with approximately one fifth of the tenants in the area having participated in dialogue meetings about the project. Amongst other topics, safety issues related to open water areas (e.g. retention pools) were discussed with residents as well as the potential loss of particular recreational opportunities in the area. In many cases, comments and concerns from stakeholders were taken into account and addressed in redesigned SUDS plans.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  <p className="text"><a target="_blank" rel="noreferrer noopener" href="http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support">http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support</a></p>
+                  <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support">project</a>.</p>
+                  {/*<p className="text"><a target="_blank" rel="noreferrer noopener" href="http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support">http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support</a></p>*/}
 
                   <h3 className="info-title">More information</h3>
-                  <ul className="info-list">
-                    <li>- The Nature of Risk Reduction platform details projects from around the world: <a target="_blank" rel="noreferrer noopener" href="https://nature-of-risk-reduction.vizzuality.com/">https://nature-of-risk-reduction.vizzuality.com/</a></li>
-                    <li>- NOAA Guidance for Assessing the Costs and Benefits of Green Infrastructure: <a target="_blank" rel="noreferrer noopener" href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf</a></li>
-                    <li>- The WWF Flood Green Guide: <a target="_blank" rel="noreferrer noopener" href="http://envirodm.org/flood-management">http://envirodm.org/flood-management</a></li>
+                  <ul className="list">
+                    <li>The <a target="_blank" rel="noreferrer noopener" href="https://nature-of-risk-reduction.vizzuality.com/">Natural Hazards – Nature-based Solutions</a> platform details projects from around the world.</li>
+                    <li>NOAA <a target="_blank" rel="noreferrer noopener" href="https://coast.noaa.gov/data/docs/digitalcoast/gi-cost-benefit.pdf" download>Guidance for Assessing the Costs and Benefits of Green Infrastructure</a>.</li>
+                    <li>The WWF <a target="_blank" rel="noreferrer noopener" href="http://envirodm.org/flood-management">Flood Green Guide</a>.</li>
                   </ul>
                 </article>
               </section>
@@ -425,12 +433,12 @@ export default class Implementation extends React.Component {
 
                 <p className="text">To enable scaling-up and improvement of global best practices, publish evaluations and share insights with other implementing organizations. Investigate possibilities for scaling up successful approaches in other areas. While learning lessons should be done throughout the project, it is important for the success of other nature-based projects to capture and report these lessons in a way that is accessible more broadly. We encourage you to report your projects and lessons learned on the online platform ‘Natural Hazards – Nature-based Solutions’.</p>
 
-                <article className="extra-info">
+                <article>
                   <h3 className="info-title">Outputs</h3>
-                  <ul className="info-list">
-                    <li>- Monitoring reports that discuss how the monitoring meets the target</li>
-                    <li>- Actions to change or improve the project, if needed</li>
-                    <li>- Sharing of lessons learned</li>
+                  <ul className="list">
+                    <li>Monitoring reports that discuss how the monitoring meets the target</li>
+                    <li>Actions to change or improve the project, if needed</li>
+                    <li>Sharing of lessons learned</li>
                   </ul>
 
                   <h2 className="info-title -principal">Example projects</h2>
@@ -438,14 +446,14 @@ export default class Implementation extends React.Component {
 
                   <h3 className="info-title">More information</h3>
                   <p className="text">There are numerous online communities that support the advancement of nature-based solutions through a variety of approaches. These resources offer an opportunity to review and evaluate projects and share your own experiences to inform the development of future projects.</p>
-                  <p className="text">The European Commission’s Oppla is a new knowledge marketplace; a place where the latest thinking on ecosystem services, natural capital and nature-based solutions is brought together. <a target="_blank" rel="noreferrer noopener" href="http://www.oppla.eu">http://www.oppla.eu</a></p>
-                  <p className="text">The Partnership for Environment and Disaster Risk Reduction (PEDRR) is a global alliance of UN agencies, NGOs and specialist institutes. PEDRR seeks to promote and scale-up implementation of ecosystem-based disaster risk reduction and ensure it is mainstreamed in development planning at global, national and local levels. <a target="_blank" rel="noreferrer noopener" href="http://pedrr.org">http://pedrr.org</a></p>
-                  <p className="text">The Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) and IUCN host the PANORAMA platform. This is a partnership initiative to document and promote inspiring, replicable solutions across a range of conservation and development topics. This enables cross-sectoral learning and inspiration. <a target="_blank" rel="noreferrer noopener" href="http://panorama.solutions/en">http://panorama.solutions/en</a></p>
-                  <p className="text">The Natural Infrastructure for Business platform developed by the World Business Council for Sustainable Development (WBCSD), CH2M (with support from The Nature Conservancy) and other member companies is designed to introduce business leaders and practitioners to natural infrastructure. <a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org">http://www.naturalinfrastructureforbusiness.org</a></p>
-                  <p className="text">Stockholm Environment Institute’s weADAPT is a collaborative platform on climate adaptation issues. It allows practitioners, researchers and policy-makers to access credible, high-quality information. The platform also facilitates new connections between these stakeholders. <a target="_blank" rel="noreferrer noopener" href="https://www.weadapt.org">https://www.weadapt.org</a></p>
-                  <p className="text">GIZ hosts an Adaptation Community which offers an inventory of methods for adaptation to climate change. It also serves as a platform for the exchange of experience among practitioners. <a target="_blank" rel="noreferrer noopener" href="http://www.adaptationcommunity.net">http://www.adaptationcommunity.net</a></p>
-                  <p className="text">Building Ecological Solutions to Coastal Community Hazards. A Guide for New Jersey Coastal Communities. National Wildlife Federation (2017). <a target="_blank" rel="noreferrer noopener" href="http://www.nwf.org/~/media/PDFs/Global-Warming/NWF_FINAL-WEB-VERSION_BESCCH_070517.ashx">http://www.nwf.org/~/media/PDFs/Global-Warming/NWF_FINAL-WEB-VERSION_BESCCH_070517.ashx</a></p>
-                  <p className="text">The Natural Hazards – Nature-based Solutions platform, managed by the Global Facility for Disaster Reduction and Recovery (GFDRR), the World Bank, and Deltares, provides a global overview of the nature-based or hybrid solutions projects implemented by a variety of organizations. The platform also houses these Principles and Implementation Guidance that are updated with lessons learned. <a target="_blank" rel="noreferrer noopener" href="http://naturebasedsolutions.org/">http://naturebasedsolutions.org/</a></p>
+                  <p className="text">The European Commission’s <a target="_blank" rel="noreferrer noopener" href="http://www.oppla.eu">Oppla</a> is a new knowledge marketplace; a place where the latest thinking on ecosystem services, natural capital and nature-based solutions is brought together.</p>
+                  <p className="text">The <a target="_blank" rel="noreferrer noopener" href="http://pedrr.org">Partnership for Environment and Disaster Risk Reduction (PEDRR)</a> is a global alliance of UN agencies, NGOs and specialist institutes. PEDRR seeks to promote and scale-up implementation of ecosystem-based disaster risk reduction and ensure it is mainstreamed in development planning at global, national and local levels.</p>
+                  <p className="text">The Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) and IUCN host the <a target="_blank" rel="noreferrer noopener" href="http://panorama.solutions/en">PANORAMA platform</a>. This is a partnership initiative to document and promote inspiring, replicable solutions across a range of conservation and development topics. This enables cross-sectoral learning and inspiration.</p>
+                  <p className="text">The <a target="_blank" rel="noreferrer noopener" href="http://www.naturalinfrastructureforbusiness.org">Natural Infrastructure for Business</a> platform developed by the World Business Council for Sustainable Development (WBCSD), CH2M (with support from The Nature Conservancy) and other member companies is designed to introduce business leaders and practitioners to natural infrastructure.</p>
+                  <p className="text">Stockholm Environment Institute’s <a target="_blank" rel="noreferrer noopener" href="https://www.weadapt.org">weADAPT</a> is a collaborative platform on climate adaptation issues. It allows practitioners, researchers and policy-makers to access credible, high-quality information. The platform also facilitates new connections between these stakeholders.</p>
+                  <p className="text">GIZ hosts an <a target="_blank" rel="noreferrer noopener" href="http://www.adaptationcommunity.net">Adaptation Community</a> which offers an inventory of methods for adaptation to climate change. It also serves as a platform for the exchange of experience among practitioners.</p>
+                  <p className="text"><a target="_blank" rel="noreferrer noopener" href="http://www.nwf.org/~/media/PDFs/Global-Warming/NWF_FINAL-WEB-VERSION_BESCCH_070517.ashx">Building Ecological Solutions to Coastal Community Hazards</a>. A Guide for New Jersey Coastal Communities. National Wildlife Federation (2017).</p>
+                  <p className="text">The <a target="_blank" rel="noreferrer noopener" href="http://naturebasedsolutions.org/">Natural Hazards – Nature-based Solutions</a> platform, managed by the Global Facility for Disaster Reduction and Recovery (GFDRR), the World Bank, and Deltares, provides a global overview of the nature-based or hybrid solutions projects implemented by a variety of organizations. The platform also houses these Principles and Implementation Guidance that are updated with lessons learned.</p>
                 </article>
               </section>
 
