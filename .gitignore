@@ -16,4 +16,4 @@
 .env
 
 # Compiled files
-# /dist
+/dist
