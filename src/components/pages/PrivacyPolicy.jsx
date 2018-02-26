@@ -95,7 +95,7 @@ export default class AboutPage extends React.Component {
                   <p className="text">Natural Hazards – Nature-based Solutions employs a range of technologies to protect the information maintained on our systems from loss, misuse, unauthorized access or disclosure, alteration, or destruction.</p>
 
                   <h2 className="h2">How to Contact Us</h2>
-                  <p className="text">If you have any questions or concerns about Natural Hazards – Nature-based Solutions Privacy Policy, please contact us at <a href="mailto:XXXX@worldbank.org">XXXX@worldbank.org</a></p>
+                  <p className="text">If you have any questions or concerns about Natural Hazards – Nature-based Solutions Privacy Policy, please contact us at <a href="mailto:naturebased@worldbank.org">naturebased@worldbank.org</a></p>
 
                   <h2 className="h2">Notification of Changes</h2>
                   <p className="text">If there are any changes to this privacy policy, we will post them on our web site at: <a href="http://www.naturebasedsolutions.org/privacy">www.naturebasedsolutions.org/privacy</a> so that you are completely aware of how the changes will affect you.</p>
