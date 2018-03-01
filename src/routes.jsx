@@ -14,6 +14,7 @@ import MapPageContainer from 'components/pages/MapPageContainer';
 import DownloadPdfContainer from 'components/pages/DownloadPdfContainer';
 import LoginPage from 'components/pages/LoginPageContainer';
 import GuidancePage from 'components/pages/GuidancePage';
+import Acknowledgements from 'components/pages/Acknowledgements';
 import AboutPageContainer from 'components/pages/AboutPageContainer';
 import PrivacyPolicyContainer from 'components/pages/PrivacyPolicyContainer';
 import TermsContainer from 'components/pages/TermsContainer';
@@ -31,6 +32,9 @@ const Routes = ({ history }) => (
       </Route>
       <Route path="guidance">
         <IndexRoute components={{ main: GuidancePage, footer: Footer }} />
+      </Route>
+      <Route path="acknowledgements">
+        <IndexRoute components={{ main: Acknowledgements, footer: Footer }} />
       </Route>
       <Route path="submit">
         <IndexRoute components={{ main: SubmitPage, footer: Footer }} />

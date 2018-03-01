@@ -1,7 +1,7 @@
 const footerLinks = [
   {
     text: 'Acknowledgements and copyrights',
-    href: '/guidance#aknowledgements'
+    href: '/acknowledgements'
   },
   {
     text: 'Privacy and policy',

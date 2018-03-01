@@ -10,7 +10,7 @@ import Acknowledgements from 'components/pages/guidance/Acknowledgements';
 
 const tabsNames = ['introduction', 'principles', 'implementation', 'acknowledgements'];
 
-export default class GuidancePage extends React.Component {
+export default class AcknowledgementsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { tabIndex: 0 };
@@ -37,42 +37,31 @@ export default class GuidancePage extends React.Component {
         <section className="guidance-section -header wrapper">
           <div className="l-app-wrapper">
             <div className="section-wrapper">
-              <h1 className="h1 -secondary -big">Guidance</h1>
+              <h1 className="h1 -secondary -big">Acknowledgements</h1>
               <div className="intro-container">
-                <p className="intro">Implementing nature-based flood protection</p>
-                <div className="download-container">
-                  <a className="c-btn -download" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
-                  Download pdf
-                  <SvgIcon name="icon-download-white" />
-                </a>
-                </div>
+                {/*<p className="intro">Implementing nature-based flood protection</p>*/}
               </div>
             </div>
           </div>
         </section>
         <section className="guidance-section -tabs-header">
           <div className="l-app-wrapper">
-            <Tabs selectedIndex={this.state.tabIndex} onSelect={this.onSelect}>
+            {/*<Tabs selectedIndex={this.state.tabIndex} onSelect={this.onSelect}>
               <TabList className="c-tabs-fixed wrapper">
-                <Tab className="tab">Introduction</Tab>
-                <Tab className="tab">Principles</Tab>
-                <Tab className="tab">Implementation</Tab>
-                {/*<Tab className="tab">Acknowledgements</Tab>*/}
+                <Tab className="tab">Acknowledgements</Tab>
               </TabList>
-              <TabPanel><Introduction /></TabPanel>
-              <TabPanel><Principles /></TabPanel>
-              <TabPanel><Implementation /></TabPanel>
-              {/*<TabPanel><Acknowledgements /></TabPanel>*/}
-            </Tabs>
+              <TabPanel><Acknowledgements /></TabPanel>
+            </Tabs>*/}
+            <Acknowledgements />
 
-            <div className="guidance-section -download">
+            {/*<div className="guidance-section -download">
               <div className="download-container -right">
                 <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
                   Download pdf
                   <SvgIcon name="icon-download-white" />
                 </a>
               </div>
-            </div>
+            </div>*/}
           </div>
         </section>
       </div>
@@ -80,5 +69,5 @@ export default class GuidancePage extends React.Component {
   }
 }
 
-GuidancePage.propTypes = {};
-GuidancePage.defaultProps = {};
+AcknowledgementsPage.propTypes = {};
+AcknowledgementsPage.defaultProps = {};

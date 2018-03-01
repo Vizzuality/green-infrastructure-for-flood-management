@@ -57,12 +57,12 @@ export default class GuidancePage extends React.Component {
                 <Tab className="tab">Introduction</Tab>
                 <Tab className="tab">Principles</Tab>
                 <Tab className="tab">Implementation</Tab>
-                {/*<Tab className="tab">Acknowledgements</Tab>*/}
+                <Tab className="tab">Acknowledgements</Tab>
               </TabList>
               <TabPanel><Introduction /></TabPanel>
               <TabPanel><Principles /></TabPanel>
               <TabPanel><Implementation /></TabPanel>
-              {/*<TabPanel><Acknowledgements /></TabPanel>*/}
+              <TabPanel><Acknowledgements /></TabPanel>
             </Tabs>
 
             <div className="guidance-section -download">
