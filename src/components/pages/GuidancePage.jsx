@@ -8,11 +8,27 @@ import Principles from 'components/pages/guidance/Principles';
 import Implementation from 'components/pages/guidance/Implementation';
 import Acknowledgements from 'components/pages/guidance/Acknowledgements';
 
+const tabsNames = ['introduction', 'principles', 'implementation', 'acknowledgements'];
 
 export default class GuidancePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { tabIndex: 0 };
+    this.onSelect = this.onSelect.bind(this);
+  }
+
+  componentWillMount() {
+    const hashName = location.hash.split('#')[1];
+    if (hashName) {
+      this.setState({ tabIndex: tabsNames.indexOf(location.hash.split('#')[1]) });
+    } else {
+      this.setState({ tabIndex: this.state.tabIndex });
+    }
+  }
+
+  onSelect(tabIndex) {
+    location.hash = tabsNames[tabIndex];
+    this.setState({ tabIndex });
   }
 
   render() {
@@ -36,7 +52,7 @@ export default class GuidancePage extends React.Component {
         </section>
         <section className="guidance-section -tabs-header">
           <div className="l-app-wrapper">
-            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+            <Tabs selectedIndex={this.state.tabIndex} onSelect={this.onSelect}>
               <TabList className="c-tabs-fixed wrapper">
                 <Tab className="tab">Introduction</Tab>
                 <Tab className="tab">Principles</Tab>
@@ -48,6 +64,15 @@ export default class GuidancePage extends React.Component {
               <TabPanel><Implementation /></TabPanel>
               <TabPanel><Acknowledgements /></TabPanel>
             </Tabs>
+
+            <div className="guidance-section -download">
+              <div className="download-container -right">
+                <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
+                  Download pdf
+                  <SvgIcon name="icon-download-white" />
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </div>

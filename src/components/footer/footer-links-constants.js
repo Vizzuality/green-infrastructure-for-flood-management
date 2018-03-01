@@ -1,6 +1,10 @@
 const footerLinks = [
   {
-    text: 'Privacy policy and terms',
+    text: 'Acknowledgements and copyrights',
+    href: '/guidance#aknowledgements'
+  },
+  {
+    text: 'Privacy and policy',
     href: '/privacy-policy'
   },
   {

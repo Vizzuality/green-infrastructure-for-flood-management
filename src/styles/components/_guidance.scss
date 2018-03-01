@@ -12,6 +12,44 @@
       padding-bottom: 116px;
     }
 
+    .download-container {
+      @media screen and (min-width: 319px) and (max-width: $breakpoint-desktop) {
+        margin-top: 12px;
+      }
+
+      &.-right {
+        display: flex;
+        justify-content: center;
+
+        > .c-btn.-download {
+          display: inline-flex;
+        }
+      }
+
+      .c-btn.-download {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-text-2;
+        font-size: 13px;
+        padding: 6px 18px;
+        border: 1px solid $color-text-2;
+
+        &:hover {
+          opacity: .7;
+        }
+
+        .c-icon {
+          margin-left: 7px;
+        }
+
+        &.-inverse {
+          color: $color-text-1;
+          border: 1px solid $color-text-1;
+        }
+      }
+    }
+
     &.-header {
       position: relative;
       background-image: url("/images/header.jpg");
@@ -29,30 +67,6 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-
-        .download-container {
-          @media screen and (min-width: 319px) and (max-width: $breakpoint-desktop) {
-            margin-top: 12px;
-          }
-        }
-
-        .c-btn.-download {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: $color-text-2;
-          font-size: 13px;
-          padding: 6px 18px;
-          border: 1px solid $color-text-2;
-
-          &:hover {
-            opacity: .7;
-          }
-
-          .c-icon {
-            margin-left: 7px;
-          }
-        }
       }
 
       .intro {

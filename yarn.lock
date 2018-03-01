@@ -5562,9 +5562,9 @@ react-sortable-hoc@^0.4.5:
     invariant "^2.2.1"
     lodash "^4.12.0"
 
-react-tabs@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-1.1.0.tgz#f1e3d6136e1d89f70f5ef8835468a2f03a54777a"
+react-tabs@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-1.0.0.tgz#f150c9f9102dd65dbc94a5a0e1e019d5e3814a7f"
   dependencies:
     classnames "^2.2.0"
     prop-types "^15.5.0"
