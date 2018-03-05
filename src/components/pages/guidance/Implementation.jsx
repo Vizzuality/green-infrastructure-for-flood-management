@@ -3,6 +3,7 @@ import ScrollMagic from 'scrollmagic';
 import MoveTo from 'moveto';
 import { isDevice } from 'utils/general';
 import { Row } from 'components/ui/Grid';
+import { SvgIcon } from 'vizz-components';
 
 export default class Implementation extends React.Component {
   componentDidMount() {
@@ -135,6 +136,13 @@ export default class Implementation extends React.Component {
                   <h3 className="info-title">More information</h3>
                   <p className="text">Specific guidance on how to conduct a stakeholder analysis can be found on the <a target="_blank" rel="noreferrer noopener" href="https://publicwiki.deltares.nl/display/BWN1/Tool+-+Stakeholder+analysis">Ecoshape website</a>.</p>
                   <p className="text">More information on involvement of local communities using a field school approach can be found with <a target="_blank" rel="noreferrer noopener" href="http://blue-forests.org/">Blue Forests</a>. Blue Forests is a local NGO based in Indonesia focused on empowering local communities to rehabilitate and maintain sustainable use of coastal ecosystem resources. Blue Forests provide environmental education, ecological mangrove rehabilitation, coastal field schools, and coastal business schools.</p>
+
+                  <div className="download-container -right">
+                    <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
+                      Download pdf
+                      <SvgIcon name="icon-download-white" />
+                    </a>
+                  </div>
                 </article>
               </section>
 
@@ -171,6 +179,13 @@ export default class Implementation extends React.Component {
                   <p className="text">The Global Climate Change Alliance (GCCA+) offers a <a target="_blank" rel="noreferrer noopener" href="http://www.gcca.eu/technical-and-financial-support">searchable repository</a> of 47 sources of technical and financial support in Africa, Asia, Caribbean and Pacific regions in GCCA+ priority areas.</p>
 
                   <p className="text">The Global Environment Facility (GEF) provides <a target="_blank" rel="noreferrer noopener" href="https://www.thegef.org/sites/default/files/publications/28252nomarks_0.pdf" download>guidance</a> on payment schemes for ecosystem services.</p>
+
+                  <div className="download-container -right">
+                    <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
+                      Download pdf
+                      <SvgIcon name="icon-download-white" />
+                    </a>
+                  </div>
                 </article>
               </section>
 
