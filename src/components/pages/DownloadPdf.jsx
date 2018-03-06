@@ -92,11 +92,11 @@ export default class DownloadPdf extends React.Component {
           tms: true
         }
       },
-      {
-        id: 'basemapLabels',
-        url: config.BASEMAP_LABELS_URL,
-        zIndex: 2
-      }
+      // {
+      //   id: 'basemapLabels',
+      //   url: config.BASEMAP_LABELS_URL,
+      //   zIndex: 2
+      // }
     ];
 
     /* Map methods */
