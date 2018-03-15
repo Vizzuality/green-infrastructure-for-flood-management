@@ -94,7 +94,7 @@ export default class DownloadPdf extends React.Component {
       }
     ];
 
-    if (BASEMAP_LABELS_URL && BASEMAP_LABELS_URL !== '') {
+    if (config.BASEMAP_LABELS_URL && config.BASEMAP_LABELS_URL !== '') {
       tileLayers.push({
         id: 'basemapLabels',
         url: config.BASEMAP_LABELS_URL,
