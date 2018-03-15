@@ -162,13 +162,16 @@ export default class MapPage extends React.Component {
         options: {
           tms: true
         }
-      },
-      // {
-      //   id: 'basemapLabels',
-      //   url: config.BASEMAP_LABELS_URL,
-      //   zIndex: 2
-      // }
+      }
     ];
+
+    if (BASEMAP_LABELS_URL && BASEMAP_LABELS_URL !== '') {
+      tileLayers.push({
+        id: 'basemapLabels',
+        url: config.BASEMAP_LABELS_URL,
+        zIndex: 2
+      });
+    }
 
     /* Map methods */
     const methods = {
