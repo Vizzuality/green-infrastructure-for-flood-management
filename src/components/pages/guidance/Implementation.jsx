@@ -137,15 +137,20 @@ export default class Implementation extends React.Component {
                   <p className="text">Specific guidance on how to conduct a stakeholder analysis can be found on the <a target="_blank" rel="noreferrer noopener" href="https://publicwiki.deltares.nl/display/BWN1/Tool+-+Stakeholder+analysis">Ecoshape website</a>.</p>
                   <p className="text">More information on involvement of local communities using a field school approach can be found with <a target="_blank" rel="noreferrer noopener" href="http://blue-forests.org/">Blue Forests</a>. Blue Forests is a local NGO based in Indonesia focused on empowering local communities to rehabilitate and maintain sustainable use of coastal ecosystem resources. Blue Forests provide environmental education, ecological mangrove rehabilitation, coastal field schools, and coastal business schools.</p>
 
-                  <div className="download-container -right">
-                    <a className="c-btn -download -inverse" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
-                      Download pdf
-                      <SvgIcon name="icon-download" />
+                  <div className="download-container">
+                    <a className="c-btn -download" href="/files/Brochure-Implementing-nature-based-flood-protection_web.pdf" download>
+                      Download pdf (EN)
+                    <SvgIcon name="icon-download-white" />
                     </a>
 
-                    <a className="c-btn -download -inverse" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
+                    <a className="c-btn -download" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
+                      Download pdf (ES)
+                    <SvgIcon name="icon-download-white" />
+                    </a>
+
+                    <a className="c-btn -download" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
                       Download pdf (FR)
-                      <SvgIcon name="icon-download" />
+                    <SvgIcon name="icon-download-white" />
                     </a>
                   </div>
                 </article>
@@ -185,15 +190,20 @@ export default class Implementation extends React.Component {
 
                   <p className="text">The Global Environment Facility (GEF) provides <a target="_blank" rel="noreferrer noopener" href="https://www.thegef.org/sites/default/files/publications/28252nomarks_0.pdf" download>guidance</a> on payment schemes for ecosystem services.</p>
 
-                  <div className="download-container -right">
-                    <a className="c-btn -download -inverse" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
-                      Download pdf
-                      <SvgIcon name="icon-download" />
+                  <div className="download-container">
+                    <a className="c-btn -download" href="/files/Brochure-Implementing-nature-based-flood-protection_web.pdf" download>
+                      Download pdf (EN)
+                    <SvgIcon name="icon-download-white" />
                     </a>
 
-                    <a className="c-btn -download -inverse" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
+                    <a className="c-btn -download" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
+                      Download pdf (ES)
+                    <SvgIcon name="icon-download-white" />
+                    </a>
+
+                    <a className="c-btn -download" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
                       Download pdf (FR)
-                      <SvgIcon name="icon-download" />
+                    <SvgIcon name="icon-download-white" />
                     </a>
                   </div>
                 </article>

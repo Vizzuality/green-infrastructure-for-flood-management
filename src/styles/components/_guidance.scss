@@ -14,14 +14,20 @@
 
     .download-container {
       display: flex;
+      justify-content: center;
 
-      @media screen and (min-width: 319px) and (max-width: $breakpoint-desktop) {
-        margin-top: 12px;
+      @media screen and (max-width: $breakpoint-desktop) {
+        flex-direction: column;
+        width: 100%;
       }
 
       &.-right {
         display: flex;
         justify-content: center;
+
+        @media screen and (min-width: 319px) and (max-width: $breakpoint-desktop) {
+          display: block;
+        }
 
         > .c-btn.-download {
           display: inline-flex;
@@ -35,11 +41,13 @@
         color: $color-text-2;
         font-size: 13px;
         padding: 6px 18px;
+        margin: 12px auto 0 auto;
+        width: auto;
         border: 1px solid $color-text-2;
-        margin-left: 10px;
 
-        &:first-child {
-          margin-left: 0;
+        @media screen and (min-width: $breakpoint-desktop) {
+          margin-left: 10px;
+          margin-right: 10px;
         }
 
         &:hover {
@@ -69,11 +77,17 @@
       }
 
       .intro-container {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+        // display: flex;
+        // flex-flow: row wrap;
+        // justify-content: space-between;
+        // align-items: center;
+        // width: 100%;
+        .download-container {
+          justify-content: flex-start;
+          margin-left: -12px;
+          margin-right: -12px;
+          margin-top: 12px;
+        }
       }
 
       .intro {

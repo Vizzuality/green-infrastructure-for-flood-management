@@ -41,8 +41,13 @@ export default class GuidancePage extends React.Component {
               <div className="intro-container">
                 <p className="intro">Implementing nature-based flood protection</p>
                 <div className="download-container">
+                  <a className="c-btn -download" href="/files/Brochure-Implementing-nature-based-flood-protection_web.pdf" download>
+                    Download pdf (EN)
+                    <SvgIcon name="icon-download-white" />
+                  </a>
+
                   <a className="c-btn -download" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
-                    Download pdf
+                    Download pdf (ES)
                     <SvgIcon name="icon-download-white" />
                   </a>
 
@@ -71,9 +76,14 @@ export default class GuidancePage extends React.Component {
             </Tabs>
 
             <div className="guidance-section -download">
-              <div className="download-container -right">
+              <div className="download-container">
+                <a className="c-btn -download -inverse" href="/files/Brochure-Implementing-nature-based-flood-protection_web.pdf" download>
+                  Download pdf (EN)
+                  <SvgIcon name="icon-download" />
+                </a>
+
                 <a className="c-btn -download -inverse" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
-                  Download pdf
+                  Download pdf (ES)
                   <SvgIcon name="icon-download" />
                 </a>
 
