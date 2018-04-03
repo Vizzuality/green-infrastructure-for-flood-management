@@ -13,6 +13,8 @@
     }
 
     .download-container {
+      display: flex;
+
       @media screen and (min-width: 319px) and (max-width: $breakpoint-desktop) {
         margin-top: 12px;
       }
@@ -34,6 +36,11 @@
         font-size: 13px;
         padding: 6px 18px;
         border: 1px solid $color-text-2;
+        margin-left: 10px;
+
+        &:first-child {
+          margin-left: 0;
+        }
 
         &:hover {
           opacity: .7;
@@ -73,6 +80,7 @@
         color: palette(white);
         font-size: 26px;
         line-height: 33px;
+        flex: 1;
 
         @media #{$mq-medium} {
           font-size: 18px;
