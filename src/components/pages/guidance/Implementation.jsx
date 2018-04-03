@@ -138,9 +138,14 @@ export default class Implementation extends React.Component {
                   <p className="text">More information on involvement of local communities using a field school approach can be found with <a target="_blank" rel="noreferrer noopener" href="http://blue-forests.org/">Blue Forests</a>. Blue Forests is a local NGO based in Indonesia focused on empowering local communities to rehabilitate and maintain sustainable use of coastal ecosystem resources. Blue Forests provide environmental education, ecological mangrove rehabilitation, coastal field schools, and coastal business schools.</p>
 
                   <div className="download-container -right">
-                    <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
+                    <a className="c-btn -download -inverse" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
                       Download pdf
-                      <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download" />
+                    </a>
+
+                    <a className="c-btn -download -inverse" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
+                      Download pdf (FR)
+                      <SvgIcon name="icon-download" />
                     </a>
                   </div>
                 </article>
@@ -181,9 +186,14 @@ export default class Implementation extends React.Component {
                   <p className="text">The Global Environment Facility (GEF) provides <a target="_blank" rel="noreferrer noopener" href="https://www.thegef.org/sites/default/files/publications/28252nomarks_0.pdf" download>guidance</a> on payment schemes for ecosystem services.</p>
 
                   <div className="download-container -right">
-                    <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
+                    <a className="c-btn -download -inverse" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
                       Download pdf
-                      <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download" />
+                    </a>
+
+                    <a className="c-btn -download -inverse" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
+                      Download pdf (FR)
+                      <SvgIcon name="icon-download" />
                     </a>
                   </div>
                 </article>

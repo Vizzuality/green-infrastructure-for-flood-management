@@ -41,10 +41,15 @@ export default class GuidancePage extends React.Component {
               <div className="intro-container">
                 <p className="intro">Implementing nature-based flood protection</p>
                 <div className="download-container">
-                  <a className="c-btn -download" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
-                  Download pdf
-                  <SvgIcon name="icon-download-white" />
-                </a>
+                  <a className="c-btn -download" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
+                    Download pdf
+                    <SvgIcon name="icon-download-white" />
+                  </a>
+
+                  <a className="c-btn -download" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
+                    Download pdf (FR)
+                    <SvgIcon name="icon-download-white" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -67,9 +72,14 @@ export default class GuidancePage extends React.Component {
 
             <div className="guidance-section -download">
               <div className="download-container -right">
-                <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
+                <a className="c-btn -download -inverse" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
                   Download pdf
-                  <SvgIcon name="icon-download-white" />
+                  <SvgIcon name="icon-download" />
+                </a>
+
+                <a className="c-btn -download -inverse" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
+                  Download pdf (FR)
+                  <SvgIcon name="icon-download" />
                 </a>
               </div>
             </div>
