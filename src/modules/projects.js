@@ -84,9 +84,7 @@ function projectsReducer(state = initialState, action) {
 
 /* Action creators */
 function resetProjectFilters() {
-  return {
-    type: RESET_PROJECT_FILTERS
-  };
+  return { type: RESET_PROJECT_FILTERS };
 }
 
 function setProjectsLoading(loading) {

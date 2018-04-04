@@ -24,9 +24,7 @@ const config = {
     rules: [{
       test: /\.(js|jsx)?$/,
       exclude: /(node_modules|lib)/,
-      use: [{
-        loader: 'babel-loader'
-      }],
+      use: [{ loader: 'babel-loader' }],
       include: [
         path.resolve(rootPath, 'src')
       ]
@@ -99,9 +97,7 @@ const config = {
     new ExtractTextPlugin('styles.css'),
     new webpack.EnvironmentPlugin(Object.keys(process.env)),
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      },
+      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) },
       config: {
         API_URL: JSON.stringify(process.env.API_URL),
         BASEMAP_TILE_URL: JSON.stringify(process.env.BASEMAP_TILE_URL),

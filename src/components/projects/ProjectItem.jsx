@@ -58,6 +58,4 @@ export default function ProjectItem(props) {
   );
 }
 
-ProjectItem.propTypes = {
-  data: React.PropTypes.object.isRequired
-};
+ProjectItem.propTypes = { data: React.PropTypes.object.isRequired };

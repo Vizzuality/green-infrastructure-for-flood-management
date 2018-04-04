@@ -16,9 +16,7 @@ export default class AboutPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      error: null
-    };
+    this.state = { error: null };
 
     this.form = {};
 

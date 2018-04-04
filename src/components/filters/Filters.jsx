@@ -211,7 +211,7 @@ export default class Filters extends React.Component {
               disabled={this.state.cost.disabled}
               maxValue={(options.cost_max * million) || (3 * million)}
               minValue={0}
-              formatLabel={value => value === 0 ? value : `$${setNumberFormat(value)}`}
+              formatLabel={value => (value === 0 ? value : `$${setNumberFormat(value)}`)}
               value={{ min: this.state.cost.from, max: this.state.cost.to || 0 }}
               onChange={opts => this.setState({ cost: { from: opts.min, to: opts.max } })}
               onChangeComplete={opts => this.setProjectsRangeFilter(opts)}

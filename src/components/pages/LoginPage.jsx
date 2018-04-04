@@ -18,9 +18,7 @@ export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      error: ''
-    };
+    this.state = { error: '' };
 
     this.form = {};
 
@@ -117,7 +115,5 @@ export default class LoginPage extends React.Component {
   }
 }
 
-LoginPage.propTypes = {
-  user: React.PropTypes.object
-};
+LoginPage.propTypes = { user: React.PropTypes.object };
 LoginPage.defaultProps = {};

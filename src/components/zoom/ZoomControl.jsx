@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 
 export default class ZoomControl extends React.Component {
-
   constructor(props) {
     super(props);
     // Bindings
@@ -30,13 +29,9 @@ export default class ZoomControl extends React.Component {
   }
 
   render() {
-    const zoomInClass = classnames('zoom-control-btn', {
-      '-disabled': this.props.zoom === this.props.maxZoom
-    });
+    const zoomInClass = classnames('zoom-control-btn', { '-disabled': this.props.zoom === this.props.maxZoom });
 
-    const zoomOutClass = classnames('zoom-control-btn', {
-      '-disabled': this.props.zoom === this.props.minZoom
-    });
+    const zoomOutClass = classnames('zoom-control-btn', { '-disabled': this.props.zoom === this.props.minZoom });
 
     return (
       <ul className="c-zoom-control">

@@ -88,9 +88,7 @@ export default class DownloadPdf extends React.Component {
         id: 'layer1',
         url: config.LAYER_URL,
         zIndex: props.mapState.layersActive.includes('layer1') ? 1 : -1,
-        options: {
-          tms: true
-        }
+        options: { tms: true }
       }
     ];
 
@@ -183,7 +181,7 @@ export default class DownloadPdf extends React.Component {
           </div>
 
           <span className="label">Project summary</span>
-          <p className="project-text -print" dangerouslySetInnerHTML={{ __html: projectDetail.summary }}></p>
+          <p className="project-text -print" dangerouslySetInnerHTML={{ __html: projectDetail.summary }} />
           {projectDetail.learn_more && projectDetail.learn_more !== '' &&
             <p className="project-link">{projectDetail.learn_more}</p>
           }
@@ -246,7 +244,8 @@ export default class DownloadPdf extends React.Component {
             <span className="value">{projectDetail.learn_more && typeof projectDetail.learn_more === 'string' &&
               isUrl(projectDetail.learn_more) ?
                 <a className="link" href={projectDetail.learn_more}>{projectDetail.learn_more}</a> :
-                projectDetail.learn_more}</span>
+                projectDetail.learn_more}
+            </span>
           </div>}
 
           {projectDetail.references && projectDetail.references !== '' && <div className="project-info-item">
@@ -254,7 +253,8 @@ export default class DownloadPdf extends React.Component {
             <span className="value">{projectDetail.references && typeof projectDetail.references === 'string' &&
               isUrl(projectDetail.references) ?
                 <a className="link" href={projectDetail.references}>{projectDetail.references}</a> :
-                projectDetail.references}</span>
+                projectDetail.references}
+            </span>
           </div>}
         </div>
         <div className="map-container">
@@ -265,9 +265,7 @@ export default class DownloadPdf extends React.Component {
   }
 }
 
-DownloadPdf.defaultProps = {
-  projectDetail: {}
-};
+DownloadPdf.defaultProps = { projectDetail: {} };
 
 DownloadPdf.propTypes = {
   projectDetail: React.PropTypes.object,

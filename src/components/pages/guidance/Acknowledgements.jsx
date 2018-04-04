@@ -41,8 +41,8 @@ export default class Acknowledgements extends React.Component {
         <section className="tab-section -intro wrapper">
           <Row>
             <div className="column small-12 large-10 large-offset-1">
-              {/*<h3 className="tag">Guidance</h3>
-              <h1 className="title">Acknowledgements</h1>*/}
+              {/* <h3 className="tag">Guidance</h3>
+              <h1 className="title">Acknowledgements</h1> */}
               <p className="text">This guideline is a product of collective effort by Deltares, Global Facility for Disaster Reduction and Recovery (GFDRR), The World Bank, Ecoshape and United Nations Development Programme (UNDP). Furthermore, this document could not have been made without the input from all participants of the workshop on scaling up nature-based flood risk reduction, held on April 11th and 12th 2017 at Deltares (NL).</p>
             </div>
           </Row>
@@ -402,7 +402,8 @@ export default class Acknowledgements extends React.Component {
               The World Bank Group<br />
               1818 H Street, NW<br />
               Washington, D.C. 20433, USA<br />
-              Internet: <a href="http://www.worldbank.org" target="_blank" rel="noreferrer noopener">www.worldbank.org</a></p>
+              Internet: <a href="http://www.worldbank.org" target="_blank" rel="noreferrer noopener">www.worldbank.org</a>
+              </p>
             </div>
           </Row>
 

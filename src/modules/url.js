@@ -20,9 +20,7 @@ function updateUrl() {
     const { map } = state;
     const { pathname } = window.location;
 
-    const locationDescriptor = {
-      pathname
-    };
+    const locationDescriptor = { pathname };
 
     if (pathname === '/map') {
       locationDescriptor.query = {

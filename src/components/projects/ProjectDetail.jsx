@@ -20,7 +20,6 @@ import { getRelatedProjects } from 'modules/projects';
 
 
 export default class ProjectDetail extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -142,9 +141,7 @@ export default class ProjectDetail extends React.Component {
                 attachment: 'together',
                 pin: true
               }]}
-              classes={{
-                element: 'c-dropdown -arrow-left'
-              }}
+              classes={{ element: 'c-dropdown -arrow-left' }}
             >
               { /* First child: This is what the item will be tethered to */ }
               <p className="project-company -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'organizationsOpen')} ref={c => this.organizationsBtn = c}>
@@ -174,9 +171,7 @@ export default class ProjectDetail extends React.Component {
                   attachment: 'together',
                   pin: true
                 }]}
-                classes={{
-                  element: 'c-dropdown -arrow-left'
-                }}
+                classes={{ element: 'c-dropdown -arrow-left' }}
               >
                 { /* First child: This is what the item will be tethered to */ }
                 <p className="project-data -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'countriesOpen')} ref={c => this.countriesBtn = c}>
@@ -211,7 +206,7 @@ export default class ProjectDetail extends React.Component {
 
           <span className="label">Project summary</span>
           <div className={`project-summary ${this.state.summaryOpen ? '-open' : ''}`}>
-            <p className="project-text" dangerouslySetInnerHTML={{ __html: data.summary }}></p>
+            <p className="project-text" dangerouslySetInnerHTML={{ __html: data.summary }} />
             {!this.state.summaryOpen && <button className="more" onClick={this.onShowSummary}>
               <SvgIcon className="more-icon -medium" name="icon-arrow-down-2" />
             </button>}
@@ -259,7 +254,7 @@ export default class ProjectDetail extends React.Component {
 
           {data.donors.length > 0 && <div className="project-info-item">
             <span className="label">Donor(s)</span>
-            <span className="value">{data.donors.map((d, i) => i < data.donors.length - 1 ? `${d.name}, ` : d.name)}</span>
+            <span className="value">{data.donors.map((d, i) => (i < data.donors.length - 1 ? `${d.name}, ` : d.name))}</span>
           </div>}
 
           <div className="project-info-item">

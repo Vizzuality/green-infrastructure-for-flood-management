@@ -21,7 +21,7 @@ const solutionOptions = [
   { label: 'Dunes', value: 7 },
   { label: 'Mangroves', value: 8 },
   { label: 'Coral reefs & living shorelines', value: 9 },
-  { label: 'Other', value: 10 },
+  { label: 'Other', value: 10 }
 ];
 
 const scalesOptions = [
@@ -71,7 +71,7 @@ const primaryBenefitsOptions = [
   { label: 'Water storage & infiltration of flood & storm water', value: '3' },
   { label: 'Wind speed reduction', value: '4' },
   { label: 'Landslides, erosion & siltation', value: '5' },
-  { label: 'Control shoreline stabilization & accretion', value: '5' },
+  { label: 'Control shoreline stabilization & accretion', value: '5' }
 ];
 
 const statusOptions = [

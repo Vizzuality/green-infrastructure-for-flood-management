@@ -2,8 +2,10 @@ import React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import isUrl from 'validator/lib/isURL';
-import { defaultValues, requiredFields, infoTexts,
-  permissionOptions, yearsOptions } from 'constants/submit';
+import {
+  defaultValues, requiredFields, infoTexts,
+  permissionOptions, yearsOptions
+} from 'constants/submit';
 import { toBase64 } from 'utils/general';
 
 import { Row } from 'components/ui/Grid';
@@ -148,12 +150,15 @@ export default class SubmitPage extends React.Component {
   }
 
   removeIdProvFromNewOptions() {
-    const { new_nature_based_solutions, new_co_benefits_of_interventions,
-      new_primary_benefits_of_interventions } = this.state.fields;
+    const {
+      new_nature_based_solutions, new_co_benefits_of_interventions,
+      new_primary_benefits_of_interventions
+    } = this.state.fields;
     const newOptions = {
       new_nature_based_solutions,
       new_primary_benefits_of_interventions,
-      new_co_benefits_of_interventions };
+      new_co_benefits_of_interventions
+    };
 
     return Object.keys(newOptions).map(key => (
       {
@@ -203,7 +208,8 @@ export default class SubmitPage extends React.Component {
       this.state.fields[field].length === 0 && requiredOn.push(field);
     });
 
-    this.setState({ requiredOn,
+    this.setState({
+      requiredOn,
       learnNotValid: !learnValid,
       referencesNotValid: !referencesValid,
       endDateNotValid: !endDateValid
@@ -298,13 +304,9 @@ export default class SubmitPage extends React.Component {
           attachment: parsedFile
         };
 
-        this.setState({
-          imageOptions: { accepted: parsedPhoto, rejected: null }
-        }, () => this.setFieldValue('image_base', parsedPhoto.attachment));
+        this.setState({ imageOptions: { accepted: parsedPhoto, rejected: null } }, () => this.setFieldValue('image_base', parsedPhoto.attachment));
       }) :
-      this.setState({
-        imageOptions: { accepted: null, rejected: rej.length ? rej[0] : null }
-      });
+      this.setState({ imageOptions: { accepted: null, rejected: rej.length ? rej[0] : null } });
   }
 
   onRemoveFile() {
@@ -645,7 +647,8 @@ export default class SubmitPage extends React.Component {
 
                 <div className="actions">
                   <button
-                    className="c-btn -transparent -primary action" to="/map"
+                    className="c-btn -transparent -primary action"
+                    to="/map"
                     onClick={this.clear}
                   >
                     Reset

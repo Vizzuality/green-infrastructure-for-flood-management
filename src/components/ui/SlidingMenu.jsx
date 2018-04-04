@@ -4,9 +4,7 @@ import classnames from 'classnames';
 import { saveAsFile } from 'utils/general';
 
 export default function SlidingMenu(props) {
-  const cNames = classnames('c-sliding-menu', {
-    '-closed': props.closed
-  });
+  const cNames = classnames('c-sliding-menu', { '-closed': props.closed });
 
   return (
     <div className={cNames}>
@@ -39,6 +37,4 @@ SlidingMenu.propTypes = {
   onToggle: React.PropTypes.func
 };
 
-SlidingMenu.defaultProps = {
-  closed: true
-};
+SlidingMenu.defaultProps = { closed: true };

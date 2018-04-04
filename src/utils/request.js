@@ -43,7 +43,8 @@ function postWithHeaders({ url, body, headers, onSuccess, onError }) {
   const request = new XMLHttpRequest();
   request.open('POST', url);
 
-  const _headers = { ...headers,
+  const _headers = {
+    ...headers,
     'Content-Type': 'application/json'
   };
 
@@ -74,7 +75,8 @@ function getWithHeaders({ url, headers, onSuccess, onError }) {
   const request = new XMLHttpRequest();
   request.open('GET', url);
 
-  const _headers = { ...headers,
+  const _headers = {
+    ...headers,
     'Content-Type': 'application/json',
     'SC-API-KEY': config['SC-API-KEY'],
     Authorization: `Bearer ${localStorage.token}`

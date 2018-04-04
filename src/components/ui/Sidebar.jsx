@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import { saveAsFile } from 'utils/general';
 
 export default class Sidebar extends React.Component {
-
   constructor(props) {
     super(props);
 

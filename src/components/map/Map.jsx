@@ -14,13 +14,10 @@ function addOrRemove(oldItems, newItems, addCb, removeCb) {
 }
 
 export default class Map extends React.Component {
-
   /* Constructor */
   constructor(props) {
     super(props);
-    this.state = {
-      loading: false
-    };
+    this.state = { loading: false };
   }
 
   /* Component Lyfecyle */
@@ -132,9 +129,7 @@ export default class Map extends React.Component {
   /* LayerManager initialization */
   initLayerManager() {
     const stopLoading = () => {
-      this._mounted && this.setState({
-        loading: false
-      });
+      this._mounted && this.setState({ loading: false });
     };
 
     this.layerManager = new LayerManager(this.map, {
@@ -145,9 +140,7 @@ export default class Map extends React.Component {
 
   /* Layer methods */
   addLayer(layer) {
-    this.setState({
-      loading: true
-    });
+    this.setState({ loading: true });
     if (Array.isArray(layer)) {
       layer.forEach(l => this.layerManager.addLayer(l));
       return;

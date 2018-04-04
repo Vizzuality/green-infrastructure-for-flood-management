@@ -56,6 +56,4 @@ Nav.propTypes = {
   onClick: React.PropTypes.func
 };
 
-Nav.defaultProps = {
-  links: []
-};
+Nav.defaultProps = { links: [] };

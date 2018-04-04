@@ -2,12 +2,9 @@ import React from 'react';
 import { SvgIcon } from 'vizz-components';
 
 export default class ShareModal extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {
-      copied: false
-    };
+    this.state = { copied: false };
   }
 
   onCopyClick() {
@@ -64,8 +61,6 @@ export default class ShareModal extends React.Component {
       </div>
     );
   }
- }
+}
 
-ShareModal.propTypes = {
-  url: React.PropTypes.string
-};
+ShareModal.propTypes = { url: React.PropTypes.string };

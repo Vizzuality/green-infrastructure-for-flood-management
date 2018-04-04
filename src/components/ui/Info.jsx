@@ -12,6 +12,4 @@ export default function Info({ text }) {
   );
 }
 
-Info.propTypes = {
-  text: React.PropTypes.string
-};
+Info.propTypes = { text: React.PropTypes.string };

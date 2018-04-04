@@ -118,7 +118,8 @@ function getMarkers(props) {
       if (b) {
         const bounds = new L.LatLngBounds(
           new L.LatLng(b.minLat, b.maxLng),
-          new L.LatLng(b.maxLat, b.minLng));
+          new L.LatLng(b.maxLat, b.minLng)
+        );
 
         const zoomLevelBefore = pruneCluster._map.getZoom();
         const zoomLevelAfter = pruneCluster._map.getBoundsZoom(bounds, false, new L.Point(20, 20, null));

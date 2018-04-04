@@ -3,22 +3,17 @@ import isEqual from 'lodash/isEqual';
 import Checkbox from 'components/ui/Checkbox';
 
 export default class CheckboxGroup extends React.Component {
-
   constructor(props) {
     super(props);
     // Initial state
-    this.state = {
-      checked: this.props.selected.map(opt => opt.value || value) || []
-    };
+    this.state = { checked: this.props.selected.map(opt => opt.value || value) || [] };
     // BINDINGS
     this.onChange = this.onChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (!isEqual(nextProps.selected, this.props.selected)) {
-      this.setState({
-        checked: nextProps.selected.map(opt => opt.value || opt)
-      });
+      this.setState({ checked: nextProps.selected.map(opt => opt.value || opt) });
     }
   }
 
@@ -35,9 +30,7 @@ export default class CheckboxGroup extends React.Component {
     } else {
       newChecked.splice(newChecked.indexOf(selectedObj.value), 1);
     }
-    this.setState({
-      checked: newChecked
-    });
+    this.setState({ checked: newChecked });
     this.props.onChange && this.props.onChange(newChecked);
   }
 
@@ -51,7 +44,7 @@ export default class CheckboxGroup extends React.Component {
         label={option.label}
         onChange={newSelected => this.onChange(newSelected)}
       />
-      ));
+    ));
   }
 
   render() {
