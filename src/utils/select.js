@@ -34,7 +34,7 @@ function setFiltersOptions(options) {
       // Moving other to the first option
       const itemsResult = result[keys[i]]
         .sort((x, y) => x.label === 'other' ? -1 : y.label === 'other' ? 1 : 0)
-        .map((t) => t.label === 'other' ? { ...t, label: `Add a new ${keys[i].slice(0, -1)} if you didn't find it in the selector` } : t);
+        .map((t) => t.label === 'other' ? { ...t, alias: `Add a new ${keys[i].slice(0, -1)} if you didn't find it in the selector` } : t);
       result[keys[i]] = itemsResult;
     }
   }
