@@ -3937,9 +3937,9 @@ leaflet.polyline.snakeanim@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/leaflet.polyline.snakeanim/-/leaflet.polyline.snakeanim-0.1.1.tgz#4b294f864be95715330341643eb3fa54c41d53eb"
 
-leaflet@^1.0.2:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.1.0.tgz#63246715cfc783dca6798b843a250e8e6fd84918"
+leaflet@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.2.tgz#fa4fbcb7844944fc2bfb0bcf9ca0dea13463ca21"
 
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
