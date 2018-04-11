@@ -51,9 +51,7 @@ function setSubmitSuccess(submitted) {
 }
 
 function setSubmitError() {
-  return {
-    type: SET_SUBMIT_ERROR
-  };
+  return { type: SET_SUBMIT_ERROR };
 }
 
 function submit(projectData) {

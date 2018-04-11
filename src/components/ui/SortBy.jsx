@@ -6,9 +6,7 @@ import TetherComponent from 'react-tether';
 export default class SortBy extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isOpen: false
-    };
+    this.state = { isOpen: false };
 
     // Bindings
     this.toggleDataDropdown = this.toggleDataDropdown.bind(this);
@@ -52,7 +50,7 @@ export default class SortBy extends React.Component {
     return this.props.list.filter(s => s.value === value)[0].label;
   }
 
-  render () {
+  render() {
     const { isOpen } = this.state;
     const cNames = classnames(
       'c-sort-by',
@@ -67,15 +65,13 @@ export default class SortBy extends React.Component {
             to: 'scrollParent',
             attachment: 'together'
           }]}
-          classes={{
-            element: 'c-dropdown -sortby'
-          }}
+          classes={{ element: 'c-dropdown -sortby' }}
         >
           { /* First child: This is what the item will be tethered to */ }
           <button
             className="sort-header"
             ref={co => this.sortByBtn = co}
-            onClick={(e) => this.toggleDataDropdown(e, 'isOpen')}
+            onClick={e => this.toggleDataDropdown(e, 'isOpen')}
           >
             <label>Sort by: </label>
             <span className="type">{this.getLabel(this.props.order)}</span>
@@ -110,6 +106,4 @@ SortBy.propTypes = {
   setProjectsFilters: React.PropTypes.func
 };
 
-SortBy.defaultProps = {
-  list: []
-};
+SortBy.defaultProps = { list: [] };

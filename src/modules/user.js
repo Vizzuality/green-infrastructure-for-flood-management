@@ -166,9 +166,7 @@ function contact(userData) {
     dispatch(setLoading(true));
     postWithHeaders({
       url: `${config.API_URL}/api/contact/`,
-      headers: {
-        Accept: 'application/json'
-      },
+      headers: { Accept: 'application/json' },
       body: userData,
       onSuccess() {
         dispatch(setContactSuccsess(true));

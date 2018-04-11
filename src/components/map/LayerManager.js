@@ -5,7 +5,6 @@ import L from 'leaflet/dist/leaflet';
 import { post } from 'utils/request';
 
 export default class LayerManager {
-
   /* Constructor */
   constructor(map, options = {}) {
     this._map = map;
@@ -17,9 +16,7 @@ export default class LayerManager {
 
   /* Public methods */
   addLayer(layer, opts = {}) {
-    const method = {
-      cartodb: this._addCartoLayer
-    }[layer.provider];
+    const method = { cartodb: this._addCartoLayer }[layer.provider];
 
     method && method.call(this, layer, opts);
   }

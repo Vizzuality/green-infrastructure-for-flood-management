@@ -17,15 +17,9 @@ module.exports = merge(sharedConfig, {
         {
           loader: 'image-webpack-loader',
           query: {
-            mozjpeg: {
-              progressive: true
-            },
-            gifsicle: {
-              interlaced: false
-            },
-            optipng: {
-              optimizationLevel: 7
-            },
+            mozjpeg: { progressive: true },
+            gifsicle: { interlaced: false },
+            optipng: { optimizationLevel: 7 },
             pngquant: {
               quality: '75-90',
               speed: 4
@@ -54,9 +48,7 @@ module.exports = merge(sharedConfig, {
         if_return: true,
         join_vars: true
       },
-      output: {
-        comments: false
-      }
+      output: { comments: false }
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin()

@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default class SegmentedUi extends React.Component {
-
   render() {
     const { items, onChange } = this.props;
 
@@ -20,6 +19,4 @@ SegmentedUi.propTypes = {
   onChange: React.PropTypes.func
 };
 
-SegmentedUi.defaultProps = {
-  items: []
-};
+SegmentedUi.defaultProps = { items: [] };

@@ -43,9 +43,7 @@ function setMapLocation(locationParams) {
 }
 
 function resetMapState() {
-  return {
-    type: RESET_MAP_STATE
-  };
+  return { type: RESET_MAP_STATE };
 }
 
 function toggleLayer(id) {

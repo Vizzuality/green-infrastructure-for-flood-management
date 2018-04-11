@@ -4,7 +4,6 @@ import Spinner from 'components/ui/Spinner';
 import classnames from 'classnames';
 
 export default class Modal extends React.Component {
-
   componentDidMount() {
     this.el.addEventListener('transitionend', () => {
       if (!this.props.open) {

@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import Hamburger from 'react-hamburgers';
 
 function Header(props) {
-
   const cNames = {
     header: classnames('c-header', { '-home': props.path === '/' }),
     nav: classnames('header-nav', { '-home': props.path === '/' }),
@@ -41,8 +40,6 @@ Header.propTypes = {
   path: React.PropTypes.string
 };
 
-const mapStateToProps = ({ ui }) => ({
-  mobileMenu: ui.mobileMenu
-});
+const mapStateToProps = ({ ui }) => ({ mobileMenu: ui.mobileMenu });
 
 export default connect(mapStateToProps)(Header);

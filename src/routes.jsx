@@ -55,8 +55,6 @@ const Routes = ({ history }) => (
   </Router>
 );
 
-Routes.propTypes = {
-  history: React.PropTypes.object
-};
+Routes.propTypes = { history: React.PropTypes.object };
 
 export default connect()(Routes);

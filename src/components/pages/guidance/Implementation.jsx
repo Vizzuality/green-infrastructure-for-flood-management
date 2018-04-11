@@ -32,8 +32,8 @@ export default class Implementation extends React.Component {
       triggerHook: 'onLeave',
       duration
     })
-    .setClassToggle('.js-scroll-steps', '-active')
-    .addTo(controller);
+      .setClassToggle('.js-scroll-steps', '-active')
+      .addTo(controller);
   }
 
   setFixedMenuScenes(controller, triggers) {
@@ -50,8 +50,8 @@ export default class Implementation extends React.Component {
         triggerHook: 'onLeave',
         duration: document.querySelector(`#${tr}`).offsetHeight
       })
-      .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
-      .addTo(controller);
+        .setClassToggle(`#anc${i + 1}`, '-active') // add class toggle
+        .addTo(controller);
     });
   }
 
@@ -130,7 +130,7 @@ export default class Implementation extends React.Component {
                   <p className="text">The Ecoshape consortium consists of engineering companies, contractors, research institutes, and NGOs. It implements a large-scale project on restoration of eroding mangrove coasts in Central Java, Indonesia. The project is conducted in joint operation with the Ministry of Agriculture, Fisheries and Food and the Ministry of Public Works and Housing. It entails a unique combination of engineering and water management knowledge with an intensive community-based approach. The objective of the project is to halt coastal erosion through the construction of permeable bamboo dams that mitigate wave energy and increase elevation by trapping sediment. These measures create suitable conditions for mangrove recovery. The project continues to work on rehabilitation of aquaculture ponds, including the creation of alternative income sources. Clear targets are defined for different coastal stretches in the design and engineering plan. Each year, a new design and implementation process begins. This is based on community consultation and on monitoring results from previous years. Before project initiation, commitment from local communities and governmental organizations on national and local level was sought.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  {/*<p className="text">Tonneijck et al. “Building with Nature Indonesia: Securing Eroding Delta Coastlines. Design and Engineering Plan.” (2015): <a target="_blank" rel="noreferrer noopener" href="https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf" download>https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf</a>. Additional information on the Building with Nature project in Indonesia: <a target="_blank" rel="noreferrer noopener" href="http://www.indonesia.buildingwithnature.nl">www.indonesia.buildingwithnature.nl</a></p>*/}
+                  {/* <p className="text">Tonneijck et al. “Building with Nature Indonesia: Securing Eroding Delta Coastlines. Design and Engineering Plan.” (2015): <a target="_blank" rel="noreferrer noopener" href="https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf" download>https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf</a>. Additional information on the Building with Nature project in Indonesia: <a target="_blank" rel="noreferrer noopener" href="http://www.indonesia.buildingwithnature.nl">www.indonesia.buildingwithnature.nl</a></p> */}
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="https://www.ecoshape.org/uploads/sites/2/2016/07/Ecoshape-2015-Result-1-5-Design-Engineering-Plan-v7-0-LAYOUT-Nature-style_2.pdf" download>project</a> and <a target="_blank" rel="noreferrer noopener" href="http://www.indonesia.buildingwithnature.nl">additional information</a> on the Building with Nature Project in Indonesia. </p>
 
                   <h3 className="info-title">More information</h3>
@@ -140,17 +140,17 @@ export default class Implementation extends React.Component {
                   <div className="download-container">
                     <a className="c-btn -download" href="/files/Brochure-Implementing-nature-based-flood-protection_web.pdf" download>
                       Download pdf (EN)
-                    <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download-white" />
                     </a>
 
                     <a className="c-btn -download" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
                       Download pdf (ES)
-                    <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download-white" />
                     </a>
 
                     <a className="c-btn -download" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
                       Download pdf (FR)
-                    <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download-white" />
                     </a>
                   </div>
                 </article>
@@ -183,7 +183,7 @@ export default class Implementation extends React.Component {
 
                   <h3 className="info-title">Read more</h3>
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf" download>project</a> and <a target="_blank" rel="noreferrer noopener" href="http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000">additional information</a> on Quito’s Water Fund.</p>
-                  {/*<p className="text">Tallis, Heather, et al. "An ecosystem services framework to support both practical conservation and economic development." Proceedings of the National Academy of Sciences 105.28 (2008): 9457-9464. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf" download>http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf</a>. Additional information on Quito’s Water Fund: <a target="_blank" rel="noreferrer noopener" href="http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000" >http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000</a></p>*/}
+                  {/* <p className="text">Tallis, Heather, et al. "An ecosystem services framework to support both practical conservation and economic development." Proceedings of the National Academy of Sciences 105.28 (2008): 9457-9464. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf" download>http://www.edc.uri.edu/temp/ci/ciip/FallClass/Docs_2008/Tallis%20et%20al.%202008.pdf</a>. Additional information on Quito’s Water Fund: <a target="_blank" rel="noreferrer noopener" href="http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000" >http://www.fondosdeagua.org/en/quito-water-conservation-fund-fonag-quito-ecuador-2000</a></p> */}
 
                   <h3 className="info-title">More information</h3>
                   <p className="text">The Global Climate Change Alliance (GCCA+) offers a <a target="_blank" rel="noreferrer noopener" href="http://www.gcca.eu/technical-and-financial-support">searchable repository</a> of 47 sources of technical and financial support in Africa, Asia, Caribbean and Pacific regions in GCCA+ priority areas.</p>
@@ -193,17 +193,17 @@ export default class Implementation extends React.Component {
                   <div className="download-container">
                     <a className="c-btn -download" href="/files/Brochure-Implementing-nature-based-flood-protection_web.pdf" download>
                       Download pdf (EN)
-                    <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download-white" />
                     </a>
 
                     <a className="c-btn -download" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
                       Download pdf (ES)
-                    <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download-white" />
                     </a>
 
                     <a className="c-btn -download" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
                       Download pdf (FR)
-                    <SvgIcon name="icon-download-white" />
+                      <SvgIcon name="icon-download-white" />
                     </a>
                   </div>
                 </article>
@@ -246,7 +246,7 @@ export default class Implementation extends React.Component {
 
                   <h3 className="info-title">Read more</h3>
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://wedocs.unep.org/handle/20.500.11822/14211">project</a>.</p>
-                  {/*<p className="text">UNEP (2016). Coastal Partners: Applying ecosystem-based disaster risk reduction (Eco-DRR) through a ridge-to-reef approach in Port Salut, Haiti. URL <a target="_blank" rel="noreferrer noopener" href="http://wedocs.unep.org/handle/20.500.11822/14211">http://wedocs.unep.org/handle/20.500.11822/14211</a></p>*/}
+                  {/* <p className="text">UNEP (2016). Coastal Partners: Applying ecosystem-based disaster risk reduction (Eco-DRR) through a ridge-to-reef approach in Port Salut, Haiti. URL <a target="_blank" rel="noreferrer noopener" href="http://wedocs.unep.org/handle/20.500.11822/14211">http://wedocs.unep.org/handle/20.500.11822/14211</a></p> */}
 
                   <h3 className="info-title">More information</h3>
                   <ul className="list">
@@ -302,7 +302,7 @@ export default class Implementation extends React.Component {
 
                   <h3 className="info-title">Read more</h3>
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf" download>project</a>.</p>
-                  {/*<p className="text">Day et al. (2016). Building Capacity for Coastal Ecosystem-based Adaptation in Small Island Developing States (SIDS). Assessing Climate Vulnerability in Grenada and Responding with Coastal Ecosystem-based Adaptation Action. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf" download>http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf</a></p>*/}
+                  {/* <p className="text">Day et al. (2016). Building Capacity for Coastal Ecosystem-based Adaptation in Small Island Developing States (SIDS). Assessing Climate Vulnerability in Grenada and Responding with Coastal Ecosystem-based Adaptation Action. URL: <a target="_blank" rel="noreferrer noopener" href="http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf" download>http://www.intasave.pecreative.co.uk/documents/Publications/Climate-Change-Science,-Policy-and-Practice/CARIBSAVE/BCCEbA-SIDS.pdf</a></p> */}
 
                   <h3 className="info-title">More information</h3>
                   <ul className="list">
@@ -347,14 +347,14 @@ export default class Implementation extends React.Component {
                   <p className="text">1. The rivers and coastlines of Lami Town in the Republic of the Fiji Islands are prone to flash and surge flooding. This town was the focus of an economic analysis of nature-based, hybrid, and conventional solutions. A comprehensive analysis of installation, maintenance, labor, and opportunity costs was conducted for each of four options. The costs of inaction were also calculated. The economic analysis was conducted using avoided damage estimates and incorporated ecosystem service benefits. Lastly, a sensitivity analysis was included based on time, discount rate, and estimated percent of damage avoidance.</p>
 
                   <h3 className="info-title">Read more</h3>
-                  {/*<p className="text">Rao, Nalini S. An Economic Analysis of Ecosystem-based Adaptation and Engineering Options for Climate Change Adaptation in Lami Town, Republic of the Fiji Islands: Technical Report. 2013. <a target="_blank" rel="noreferrer noopener" href="http://ian.umces.edu/pdfs/ian_report_392.pdf" download>http://ian.umces.edu/pdfs/ian_report_392.pdf</a></p>*/}
+                  {/* <p className="text">Rao, Nalini S. An Economic Analysis of Ecosystem-based Adaptation and Engineering Options for Climate Change Adaptation in Lami Town, Republic of the Fiji Islands: Technical Report. 2013. <a target="_blank" rel="noreferrer noopener" href="http://ian.umces.edu/pdfs/ian_report_392.pdf" download>http://ian.umces.edu/pdfs/ian_report_392.pdf</a></p> */}
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://ian.umces.edu/pdfs/ian_report_392.pdf" download>project</a>.</p>
 
                   <p className="text">2. Despite a dyke that provides the primary flood protection of the area, Koh Mueng, Thailand experiences flooding. To assess green and conventional infrastructure, an evaluation of the most effective flood mitigation measures was pursued through hydrodynamic simulations and evaluation of economic viability using cost-benefit analysis. The solution options were evaluated for flood risk reduction effectiveness using assessments of flood hazards, physical and economic vulnerability, and ecosystem service values. The cost-benefit analysis evaluated direct and indirect losses through physical and economic vulnerability of the building stock, infrastructure, cultural artifacts, and tourism industry.</p>
 
                   <h3 className="info-title">Read more</h3>
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.mdpi.com/2076-3298/4/1/3">project</a>.</p>
-                  {/*<p className="text">Vojinovic, Zoran, et al. "Combining Ecosystem Services with Cost-Benefit Analysis for Selection of Green and Grey Infrastructure for Flood Protection in a Cultural Setting." Environments 4.1 (2016). <a target="_blank" rel="noreferrer noopener" href="http://www.mdpi.com/2076-3298/4/1/3">http://www.mdpi.com/2076-3298/4/1/3</a></p>*/}
+                  {/* <p className="text">Vojinovic, Zoran, et al. "Combining Ecosystem Services with Cost-Benefit Analysis for Selection of Green and Grey Infrastructure for Flood Protection in a Cultural Setting." Environments 4.1 (2016). <a target="_blank" rel="noreferrer noopener" href="http://www.mdpi.com/2076-3298/4/1/3">http://www.mdpi.com/2076-3298/4/1/3</a></p> */}
 
                   <h3 className="info-title">More information</h3>
                   <ul className="list">
@@ -396,7 +396,7 @@ export default class Implementation extends React.Component {
 
                   <h3 className="info-title">Read more</h3>
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://projects.worldbank.org/P153544?lang=en">project</a>.</p>
-                  {/*<p className="text"><a target="_blank" rel="noreferrer noopener" href="http://projects.worldbank.org/P153544?lang=en">http://projects.worldbank.org/P153544?lang=en</a></p>*/}
+                  {/* <p className="text"><a target="_blank" rel="noreferrer noopener" href="http://projects.worldbank.org/P153544?lang=en">http://projects.worldbank.org/P153544?lang=en</a></p> */}
 
                   <h3 className="info-title">More information</h3>
                   <ul className="list">
@@ -434,7 +434,7 @@ export default class Implementation extends React.Component {
 
                   <h3 className="info-title">Read more</h3>
                   <p className="text">Read more about the <a target="_blank" rel="noreferrer noopener" href="http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support">project</a>.</p>
-                  {/*<p className="text"><a target="_blank" rel="noreferrer noopener" href="http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support">http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support</a></p>*/}
+                  {/* <p className="text"><a target="_blank" rel="noreferrer noopener" href="http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support">http://www.panorama.solutions/en/building-block/engaging-stakeholders-raise-awareness-and-support</a></p> */}
 
                   <h3 className="info-title">More information</h3>
                   <ul className="list">

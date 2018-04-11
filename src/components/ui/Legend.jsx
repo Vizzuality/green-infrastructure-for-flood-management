@@ -20,7 +20,6 @@ const legendConfig = [
 ];
 
 export default class Legend extends React.Component {
-
   constructor(props) {
     super(props);
     // Initial state
@@ -53,13 +52,9 @@ export default class Legend extends React.Component {
     const { legendInfoOpen } = this.state;
 
     if (specificDropdown === 'legendInfoOpen') {
-      this.setState({
-        legendInfoOpen: to ? false : !legendInfoOpen
-      });
+      this.setState({ legendInfoOpen: to ? false : !legendInfoOpen });
     } else {
-      this.setState({
-        legendInfoOpen: false
-      });
+      this.setState({ legendInfoOpen: false });
     }
 
     requestAnimationFrame(() => {
@@ -97,9 +92,7 @@ export default class Legend extends React.Component {
                   attachment: 'together',
                   pin: true
                 }]}
-                classes={{
-                  element: 'c-dropdown -arrow-bottom -arrow-right -legend-info'
-                }}
+                classes={{ element: 'c-dropdown -arrow-bottom -arrow-right -legend-info' }}
               >
                 <button className="info project-company -drop" type="button" onClick={e => this.toggleDataDropdown(e, 'legendInfoOpen')} ref={c => this.legendInfoBtn = c}>
                   <SvgIcon name="icon-info" className="-small" />

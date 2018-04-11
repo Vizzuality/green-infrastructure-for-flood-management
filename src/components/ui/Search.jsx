@@ -2,7 +2,6 @@ import React from 'react';
 import { SvgIcon } from 'vizz-components';
 
 export default class Search extends React.Component {
-
   /* Lifecycle */
   componentWillReceiveProps(newProps) {
     newProps.focus && this.input.focus();

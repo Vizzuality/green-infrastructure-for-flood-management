@@ -3,22 +3,17 @@ import isEqual from 'lodash/isEqual';
 import upperFirst from 'lodash/upperFirst';
 
 export default class RadioGroup extends React.Component {
-
   constructor(props) {
     super(props);
     // Initial state
-    this.state = {
-      checked: this.props.selected && this.props.selected.value
-    };
+    this.state = { checked: this.props.selected && this.props.selected.value };
     // BINDINGS
     this.onChange = this.onChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (!isEqual(nextProps.selected, this.props.selected)) {
-      this.setState({
-        checked: nextProps.selected && nextProps.selected.value
-      });
+      this.setState({ checked: nextProps.selected && nextProps.selected.value });
     }
   }
 
@@ -29,9 +24,7 @@ export default class RadioGroup extends React.Component {
   onChange(e) {
     // Send objects
     const newItem = e.currentTarget;
-    this.setState({
-      checked: newItem.value
-    });
+    this.setState({ checked: newItem.value });
     this.props.onChange && this.props.onChange(newItem.value);
   }
 
@@ -45,10 +38,10 @@ export default class RadioGroup extends React.Component {
             name={this.props.name || option.value}
             id={`radio-${option.value}`}
             value={option.value}
-            checked={option.checked || option.value === this.state.checked }
+            checked={option.checked || option.value === this.state.checked}
             onChange={this.onChange}
           />
-          <div className="icon-replace"></div>
+          <div className="icon-replace" />
         </div>
         <label className="label-title" htmlFor={`radio-${option.value}`}>
           {/* <span className="radio-icon">
@@ -57,7 +50,7 @@ export default class RadioGroup extends React.Component {
           <span className="item-title">{upperFirst(option.label)}</span>
         </label>
       </div>
-      ));
+    ));
   }
 
   render() {

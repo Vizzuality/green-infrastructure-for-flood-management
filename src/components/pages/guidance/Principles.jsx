@@ -9,17 +9,13 @@ export default class Principles extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeKey: []
-    };
+    this.state = { activeKey: [] };
   }
 
   onClick(key) {
     const { activeKey } = this.state;
     const newKey = activeKey.length && activeKey[0] === key ? [] : [key];
-    this.setState({
-      activeKey: newKey
-    });
+    this.setState({ activeKey: newKey });
   }
 
   renderPanels() {

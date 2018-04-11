@@ -6,12 +6,8 @@ const MOBILE_MENU_TOGGLE = 'MOBILE_MENU_TOGGLE';
 
 /* Initial state */
 const initialState = {
-  mobileMenu: {
-    opened: false
-  },
-  sidebar: {
-    width: 0
-  },
+  mobileMenu: { opened: false },
+  sidebar: { width: 0 },
   filters: {
     searchFocus: false,
     closed: true
@@ -72,9 +68,7 @@ function setFiltersUi(params) {
 }
 
 function resetFiltersUi() {
-  return {
-    type: RESET_FILTERS_UI
-  };
+  return { type: RESET_FILTERS_UI };
 }
 
 export { uiReducer, setSidebarWidth, setFiltersUi, resetFiltersUi, toggleMobileMenu };

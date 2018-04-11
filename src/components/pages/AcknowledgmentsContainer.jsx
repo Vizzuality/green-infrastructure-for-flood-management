@@ -79,17 +79,17 @@ export default class GuidancePage extends React.Component {
               <div className="download-container">
                 <a className="c-btn -download" href="/files/Brochure-Implementing-nature-based-flood-protection_web.pdf" download>
                   Download pdf (EN)
-                      <SvgIcon name="icon-download-white" />
+                  <SvgIcon name="icon-download-white" />
                 </a>
 
                 <a className="c-btn -download" href="/files/2018002083SPAspa001_Brochure_Implementing_nature-based_flood_protection_VIEWONLY.pdf" download>
                   Download pdf (ES)
-                      <SvgIcon name="icon-download-white" />
+                  <SvgIcon name="icon-download-white" />
                 </a>
 
                 <a className="c-btn -download" href="/files/2018002083FREfre001_Brochure_Implementing_nature-based_flood_protection_Final_VIEWONLY.pdf" download>
                   Download pdf (FR)
-                      <SvgIcon name="icon-download-white" />
+                  <SvgIcon name="icon-download-white" />
                 </a>
               </div>
             </div>

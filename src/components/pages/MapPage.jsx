@@ -16,7 +16,7 @@ import Filters from 'components/filters/FiltersContainer';
 import ProjectList from 'components/projects/ProjectList';
 import ProjectDetail from 'components/projects/ProjectDetail';
 import ZoomControl from 'components/zoom/ZoomControl';
-import SlidingMenu from 'components/ui/SlidingMenu'
+import SlidingMenu from 'components/ui/SlidingMenu';
 import Spinner from 'components/ui/Spinner';
 import SortBy from 'components/ui/SortBy';
 import ShareModal from 'components/modal/ShareModal';
@@ -79,9 +79,7 @@ export default class MapPage extends React.Component {
         mapMethods: this.getMapMethods(newProps)
       });
     } else if (!isEqual(this.props.mapState, newProps.mapState)) {
-      this.setState({
-        mapMethods: this.getMapMethods(newProps)
-      });
+      this.setState({ mapMethods: this.getMapMethods(newProps) });
     }
   }
 
@@ -159,9 +157,7 @@ export default class MapPage extends React.Component {
         id: 'layer1',
         url: config.LAYER_URL,
         zIndex: props.mapState.layersActive.includes('layer1') ? 1 : -1,
-        options: {
-          tms: true
-        }
+        options: { tms: true }
       }
     ];
 
@@ -221,25 +217,26 @@ export default class MapPage extends React.Component {
 
     if (Object.keys(filtersOptions).length) {
       return currentFilters.filter(fil => !excludedFilters.includes(fil.filter))
-      .map((fil) => {
-        if (fil.value instanceof Array) {
-          return fil.value.map((v, i) => {
-            const key = fil.filter === 'status' ? 'implementation_statuses' : fil.filter;
-            const itemFound = filtersOptions[key].find(it => v === it.value);
-            return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
-          });
-        }
-        // No results message
-        if (fil.filter === 'name' && !this.props.projects.length) {
+        .map((fil) => {
+          if (fil.value instanceof Array) {
+            return fil.value.map((v, i) => {
+              const key = fil.filter === 'status' ? 'implementation_statuses' : fil.filter;
+              const itemFound = filtersOptions[key].find(it => v === it.value);
+              return itemFound && <li key={i} className="filter-tag">{upperFirst(itemFound.label)}</li>;
+            });
+          }
+          // No results message
+          if (fil.filter === 'name' && !this.props.projects.length) {
+            return (
+              <li>Your search did not match any documents.</li>
+            );
+          }
           return (
-            <li>Your search did not match any documents.</li>
+            <li key={fil.filter} className="filter-tag">{typeof fil.value !== 'number' ?
+            upperFirst(fil.value) : `$${setNumberFormat((fil.value * million))}`}
+            </li>
           );
-        }
-        return (
-          <li key={fil.filter} className="filter-tag">{typeof fil.value !== 'number' ?
-            upperFirst(fil.value) : `$${setNumberFormat((fil.value * million))}`}</li>
-        );
-      });
+        });
     }
     return [];
   }
@@ -258,9 +255,7 @@ export default class MapPage extends React.Component {
   toggleModal() {
     const opts = {
       children: ShareModal,
-      childrenProps: {
-        url: window.location.href
-      }
+      childrenProps: { url: window.location.href }
     };
     this.props.toggleModal(true, opts);
   }
@@ -269,9 +264,7 @@ export default class MapPage extends React.Component {
     this.props.toggleModal(true, {
       children: Legend,
       className: '-collapsed',
-      childrenProps: {
-        layersActive: this.props.mapState.layersActive
-      }
+      childrenProps: { layersActive: this.props.mapState.layersActive }
     });
   }
 
@@ -280,9 +273,7 @@ export default class MapPage extends React.Component {
       this.props.toggleModal(true, {
         children: Filters,
         className: '-fs',
-        childrenProps: {
-          options: this.props.filtersOptions
-        }
+        childrenProps: { options: this.props.filtersOptions }
       });
     } else {
       this.setState({ mobileMenu: value });
@@ -303,14 +294,14 @@ export default class MapPage extends React.Component {
     const filtersTags = this.setFiltersTags(intoArrayFilters);
     const filtersQuery = this.getQuery(this.props.filters);
     const items = mobileMenuItems.filter(i => i.value !== this.state.mobileMenu);
-    const searchComponent = <Search
+    const searchComponent = (<Search
       focus={this.props.filtersUi.searchFocus}
       defaultValue={this.props.filters.name}
       onChange={evt => this.onSearchChange(evt.target.value)}
       onClear={() => this.props.setProjectsFilters({ name: '' })}
       placeholder="Search project"
       clear
-    />;
+    />);
 
     return (
       <div className="c-map-page l-map-page">

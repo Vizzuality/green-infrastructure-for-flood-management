@@ -39,29 +39,29 @@ export default class AcknowledgementsPage extends React.Component {
             <div className="section-wrapper">
               <h1 className="h1 -secondary -big">Acknowledgements</h1>
               <div className="intro-container">
-                {/*<p className="intro">Implementing nature-based flood protection</p>*/}
+                {/* <p className="intro">Implementing nature-based flood protection</p> */}
               </div>
             </div>
           </div>
         </section>
         <section className="guidance-section -tabs-header">
           <div className="l-app-wrapper">
-            {/*<Tabs selectedIndex={this.state.tabIndex} onSelect={this.onSelect}>
+            {/* <Tabs selectedIndex={this.state.tabIndex} onSelect={this.onSelect}>
               <TabList className="c-tabs-fixed wrapper">
                 <Tab className="tab">Acknowledgements</Tab>
               </TabList>
               <TabPanel><Acknowledgements /></TabPanel>
-            </Tabs>*/}
+            </Tabs> */}
             <Acknowledgements />
 
-            {/*<div className="guidance-section -download">
+            {/* <div className="guidance-section -download">
               <div className="download-container -right">
                 <a className="c-btn -download -inverse" href="/files/Implementing_nature-based_flood_protection_Principles_and_implementation.pdf" download>
                   Download pdf
                   <SvgIcon name="icon-download-white" />
                 </a>
               </div>
-            </div>*/}
+            </div> */}
           </div>
         </section>
       </div>

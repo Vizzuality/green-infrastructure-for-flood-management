@@ -6,7 +6,7 @@ export default function PlusNumber(props) {
   return (
     <span className={`c-plus-number ${props.className}`}>
       <span>+{number}</span>
-      {/*props.list.length ? 
+      {/* props.list.length ?
         <span className="c-dropdown">
           <span className="tooltip-content">
             {props.list.map((l, i) => {
@@ -14,7 +14,7 @@ export default function PlusNumber(props) {
             })}
           </span>
         </span> :
-      ''*/}
+      '' */}
     </span>
   );
 }

@@ -7,18 +7,14 @@ import { Row } from 'components/ui/Grid';
 export default class Introduction extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      expanded: false
-    };
+    this.state = { expanded: false };
     this.toggleLines = this.toggleLines.bind(this);
   }
 
   toggleLines(event) {
     event.preventDefault();
 
-    this.setState({
-      expanded: !this.state.expanded
-    });
+    this.setState({ expanded: !this.state.expanded });
   }
 
   render() {
@@ -30,7 +26,7 @@ export default class Introduction extends React.Component {
               <h3 className="tag">Guidance</h3>
               <h1 className="title">Introduction</h1>
               <div className="intro-graph">
-                <div className="water-viel"></div>
+                <div className="water-viel" />
                 <div className="graph-title">
                   <p>Natural events recorded</p>
                   <p>between 1994 and 2013</p>

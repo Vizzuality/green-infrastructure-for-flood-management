@@ -9,30 +9,24 @@ module.exports = merge(sharedConfig, {
 
   devtool: 'cheap-module-source-map',
 
-  stats: {
-    errorDetails: true
-  },
+  stats: { errorDetails: true },
 
-  output: {
-    pathinfo: true
-  },
+  output: { pathinfo: true },
 
   module: {
     rules: [{
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: ['file-loader'],
-        include: [
-          path.resolve(rootPath, 'node_modules', 'leaflet'),
-          path.resolve(rootPath, 'src')
-        ]
-      }
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      use: ['file-loader'],
+      include: [
+        path.resolve(rootPath, 'node_modules', 'leaflet'),
+        path.resolve(rootPath, 'src')
+      ]
+    }
     ]
   },
 
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      debug: true
-    })
+    new webpack.LoaderOptionsPlugin({ debug: true })
   ]
 
 });
