@@ -105,7 +105,7 @@ export default class SubmitPage extends React.Component {
     this.setFieldValue(`new_${key}`, value);
   }
 
-  getCustomSelect(key, filtersKey, required, values, title, hasInfo) {
+  getCustomSelect(key, filtersKey, required, values, title, hasInfo, help) {
     const { filtersOptions } = this.props;
 
     return (
@@ -118,6 +118,8 @@ export default class SubmitPage extends React.Component {
           onChange={opts => this.controlOtherValue(key, opts)}
         />
         <h2 className="label">{title} {hasInfo && <Info text={infoTexts[key]} />}</h2>
+
+        {help && <p className="subtitle">{help}</p>}
 
         {/* Additional input to add new value */}
         <div className={`new-value ${this.state[`new_${key}`] ? '-active' : ''}`}>
@@ -407,10 +409,10 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Organizations */}
-                  {this.getCustomSelect('organizations', 'organizations', true, organizations, 'Organizations*', true)}
+                  {this.getCustomSelect('organizations', 'organizations', true, organizations, 'Organizations*', true, 'Choose "Other" to add a organization that is not in the list.')}
 
                   {/* Donors */}
-                  {this.getCustomSelect('donors', 'donors', true, donors, 'Donors', true)}
+                  {this.getCustomSelect('donors', 'donors', true, donors, 'Donors', true, 'Choose "Other" to add a donor that is not in the list.')}
 
                   {/* Locations */}
                   <div className={`form-field ${this.isRequiredOn('locations')}`}>
@@ -490,13 +492,13 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Nature-based solutions */}
-                  {this.getCustomSelect('nature_based_solutions', 'nature_based_solutions', true, nature_based_solutions, 'Nature-based solutions*', true)}
+                  {this.getCustomSelect('nature_based_solutions', 'nature_based_solutions', true, nature_based_solutions, 'Nature-based solutions*', true, 'Choose "Other" to add a narture-based solution that is not in the list.')}
 
                   {/* Primary benefits */}
-                  {this.getCustomSelect('primary_benefits_of_interventions', 'primary_benefits', true, primary_benefits_of_interventions, 'Risk reduction benefits*', true)}
+                  {this.getCustomSelect('primary_benefits_of_interventions', 'primary_benefits', true, primary_benefits_of_interventions, 'Risk reduction benefits*', true, 'Choose "Other" to add a risk reduction benefit that is not in the list.')}
 
                   {/* Co benefits of interventions */}
-                  {this.getCustomSelect('co_benefits_of_interventions', 'co_benefits', false, co_benefits_of_interventions, 'Full range of benefits of intervention', false)}
+                  {this.getCustomSelect('co_benefits_of_interventions', 'co_benefits', false, co_benefits_of_interventions, 'Full range of benefits of intervention', false, 'Choose "Other" to add a full range of benefits of intervention that is not in the list.')}
 
                   {/* Costs */}
                   <div className="form-field -in-row">
