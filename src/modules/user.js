@@ -169,13 +169,11 @@ function contact(userData) {
       headers: { Accept: 'application/json' },
       body: userData,
       onSuccess() {
-        console.log('success');
         dispatch(setContactSuccsess(true));
         dispatch(setLoading(false));
         dispatch(setError(null));
       },
       onError(error) {
-        console.log(error);
         if (error.status_code === '202') {
           dispatch(setContactSuccsess(true));
           dispatch(setLoading(false));
