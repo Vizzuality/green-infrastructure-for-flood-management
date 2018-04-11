@@ -12,8 +12,8 @@ export default class HomePage extends React.Component {
         <section className="home-section -header">
           <div className="l-app-wrapper">
             <div className="section-wrapper">
-              <h1 className="h1 -secondary -big">Natural Hazards – Nature-based Solutions</h1>
-              <h2 className="h2">Learn about nature-based projects for disaster risk reduction, and explore implementation and guiding principles to make your next project a success</h2>
+              <h1 className="h1 -secondary -big">Natural Hazards<br />Nature-based Solutions</h1>
+              <h2 className="h2">Learn about nature-based projects for disaster risk reduction, and explore implementation and guiding principles to make your next project a success.</h2>
               <BtnGroup>
                 <Link className="c-btn -fixed -tertiary" to="/map">Go to the map</Link>
                 <Link className="c-btn -fixed -transparent" to="/guidance">Guidance</Link>
@@ -47,7 +47,7 @@ export default class HomePage extends React.Component {
                 <h1 className="h1 -secondary -line">Guidance</h1>
               </div>
               <div className="column large-6 small-12">
-                <p className="text -secondary">Nature-based measures necessitate a distinct set of considerations different than those used in traditional infrastructure projects. These guidelines are intended to help practitioners succeed in designing and implementing nature-based solutions successfully.</p>
+                <p className="text -secondary">Nature-based measures necessitate a distinct set of considerations different than those used in traditional infrastructure projects. These guidelines are intended to help practitioners succeed in designing and implementing nature-based solutions.</p>
                 <Link className="c-btn -tertiary" to="/guidance">Explore project guidance</Link>
               </div>
             </Row>

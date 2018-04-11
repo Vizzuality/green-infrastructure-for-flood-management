@@ -8,6 +8,6 @@ const mapStateToProps = state => ({
   error: state.user.error
 });
 
-const mapDispatchToProps = dispatch => ({ contact(projectData) { dispatch(contact(projectData)); } });
+const mapDispatchToProps = dispatch => ({ contact(userData) { dispatch(contact(userData)); } });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy);

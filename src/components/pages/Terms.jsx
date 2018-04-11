@@ -219,23 +219,6 @@ export default class AboutPage extends React.Component {
           </section>
         </div>
 
-        {/* Submit */}
-        <section className="home-section -submit">
-          <div className="l-app-wrapper">
-            <Row>
-              <div className="column small-12 medium-8">
-                <h1 className="h1 -secondary -line">Submit your project</h1>
-              </div>
-            </Row>
-            <Row>
-              <div className="column small-12 medium-6">
-                <p className="text -secondary">Contribute your nature-based project and experiences to Natural Hazards – Nature-based Solutions database, and join a growing community of practitioners, scientists and donors who are using nature-based approaches to reduce disaster risk.</p>
-                <Link to="/submit" className="c-btn -primary">Submit a project</Link>
-              </div>
-            </Row>
-          </div>
-        </section>
-
         {/* Contact */}
         <section className="home-section contact">
           <div className="l-app-wrapper">
