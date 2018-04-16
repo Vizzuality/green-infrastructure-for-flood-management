@@ -11,32 +11,39 @@
   }
 
   &.-footer {
-    @include breakpoint(small only) {
-      .nav-list {
-        margin: 0 10px;
-      }
-
-      .nav-item {
-        margin-right: 20px;
-      }
-
-      .nav-link {
-        font-size: 12px;
-        padding: 20px 5px;
-      }
-    }
-
     .nav-list {
       align-items: center;
+    }
+
+    .nav-item {
+      margin-right: 10px;
     }
 
     .nav-link {
       font-size: $font-size-small;
       font-weight: normal;
       text-align: center;
+      padding: 24px 10px;
 
       &:hover:before {
         display: none;
+      }
+    }
+
+    @include breakpoint(small only) {
+      .nav-list {
+        margin: 30px 0 10px 0;
+        flex-direction: column;
+      }
+
+      .nav-item {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .nav-link {
+        font-size: 12px;
+        padding: 14px 10px;
       }
     }
   }
@@ -64,10 +71,11 @@
 
   .nav-list {
     display: flex;
+    justify-content: space-between;
   }
 
   .nav-item {
-    margin-right: $space-1 * 4;
+    // margin-right: $space-1 * 4;
     cursor: pointer;
 
     &:last-child {

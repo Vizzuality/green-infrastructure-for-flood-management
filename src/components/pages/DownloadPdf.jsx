@@ -210,7 +210,7 @@ export default class DownloadPdf extends React.Component {
           </div>}
 
           {projectDetail.co_benefits_of_interventions && projectDetail.co_benefits_of_interventions.length > 0 && <div className="project-info-item">
-            <span className="label">Other benefits</span>
+            <span className="label">Additional benefits</span>
             <ul className="value">{projectDetail.co_benefits_of_interventions && setArrayValues(projectDetail.co_benefits_of_interventions)}</ul>
           </div>}
 
