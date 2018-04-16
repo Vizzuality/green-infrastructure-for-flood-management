@@ -71,7 +71,7 @@ export default class AboutPage extends React.Component {
             <div className="l-app-wrapper">
               <Row>
                 <div className="column small-12 medium-8 medium-offset-2">
-                  <h1 className="h1 -line">Privacy and policy</h1>
+                  <h1 className="h1 -line">Privacy policy and terms</h1>
                   <p className="text">Your privacy on the Internet is of the utmost importance to us. Because we gather certain types of information about the users of the Natural Hazards – Nature-based Solutions site (http://www.naturebasedsolutions.org) and services, we want to ensure that you fully understand the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it. This privacy policy applies to all Natural Hazards – Nature-based Solutions sites - that is, all sites within the "naturebasedsolutions.org" domain name.</p>
 
                   <h2 className="h2">What Information Does Natural Hazards – Nature-based Solutions Collect?</h2>

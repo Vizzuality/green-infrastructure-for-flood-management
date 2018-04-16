@@ -84,6 +84,11 @@ export default class HomePage extends React.Component {
                   <img src="/images/partners/gfdrr.png" alt="gfdrr" />
                 </a>
               </li>
+              <li>
+                <a href="https://www.profor.info/" target="_blank" rel="noreferrer noopener">
+                  <img src="/images/partners/PROFOR_logo.png" alt="PROFOR" />
+                </a>
+              </li>
             </div>
 
             <h1 className="subpartners-title h1 -line">Contributing partners</h1>
