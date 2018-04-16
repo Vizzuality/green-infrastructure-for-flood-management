@@ -161,16 +161,26 @@ $padding: $space-1 * 9;
 
       input {
         flex-grow: 1;
+        width: 100%;
         height: 45px;
         padding: 0 15px;
-        margin-right: 20px;
+        margin-right: -284px;
+        padding-right: 294px;
         font-size: $font-size-default;
+      }
+
+      &.-copied input {
+        margin-right: -302px;
+        padding-right: 312px;
       }
     }
 
     .c-btn {
-      height: 45px;
+      height: 39px;
+      margin-top: 3px;
+      margin-left: 3px;
       padding: 10px 32px;
+      fill: #248b6b;
     }
 
     .media {

@@ -21,24 +21,18 @@ export default class ShareModal extends React.Component {
 
   getContent() {
     const { url } = this.props;
-    const content = (
-      <div className="url-container">
-        <input ref={n => this.input = n} value={url} className="url" readOnly />
-        <button className="c-btn -primary -transparent" onClick={() => this.onCopyClick()}>
-          Copy
-        </button>
-      </div>
-    );
 
     return (
       <div className="share-content">
         <h1 className="title">Share this page</h1>
-        {content}
-        <div className="media">
+
+        <div className={`url-container ${this.state.copied && '-copied'}`}>
+          <input ref={n => this.input = n} value={url} className="url" readOnly />
           <a
             href={`http://www.facebook.com/sharer/sharer.php?u=${url}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="c-btn -primary -transparent"
           >
             <SvgIcon name="icon-facebook" className="-big" />
           </a>
@@ -46,9 +40,13 @@ export default class ShareModal extends React.Component {
             href={`https://twitter.com/share?url=${url}&text=Natural Hazards – Nature-based Solutions`}
             target="_blank"
             rel="noopener noreferrer"
+            className="c-btn -primary -transparent"
           >
             <SvgIcon name="icon-twitter" className="-big" />
           </a>
+          <button className="c-btn -primary -transparent" onClick={() => this.onCopyClick()}>
+            {this.state.copied ? 'Copied!' : 'Copy' }
+          </button>
         </div>
       </div>
     );
