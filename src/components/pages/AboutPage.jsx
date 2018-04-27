@@ -37,7 +37,7 @@ export default class AboutPage extends React.Component {
       // Contact
       this.props.contact(this.form);
       this.setState({ error: null });
-    } else if (!validator.isEmail(this.form.email)) {
+    } else if (this.form.email && !validator.isEmail(this.form.email)) {
       this.setState({ error: 'The email is not correct' });
     } else {
       this.setState({ error: 'Some required fields are missing' });
