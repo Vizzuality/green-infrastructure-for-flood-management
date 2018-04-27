@@ -69,6 +69,7 @@
     "react-router-scroll": "^0.4.2",
     "react-select": "^1.0.0-rc.3",
     "react-selectize": "^2.1.0",
+    "react-share": "^2.1.1",
     "react-sortable-hoc": "^0.4.5",
     "react-tabs": "1.0.0",
     "react-tether": "^0.5.6",
