@@ -113,6 +113,12 @@ export default class ProjectDetail extends React.Component {
     const countries = uniq(data.locations.map(l => l.adm0_name));
     const natureBaseInfo = 'Ecosystems are central to nature-based solutions. The following ecosystems have been conserved, restored or created in an effort to reduce disaster risk.';
 
+    // adding http to url
+    const prefix = 'http://'
+    if (data.learn_more.substr(0, prefix.length) !== prefix) {
+      data.learn_more = prefix + data.learn_more;
+    }
+
     return (
       <article className="c-project-detail">
         <div className="project-bar">
