@@ -119,6 +119,8 @@ export default class ProjectDetail extends React.Component {
       data.learn_more = prefix + data.learn_more;
     }
 
+    console.log(data);
+
     return (
       <article className="c-project-detail">
         <div className="project-bar">
@@ -227,6 +229,11 @@ export default class ProjectDetail extends React.Component {
           </a>
         </div>
         <div className="project-info">
+          {(data.contributor_name || data.contributor_organization) &&
+            <div className="project-info-item">
+              <span className="label">Contributor</span>
+              <span className="value">{data.contributor_name}{data.contributor_organization && (`, ${data.contributor_organization}`)}</span>
+            </div>}
           <div className="project-info-item">
             <Row>
               {data.intervention_type && <div className="column small-4">

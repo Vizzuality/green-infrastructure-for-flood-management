@@ -370,6 +370,8 @@ export default class SubmitPage extends React.Component {
       (success || error));
 
     const message = this.setMessageOptions();
+    const hasContributorName = !!(this.inputs.contributor_name && (this.inputs.contributor_name.value && this.inputs.contributor_name.value !== ''));
+    const hasContributorOrg = !!(this.inputs.contributor_organization && (this.inputs.contributor_organization.value && this.inputs.contributor_organization.value !== ''));
 
     return (
       <div className="c-submit">
@@ -592,24 +594,26 @@ export default class SubmitPage extends React.Component {
                   </div>
 
                   {/* Contributor name */}
-                  <div className={`form-field ${this.isRequiredOn('contributor_name')}`}>
+                  <div className={`form-field ${!hasContributorOrg && this.isRequiredOn('contributor_name')}`}>
                     <input
                       ref={n => this.inputs.contributor_name = n}
                       name="contributor_name"
                       type="text"
                       onBlur={e => this.setFieldValue('contributor_name', e.currentTarget.value)}
                     />
-                    <h2 className="label">Contributor name*</h2>
+                    {hasContributorOrg ?
+                      <h2 className="label">Contributor name</h2> : <h2 className="label">Contributor name*</h2>}
                   </div>
 
-                  <div className={`form-field ${this.isRequiredOn('contributor_organization')}`}>
+                  <div className={`form-field ${!hasContributorName && this.isRequiredOn('contributor_organization')}`}>
                     <input
                       ref={n => this.inputs.contributor_organization = n}
                       name="contributor_organization"
                       type="text"
                       onBlur={e => this.setFieldValue('contributor_organization', e.currentTarget.value)}
                     />
-                    <h2 className="label">Contributor organization*</h2>
+                    {hasContributorName ?
+                      <h2 className="label">Contributor organization</h2> : <h2 className="label">Contributor organization*</h2>}
                   </div>
 
                   {/* Permission */}
