@@ -5,7 +5,8 @@ const projects = state => state.projects;
 // TODO: implement logic
 function getActiveProjects(_projects) {
   const { search } = _projects;
-  return _projects.list.filter(i => i.name.match(search));
+  const result = _projects.list.filter(i => i.name.match(search));
+  return result;
 }
 
 // Export the selector
