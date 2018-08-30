@@ -11,7 +11,7 @@ $padding: 32px;
     height: $_btn-height;
 
     .sliding-menu-content {
-      transform: translateY(calc(-100%));
+      transform: translateY(-100%);
     }
   }
 
