@@ -174,7 +174,7 @@ function contact(userData) {
         dispatch(setError(null));
       },
       onError(error) {
-        if (error.status_code === '202') {
+        if (error.status >= 200) {
           dispatch(setContactSuccsess(true));
           dispatch(setLoading(false));
           dispatch(setError(null));
