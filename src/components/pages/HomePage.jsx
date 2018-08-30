@@ -18,7 +18,7 @@ export default class HomePage extends React.Component {
                 <Link className="c-btn -fixed -tertiary" to="/map">Go to the map</Link>
                 <Link className="c-btn -fixed -transparent" to="/guidance">Guidance</Link>
               </BtnGroup>
-              <SvgIcon className="section-icon is-mobile-hidden" name="icon-arrow-down-2" />
+              {/*<SvgIcon className="section-icon is-mobile-hidden" name="icon-arrow-down-2" />*/}
             </div>
           </div>
         </section>
