@@ -49,6 +49,8 @@ export default class AboutPage extends React.Component {
     let message = '';
     let type = '';
 
+    console.log(this.props)
+
     if (this.state.error) {
       message = this.state.error;
       type = 'error';
@@ -212,7 +214,7 @@ export default class AboutPage extends React.Component {
                         <Input
                           type="text"
                           name="subject"
-                          value=""
+                          value="Contact"
                           className="-hidden"
                           onChange={this.onInputChange}
                           validations={[]}
